@@ -1,0 +1,54 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: edu-platform
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/edu_platform?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai
+    username: root
+    password: root123
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      password:
+      database: 0
+      timeout: 10000ms
+
+mybatis-plus:
+  mapper-locations: classpath:mapper/**/*.xml
+  type-aliases-package: com.edu.*.entity
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      id-type: auto
+      logic-delete-field: deleted
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+
+jwt:
+  secret: edu-platform-jwt-secret-key-2026-very-long-string-for-security
+  expiration: 86400000 # 24小时
+
+ai:
+  default-provider: CLOUD
+  cloud:
+    provider: Claude
+    api-url: https://api.anthropic.com/v1/messages
+    api-key: ${CLAUDE_API_KEY:}
+    model: claude-sonnet-4-6
+    max-tokens: 2000
+  private:
+    service-url: http://localhost:8081
+    timeout: 30000
+
+logging:
+  level:
+    com.edu: debug
+    org.springframework.security: info
