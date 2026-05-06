@@ -91,6 +91,13 @@
             <version>${fastjson2.version}</version>
         </dependency>
 
+        <!-- TransmittableThreadLocal -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>transmittable-thread-local</artifactId>
+            <version>2.14.4</version>
+        </dependency>
+
         <!-- Lombok -->
         <dependency>
             <groupId>org.projectlombok</groupId>
