@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS school (
 -- ============================================================
 
 -- 用户表
-CREATE TABLE IF NOT EXISTS user (
+CREATE TABLE IF NOT EXISTS sys_user (
     id BIGINT PRIMARY KEY AUTO_INCREMENT COMMENT '用户ID',
     tenant_id BIGINT NOT NULL COMMENT '所属租户',
     username VARCHAR(50) NOT NULL COMMENT '用户名',
@@ -119,7 +119,7 @@ CREATE TABLE IF NOT EXISTS class (
     id BIGINT PRIMARY KEY AUTO_INCREMENT COMMENT '班级ID',
     grade_id BIGINT NOT NULL COMMENT '所属年级',
     name VARCHAR(50) NOT NULL COMMENT '班级名称',
-    teacher_id BIGINT COMMENT '班主任ID（关联user）',
+    teacher_id BIGINT COMMENT '班主任ID（关联sys_user）',
     student_count INT DEFAULT 0 COMMENT '学生人数',
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
@@ -286,3 +286,61 @@ CREATE TABLE IF NOT EXISTS student_wrong_question (
     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     UNIQUE KEY uk_student_question (student_id, question_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='学生错题记录表';
+
+-- ============================================================
+-- Indexes on FK-like columns
+-- ============================================================
+
+-- tenant_config
+CREATE INDEX idx_tenant_config_tenant_id ON tenant_config(tenant_id);
+
+-- school
+CREATE INDEX idx_school_tenant_id ON school(tenant_id);
+
+-- sys_user
+CREATE INDEX idx_sys_user_tenant_id ON sys_user(tenant_id);
+
+-- role
+CREATE INDEX idx_role_tenant_id ON role(tenant_id);
+
+-- grade
+CREATE INDEX idx_grade_school_id ON grade(school_id);
+
+-- class
+CREATE INDEX idx_class_grade_id ON class(grade_id);
+CREATE INDEX idx_class_teacher_id ON class(teacher_id);
+
+-- student
+CREATE INDEX idx_student_class_id ON student(class_id);
+CREATE INDEX idx_student_tenant_id ON student(tenant_id);
+
+-- question
+CREATE INDEX idx_question_bank_id ON question(bank_id);
+
+-- exam_template
+CREATE INDEX idx_exam_template_tenant_id ON exam_template(tenant_id);
+
+-- exam_paper
+CREATE INDEX idx_exam_paper_tenant_id ON exam_paper(tenant_id);
+CREATE INDEX idx_exam_paper_template_id ON exam_paper(template_id);
+
+-- exam_question
+CREATE INDEX idx_exam_question_exam_paper_id ON exam_question(exam_paper_id);
+CREATE INDEX idx_exam_question_question_id ON exam_question(question_id);
+
+-- answer_sheet
+CREATE INDEX idx_answer_sheet_tenant_id ON answer_sheet(tenant_id);
+CREATE INDEX idx_answer_sheet_exam_paper_id ON answer_sheet(exam_paper_id);
+CREATE INDEX idx_answer_sheet_student_id ON answer_sheet(student_id);
+
+-- answer
+CREATE INDEX idx_answer_answer_sheet_id ON answer(answer_sheet_id);
+CREATE INDEX idx_answer_exam_question_id ON answer(exam_question_id);
+
+-- score_analysis
+CREATE INDEX idx_score_analysis_exam_paper_id ON score_analysis(exam_paper_id);
+CREATE INDEX idx_score_analysis_class_id ON score_analysis(class_id);
+
+-- student_wrong_question
+CREATE INDEX idx_student_wrong_question_student_id ON student_wrong_question(student_id);
+CREATE INDEX idx_student_wrong_question_question_id ON student_wrong_question(question_id);
