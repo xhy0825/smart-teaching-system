@@ -1,0 +1,32 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+backend/target/
+frontend/dist/
+
+# IDE
+.vscode/
+.idea/
+*.iml
+
+# Logs
+*.log
+logs/
+
+# Environment
+.env
+.env.local
+
+# OS
+.DS_Store
+Thumbs.pkl
+
+# Temp files
+*.tmp
+*.temp
+*.swp
+*~
+
+# Claude tasks (optional)
+.claude/tasks/
