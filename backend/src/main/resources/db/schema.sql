@@ -55,6 +55,7 @@ CREATE TABLE IF NOT EXISTS sys_user (
     phone VARCHAR(20) COMMENT '手机号',
     avatar VARCHAR(200) COMMENT '头像URL',
     status TINYINT DEFAULT 1 COMMENT '状态: 1-正常, 0-禁用',
+    deleted TINYINT DEFAULT 0 COMMENT '逻辑删除: 0-未删除, 1-已删除',
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     UNIQUE KEY uk_tenant_username (tenant_id, username)
@@ -68,6 +69,8 @@ CREATE TABLE IF NOT EXISTS role (
     code VARCHAR(20) NOT NULL COMMENT '角色编码: ADMIN/TEACHER/STUDENT/PARENT',
     description VARCHAR(200) COMMENT '角色描述',
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    deleted TINYINT DEFAULT 0 COMMENT '逻辑删除: 0-未删除, 1-已删除',
     UNIQUE KEY uk_tenant_code (tenant_id, code)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='角色表';
 
@@ -136,6 +139,7 @@ CREATE TABLE IF NOT EXISTS student (
     gender TINYINT COMMENT '性别: 1-男, 2-女',
     birth_date DATE COMMENT '出生日期',
     status TINYINT DEFAULT 1 COMMENT '状态: 1-在读, 0-离校',
+    deleted TINYINT DEFAULT 0 COMMENT '逻辑删除: 0-未删除, 1-已删除',
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     UNIQUE KEY uk_tenant_student_no (tenant_id, student_no)
@@ -154,6 +158,7 @@ CREATE TABLE IF NOT EXISTS question_bank (
     grade_level TINYINT COMMENT '适用年级段',
     description VARCHAR(200) COMMENT '题库描述',
     is_public TINYINT DEFAULT 0 COMMENT '是否公开: 0-私有, 1-租户内公开',
+    deleted TINYINT DEFAULT 0 COMMENT '逻辑删除: 0-未删除, 1-已删除',
     created_by BIGINT COMMENT '创建人',
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
@@ -172,6 +177,7 @@ CREATE TABLE IF NOT EXISTS question (
     answer_analysis TEXT COMMENT '答案解析',
     knowledge_points JSON COMMENT '知识点标签',
     source VARCHAR(50) COMMENT '来源: MANUAL/AI_GENERATED',
+    deleted TINYINT DEFAULT 0 COMMENT '逻辑删除: 0-未删除, 1-已删除',
     created_by BIGINT COMMENT '创建人',
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
@@ -186,6 +192,7 @@ CREATE TABLE IF NOT EXISTS exam_template (
     total_score DECIMAL(5,2) COMMENT '总分',
     time_limit INT COMMENT '考试时长（分钟）',
     structure JSON COMMENT '试卷结构配置',
+    deleted TINYINT DEFAULT 0 COMMENT '逻辑删除: 0-未删除, 1-已删除',
     created_by BIGINT COMMENT '创建人',
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
@@ -203,6 +210,7 @@ CREATE TABLE IF NOT EXISTS exam_paper (
     total_score DECIMAL(5,2) NOT NULL COMMENT '总分',
     time_limit INT COMMENT '考试时长',
     status TINYINT DEFAULT 0 COMMENT '状态: 0-草稿, 1-已发布, 2-考试中, 3-已结束, 4-已批改',
+    deleted TINYINT DEFAULT 0 COMMENT '逻辑删除: 0-未删除, 1-已删除',
     created_by BIGINT NOT NULL COMMENT '创建人',
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     published_at DATETIME COMMENT '发布时间',
@@ -235,6 +243,7 @@ CREATE TABLE IF NOT EXISTS answer_sheet (
     submit_time DATETIME COMMENT '提交时间',
     grading_time DATETIME COMMENT '批改完成时间',
     graded_by BIGINT COMMENT '批改人',
+    deleted TINYINT DEFAULT 0 COMMENT '逻辑删除: 0-未删除, 1-已删除',
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     UNIQUE KEY uk_exam_student (exam_paper_id, student_id)
@@ -344,3 +353,26 @@ CREATE INDEX idx_score_analysis_class_id ON score_analysis(class_id);
 -- student_wrong_question
 CREATE INDEX idx_student_wrong_question_student_id ON student_wrong_question(student_id);
 CREATE INDEX idx_student_wrong_question_question_id ON student_wrong_question(question_id);
+
+-- ============================================================
+-- PPT模块表 (PPT Module)
+-- ============================================================
+
+-- PPT文档表
+CREATE TABLE IF NOT EXISTS ppt_document (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT COMMENT 'PPT ID',
+    tenant_id BIGINT NOT NULL COMMENT '所属租户',
+    title VARCHAR(100) NOT NULL COMMENT 'PPT标题',
+    subject VARCHAR(20) COMMENT '学科',
+    template_type VARCHAR(20) COMMENT '模板类型: LESSON/EXAM/SUMMARY',
+    content_json TEXT COMMENT '内容JSON',
+    file_path VARCHAR(200) COMMENT '文件路径',
+    page_count INT COMMENT '页数',
+    created_by BIGINT COMMENT '创建人',
+    deleted TINYINT DEFAULT 0 COMMENT '逻辑删除: 0-未删除, 1-已删除',
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='PPT文档表';
+
+-- ppt_document indexes
+CREATE INDEX idx_ppt_document_tenant_id ON ppt_document(tenant_id);

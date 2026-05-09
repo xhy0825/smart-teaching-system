@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.edu.common.exception.BusinessException;
 import com.edu.common.util.JwtUtil;
 import com.edu.common.util.TenantContextHolder;
+import com.edu.user.dto.CreateUserRequest;
 import com.edu.user.dto.LoginRequest;
 import com.edu.user.dto.LoginResponse;
 import com.edu.user.dto.RegisterRequest;
@@ -127,5 +128,66 @@ public class UserService extends ServiceImpl<UserMapper, User> {
 
     public List<String> getUserRoles(Long userId) {
         return roleService.getUserRoleCodes(userId);
+    }
+
+    public List<User> listUsers() {
+        Long tenantId = TenantContextHolder.getTenantId();
+        LambdaQueryWrapper<User> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(User::getTenantId, tenantId)
+                .eq(User::getDeleted, 0)
+                .orderByDesc(User::getCreatedAt);
+        return baseMapper.selectList(wrapper);
+    }
+
+    @Transactional
+    public User createUser(CreateUserRequest request) {
+        Long tenantId = TenantContextHolder.getTenantId();
+        if (tenantId == null) {
+            throw new BusinessException("租户上下文缺失");
+        }
+
+        // 检查用户名是否已存在
+        LambdaQueryWrapper<User> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(User::getTenantId, tenantId)
+                .eq(User::getUsername, request.getUsername());
+        if (baseMapper.selectCount(wrapper) > 0) {
+            throw new BusinessException("用户名已存在");
+        }
+
+        // 创建用户
+        User user = new User();
+        user.setTenantId(tenantId);
+        user.setUsername(request.getUsername());
+        user.setPassword(passwordEncoder.encode(request.getPassword()));
+        user.setRealName(request.getRealName());
+        user.setEmail(request.getEmail());
+        user.setPhone(request.getPhone());
+        user.setStatus(1);
+        baseMapper.insert(user);
+
+        // 分配角色
+        String roleCode = request.getRoleCode() != null ? request.getRoleCode() : "TEACHER";
+        roleService.assignRoleToUser(user.getId(), roleCode);
+
+        log.info("创建用户成功: userId={}, username={}", user.getId(), user.getUsername());
+        return user;
+    }
+
+    @Transactional
+    public void deleteUser(Long userId) {
+        User user = baseMapper.selectById(userId);
+        if (user == null) {
+            throw new BusinessException("用户不存在");
+        }
+
+        // MyBatis-Plus会自动处理逻辑删除
+        baseMapper.deleteById(userId);
+
+        // 删除用户角色关联
+        LambdaQueryWrapper<UserRole> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(UserRole::getUserId, userId);
+        userRoleMapper.delete(wrapper);
+
+        log.info("删除用户: userId={}", userId);
     }
 }

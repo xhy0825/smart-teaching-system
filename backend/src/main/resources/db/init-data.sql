@@ -48,8 +48,8 @@ INSERT INTO role_permission (role_id, permission_id) VALUES
 
 -- 创建默认管理员用户 (密码: admin123)
 -- BCrypt加密后的密码
-INSERT INTO sys_user (id, tenant_id, username, password, real_name, status) VALUES
-(1, 1, 'admin', '$2a$10$N.zmdr9k7uOCQb376NoUnuTJ8iAt6Z5EHsM8lE9lBOsl7iAt6Z5EH', '管理员', 1);
+INSERT INTO sys_user (id, tenant_id, username, password, real_name, status, deleted) VALUES
+(1, 1, 'admin', '$2a$10$1VqglJ1Xi1mYSOuGBd7ldePdpdJXlEqBOiv3mk.Sef7Niy8Fi0LUO', '管理员', 1, 0);
 
 -- 用户角色关联
 INSERT INTO user_role (user_id, role_id) VALUES
@@ -73,3 +73,17 @@ INSERT INTO question (id, bank_id, subject, question_type, difficulty, content, 
 -- 创建试卷模板
 INSERT INTO exam_template (id, tenant_id, name, subject, total_score, time_limit, structure, created_by) VALUES
 (1, 1, '初中数学单元测试模板', 'MATH', 100, 45, '[{"section":"选择题","type":"CHOICE","count":10,"scoreEach":4},{"section":"填空题","type":"FILL","count":5,"scoreEach":4},{"section":"计算题","type":"CALCULATION","count":3,"scoreEach":12}]', 1);
+
+-- 创建测试学生数据
+INSERT INTO student (id, tenant_id, class_id, name, student_no, gender, status, deleted) VALUES
+(1, 1, 1, '张三', '2023001', 1, 1, 0),
+(2, 1, 1, '李四', '2023002', 1, 1, 0),
+(3, 1, 1, '王五', '2023003', 2, 1, 0),
+(4, 1, 2, '赵六', '2023004', 1, 1, 0);
+
+-- 创建学生错题记录（用于个性化出题测试）
+INSERT INTO student_wrong_question (student_id, question_id, wrong_count) VALUES
+(1, 2, 2),
+(1, 5, 1),
+(2, 1, 1),
+(2, 3, 1);

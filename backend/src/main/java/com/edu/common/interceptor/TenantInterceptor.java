@@ -32,11 +32,22 @@ public class TenantInterceptor implements InnerInterceptor {
 
     /**
      * Default exempt tables that should not have tenant_id appended.
+     * These tables either don't have tenant_id column or are linked via parent table.
      */
     private static final Set<String> DEFAULT_EXEMPT_TABLES = Set.of(
             "tenant",
             "tenant_config",
-            "permission"
+            "permission",
+            "class",              // no tenant_id column
+            "grade",              // linked via school
+            "school",             // linked via tenant
+            "sys_user",           // already filtered by service
+            "question",           // linked via question_bank
+            "exam_question",      // linked via exam_paper
+            "answer",             // linked via answer_sheet
+            "student_wrong_question", // linked via student
+            "user_role",          // linked via user
+            "role_permission"     // linked via role
     );
 
     private final Set<String> exemptTables;
@@ -114,7 +125,10 @@ public class TenantInterceptor implements InnerInterceptor {
         if (plainSelect.getFromItem() == null) {
             return false;
         }
-        String tableName = plainSelect.getFromItem().toString().toLowerCase().trim();
+        // 从FromItem中提取实际表名，去掉可能的别名
+        String fromItemStr = plainSelect.getFromItem().toString().toLowerCase().trim();
+        // 处理带别名的情况: "grade g" 或 "grade as g"
+        String tableName = fromItemStr.split("\\s+")[0];
         return exemptTables.contains(tableName);
     }
 

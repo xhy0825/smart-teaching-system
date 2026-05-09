@@ -67,6 +67,30 @@ const routes: RouteRecordRaw[] = [
         name: 'WrongQuestions',
         component: () => import('@/views/WrongQuestions.vue'),
         meta: { title: '错题记录' }
+      },
+      {
+        path: 'student-profile',
+        name: 'StudentProfile',
+        component: () => import('@/views/StudentProfile.vue'),
+        meta: { title: '学生画像' }
+      },
+      {
+        path: 'ppt-maker',
+        name: 'PptMaker',
+        component: () => import('@/views/PptMaker.vue'),
+        meta: { title: 'PPT制作' }
+      },
+      {
+        path: 'user-manage',
+        name: 'UserManage',
+        component: () => import('@/views/UserManage.vue'),
+        meta: { title: '用户管理' }
+      },
+      {
+        path: 'class-manage',
+        name: 'ClassManage',
+        component: () => import('@/views/ClassManage.vue'),
+        meta: { title: '班级管理' }
       }
     ]
   }

@@ -61,6 +61,15 @@ public class ExamPaperController {
     }
 
     /**
+     * 个性化出题（根据学生画像）
+     */
+    @PostMapping("/generate-personalized")
+    public Result<ExamPaperResponse> generatePersonalizedPaper(@Valid @RequestBody ExamGenerateRequest request) {
+        ExamPaper paper = examGenerateService.generatePersonalizedExam(request);
+        return Result.success(toResponseWithQuestions(paper));
+    }
+
+    /**
      * 获取试卷列表
      */
     @GetMapping

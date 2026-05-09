@@ -1,0 +1,76 @@
+server:
+  port: 8080
+  servlet:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+
+spring:
+  application:
+    name: edu-platform
+
+  # HTTP编码配置
+  http:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+
+  # 使用H2内存数据库（临时测试用）
+  datasource:
+    url: jdbc:h2:mem:edu_platform;MODE=MySQL;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+
+  sql:
+    init:
+      mode: always
+      schema-locations: classpath:db/schema.sql
+      data-locations: classpath:db/init-data.sql
+      encoding: UTF-8
+
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration
+      - org.springframework.boot.autoconfigure.data.redis.RedisRepositoriesAutoConfiguration
+
+mybatis-plus:
+  mapper-locations: classpath:mapper/**/*.xml
+  type-aliases-package: com.edu.*.entity
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      id-type: auto
+      logic-delete-field: deleted
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+
+jwt:
+  secret: edu-platform-jwt-secret-key-2026-very-long-string-for-security
+  expiration: 86400000
+
+ai:
+  default-provider: CLOUD
+  cloud:
+    provider: Claude
+    api-url: https://api.anthropic.com/v1/messages
+    api-key:
+    model: claude-sonnet-4-6
+    max-tokens: 2000
+  private:
+    service-url: http://localhost:8081
+    timeout: 30000
+
+logging:
+  level:
+    com.edu: debug
+    org.springframework.security: info
