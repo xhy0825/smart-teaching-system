@@ -23,3 +23,8 @@ export function getCurrentUser() {
 export function getUserList() {
   return request.get('/user/list')
 }
+
+// 获取班级列表
+export function getClasList() {
+  return request.get('/class/list')
+}
