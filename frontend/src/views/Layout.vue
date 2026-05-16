@@ -94,6 +94,14 @@
             </template>
           </el-menu-item>
 
+          <!-- 班级画像 -->
+          <el-menu-item index="/class-profile" class="menu-item">
+            <el-icon class="menu-icon"><DataAnalysis /></el-icon>
+            <template #title>
+              <span class="menu-text">班级画像</span>
+            </template>
+          </el-menu-item>
+
           <!-- PPT制作 -->
           <el-menu-item index="/ppt-maker" class="menu-item">
             <el-icon class="menu-icon"><Monitor /></el-icon>
@@ -192,7 +200,7 @@ import { computed } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { useUserStore } from '@/store/user'
 import { useAppStore } from '@/store/app'
-import { User, Setting, SwitchButton } from '@element-plus/icons-vue'
+import { User, Setting, SwitchButton, DataAnalysis } from '@element-plus/icons-vue'
 
 const router = useRouter()
 const route = useRoute()
@@ -215,6 +223,7 @@ const currentRouteTitle = computed(() => {
     '/score-analysis': '成绩分析',
     '/wrong-questions': '错题记录',
     '/student-profile': '学生画像',
+    '/class-profile': '班级画像',
     '/ppt-maker': 'PPT制作',
     '/user-manage': '用户管理',
     '/class-manage': '班级管理'

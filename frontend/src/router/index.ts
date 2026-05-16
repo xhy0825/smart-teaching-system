@@ -75,6 +75,12 @@ const routes: RouteRecordRaw[] = [
         meta: { title: '学生画像' }
       },
       {
+        path: 'class-profile',
+        name: 'ClassProfile',
+        component: () => import('@/views/ClassProfile.vue'),
+        meta: { title: '班级画像' }
+      },
+      {
         path: 'ppt-maker',
         name: 'PptMaker',
         component: () => import('@/views/PptMaker.vue'),
