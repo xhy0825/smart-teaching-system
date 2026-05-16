@@ -55,6 +55,24 @@
           <div ref="chartRef" style="height: 300px"></div>
         </el-card>
 
+        <!-- 知识点掌握雷达图 -->
+        <el-card class="chart-card" shadow="hover">
+          <template #header>
+            <span>班级知识点掌握雷达图</span>
+          </template>
+          <div ref="classRadarRef" style="height: 300px"></div>
+          <el-empty v-if="!stats?.knowledgeRadar?.points?.length" description="暂无雷达图数据" />
+        </el-card>
+
+        <!-- 学生成绩分布箱线图 -->
+        <el-card class="chart-card" shadow="hover">
+          <template #header>
+            <span>成绩分布箱线图</span>
+          </template>
+          <div ref="boxplotRef" style="height: 300px"></div>
+          <el-empty v-if="!stats?.scoreBoxplot" description="暂无箱线图数据" />
+        </el-card>
+
         <!-- 知识点掌握表格 -->
         <el-card class="table-card" shadow="hover">
           <template #header>
@@ -121,6 +139,10 @@ const classList = ref<any[]>([])
 const studentList = ref<any[]>([])
 const chartRef = ref<HTMLElement | null>(null)
 let chartInstance: echarts.ECharts | null = null
+const classRadarRef = ref<HTMLElement | null>(null)
+const boxplotRef = ref<HTMLElement | null>(null)
+let classRadarInstance: echarts.ECharts | null = null
+let boxplotInstance: echarts.ECharts | null = null
 
 const goBack = () => {
   router.push('/dashboard')
@@ -179,7 +201,82 @@ const initChart = () => {
   })
 }
 
+const initClassRadarChart = () => {
+  if (!classRadarRef.value || !stats.value?.knowledgeRadar?.points?.length) return
+
+  nextTick(() => {
+    if (!classRadarRef.value) return
+    if (classRadarInstance) {
+      classRadarInstance.dispose()
+    }
+    classRadarInstance = echarts.init(classRadarRef.value)
+
+    const points = stats.value.knowledgeRadar.points
+    const scores = stats.value.knowledgeRadar.scores
+
+    const indicators = points.map((p: string) => ({ name: p, max: 100 }))
+
+    classRadarInstance.setOption({
+      title: { text: '知识点掌握雷达图', left: 'center' },
+      radar: {
+        indicator: indicators,
+        shape: 'circle'
+      },
+      series: [{
+        type: 'radar',
+        data: [{
+          value: scores,
+          name: '班级掌握率',
+          areaStyle: { color: 'rgba(103,194,58,0.3)' },
+          lineStyle: { color: '#67c23a' }
+        }]
+      }]
+    })
+  })
+}
+
+const initBoxplotChart = () => {
+  if (!boxplotRef.value || !stats.value?.scoreBoxplot) return
+
+  nextTick(() => {
+    if (!boxplotRef.value) return
+    if (boxplotInstance) {
+      boxplotInstance.dispose()
+    }
+    boxplotInstance = echarts.init(boxplotRef.value)
+
+    const boxplot = stats.value.scoreBoxplot
+
+    boxplotInstance.setOption({
+      title: { text: '成绩分布箱线图', left: 'center' },
+      tooltip: {
+        formatter: function(params: any) {
+          return `最小值: ${boxplot.min}<br/>
+                   Q1: ${boxplot.q1}<br/>
+                   中位数: ${boxplot.median}<br/>
+                   Q3: ${boxplot.q3}<br/>
+                   最大值: ${boxplot.max}`
+        }
+      },
+      xAxis: { type: 'category', data: ['成绩分布'] },
+      yAxis: { type: 'value' },
+      series: [{
+        type: 'boxplot',
+        data: [[
+          boxplot.min,
+          boxplot.q1,
+          boxplot.median,
+          boxplot.q3,
+          boxplot.max
+        ]]
+      }]
+    })
+  })
+}
+
 watch(() => stats.value?.distribution, () => { initChart() })
+watch(() => stats.value?.knowledgeRadar, () => { initClassRadarChart() })
+watch(() => stats.value?.scoreBoxplot, () => { initBoxplotChart() })
 
 const getLevelType = (level: string) => {
   switch (level) {
