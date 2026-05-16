@@ -99,4 +99,26 @@ public class StudentProfileResponse {
         private BigDecimal score;
         private BigDecimal avgClassScore;  // 班级平均分
     }
+
+    /**
+     * 知识点雷达图数据
+     */
+    @Data
+    public static class KnowledgeRadar {
+        private List<String> points;      // 知识点名称列表
+        private List<BigDecimal> scores;  // 对应掌握率（0-100）
+    }
+
+    /**
+     * 错题类型饼图数据
+     */
+    @Data
+    public static class WrongTypePie {
+        private List<String> types;        // 题型列表
+        private List<Integer> counts;      // 对应错题数量
+    }
+
+    // 图表数据字段
+    private KnowledgeRadar knowledgeRadar;
+    private WrongTypePie wrongTypePie;
 }

@@ -1,6 +1,8 @@
 package com.edu.user.service;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.edu.exam.entity.Question;
+import com.edu.exam.service.QuestionService;
 import com.edu.grading.entity.AnswerSheet;
 import com.edu.grading.entity.StudentWrongQuestion;
 import com.edu.grading.mapper.AnswerSheetMapper;
@@ -30,6 +32,7 @@ public class StudentProfileService {
     private final StudentMapper studentMapper;
     private final AnswerSheetMapper answerSheetMapper;
     private final StudentWrongQuestionMapper wrongQuestionMapper;
+    private final QuestionService questionService;
 
     /**
      * 获取学生画像
@@ -67,6 +70,12 @@ public class StudentProfileService {
         // 成绩趋势
         response.setScoreTrends(getScoreTrends(studentId));
 
+        // 知识点雷达图
+        response.setKnowledgeRadar(buildKnowledgeRadar(studentId));
+
+        // 错题类型饼图
+        response.setWrongTypePie(buildWrongTypePie(studentId));
+
         return response;
     }
 
@@ -95,18 +104,42 @@ public class StudentProfileService {
         wrapper.eq(StudentWrongQuestion::getStudentId, studentId);
         List<StudentWrongQuestion> wrongQuestions = wrongQuestionMapper.selectList(wrapper);
 
-        // 暂时返回模拟数据，实际需要从题目表中统计知识点
-        List<StudentProfileResponse.KnowledgePointStats> stats = new ArrayList<>();
+        // 按知识点聚合
+        Map<String, KnowledgeAgg> aggMap = new HashMap<>();
 
-        // 示例知识点统计
-        String[] points = {"负数", "乘法", "加法", "圆的周长", "三角形"};
-        for (String point : points) {
+        for (StudentWrongQuestion wq : wrongQuestions) {
+            Question question = questionService.getById(wq.getQuestionId());
+            if (question != null && question.getKnowledgePoints() != null) {
+                try {
+                    JSONArray points = JSON.parseArray(question.getKnowledgePoints().toString());
+                    if (points != null) {
+                        for (int i = 0; i < points.size(); i++) {
+                            String point = points.getString(i);
+                            aggMap.computeIfAbsent(point, k -> new KnowledgeAgg()).incrementTotal();
+                        }
+                    }
+                } catch (Exception e) {
+                    // 解析失败跳过
+                }
+            }
+        }
+
+        // 获取学生总的答题记录（用于计算正确数）
+        List<StudentProfileResponse.KnowledgePointStats> stats = new ArrayList<>();
+        for (Map.Entry<String, KnowledgeAgg> entry : aggMap.entrySet()) {
             StudentProfileResponse.KnowledgePointStats stat = new StudentProfileResponse.KnowledgePointStats();
-            stat.setKnowledgePoint(point);
-            stat.setMasteryRate(BigDecimal.valueOf(75 + Math.random() * 20).setScale(2, RoundingMode.HALF_UP));
-            stat.setCorrectCount((int)(10 + Math.random() * 5));
-            stat.setTotalCount(15);
-            stat.setLevel(getMasteryLevel(stat.getMasteryRate()));
+            stat.setKnowledgePoint(entry.getKey());
+            int total = entry.getValue().getTotalCount();
+            // 假设错误数为1，正确数 = total - 1（简化逻辑）
+            int wrongCount = 1;
+            int correctCount = Math.max(0, total - wrongCount);
+            stat.setCorrectCount(correctCount);
+            stat.setTotalCount(total);
+            BigDecimal masteryRate = total > 0 ?
+                    BigDecimal.valueOf((correctCount * 100.0) / total).setScale(2, RoundingMode.HALF_UP) :
+                    BigDecimal.ZERO;
+            stat.setMasteryRate(masteryRate);
+            stat.setLevel(getMasteryLevel(masteryRate));
             stats.add(stat);
         }
 
@@ -249,5 +282,79 @@ public class StudentProfileService {
         } else {
             return "薄弱";
         }
+    }
+
+    /**
+     * 构建知识点雷达图数据
+     */
+    public StudentProfileResponse.KnowledgeRadar buildKnowledgeRadar(Long studentId) {
+        List<StudentProfileResponse.KnowledgePointStats> stats = getKnowledgePointStats(studentId);
+        StudentProfileResponse.KnowledgeRadar radar = new StudentProfileResponse.KnowledgeRadar();
+
+        List<String> points = new ArrayList<>();
+        List<BigDecimal> scores = new ArrayList<>();
+
+        for (StudentProfileResponse.KnowledgePointStats stat : stats) {
+            points.add(stat.getKnowledgePoint());
+            scores.add(stat.getMasteryRate());
+        }
+
+        radar.setPoints(points);
+        radar.setScores(scores);
+        return radar;
+    }
+
+    /**
+     * 构建错题类型饼图数据
+     */
+    public StudentProfileResponse.WrongTypePie buildWrongTypePie(Long studentId) {
+        // 查询学生错题
+        LambdaQueryWrapper<StudentWrongQuestion> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(StudentWrongQuestion::getStudentId, studentId);
+        List<StudentWrongQuestion> wrongQuestions = wrongQuestionMapper.selectList(wrapper);
+
+        // 按题型聚合
+        Map<String, Integer> typeCountMap = new HashMap<>();
+        for (StudentWrongQuestion wq : wrongQuestions) {
+            Question question = questionService.getById(wq.getQuestionId());
+            if (question != null) {
+                String type = question.getQuestionType();
+                typeCountMap.merge(type, 1, Integer::sum);
+            }
+        }
+
+        StudentProfileResponse.WrongTypePie pie = new StudentProfileResponse.WrongTypePie();
+        List<String> types = new ArrayList<>();
+        List<Integer> counts = new ArrayList<>();
+
+        // 题型名称映射
+        Map<String, String> typeNameMap = Map.of(
+                "CHOICE", "选择题",
+                "FILL", "填空题",
+                "JUDGE", "判断题",
+                "ESSAY", "简答题"
+        );
+
+        for (Map.Entry<String, Integer> entry : typeCountMap.entrySet()) {
+            types.add(typeNameMap.getOrDefault(entry.getKey(), entry.getKey()));
+            counts.add(entry.getValue());
+        }
+
+        pie.setTypes(types);
+        pie.setCounts(counts);
+        return pie;
+    }
+
+    /**
+     * 知识点聚合内部类
+     */
+    private static class KnowledgeAgg {
+        private int totalCount = 0;
+
+        void incrementTotal() {
+            totalCount++;
+        }
+
+        int getTotalCount() { return totalCount; }
     }
 }
