@@ -103,6 +103,10 @@ public class ScoreAnalysisService extends ServiceImpl<ScoreAnalysisMapper, Score
         return baseMapper.selectOne(wrapper);
     }
 
+    public ScoreAnalysis getLatestByClassId(Long classId) {
+        return baseMapper.selectLatestByClassId(classId);
+    }
+
     private BigDecimal calculateAvg(List<BigDecimal> scores) {
         if (scores.isEmpty()) return BigDecimal.ZERO;
         BigDecimal sum = scores.stream().reduce(BigDecimal.ZERO, BigDecimal::add);
