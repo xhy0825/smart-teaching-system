@@ -147,8 +147,32 @@
               <span>成绩趋势</span>
             </div>
           </template>
-          <div ref="trendChart" class="trend-chart" v-if="profile.scoreTrends && profile.scoreTrends.length > 0"></div>
+          <div ref="trendChartRef" class="chart-container" v-if="profile.scoreTrends && profile.scoreTrends.length > 0"></div>
           <el-empty v-else description="暂无成绩趋势数据" />
+        </el-card>
+
+        <!-- 知识点掌握雷达图 -->
+        <el-card class="chart-card" shadow="hover">
+          <template #header>
+            <div class="card-header">
+              <el-icon><Collection /></el-icon>
+              <span>知识点掌握雷达图</span>
+            </div>
+          </template>
+          <div ref="radarChartRef" class="chart-container"></div>
+          <el-empty v-if="!profile?.knowledgeRadar?.points?.length" description="暂无雷达图数据" />
+        </el-card>
+
+        <!-- 错题类型分布饼图 -->
+        <el-card class="chart-card" shadow="hover">
+          <template #header>
+            <div class="card-header">
+              <el-icon><PieChart /></el-icon>
+              <span>错题类型分布</span>
+            </div>
+          </template>
+          <div ref="pieChartRef" class="chart-container"></div>
+          <el-empty v-if="!profile?.wrongTypePie?.types?.length" description="暂无饼图数据" />
         </el-card>
       </template>
 
@@ -161,7 +185,7 @@
 import { ref, computed, onMounted, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import { ElMessage } from 'element-plus'
-import { User, UserFilled, DataAnalysis, Warning, Collection, TrendCharts } from '@element-plus/icons-vue'
+import { User, UserFilled, DataAnalysis, Warning, Collection, TrendCharts, PieChart } from '@element-plus/icons-vue'
 import request from '@/utils/request'
 
 const router = useRouter()
@@ -171,6 +195,13 @@ const selectedClassId = ref<number | null>(null)
 const selectedStudentId = ref<number | null>(null)
 const classList = ref<any[]>([])
 const studentList = ref<any[]>([])
+
+const trendChartRef = ref<HTMLElement | null>(null)
+const radarChartRef = ref<HTMLElement | null>(null)
+const pieChartRef = ref<HTMLElement | null>(null)
+let trendChartInstance: echarts.ECharts | null = null
+let radarChartInstance: echarts.ECharts | null = null
+let pieChartInstance: echarts.ECharts | null = null
 
 // 纠错进度百分比
 const correctedPercentage = computed(() => {
@@ -238,6 +269,106 @@ const getLevelType = (level: string) => {
     default: return 'info'
   }
 }
+
+const initTrendChart = () => {
+  if (!trendChartRef.value || !profile.value?.scoreTrends?.length) return
+
+  nextTick(() => {
+    if (!trendChartRef.value) return
+    if (trendChartInstance) {
+      trendChartInstance.dispose()
+    }
+    trendChartInstance = echarts.init(trendChartRef.value)
+
+    const labels = profile.value!.scoreTrends.map((t: any) => t.examName)
+    const data = profile.value!.scoreTrends.map((t: any) => t.score)
+
+    trendChartInstance.setOption({
+      title: { text: '成绩趋势', left: 'center' },
+      tooltip: { trigger: 'axis' },
+      xAxis: { type: 'category', data: labels },
+      yAxis: { type: 'value' },
+      series: [{
+        type: 'line',
+        data: data,
+        smooth: true,
+        itemStyle: { color: '#409eff' },
+        areaStyle: { color: 'rgba(64,158,255,0.1)' }
+      }]
+    })
+  })
+}
+
+const initRadarChart = () => {
+  if (!radarChartRef.value || !profile.value?.knowledgeRadar?.points?.length) return
+
+  nextTick(() => {
+    if (!radarChartRef.value) return
+    if (radarChartInstance) {
+      radarChartInstance.dispose()
+    }
+    radarChartInstance = echarts.init(radarChartRef.value)
+
+    const points = profile.value!.knowledgeRadar.points
+    const scores = profile.value!.knowledgeRadar.scores
+
+    const indicators = points.map((p: string) => ({ name: p, max: 100 }))
+
+    radarChartInstance.setOption({
+      title: { text: '知识点掌握雷达图', left: 'center' },
+      radar: {
+        indicator: indicators,
+        shape: 'circle'
+      },
+      series: [{
+        type: 'radar',
+        data: [{
+          value: scores,
+          name: '掌握率',
+          areaStyle: { color: 'rgba(64,158,255,0.3)' },
+          lineStyle: { color: '#409eff' }
+        }]
+      }]
+    })
+  })
+}
+
+const initPieChart = () => {
+  if (!pieChartRef.value || !profile.value?.wrongTypePie?.types?.length) return
+
+  nextTick(() => {
+    if (!pieChartRef.value) return
+    if (pieChartInstance) {
+      pieChartInstance.dispose()
+    }
+    pieChartInstance = echarts.init(pieChartRef.value)
+
+    const types = profile.value!.wrongTypePie.types
+    const counts = profile.value!.wrongTypePie.counts
+
+    const data = types.map((t: string, i: number) => ({
+      name: t,
+      value: counts[i]
+    }))
+
+    pieChartInstance.setOption({
+      title: { text: '错题类型分布', left: 'center' },
+      tooltip: { trigger: 'item' },
+      series: [{
+        type: 'pie',
+        data: data,
+        radius: ['40%', '70%'],
+        label: {
+          formatter: '{b}: {c}题 ({d}%)'
+        }
+      }]
+    })
+  })
+}
+
+watch(() => profile.value?.scoreTrends, () => { initTrendChart() })
+watch(() => profile.value?.knowledgeRadar, () => { initRadarChart() })
+watch(() => profile.value?.wrongTypePie, () => { initPieChart() })
 
 onMounted(() => {
   loadClassList()
@@ -337,7 +468,12 @@ onMounted(() => {
   margin-top: 20px;
 }
 
-.trend-chart {
+.chart-container {
   height: 300px;
+}
+
+.chart-card,
+.trend-card {
+  margin-top: 20px;
 }
 </style>
