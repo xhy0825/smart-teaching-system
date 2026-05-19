@@ -1,11 +1,14 @@
 package com.edu.user.service;
 
+import com.edu.exam.entity.ExamQuestion;
+import com.edu.exam.entity.Question;
+import com.edu.grading.entity.Answer;
+import com.edu.grading.entity.AnswerSheet;
 import com.edu.grading.entity.StudentWrongQuestion;
+import com.edu.grading.mapper.AnswerMapper;
 import com.edu.grading.mapper.AnswerSheetMapper;
 import com.edu.grading.service.ScoreAnalysisService;
 import com.edu.grading.service.StudentWrongQuestionService;
-import com.edu.exam.entity.Question;
-import com.edu.exam.service.QuestionService;
 import com.edu.user.dto.ClassProfileStatsResponse;
 import com.edu.user.entity.Student;
 import org.junit.jupiter.api.BeforeEach;
@@ -15,11 +18,13 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -38,10 +43,19 @@ class ClassProfileServiceTest {
     private com.edu.user.service.StudentService studentService;
 
     @Mock
-    private QuestionService questionService;
+    private com.edu.exam.mapper.QuestionMapper questionMapper;
+
+    @Mock
+    private com.edu.exam.mapper.ExamQuestionMapper examQuestionMapper;
+
+    @Mock
+    private AnswerMapper answerMapper;
 
     @Mock
     private AnswerSheetMapper answerSheetMapper;
+
+    @Mock
+    private com.edu.grading.mapper.StudentWrongQuestionMapper studentWrongQuestionMapper;
 
     @InjectMocks
     private ClassProfileService classProfileService;
@@ -72,17 +86,42 @@ class ClassProfileServiceTest {
         List<Student> students = List.of(s1);
         when(studentService.listByClass(testClassId)).thenReturn(students);
 
+        // 模拟答题卡（已批改）
+        AnswerSheet sheet = new AnswerSheet();
+        sheet.setId(10L);
+        sheet.setExamPaperId(100L);
+        sheet.setStudentId(1L);
+        sheet.setStatus(3);
+        when(answerSheetMapper.selectList(any())).thenReturn(List.of(sheet));
+
+        // 模拟答案记录
+        Answer answer = new Answer();
+        answer.setId(100L);
+        answer.setAnswerSheetId(10L);
+        answer.setExamQuestionId(1000L);
+        when(answerMapper.selectList(any())).thenReturn(List.of(answer));
+
+        // 模拟 exam_question
+        ExamQuestion eq = new ExamQuestion();
+        eq.setId(1000L);
+        eq.setExamPaperId(100L);
+        eq.setQuestionId(100L);
+        when(examQuestionMapper.selectList(any())).thenReturn(List.of(eq));
+
+        // 模拟题目（有知识点）
+        Question q = new Question();
+        q.setId(100L);
+        q.setKnowledgePoints("[\"代数\"]");
+        Map<Long, Question> questionMap = new HashMap<>();
+        questionMap.put(100L, q);
+        when(questionMapper.selectBatchIds(any())).thenReturn(List.of(q));
+
         // 模拟错题记录
         StudentWrongQuestion wq = new StudentWrongQuestion();
         wq.setStudentId(1L);
         wq.setQuestionId(100L);
-        when(studentWrongQuestionService.listByStudent(1L)).thenReturn(List.of(wq));
-
-        // 模拟题目有知识点
-        Question q = new Question();
-        q.setId(100L);
-        q.setKnowledgePoints("[\"代数\"]");
-        when(questionService.getQuestionById(100L)).thenReturn(q);
+        wq.setWrongCount(1);
+        when(studentWrongQuestionMapper.selectList(any())).thenReturn(List.of(wq));
 
         // 模拟成绩分析（可以为null）
         when(scoreAnalysisService.getLatestByClassId(testClassId)).thenReturn(null);
@@ -94,9 +133,9 @@ class ClassProfileServiceTest {
         assertFalse(response.getKnowledgeMastery().isEmpty(), "应该有知识点掌握数据");
         // 验证每个知识点的掌握率
         for (ClassProfileStatsResponse.KnowledgeMastery km : response.getKnowledgeMastery()) {
-            assertTrue(km.getAvgMasteryRate().compareTo(new BigDecimal("0")) >= 0,
+            assertTrue(km.getAvgMasteryRate().compareTo(new java.math.BigDecimal("0")) >= 0,
                     "掌握率应该 >= 0");
-            assertTrue(km.getAvgMasteryRate().compareTo(new BigDecimal("100")) <= 0,
+            assertTrue(km.getAvgMasteryRate().compareTo(new java.math.BigDecimal("100")) <= 0,
                     "掌握率应该 <= 100");
         }
     }
