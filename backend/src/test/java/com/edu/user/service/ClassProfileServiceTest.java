@@ -139,4 +139,104 @@ class ClassProfileServiceTest {
                     "掌握率应该 <= 100");
         }
     }
+
+    @Test
+    void testBuildKnowledgeRadar_WithData() {
+        // 模拟班级有1个学生
+        Student s1 = new Student();
+        s1.setId(1L);
+        s1.setClassId(testClassId);
+        List<Student> students = List.of(s1);
+        when(studentService.listByClass(testClassId)).thenReturn(students);
+
+        // 模拟答题卡（已批改）
+        AnswerSheet sheet = new AnswerSheet();
+        sheet.setId(10L);
+        sheet.setExamPaperId(100L);
+        sheet.setStudentId(1L);
+        sheet.setStatus(3);
+        when(answerSheetMapper.selectList(any())).thenReturn(List.of(sheet));
+
+        // 模拟答案记录
+        Answer answer = new Answer();
+        answer.setId(100L);
+        answer.setAnswerSheetId(10L);
+        answer.setExamQuestionId(1000L);
+        when(answerMapper.selectList(any())).thenReturn(List.of(answer));
+
+        // 模拟 exam_question
+        ExamQuestion eq = new ExamQuestion();
+        eq.setId(1000L);
+        eq.setExamPaperId(100L);
+        eq.setQuestionId(100L);
+        when(examQuestionMapper.selectList(any())).thenReturn(List.of(eq));
+
+        // 模拟题目（有知识点）
+        Question q = new Question();
+        q.setId(100L);
+        q.setKnowledgePoints("[\"代数\"]");
+        when(questionMapper.selectBatchIds(any())).thenReturn(List.of(q));
+
+        // 模拟错题记录
+        StudentWrongQuestion wq = new StudentWrongQuestion();
+        wq.setStudentId(1L);
+        wq.setQuestionId(100L);
+        wq.setWrongCount(1);
+        when(studentWrongQuestionMapper.selectList(any())).thenReturn(List.of(wq));
+
+        // 模拟成绩分析（可以为null）
+        when(scoreAnalysisService.getLatestByClassId(testClassId)).thenReturn(null);
+
+        // 调用 getClassStats
+        ClassProfileStatsResponse response = classProfileService.getClassStats(testClassId);
+
+        // 验证雷达图数据
+        assertNotNull(response.getKnowledgeRadar(), "雷达图数据不应该为空");
+        assertFalse(response.getKnowledgeRadar().getPoints().isEmpty(), "雷达图知识点列表不应该为空");
+        assertFalse(response.getKnowledgeRadar().getScores().isEmpty(), "雷达图分数列表不应该为空");
+        assertEquals(response.getKnowledgeRadar().getPoints().size(), response.getKnowledgeRadar().getScores().size(), "知识点和分数数量应该一致");
+        // 验证分数范围
+        for (java.math.BigDecimal score : response.getKnowledgeRadar().getScores()) {
+            assertTrue(score.compareTo(new java.math.BigDecimal("0")) >= 0, "掌握率应该 >= 0");
+            assertTrue(score.compareTo(new java.math.BigDecimal("100")) <= 0, "掌握率应该 <= 100");
+        }
+    }
+
+    @Test
+    void testBuildScoreBoxplot_WithData() {
+        // 模拟班级有1个学生
+        Student s1 = new Student();
+        s1.setId(1L);
+        s1.setClassId(testClassId);
+        List<Student> students = List.of(s1);
+        when(studentService.listByClass(testClassId)).thenReturn(students);
+
+        // 模拟答题卡（已批改，有成绩）
+        AnswerSheet sheet1 = new AnswerSheet();
+        sheet1.setId(10L);
+        sheet1.setStudentId(1L);
+        sheet1.setStatus(3);
+        sheet1.setTotalScore(new java.math.BigDecimal("85.5"));
+        AnswerSheet sheet2 = new AnswerSheet();
+        sheet2.setId(11L);
+        sheet2.setStudentId(1L);
+        sheet2.setStatus(3);
+        sheet2.setTotalScore(new java.math.BigDecimal("92.0"));
+        when(answerSheetMapper.selectList(any())).thenReturn(List.of(sheet1, sheet2));
+
+        // 模拟成绩分析（可以为null）
+        when(scoreAnalysisService.getLatestByClassId(testClassId)).thenReturn(null);
+
+        // 调用 getClassStats
+        ClassProfileStatsResponse response = classProfileService.getClassStats(testClassId);
+
+        // 验证箱线图数据
+        assertNotNull(response.getScoreBoxplot(), "箱线图数据不应该为空");
+        assertNotNull(response.getScoreBoxplot().getMin(), "最小值不应该为空");
+        assertNotNull(response.getScoreBoxplot().getMax(), "最大值不应该为空");
+        assertNotNull(response.getScoreBoxplot().getMedian(), "中位数不应该为空");
+        // 验证五数概括的合理性
+        assertTrue(response.getScoreBoxplot().getMin().compareTo(response.getScoreBoxplot().getMax()) <= 0, "最小值应该 <= 最大值");
+        assertTrue(response.getScoreBoxplot().getQ1().compareTo(response.getScoreBoxplot().getQ3()) <= 0, "Q1 应该 <= Q3");
+    }
 }
