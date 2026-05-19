@@ -34,9 +34,11 @@ int correctCount = Math.max(0, total - wrongCount);
 ```
 
 **修复方案**：
-1. 查询学生所有已批改的答题记录
-2. 按知识点聚合：总题数、错题数
-3. 计算掌握率 = (总题数 - 错题数) / 总题数 * 100
+1. 通过 `AnswerSheetMapper` 查询学生所有已批改的答题卡（status=3）
+2. 通过 `ExamQuestionMapper` 获取答题卡对应的题目
+3. 解析题目的 `knowledge_points` 字段（JSON 数组），按知识点聚合：总题数、错题数
+4. 计算掌握率 = (总题数 - 错题数) / 总题数 * 100
+5. 处理 `knowledge_points` 解析失败的情况（跳过该记录，记录日志）
 
 **涉及文件**：`backend/src/main/java/com/edu/user/service/StudentProfileService.java`
 
@@ -53,9 +55,11 @@ fillType.setPercentage(BigDecimal.valueOf(33.33));
 ```
 
 **修复方案**：
-1. 从错题记录中查询题目信息
-2. 按题型（question_type）聚合统计
-3. 计算真实百分比
+1. 遍历 `wrongQuestions` 列表
+2. 通过 `questionService.getById()` 获取题目信息
+3. 按 `question_type` 字段聚合统计（使用 Map<String, Integer>）
+4. 计算每种类型的百分比 = count / totalWrongCount * 100
+5. 题型名称映射：CHOICE→选择题，FILL→填空题，JUDGE→判断题，ESSAY→简答题
 
 **涉及文件**：`backend/src/main/java/com/edu/user/service/StudentProfileService.java`
 
@@ -160,7 +164,9 @@ for (List<AnswerSheet> sheets : sheetsByStudent.values()) {
 - `buildKnowledgeMastery()`：循环查询每个学生的错题 → 批量查询 + Map 聚合
 - `buildKnowledgeRadar()`：复用 `buildKnowledgeMastery()` 的结果
 
-### 3.4 AnswerSheetMapper 新增方法（可选）
+### 3.4 AnswerSheetMapper 新增方法（推荐）
+
+**注意**：虽然可以通过批量查询 + 内存过滤实现优化，但新增 Mapper 方法更清晰。建议使用新方法。
 
 ```java
 // 在 AnswerSheetMapper.java 中新增
