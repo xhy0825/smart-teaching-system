@@ -105,4 +105,57 @@ class StudentProfileServiceTest {
                     "掌握率应该 <= 100");
         }
     }
+
+    @Test
+    void testBuildWrongTypePie_NoWrongQuestions() {
+        when(wrongQuestionMapper.selectList(any(LambdaQueryWrapper.class)))
+                .thenReturn(new ArrayList<>());
+
+        StudentProfileResponse.WrongTypePie pie =
+                studentProfileService.buildWrongTypePie(testStudentId);
+
+        assertTrue(pie.getTypes().isEmpty(), "没有错题时 types 应该为空");
+        assertTrue(pie.getCounts().isEmpty(), "没有错题时 counts 应该为空");
+    }
+
+    @Test
+    void testBuildWrongTypePie_WithWrongQuestions() {
+        // 模拟3道错题：2道选择题，1道填空题
+        StudentWrongQuestion wq1 = new StudentWrongQuestion();
+        wq1.setQuestionId(100L);
+
+        StudentWrongQuestion wq2 = new StudentWrongQuestion();
+        wq2.setQuestionId(101L);
+
+        StudentWrongQuestion wq3 = new StudentWrongQuestion();
+        wq3.setQuestionId(102L);
+
+        List<StudentWrongQuestion> wrongQuestions = List.of(wq1, wq2, wq3);
+        when(wrongQuestionMapper.selectList(any(LambdaQueryWrapper.class)))
+                .thenReturn(wrongQuestions);
+
+        // 模拟题目信息
+        Question q1 = new Question();
+        q1.setId(100L);
+        q1.setQuestionType("CHOICE");
+
+        Question q2 = new Question();
+        q2.setId(101L);
+        q2.setQuestionType("CHOICE");
+
+        Question q3 = new Question();
+        q3.setId(102L);
+        q3.setQuestionType("FILL");
+
+        when(questionService.getById(100L)).thenReturn(q1);
+        when(questionService.getById(101L)).thenReturn(q2);
+        when(questionService.getById(102L)).thenReturn(q3);
+
+        StudentProfileResponse.WrongTypePie pie =
+                studentProfileService.buildWrongTypePie(testStudentId);
+
+        assertEquals(2, pie.getTypes().size(), "应该有2种题型");
+        assertEquals(2, pie.getCounts().get(0).intValue(), "选择题应该有2道");
+        assertEquals(1, pie.getCounts().get(1).intValue(), "填空题应该有1道");
+    }
 }
