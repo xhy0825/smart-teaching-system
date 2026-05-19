@@ -20,6 +20,18 @@ export interface ClassProfileStats {
     weakStudentCount: number
     level: string
   }>
+  knowledgeRadar: {
+    points: string[]
+    scores: number[]
+  }
+  scoreBoxplot: {
+    min: number
+    q1: number
+    median: number
+    q3: number
+    max: number
+    outliers: number[]
+  }
 }
 
 // 获取班级画像统计
