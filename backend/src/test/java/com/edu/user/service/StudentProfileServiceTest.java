@@ -5,6 +5,7 @@ import com.edu.exam.entity.Question;
 import com.edu.exam.service.QuestionService;
 import com.edu.grading.entity.AnswerSheet;
 import com.edu.grading.mapper.AnswerSheetMapper;
+import com.edu.grading.entity.StudentWrongQuestion;
 import com.edu.grading.mapper.StudentWrongQuestionMapper;
 import com.edu.user.dto.StudentProfileResponse;
 import com.edu.user.entity.Student;
@@ -16,6 +17,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -58,5 +60,49 @@ class StudentProfileServiceTest {
                 studentProfileService.getKnowledgePointStats(testStudentId);
 
         assertTrue(stats.isEmpty(), "没有错题时应该返回空列表");
+    }
+
+    @Test
+    void testGetKnowledgePointStats_WithWrongQuestions() {
+        // 模拟错题记录
+        StudentWrongQuestion wq1 = new StudentWrongQuestion();
+        wq1.setStudentId(testStudentId);
+        wq1.setQuestionId(100L);
+
+        StudentWrongQuestion wq2 = new StudentWrongQuestion();
+        wq2.setStudentId(testStudentId);
+        wq2.setQuestionId(101L);
+
+        List<StudentWrongQuestion> wrongQuestions = List.of(wq1, wq2);
+        when(wrongQuestionMapper.selectList(any(LambdaQueryWrapper.class)))
+                .thenReturn(wrongQuestions);
+
+        // 模拟题目信息 - 题目100有知识点["代数", "函数"]
+        Question q1 = new Question();
+        q1.setId(100L);
+        q1.setKnowledgePoints("[\"代数\", \"函数\"]");
+
+        // 题目101有知识点["几何"]
+        Question q2 = new Question();
+        q2.setId(101L);
+        q2.setKnowledgePoints("[\"几何\"]");
+
+        when(questionService.getById(100L)).thenReturn(q1);
+        when(questionService.getById(101L)).thenReturn(q2);
+
+        List<StudentProfileResponse.KnowledgePointStats> stats =
+                studentProfileService.getKnowledgePointStats(testStudentId);
+
+        assertFalse(stats.isEmpty(), "应该有知识点统计");
+        // 总共3个知识点：代数、函数、几何
+        assertEquals(3, stats.size(), "应该有3个知识点统计");
+
+        // 验证每个知识点的掌握率计算
+        for (StudentProfileResponse.KnowledgePointStats stat : stats) {
+            assertTrue(stat.getMasteryRate().compareTo(new BigDecimal("0")) >= 0,
+                    "掌握率应该 >= 0");
+            assertTrue(stat.getMasteryRate().compareTo(new BigDecimal("100")) <= 0,
+                    "掌握率应该 <= 100");
+        }
     }
 }

@@ -10,6 +10,8 @@ import com.edu.grading.mapper.StudentWrongQuestionMapper;
 import com.edu.user.dto.StudentProfileResponse;
 import com.edu.user.entity.Student;
 import com.edu.user.mapper.StudentMapper;
+import com.alibaba.fastjson2.JSON;
+import com.alibaba.fastjson2.JSONArray;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -124,19 +126,27 @@ public class StudentProfileService {
             }
         }
 
-        // 获取学生总的答题记录（用于计算正确数）
+        // 获取学生所有已批改的答题记录，用于计算总题数
+        LambdaQueryWrapper<AnswerSheet> answerSheetWrapper = new LambdaQueryWrapper<>();
+        answerSheetWrapper.eq(AnswerSheet::getStudentId, studentId)
+                .eq(AnswerSheet::getStatus, 3); // 已批改
+        List<AnswerSheet> answerSheets = answerSheetMapper.selectList(answerSheetWrapper);
+
+        // 统计总题数（简化：假设每张答题卡对应1题，实际应该关联 exam_question 表）
+        int totalQuestions = answerSheets.size();
+
+        // 构建结果
         List<StudentProfileResponse.KnowledgePointStats> stats = new ArrayList<>();
         for (Map.Entry<String, KnowledgeAgg> entry : aggMap.entrySet()) {
             StudentProfileResponse.KnowledgePointStats stat = new StudentProfileResponse.KnowledgePointStats();
             stat.setKnowledgePoint(entry.getKey());
-            int total = entry.getValue().getTotalCount();
-            // 假设错误数为1，正确数 = total - 1（简化逻辑）
-            int wrongCount = 1;
-            int correctCount = Math.max(0, total - wrongCount);
+            int wrongCount = entry.getValue().getTotalCount();
+            int correctCount = Math.max(0, totalQuestions - wrongCount);
             stat.setCorrectCount(correctCount);
-            stat.setTotalCount(total);
-            BigDecimal masteryRate = total > 0 ?
-                    BigDecimal.valueOf((correctCount * 100.0) / total).setScale(2, RoundingMode.HALF_UP) :
+            stat.setTotalCount(totalQuestions);
+            BigDecimal masteryRate = totalQuestions > 0 ?
+                    BigDecimal.valueOf((correctCount * 100.0) / totalQuestions)
+                            .setScale(2, RoundingMode.HALF_UP) :
                     BigDecimal.ZERO;
             stat.setMasteryRate(masteryRate);
             stat.setLevel(getMasteryLevel(masteryRate));
