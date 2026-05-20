@@ -1,6 +1,7 @@
 <template>
   <el-container class="layout-container">
-    <el-aside :width="sidebarCollapsed ? '64px' : '240px'" class="sidebar">
+    <!-- 侧边栏 -->
+    <el-aside :width="sidebarCollapsed ? '64px' : '240px'" class="sidebar glass-sidebar">
       <!-- Logo区域 -->
       <div class="logo-container">
         <div class="logo-icon">
@@ -9,7 +10,7 @@
           </svg>
         </div>
         <transition name="fade">
-          <span v-if="!sidebarCollapsed" class="logo-text">教师智能教学系统</span>
+          <span v-if="!sidebarCollapsed" class="logo-text">智教云台</span>
         </transition>
       </div>
 
@@ -22,108 +23,62 @@
           class="sidebar-menu"
           :collapse-transition="false"
         >
-          <!-- 首页 -->
           <el-menu-item index="/dashboard" class="menu-item">
-            <el-icon class="menu-icon"><HomeFilled /></el-icon>
-            <template #title>
-              <span class="menu-text">首页概览</span>
-            </template>
+            <el-icon><HomeFilled /></el-icon>
+            <template #title>首页概览</template>
           </el-menu-item>
 
-          <!-- 题库管理 -->
           <el-sub-menu index="question" class="sub-menu">
             <template #title>
-              <el-icon class="menu-icon"><Collection /></el-icon>
-              <span class="menu-text">题库管理</span>
+              <el-icon><Collection /></el-icon>
+              <span>题库管理</span>
             </template>
-            <el-menu-item index="/question-bank" class="sub-menu-item">
-              <el-icon><FolderOpened /></el-icon>
-              <span>题库列表</span>
-            </el-menu-item>
-            <el-menu-item index="/question" class="sub-menu-item">
-              <el-icon><Document /></el-icon>
-              <span>题目管理</span>
-            </el-menu-item>
+            <el-menu-item index="/question-bank" class="sub-menu-item">题库列表</el-menu-item>
+            <el-menu-item index="/question" class="sub-menu-item">题目管理</el-menu-item>
           </el-sub-menu>
 
-          <!-- 试卷管理 -->
           <el-sub-menu index="exam" class="sub-menu">
             <template #title>
-              <el-icon class="menu-icon"><Document /></el-icon>
-              <span class="menu-text">试卷管理</span>
+              <el-icon><Document /></el-icon>
+              <span>试卷管理</span>
             </template>
-            <el-menu-item index="/exam-template" class="sub-menu-item">
-              <el-icon><Files /></el-icon>
-              <span>试卷模板</span>
-            </el-menu-item>
-            <el-menu-item index="/exam-paper" class="sub-menu-item">
-              <el-icon><Tickets /></el-icon>
-              <span>试卷列表</span>
-            </el-menu-item>
-            <el-menu-item index="/exam-generate" class="sub-menu-item">
-              <el-icon><MagicStick /></el-icon>
-              <span>AI生成试卷</span>
-            </el-menu-item>
+            <el-menu-item index="/exam-template" class="sub-menu-item">试卷模板</el-menu-item>
+            <el-menu-item index="/exam-paper" class="sub-menu-item">试卷列表</el-menu-item>
+            <el-menu-item index="/exam-generate" class="sub-menu-item">AI生成试卷</el-menu-item>
           </el-sub-menu>
 
-          <!-- 批改分析 -->
           <el-sub-menu index="grading" class="sub-menu">
             <template #title>
-              <el-icon class="menu-icon"><EditPen /></el-icon>
-              <span class="menu-text">批改分析</span>
+              <el-icon><EditPen /></el-icon>
+              <span>批改分析</span>
             </template>
-            <el-menu-item index="/grading" class="sub-menu-item">
-              <el-icon><Finished /></el-icon>
-              <span>试卷批改</span>
-            </el-menu-item>
-            <el-menu-item index="/score-analysis" class="sub-menu-item">
-              <el-icon><DataAnalysis /></el-icon>
-              <span>成绩分析</span>
-            </el-menu-item>
-            <el-menu-item index="/wrong-questions" class="sub-menu-item">
-              <el-icon><Warning /></el-icon>
-              <span>错题记录</span>
-            </el-menu-item>
+            <el-menu-item index="/grading" class="sub-menu-item">试卷批改</el-menu-item>
+            <el-menu-item index="/score-analysis" class="sub-menu-item">成绩分析</el-menu-item>
+            <el-menu-item index="/wrong-questions" class="sub-menu-item">错题记录</el-menu-item>
           </el-sub-menu>
 
-          <!-- 学生画像 -->
           <el-menu-item index="/student-profile" class="menu-item">
-            <el-icon class="menu-icon"><UserFilled /></el-icon>
-            <template #title>
-              <span class="menu-text">学生画像</span>
-            </template>
+            <el-icon><UserFilled /></el-icon>
+            <template #title>学生画像</template>
           </el-menu-item>
 
-          <!-- 班级画像 -->
           <el-menu-item index="/class-profile" class="menu-item">
-            <el-icon class="menu-icon"><DataAnalysis /></el-icon>
-            <template #title>
-              <span class="menu-text">班级画像</span>
-            </template>
+            <el-icon><DataAnalysis /></el-icon>
+            <template #title>班级画像</template>
           </el-menu-item>
 
-          <!-- PPT制作 -->
           <el-menu-item index="/ppt-maker" class="menu-item">
-            <el-icon class="menu-icon"><Monitor /></el-icon>
-            <template #title>
-              <span class="menu-text">PPT制作</span>
-            </template>
+            <el-icon><Monitor /></el-icon>
+            <template #title>PPT制作</template>
           </el-menu-item>
 
-          <!-- 系统设置 -->
           <el-sub-menu index="system" class="sub-menu">
             <template #title>
-              <el-icon class="menu-icon"><Setting /></el-icon>
-              <span class="menu-text">系统设置</span>
+              <el-icon><Setting /></el-icon>
+              <span>系统设置</span>
             </template>
-            <el-menu-item index="/user-manage" class="sub-menu-item">
-              <el-icon><User /></el-icon>
-              <span>用户管理</span>
-            </el-menu-item>
-            <el-menu-item index="/class-manage" class="sub-menu-item">
-              <el-icon><School /></el-icon>
-              <span>班级管理</span>
-            </el-menu-item>
+            <el-menu-item index="/user-manage" class="sub-menu-item">用户管理</el-menu-item>
+            <el-menu-item index="/class-manage" class="sub-menu-item">班级管理</el-menu-item>
           </el-sub-menu>
         </el-menu>
       </el-scrollbar>
@@ -144,9 +99,8 @@
 
     <el-container>
       <!-- 顶部导航 -->
-      <el-header class="layout-header">
+      <el-header class="layout-header glass-header">
         <div class="header-left">
-          <!-- 面包屑 -->
           <el-breadcrumb separator="/">
             <el-breadcrumb-item :to="{ path: '/dashboard' }">首页</el-breadcrumb-item>
             <el-breadcrumb-item v-if="currentRouteTitle">{{ currentRouteTitle }}</el-breadcrumb-item>
@@ -154,6 +108,22 @@
         </div>
 
         <div class="header-right">
+          <!-- 主题切换 -->
+          <el-tooltip content="切换主题" placement="bottom">
+            <el-dropdown trigger="click" @command="handleThemeChange">
+              <el-button size="small" circle>
+                <el-icon><Moon v-if="currentTheme === 'dark'" /><Sunny v-else-if="currentTheme === 'light'" /><Monitor v-else /></el-icon>
+              </el-button>
+              <template #dropdown>
+                <el-dropdown-menu>
+                  <el-dropdown-item command="light" :icon="Sunny">浅色模式</el-dropdown-item>
+                  <el-dropdown-item command="dark" :icon="Moon">深色模式</el-dropdown-item>
+                  <el-dropdown-item command="auto" :icon="Monitor">跟随系统</el-dropdown-item>
+                </el-dropdown-menu>
+              </template>
+            </el-dropdown>
+          </el-tooltip>
+
           <!-- 快捷操作 -->
           <el-tooltip content="快速生成试卷" placement="bottom">
             <el-button type="primary" size="small" circle @click="router.push('/exam-generate')">
@@ -200,7 +170,7 @@ import { computed } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { useUserStore } from '@/store/user'
 import { useAppStore } from '@/store/app'
-import { User, Setting, SwitchButton, DataAnalysis } from '@element-plus/icons-vue'
+import { User, Setting, SwitchButton, Moon, Sunny, Monitor } from '@element-plus/icons-vue'
 
 const router = useRouter()
 const route = useRoute()
@@ -208,10 +178,10 @@ const userStore = useUserStore()
 const appStore = useAppStore()
 
 const sidebarCollapsed = computed(() => appStore.sidebarCollapsed)
+const currentTheme = computed(() => appStore.theme)
 const realName = computed(() => userStore.realName)
 const activeMenu = computed(() => route.path)
 
-// 获取当前路由标题
 const currentRouteTitle = computed(() => {
   const routeMap: Record<string, string> = {
     '/question-bank': '题库列表',
@@ -235,6 +205,10 @@ const toggleSidebar = () => {
   appStore.toggleSidebar()
 }
 
+const handleThemeChange = (theme: 'light' | 'dark' | 'auto') => {
+  appStore.setTheme(theme)
+}
+
 const logout = () => {
   userStore.logout()
   router.push('/login')
@@ -246,14 +220,21 @@ const logout = () => {
   height: 100vh;
 }
 
-/* ========== 侧边栏样式 ========== */
-.sidebar {
-  background: #f8fafc;
+/* 侧边栏 - Glassmorphism效果 */
+.glass-sidebar {
+  background: rgba(255, 255, 255, 0.8) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-right: 1px solid rgba(255, 255, 255, 0.3);
   display: flex;
   flex-direction: column;
-  transition: width 0.3s ease;
+  transition: width var(--duration-normal) var(--ease-in-out);
   overflow: hidden;
-  border-right: 1px solid #e4e7ed;
+}
+
+[data-theme="dark"] .glass-sidebar {
+  background: rgba(30, 41, 59, 0.8) !important;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 /* Logo区域 */
@@ -261,8 +242,8 @@ const logout = () => {
   height: 64px;
   display: flex;
   align-items: center;
-  padding: 0 16px;
-  background: linear-gradient(135deg, #409eff 0%, #66b1ff 100%);
+  padding: 0 var(--space-4);
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
 }
 
 .logo-icon {
@@ -270,13 +251,15 @@ const logout = () => {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
 }
 
 .logo-text {
-  margin-left: 12px;
+  margin-left: var(--space-3);
   color: #fff;
-  font-size: 16px;
-  font-weight: 600;
+  font-size: var(--text-lg);
+  font-weight: var(--font-semibold);
+  font-family: var(--font-heading);
   white-space: nowrap;
   overflow: hidden;
 }
@@ -290,87 +273,71 @@ const logout = () => {
 .sidebar-menu {
   background: transparent;
   border: none;
-  padding: 8px 0;
+  padding: var(--space-2) 0;
 }
 
 /* 菜单项样式 */
 .menu-item,
 .sub-menu {
-  margin: 4px 8px;
-  border-radius: 8px;
+  margin: var(--space-1) var(--space-2);
+  border-radius: var(--radius-md);
 }
 
-.sidebar-menu .el-menu-item,
-.sidebar-menu .el-sub-menu__title {
-  height: 48px;
-  line-height: 48px;
-  color: #303133;
-  border-radius: 8px;
-  transition: all 0.3s ease;
-  font-weight: 500;
+.sidebar-menu :deep(.el-menu-item),
+.sidebar-menu :deep(.el-sub-menu__title) {
+  height: 44px;
+  line-height: 44px;
+  color: var(--color-text-primary);
+  border-radius: var(--radius-md);
+  transition: all var(--duration-fast) var(--ease-in-out);
+  font-weight: var(--font-medium);
 }
 
-.sidebar-menu .el-menu-item:hover,
-.sidebar-menu .el-sub-menu__title:hover {
-  background: #e8f4ff;
-  color: #409eff;
+.sidebar-menu :deep(.el-menu-item:hover),
+.sidebar-menu :deep(.el-sub-menu__title:hover) {
+  background: var(--color-bg-hover);
+  color: var(--color-primary);
 }
 
-.sidebar-menu .el-menu-item.is-active {
-  background: linear-gradient(90deg, #409eff 0%, #66b1ff 100%);
+.sidebar-menu :deep(.el-menu-item.is-active) {
+  background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
   color: #fff;
-  font-weight: 600;
+  font-weight: var(--font-semibold);
 }
 
-.menu-icon {
-  font-size: 18px;
-  margin-right: 8px;
-  color: #606266;
-}
-
-.sidebar-menu .el-menu-item.is-active .menu-icon {
+.sidebar-menu :deep(.el-menu-item.is-active:hover) {
   color: #fff;
 }
 
-.sidebar-menu .el-menu-item:hover .menu-icon,
-.sidebar-menu .el-sub-menu__title:hover .menu-icon {
-  color: #409eff;
-}
-
-.menu-text {
-  font-size: 14px;
-}
-
-/* 子菜单项 */
-.sidebar-menu .el-sub-menu .el-menu {
+.sidebar-menu :deep(.el-sub-menu .el-menu) {
   background: transparent;
 }
 
 .sub-menu-item {
   height: 40px;
   line-height: 40px;
-  margin: 2px 0;
+  margin: var(--space-1) 0;
   padding-left: 48px !important;
-  color: #606266;
-  border-radius: 6px;
-  font-size: 13px;
+  color: var(--color-text-secondary);
+  border-radius: var(--radius-sm);
+  font-size: var(--text-sm);
 }
 
 .sub-menu-item:hover {
-  background: #e8f4ff;
-  color: #409eff;
+  background: var(--color-bg-hover);
+  color: var(--color-primary);
 }
 
 .sub-menu-item.is-active {
-  background: #ecf5ff;
-  color: #409eff;
-  font-weight: 500;
+  background: var(--color-primary-bg);
+  color: var(--color-primary);
+  font-weight: var(--font-medium);
 }
 
 /* 侧边栏底部 */
 .sidebar-footer {
-  padding: 12px;
-  border-top: 1px solid #e4e7ed;
+  padding: var(--space-3);
+  border-top: 1px solid var(--color-border);
 }
 
 .collapse-btn {
@@ -379,30 +346,38 @@ const logout = () => {
   justify-content: center;
   height: 40px;
   cursor: pointer;
-  color: #909399;
-  border-radius: 8px;
-  transition: all 0.3s ease;
+  color: var(--color-text-muted);
+  border-radius: var(--radius-md);
+  transition: all var(--duration-fast) var(--ease-in-out);
 }
 
 .collapse-btn:hover {
-  background: #e8f4ff;
-  color: #409eff;
+  background: var(--color-bg-hover);
+  color: var(--color-primary);
 }
 
 .collapse-text {
-  margin-left: 8px;
-  font-size: 13px;
+  margin-left: var(--space-2);
+  font-size: var(--text-sm);
 }
 
-/* ========== 顶部导航样式 ========== */
-.layout-header {
+/* 顶部导航 - Glassmorphism效果 */
+.glass-header {
   height: 56px;
-  background: #fff;
+  background: rgba(255, 255, 255, 0.8) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 24px;
+  padding: 0 var(--space-6);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+[data-theme="dark"] .glass-header {
+  background: rgba(30, 41, 59, 0.8) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .header-left {
@@ -413,7 +388,7 @@ const logout = () => {
 .header-right {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: var(--space-4);
 }
 
 /* 用户下拉菜单 */
@@ -424,19 +399,19 @@ const logout = () => {
 .user-info {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 4px 12px;
-  border-radius: 24px;
-  background: #f5f7fa;
-  transition: all 0.3s ease;
+  gap: var(--space-2);
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-full);
+  background: var(--color-bg-hover);
+  transition: all var(--duration-fast) var(--ease-in-out);
 }
 
 .user-info:hover {
-  background: #e8f4ff;
+  background: var(--color-primary-bg);
 }
 
 .user-avatar {
-  background: linear-gradient(135deg, #409eff 0%, #66b1ff 100%);
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
   color: #fff;
 }
 
@@ -446,27 +421,28 @@ const logout = () => {
 }
 
 .user-name {
-  font-size: 14px;
-  font-weight: 500;
-  color: #303133;
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
+  color: var(--color-text-primary);
 }
 
 .user-role {
-  font-size: 12px;
-  color: #909399;
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
 }
 
-/* ========== 主内容区 ========== */
+/* 主内容区 */
 .layout-main {
-  background: #f0f2f5;
-  padding: 20px;
+  background: var(--color-bg-primary);
+  padding: var(--space-6);
   overflow-y: auto;
+  transition: background-color var(--duration-normal) var(--ease-in-out);
 }
 
-/* ========== 过渡动画 ========== */
+/* 过渡动画 */
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 0.2s ease;
+  transition: opacity var(--duration-fast) var(--ease-in-out);
 }
 
 .fade-enter-from,
@@ -474,33 +450,18 @@ const logout = () => {
   opacity: 0;
 }
 
-.fade-transform-enter-active,
-.fade-transform-leave-active {
-  transition: all 0.3s ease;
-}
-
-.fade-transform-enter-from {
-  opacity: 0;
-  transform: translateX(-10px);
-}
-
-.fade-transform-leave-to {
-  opacity: 0;
-  transform: translateX(10px);
-}
-
-/* ========== 折叠状态调整 ========== */
+/* 折叠状态调整 */
 .sidebar-menu.el-menu--collapse {
   width: 64px;
 }
 
-.sidebar-menu.el-menu--collapse .el-menu-item,
-.sidebar-menu.el-menu--collapse .el-sub-menu__title {
+.sidebar-menu.el-menu--collapse :deep(.el-menu-item),
+.sidebar-menu.el-menu--collapse :deep(.el-sub-menu__title) {
   padding-left: 0 !important;
   justify-content: center;
 }
 
-.sidebar-menu.el-menu--collapse .menu-icon {
+.sidebar-menu.el-menu--collapse :deep(.el-icon) {
   margin-right: 0;
 }
 </style>
