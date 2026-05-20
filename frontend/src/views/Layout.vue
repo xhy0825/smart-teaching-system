@@ -493,13 +493,33 @@ const logout = () => {
 
 /* 隐藏折叠状态下的文字和箭头 */
 :deep(.el-menu--collapse) .el-sub-menu__title > span:not(.el-icon),
-:deep(.el-menu--collapse) .el-menu-item > span:not(.el-icon),
-:deep(.el-menu--collapse) .el-sub-menu__icon-arrow {
+:deep(.el-menu--collapse) .el-menu-item > span:not(.el-icon) {
   display: none !important;
+}
+
+/* 隐藏折叠状态下的箭头 - 多种方式确保隐藏 */
+:deep(.el-menu--collapse) .el-sub-menu__icon-arrow,
+:deep(.el-menu--collapse) .el-sub-menu__title .el-sub-menu__icon-arrow,
+:deep(.el-menu--collapse) .el-icon.el-sub-menu__icon-arrow {
+  display: none !important;
+  visibility: hidden !important;
+  width: 0 !important;
+  height: 0 !important;
+  overflow: hidden !important;
 }
 
 /* 折叠状态下隐藏子菜单 */
 :deep(.el-menu--collapse) .el-sub-menu .el-menu {
   display: none !important;
+}
+
+/* 折叠状态下激活菜单项样式优化 */
+:deep(.el-menu--collapse) .el-menu-item.is-active {
+  background: transparent !important;
+  color: var(--color-primary) !important;
+}
+
+:deep(.el-menu--collapse) .el-menu-item.is-active .el-icon {
+  color: var(--color-primary) !important;
 }
 </style>
