@@ -301,13 +301,15 @@ const logout = () => {
 }
 
 .sidebar-menu :deep(.el-menu-item.is-active) {
-  background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
   color: #fff;
   font-weight: var(--font-semibold);
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
 }
 
 .sidebar-menu :deep(.el-menu-item.is-active:hover) {
   color: #fff;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
 }
 
 .sidebar-menu :deep(.el-sub-menu .el-menu) {
@@ -513,13 +515,25 @@ const logout = () => {
   display: none !important;
 }
 
-/* 折叠状态下激活菜单项样式优化 */
+/* 折叠状态下激活菜单项样式 - 圆形背景 */
 :deep(.el-menu--collapse) .el-menu-item.is-active {
-  background: transparent !important;
-  color: var(--color-primary) !important;
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%) !important;
+  color: #fff !important;
+  border-radius: var(--radius-md) !important;
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3) !important;
 }
 
 :deep(.el-menu--collapse) .el-menu-item.is-active .el-icon {
-  color: var(--color-primary) !important;
+  color: #fff !important;
+}
+
+/* 折叠状态下未激活菜单项悬停效果 */
+:deep(.el-menu--collapse) .el-menu-item:not(.is-active):hover {
+  background: var(--color-bg-hover) !important;
+}
+
+/* 折叠状态下子菜单标题样式 */
+:deep(.el-menu--collapse) .el-sub-menu__title:not(.is-active):hover {
+  background: var(--color-bg-hover) !important;
 }
 </style>
