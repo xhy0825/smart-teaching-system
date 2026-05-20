@@ -24,13 +24,13 @@
           :collapse-transition="false"
         >
           <el-menu-item index="/dashboard" class="menu-item">
-            <el-icon><HomeFilled /></el-icon>
+            <el-icon :size="20"><Home /></el-icon>
             <template #title>首页概览</template>
           </el-menu-item>
 
           <el-sub-menu index="question" class="sub-menu">
             <template #title>
-              <el-icon><Collection /></el-icon>
+              <el-icon :size="20"><BookOpen /></el-icon>
               <span>题库管理</span>
             </template>
             <el-menu-item index="/question-bank" class="sub-menu-item">题库列表</el-menu-item>
@@ -39,7 +39,7 @@
 
           <el-sub-menu index="exam" class="sub-menu">
             <template #title>
-              <el-icon><Document /></el-icon>
+              <el-icon :size="20"><FileText /></el-icon>
               <span>试卷管理</span>
             </template>
             <el-menu-item index="/exam-template" class="sub-menu-item">试卷模板</el-menu-item>
@@ -49,7 +49,7 @@
 
           <el-sub-menu index="grading" class="sub-menu">
             <template #title>
-              <el-icon><EditPen /></el-icon>
+              <el-icon :size="20"><PenTool /></el-icon>
               <span>批改分析</span>
             </template>
             <el-menu-item index="/grading" class="sub-menu-item">试卷批改</el-menu-item>
@@ -58,23 +58,23 @@
           </el-sub-menu>
 
           <el-menu-item index="/student-profile" class="menu-item">
-            <el-icon><UserFilled /></el-icon>
+            <el-icon :size="20"><Users /></el-icon>
             <template #title>学生画像</template>
           </el-menu-item>
 
           <el-menu-item index="/class-profile" class="menu-item">
-            <el-icon><DataAnalysis /></el-icon>
+            <el-icon :size="20"><BarChart3 /></el-icon>
             <template #title>班级画像</template>
           </el-menu-item>
 
           <el-menu-item index="/ppt-maker" class="menu-item">
-            <el-icon><Monitor /></el-icon>
+            <el-icon :size="20"><Presentation /></el-icon>
             <template #title>PPT制作</template>
           </el-menu-item>
 
           <el-sub-menu index="system" class="sub-menu">
             <template #title>
-              <el-icon><Setting /></el-icon>
+              <el-icon :size="20"><Setting /></el-icon>
               <span>系统设置</span>
             </template>
             <el-menu-item index="/user-manage" class="sub-menu-item">用户管理</el-menu-item>
@@ -86,7 +86,7 @@
       <!-- 底部折叠按钮 -->
       <div class="sidebar-footer">
         <div class="collapse-btn" @click="toggleSidebar">
-          <el-icon>
+          <el-icon :size="18">
             <ArrowLeft v-if="!sidebarCollapsed" />
             <ArrowRight v-else />
           </el-icon>
@@ -171,6 +171,7 @@ import { useRouter, useRoute } from 'vue-router'
 import { useUserStore } from '@/store/user'
 import { useAppStore } from '@/store/app'
 import { User, Setting, SwitchButton, Moon, Sunny, Monitor } from '@element-plus/icons-vue'
+import { Home, BookOpen, FileText, PenTool, Users, BarChart3, Presentation, ArrowLeft, ArrowRight } from 'lucide-vue-next'
 
 const router = useRouter()
 const route = useRoute()
@@ -452,31 +453,47 @@ const logout = () => {
 
 /* 折叠状态调整 */
 :deep(.el-menu--collapse) {
-  width: 64px;
+  width: 64px !important;
 }
 
+/* 菜单项基础样式 - 折叠状态 */
 :deep(.el-menu--collapse) .el-menu-item,
 :deep(.el-menu--collapse) .el-sub-menu__title {
   display: flex !important;
-  align-items: center;
-  justify-content: center;
-  padding-left: 0 !important;
-  padding-right: 0 !important;
-  height: 44px;
-  line-height: 44px;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0 !important;
+  margin: 4px 8px !important;
+  height: 44px !important;
+  width: 48px !important;
+  min-width: 48px !important;
+  box-sizing: border-box !important;
 }
 
-:deep(.el-menu--collapse) .el-menu-item .el-icon,
-:deep(.el-menu--collapse) .el-sub-menu__title .el-icon {
-  margin-right: 0 !important;
+/* 图标容器样式 */
+:deep(.el-menu--collapse) .el-menu-item > .el-icon,
+:deep(.el-menu--collapse) .el-sub-menu__title > .el-icon {
+  margin: 0 !important;
+  padding: 0 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 20px !important;
+  height: 20px !important;
+}
+
+/* SVG 图标样式 */
+:deep(.el-menu--collapse) .el-menu-item > .el-icon svg,
+:deep(.el-menu--collapse) .el-sub-menu__title > .el-icon svg {
+  width: 20px !important;
+  height: 20px !important;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
 /* 隐藏折叠状态下的文字和箭头 */
 :deep(.el-menu--collapse) .el-sub-menu__title > span:not(.el-icon),
-:deep(.el-menu--collapse) .el-menu-item > span:not(.el-icon) {
-  display: none !important;
-}
-
+:deep(.el-menu--collapse) .el-menu-item > span:not(.el-icon),
 :deep(.el-menu--collapse) .el-sub-menu__icon-arrow {
   display: none !important;
 }
@@ -484,10 +501,5 @@ const logout = () => {
 /* 折叠状态下隐藏子菜单 */
 :deep(.el-menu--collapse) .el-sub-menu .el-menu {
   display: none !important;
-}
-
-/* 折叠状态滚动条调整 */
-:deep(.el-menu--collapse) + .el-scrollbar__bar {
-  display: none;
 }
 </style>
