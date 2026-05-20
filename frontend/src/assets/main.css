@@ -20,15 +20,22 @@ html, body, #app {
 }
 
 /* 菜单折叠状态图标居中 - 最高优先级 */
-.el-menu--collapse .el-menu-item .menu-icon,
-.el-menu--collapse .el-sub-menu__title .menu-icon {
+html body .el-menu--collapse .el-menu-item .el-icon,
+html body .el-menu--collapse .el-sub-menu__title .el-icon {
   margin: 0 !important;
-  margin-right: 0 !important;
-  margin-left: 0 !important;
+  margin-right: 0 !important !important;
   padding: 0 !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
+}
+
+html body .el-menu--collapse .el-menu-item,
+html body .el-menu--collapse .el-sub-menu__title {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0 !important;
 }
 
 .el-table .el-table__header-wrapper .el-table__header th {
