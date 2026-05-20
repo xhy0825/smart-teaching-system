@@ -166,7 +166,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, watch, nextTick } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { useUserStore } from '@/store/user'
 import { useAppStore } from '@/store/app'
@@ -222,31 +222,48 @@ const currentRouteTitle = computed(() => {
 
 const toggleSidebar = () => {
   appStore.toggleSidebar()
-  // 用内联样式强制居中图标
-  setTimeout(() => {
-    const isCollapsed = appStore.sidebarCollapsed
-    const menuItems = document.querySelectorAll('.sidebar-menu .el-menu-item, .sidebar-menu .el-sub-menu__title')
-    menuItems.forEach((el) => {
-      if (isCollapsed) {
-        (el as HTMLElement).style.setProperty('display', 'flex')
-        ;(el as HTMLElement).style.setProperty('align-items', 'center')
-        ;(el as HTMLElement).style.setProperty('justify-content', 'center')
-        ;(el as HTMLElement).style.setProperty('padding', '0')
-        ;(el as HTMLElement).style.setProperty('padding-left', '0')
-        ;(el as HTMLElement).style.setProperty('padding-right', '0')
-      }
-    })
-    const icons = document.querySelectorAll('.sidebar-menu .el-menu-item .el-icon, .sidebar-menu .el-sub-menu__title .el-icon')
-    icons.forEach((el) => {
-      if (isCollapsed) {
-        ;(el as HTMLElement).style.setProperty('margin', '0')
-        ;(el as HTMLElement).style.setProperty('margin-left', '0')
-        ;(el as HTMLElement).style.setProperty('margin-right', '0')
-        ;(el as HTMLElement).style.setProperty('padding', '0')
-      }
-    })
-  }, 100)
 }
+
+// 监听折叠状态变化，强制修复样式
+watch(() => appStore.sidebarCollapsed, (collapsed) => {
+  const fixCollapseStyles = () => {
+    if (!collapsed) return
+    const menu = document.querySelector('.sidebar-menu')
+    if (!menu) return
+
+    // 强制设置菜单宽度
+    ;(menu as HTMLElement).style.width = '64px'
+
+    // 修复所有菜单项
+    const items = menu.querySelectorAll('.el-menu-item, .el-sub-menu__title')
+    items.forEach((el: any) => {
+      el.style.display = 'flex'
+      el.style.alignItems = 'center'
+      el.style.justifyContent = 'center'
+      el.style.padding = '0'
+      el.style.paddingLeft = '0'
+      el.style.paddingRight = '0'
+      el.style.margin = '4px 8px'
+      el.style.width = '48px'
+      el.style.height = '44px'
+    })
+
+    // 修复所有图标
+    const icons = menu.querySelectorAll('.el-icon')
+    icons.forEach((el: any) => {
+      el.style.margin = '0'
+      el.style.padding = '0'
+    })
+
+    // 隐藏所有箭头
+    const arrows = menu.querySelectorAll('.el-sub-menu__icon-arrow')
+    arrows.forEach((el: any) => {
+      el.style.display = 'none'
+    })
+  }
+
+  nextTick(() => setTimeout(fixCollapseStyles, 200))
+}, { immediate: true })
 
 const handleThemeChange = (theme: 'light' | 'dark' | 'auto') => {
   appStore.setTheme(theme)
