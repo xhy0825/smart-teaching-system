@@ -19,6 +19,18 @@ html, body, #app {
   border-right: none !important;
 }
 
+/* 菜单折叠状态图标居中 - 最高优先级 */
+.el-menu--collapse .el-menu-item .menu-icon,
+.el-menu--collapse .el-sub-menu__title .menu-icon {
+  margin: 0 !important;
+  margin-right: 0 !important;
+  margin-left: 0 !important;
+  padding: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
 .el-table .el-table__header-wrapper .el-table__header th {
   background-color: var(--color-bg-hover) !important;
   font-family: var(--font-heading);
