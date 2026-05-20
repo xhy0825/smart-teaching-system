@@ -1,0 +1,29 @@
+/* 深色主题 */
+[data-theme="dark"] {
+  --color-primary: #3B82F6;
+  --color-primary-light: #60A5FA;
+  --color-primary-lighter: #93C5FD;
+  --color-primary-bg: #1E293B;
+
+  --color-success: #34D399;
+  --color-warning: #FBBF24;
+  --color-danger: #F87171;
+  --color-info: #818CF8;
+
+  --color-text-primary: #F1F5F9;
+  --color-text-secondary: #94A3B8;
+  --color-text-muted: #64748B;
+  --color-border: #334155;
+  --color-bg-primary: #0F172A;
+  --color-bg-secondary: #1E293B;
+  --color-bg-hover: #334155;
+
+  /* Element Plus 深色变量 */
+  --el-color-primary: var(--color-primary);
+  --el-bg-color: var(--color-bg-secondary);
+  --el-text-color-primary: var(--color-text-primary);
+  --el-text-color-regular: var(--color-text-secondary);
+  --el-border-color: var(--color-border);
+  --el-fill-color-blank: var(--color-bg-secondary);
+  --el-fill-color: var(--color-bg-hover);
+}

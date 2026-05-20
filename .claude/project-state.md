@@ -14,7 +14,7 @@ completed_tasks:
 global_architecture: []  # ≤5条
 
 # 当前任务（重置时归档后清空）
-current_phase: P1  # P0-P5
+current_phase: P2  # P0-P5
 task_description: "UI整体框架及风格优化"  # ≤30字
 started_at: "2026-05-20"
 last_updated: "2026-05-20"
