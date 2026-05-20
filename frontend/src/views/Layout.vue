@@ -470,27 +470,34 @@ const logout = () => {
   width: 48px !important;
   min-width: 48px !important;
   box-sizing: border-box !important;
+  position: relative !important;
+  left: 0 !important;
+  right: 0 !important;
+  text-align: center !important;
 }
 
-/* 图标容器样式 */
-:deep(.el-menu--collapse) .el-menu-item > .el-icon,
-:deep(.el-menu--collapse) .el-sub-menu__title > .el-icon {
-  margin: 0 !important;
+/* 图标容器样式 - 确保居中 */
+:deep(.el-menu--collapse) .el-menu-item .el-icon,
+:deep(.el-menu--collapse) .el-sub-menu__title .el-icon {
+  position: static !important;
+  margin: 0 auto !important;
   padding: 0 !important;
-  display: inline-flex !important;
+  display: flex !important;
   align-items: center !important;
   justify-content: center !important;
   width: 20px !important;
   height: 20px !important;
+  flex-shrink: 0 !important;
 }
 
 /* SVG 图标样式 */
-:deep(.el-menu--collapse) .el-menu-item > .el-icon svg,
-:deep(.el-menu--collapse) .el-sub-menu__title > .el-icon svg {
+:deep(.el-menu--collapse) .el-menu-item .el-icon svg,
+:deep(.el-menu--collapse) .el-sub-menu__title .el-icon svg {
   width: 20px !important;
   height: 20px !important;
   margin: 0 !important;
   padding: 0 !important;
+  display: block !important;
 }
 
 /* 隐藏折叠状态下的文字和箭头 */
@@ -499,12 +506,10 @@ const logout = () => {
   display: none !important;
 }
 
-/* 隐藏折叠状态下的箭头 - 多种方式确保隐藏 */
+/* 隐藏折叠状态下的箭头 */
 :deep(.el-menu--collapse) .el-sub-menu__icon-arrow,
-:deep(.el-menu--collapse) .el-sub-menu__title .el-sub-menu__icon-arrow,
-:deep(.el-menu--collapse) .el-icon.el-sub-menu__icon-arrow {
+:deep(.el-menu--collapse) .el-sub-menu__title .el-sub-menu__icon-arrow {
   display: none !important;
-  visibility: hidden !important;
   width: 0 !important;
   height: 0 !important;
   overflow: hidden !important;
@@ -515,7 +520,7 @@ const logout = () => {
   display: none !important;
 }
 
-/* 折叠状态下激活菜单项样式 - 圆形背景 */
+/* 折叠状态下激活菜单项样式 */
 :deep(.el-menu--collapse) .el-menu-item.is-active {
   background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%) !important;
   color: #fff !important;
@@ -528,11 +533,7 @@ const logout = () => {
 }
 
 /* 折叠状态下未激活菜单项悬停效果 */
-:deep(.el-menu--collapse) .el-menu-item:not(.is-active):hover {
-  background: var(--color-bg-hover) !important;
-}
-
-/* 折叠状态下子菜单标题样式 */
+:deep(.el-menu--collapse) .el-menu-item:not(.is-active):hover,
 :deep(.el-menu--collapse) .el-sub-menu__title:not(.is-active):hover {
   background: var(--color-bg-hover) !important;
 }
