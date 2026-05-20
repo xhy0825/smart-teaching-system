@@ -24,13 +24,13 @@
           :collapse-transition="false"
         >
           <el-menu-item index="/dashboard" class="menu-item">
-            <el-icon :size="20"><Home /></el-icon>
+            <el-icon :size="20" class="menu-icon"><Home /></el-icon>
             <template #title>首页概览</template>
           </el-menu-item>
 
           <el-sub-menu index="question" class="sub-menu" :class="{ 'is-active-parent': activeParentMenu === 'question' }">
             <template #title>
-              <el-icon :size="20"><BookOpen /></el-icon>
+              <el-icon :size="20" class="menu-icon"><BookOpen /></el-icon>
               <span>题库管理</span>
             </template>
             <el-menu-item index="/question-bank" class="sub-menu-item">题库列表</el-menu-item>
@@ -39,7 +39,7 @@
 
           <el-sub-menu index="exam" class="sub-menu" :class="{ 'is-active-parent': activeParentMenu === 'exam' }">
             <template #title>
-              <el-icon :size="20"><FileText /></el-icon>
+              <el-icon :size="20" class="menu-icon"><FileText /></el-icon>
               <span>试卷管理</span>
             </template>
             <el-menu-item index="/exam-template" class="sub-menu-item">试卷模板</el-menu-item>
@@ -49,7 +49,7 @@
 
           <el-sub-menu index="grading" class="sub-menu" :class="{ 'is-active-parent': activeParentMenu === 'grading' }">
             <template #title>
-              <el-icon :size="20"><PenTool /></el-icon>
+              <el-icon :size="20" class="menu-icon"><PenTool /></el-icon>
               <span>批改分析</span>
             </template>
             <el-menu-item index="/grading" class="sub-menu-item">试卷批改</el-menu-item>
@@ -58,23 +58,23 @@
           </el-sub-menu>
 
           <el-menu-item index="/student-profile" class="menu-item">
-            <el-icon :size="20"><Users /></el-icon>
+            <el-icon :size="20" class="menu-icon"><Users /></el-icon>
             <template #title>学生画像</template>
           </el-menu-item>
 
           <el-menu-item index="/class-profile" class="menu-item">
-            <el-icon :size="20"><BarChart3 /></el-icon>
+            <el-icon :size="20" class="menu-icon"><BarChart3 /></el-icon>
             <template #title>班级画像</template>
           </el-menu-item>
 
           <el-menu-item index="/ppt-maker" class="menu-item">
-            <el-icon :size="20"><Presentation /></el-icon>
+            <el-icon :size="20" class="menu-icon"><Presentation /></el-icon>
             <template #title>PPT制作</template>
           </el-menu-item>
 
           <el-sub-menu index="system" class="sub-menu" :class="{ 'is-active-parent': activeParentMenu === 'system' }">
             <template #title>
-              <el-icon :size="20"><Setting /></el-icon>
+              <el-icon :size="20" class="menu-icon"><Setting /></el-icon>
               <span>系统设置</span>
             </template>
             <el-menu-item index="/user-manage" class="sub-menu-item">用户管理</el-menu-item>
@@ -490,9 +490,8 @@ const logout = () => {
   box-sizing: border-box !important;
 }
 
-/* 图标容器样式 - 最彻底重置确保居中 */
-:deep(.el-menu--collapse) .el-menu-item .el-icon,
-:deep(.el-menu--collapse) .el-sub-menu__title .el-icon {
+/* 图标容器样式 - 使用自定义类确保居中 */
+:deep(.el-menu--collapse) .menu-icon {
   margin: 0 !important;
   margin-right: 0 !important;
   padding: 0 !important;
