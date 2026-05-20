@@ -483,23 +483,30 @@ const logout = () => {
   align-items: center !important;
   justify-content: center !important;
   padding: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
   margin: 4px 8px !important;
   height: 44px !important;
   width: 48px !important;
   min-width: 48px !important;
   box-sizing: border-box !important;
+  text-align: center !important;
+  position: relative !important;
+  left: 0 !important;
 }
 
 /* 图标容器样式 - 确保居中 */
 :deep(.el-menu--collapse) .el-menu-item > .el-icon,
 :deep(.el-menu--collapse) .el-sub-menu__title > .el-icon {
-  margin: 0 !important;
+  margin: 0 auto !important;
   padding: 0 !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
   width: 20px !important;
   height: 20px !important;
+  position: static !important;
+  float: none !important;
 }
 
 /* SVG 图标样式 */
