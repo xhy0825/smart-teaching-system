@@ -30,7 +30,7 @@ export const useAppStore = defineStore('app', () => {
 
   // 监听系统主题变化
   if (typeof window !== 'undefined') {
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (_e) => {
       if (theme.value === 'auto') {
         applyTheme()
       }
