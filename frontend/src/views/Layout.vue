@@ -474,6 +474,8 @@ const logout = () => {
 /* 折叠状态调整 */
 :deep(.el-menu--collapse) {
   width: 64px !important;
+  --el-menu-base-level-padding: 0px !important;
+  --el-menu-level-padding: 0px !important;
 }
 
 /* 菜单项基础样式 - 折叠状态 */
