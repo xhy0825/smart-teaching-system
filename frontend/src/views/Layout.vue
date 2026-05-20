@@ -28,7 +28,7 @@
             <template #title>首页概览</template>
           </el-menu-item>
 
-          <el-sub-menu index="question" class="sub-menu">
+          <el-sub-menu index="question" class="sub-menu" :class="{ 'is-active-parent': activeParentMenu === 'question' }">
             <template #title>
               <el-icon :size="20"><BookOpen /></el-icon>
               <span>题库管理</span>
@@ -37,7 +37,7 @@
             <el-menu-item index="/question" class="sub-menu-item">题目管理</el-menu-item>
           </el-sub-menu>
 
-          <el-sub-menu index="exam" class="sub-menu">
+          <el-sub-menu index="exam" class="sub-menu" :class="{ 'is-active-parent': activeParentMenu === 'exam' }">
             <template #title>
               <el-icon :size="20"><FileText /></el-icon>
               <span>试卷管理</span>
@@ -47,7 +47,7 @@
             <el-menu-item index="/exam-generate" class="sub-menu-item">AI生成试卷</el-menu-item>
           </el-sub-menu>
 
-          <el-sub-menu index="grading" class="sub-menu">
+          <el-sub-menu index="grading" class="sub-menu" :class="{ 'is-active-parent': activeParentMenu === 'grading' }">
             <template #title>
               <el-icon :size="20"><PenTool /></el-icon>
               <span>批改分析</span>
@@ -72,7 +72,7 @@
             <template #title>PPT制作</template>
           </el-menu-item>
 
-          <el-sub-menu index="system" class="sub-menu">
+          <el-sub-menu index="system" class="sub-menu" :class="{ 'is-active-parent': activeParentMenu === 'system' }">
             <template #title>
               <el-icon :size="20"><Setting /></el-icon>
               <span>系统设置</span>
@@ -182,6 +182,24 @@ const sidebarCollapsed = computed(() => appStore.sidebarCollapsed)
 const currentTheme = computed(() => appStore.theme)
 const realName = computed(() => userStore.realName)
 const activeMenu = computed(() => route.path)
+
+// 计算当前激活的一级菜单（用于二级菜单选中时高亮一级菜单）
+const activeParentMenu = computed(() => {
+  const path = route.path
+  const menuMap: Record<string, string> = {
+    '/question-bank': 'question',
+    '/question': 'question',
+    '/exam-template': 'exam',
+    '/exam-paper': 'exam',
+    '/exam-generate': 'exam',
+    '/grading': 'grading',
+    '/score-analysis': 'grading',
+    '/wrong-questions': 'grading',
+    '/user-manage': 'system',
+    '/class-manage': 'system'
+  }
+  return menuMap[path] || ''
+})
 
 const currentRouteTitle = computed(() => {
   const routeMap: Record<string, string> = {
@@ -470,24 +488,19 @@ const logout = () => {
   width: 48px !important;
   min-width: 48px !important;
   box-sizing: border-box !important;
-  position: relative !important;
-  left: 0 !important;
-  right: 0 !important;
   text-align: center !important;
 }
 
-/* 图标容器样式 - 确保居中 */
+/* 图标容器样式 - 确保居中且消除偏移 */
 :deep(.el-menu--collapse) .el-menu-item .el-icon,
 :deep(.el-menu--collapse) .el-sub-menu__title .el-icon {
-  position: static !important;
-  margin: 0 auto !important;
+  margin: 0 !important;
   padding: 0 !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
   width: 20px !important;
   height: 20px !important;
-  flex-shrink: 0 !important;
 }
 
 /* SVG 图标样式 */
@@ -497,7 +510,6 @@ const logout = () => {
   height: 20px !important;
   margin: 0 !important;
   padding: 0 !important;
-  display: block !important;
 }
 
 /* 隐藏折叠状态下的文字和箭头 */
@@ -536,5 +548,17 @@ const logout = () => {
 :deep(.el-menu--collapse) .el-menu-item:not(.is-active):hover,
 :deep(.el-menu--collapse) .el-sub-menu__title:not(.is-active):hover {
   background: var(--color-bg-hover) !important;
+}
+
+/* 折叠状态下一级菜单高亮（二级菜单选中时） */
+:deep(.el-menu--collapse) .el-sub-menu.is-active-parent .el-sub-menu__title {
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%) !important;
+  color: #fff !important;
+  border-radius: var(--radius-md) !important;
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3) !important;
+}
+
+:deep(.el-menu--collapse) .el-sub-menu.is-active-parent .el-sub-menu__title .el-icon {
+  color: #fff !important;
 }
 </style>
