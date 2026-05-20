@@ -222,6 +222,14 @@ const currentRouteTitle = computed(() => {
 
 const toggleSidebar = () => {
   appStore.toggleSidebar()
+  // 强制设置 CSS 变量确保折叠状态生效
+  setTimeout(() => {
+    const menuEl = document.querySelector('.sidebar-menu')
+    if (menuEl) {
+      menuEl.style.setProperty('--el-menu-base-level-padding', '0px')
+      menuEl.style.setProperty('--el-menu-level-padding', '0px')
+    }
+  }, 50)
 }
 
 const handleThemeChange = (theme: 'light' | 'dark' | 'auto') => {
