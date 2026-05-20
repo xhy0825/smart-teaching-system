@@ -25,13 +25,20 @@ html, body, #app {
   padding-left: 0 !important;
   padding-right: 0 !important;
   text-align: center !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
 }
 
 .el-menu--collapse .el-menu-item .el-icon,
 .el-menu--collapse .el-sub-menu__title .el-icon {
-  margin-left: 0 !important;
-  margin-right: 0 !important;
-  margin: 0 auto !important;
+  margin: 0 !important;
+  margin-left: 0 !important !important;
+  margin-right: 0 !important !important;
+  padding: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
 }
 
 .el-table .el-table__header-wrapper .el-table__header th {
