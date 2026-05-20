@@ -451,17 +451,43 @@ const logout = () => {
 }
 
 /* 折叠状态调整 */
-.sidebar-menu.el-menu--collapse {
+:deep(.el-menu--collapse) {
   width: 64px;
 }
 
-.sidebar-menu.el-menu--collapse :deep(.el-menu-item),
-.sidebar-menu.el-menu--collapse :deep(.el-sub-menu__title) {
-  padding-left: 0 !important;
+:deep(.el-menu--collapse) .el-menu-item,
+:deep(.el-menu--collapse) .el-sub-menu__title {
+  display: flex !important;
+  align-items: center;
   justify-content: center;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  height: 44px;
+  line-height: 44px;
 }
 
-.sidebar-menu.el-menu--collapse :deep(.el-icon) {
-  margin-right: 0;
+:deep(.el-menu--collapse) .el-menu-item .el-icon,
+:deep(.el-menu--collapse) .el-sub-menu__title .el-icon {
+  margin-right: 0 !important;
+}
+
+/* 隐藏折叠状态下的文字和箭头 */
+:deep(.el-menu--collapse) .el-sub-menu__title > span:not(.el-icon),
+:deep(.el-menu--collapse) .el-menu-item > span:not(.el-icon) {
+  display: none !important;
+}
+
+:deep(.el-menu--collapse) .el-sub-menu__icon-arrow {
+  display: none !important;
+}
+
+/* 折叠状态下隐藏子菜单 */
+:deep(.el-menu--collapse) .el-sub-menu .el-menu {
+  display: none !important;
+}
+
+/* 折叠状态滚动条调整 */
+:deep(.el-menu--collapse) + .el-scrollbar__bar {
+  display: none;
 }
 </style>
