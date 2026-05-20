@@ -20,7 +20,7 @@ started_at: "2026-05-20"
 last_updated: "2026-05-20"
 prd_file: ".claude/prd.md"  # PRD 路径，如 ".claude/prd.md"
 architecture_decisions: ["Glassmorphism风格", "SaaS-Blue配色", "Inter+Poppins字体", "深度定制Element Plus"]  # ≤5条
-modified_files: ["docs/superpowers/specs/2026-05-20-ui-framework-redesign-design.md"]
+modified_files: ["docs/superpowers/specs/2026-05-20-ui-framework-redesign-design.md", "docs/superpowers/plans/2026-05-20-ui-framework-redesign.md"]
 todo_items: []
 review_retry_count: 0
 phase_history:
