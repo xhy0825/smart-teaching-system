@@ -19,31 +19,17 @@ html, body, #app {
   border-right: none !important;
 }
 
-/* 菜单折叠状态图标居中 - 最高优先级 */
-html body .el-menu--collapse .el-menu-item,
-html body .el-menu--collapse .el-sub-menu__title {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  padding: 0 !important !important;
-  padding-left: 0 !important;
-  padding-right: 0 !important;
-  margin: 4px 8px !important;
-  height: 44px !important;
-  width: 48px !important;
-  min-width: 48px !important;
-  box-sizing: border-box !important;
-}
-
-html body .el-menu--collapse .el-menu-item .el-icon,
-html body .el-menu--collapse .el-sub-menu__title .el-icon {
-  margin: 0 !important !important;
-  margin-left: 0 !important;
-  margin-right: 0 !important;
-  padding: 0 !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
+/* 彻底隐藏菜单折叠状态下的箭头 - 最高优先级 */
+html body .el-menu--collapse .el-sub-menu__icon-arrow,
+html body .el-menu--collapse .el-sub-menu__title .el-sub-menu__icon-arrow {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  overflow: hidden !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  position: absolute !important;
+  left: -9999px !important;
 }
 
 .el-table .el-table__header-wrapper .el-table__header th {
