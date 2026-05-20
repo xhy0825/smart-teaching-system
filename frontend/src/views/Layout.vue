@@ -476,18 +476,56 @@ const logout = () => {
   width: 64px !important;
 }
 
+/* 菜单项基础样式 - 折叠状态 */
+:deep(.el-menu--collapse) .el-menu-item,
+:deep(.el-menu--collapse) .el-sub-menu__title {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0 !important;
+  margin: 4px 8px !important;
+  height: 44px !important;
+  width: 48px !important;
+  min-width: 48px !important;
+  box-sizing: border-box !important;
+}
+
+/* 图标容器样式 - 确保居中 */
+:deep(.el-menu--collapse) .el-menu-item > .el-icon,
+:deep(.el-menu--collapse) .el-sub-menu__title > .el-icon {
+  margin: 0 !important;
+  padding: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 20px !important;
+  height: 20px !important;
+}
+
+/* SVG 图标样式 */
+:deep(.el-menu--collapse) .el-menu-item > .el-icon svg,
+:deep(.el-menu--collapse) .el-sub-menu__title > .el-icon svg {
+  width: 20px !important;
+  height: 20px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
 /* 隐藏折叠状态下的文字和箭头 */
 :deep(.el-menu--collapse) .el-sub-menu__title > span:not(.el-icon),
 :deep(.el-menu--collapse) .el-menu-item > span:not(.el-icon) {
   display: none !important;
 }
 
-/* 隐藏折叠状态下的箭头 */
-:deep(.el-menu--collapse) .el-sub-menu__icon-arrow {
+/* 隐藏折叠状态下的箭头 - 多种方式确保隐藏 */
+:deep(.el-menu--collapse) .el-sub-menu__icon-arrow,
+:deep(.el-menu--collapse) .el-sub-menu__title .el-sub-menu__icon-arrow,
+.el-sub-menu.is-opened .el-sub-menu__icon-arrow {
   display: none !important;
   width: 0 !important;
   height: 0 !important;
   overflow: hidden !important;
+  visibility: hidden !important;
 }
 
 /* 折叠状态下隐藏子菜单 */

@@ -19,43 +19,6 @@ html, body, #app {
   border-right: none !important;
 }
 
-/* 菜单折叠状态样式 - 最高优先级 */
-html body .el-menu--collapse {
-  width: 64px !important;
-}
-
-html body .el-menu--collapse .el-menu-item,
-html body .el-menu--collapse .el-sub-menu__title {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  padding: 0 !important;
-  margin: 4px 8px !important;
-  height: 44px !important;
-  width: 48px !important;
-  min-width: 48px !important;
-  box-sizing: border-box !important;
-}
-
-html body .el-menu--collapse .el-menu-item .el-icon,
-html body .el-menu--collapse .el-sub-menu__title .el-icon {
-  margin: 0 !important;
-  padding: 0 !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  width: 20px !important;
-  height: 20px !important;
-}
-
-html body .el-menu--collapse .el-menu-item .el-icon svg,
-html body .el-menu--collapse .el-sub-menu__title .el-icon svg {
-  width: 20px !important;
-  height: 20px !important;
-  margin: 0 !important;
-  padding: 0 !important;
-}
-
 .el-table .el-table__header-wrapper .el-table__header th {
   background-color: var(--color-bg-hover) !important;
   font-family: var(--font-heading);
