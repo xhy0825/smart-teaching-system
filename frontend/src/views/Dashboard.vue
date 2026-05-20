@@ -14,47 +14,35 @@
     <!-- 统计卡片区 -->
     <el-row :gutter="20" class="stat-row">
       <el-col :xs="12" :sm="12" :md="6" :lg="6" v-for="stat in statCards" :key="stat.label">
-        <div class="stat-card glass-card" @click="stat.action && $router.push(stat.action)">
-          <div class="stat-icon-wrapper" :style="{ background: stat.gradient }">
-            <el-icon :size="28"><component :is="stat.icon" /></el-icon>
-          </div>
-          <div class="stat-info">
-            <div class="stat-value">{{ stat.value }}</div>
-            <div class="stat-label">{{ stat.label }}</div>
-            <div class="stat-trend" v-if="stat.trend">
-              <el-icon :color="stat.trendUp ? '#67C23A' : '#F56C6C'">
-                <component :is="stat.trendUp ? 'Top' : 'Bottom'" />
-              </el-icon>
-              <span :class="stat.trendUp ? 'trend-up' : 'trend-down'">{{ stat.trend }}</span>
-            </div>
-          </div>
-        </div>
+        <StatCard
+          :icon="stat.icon"
+          :label="stat.label"
+          :value="stat.value"
+          :gradient="stat.gradient"
+          :trend="stat.trend"
+          :trendUp="stat.trendUp"
+          @click="stat.action && $router.push(stat.action)"
+        />
       </el-col>
     </el-row>
 
     <!-- 图表区 -->
     <el-row :gutter="20" class="chart-row">
       <el-col :xs="24" :sm="24" :md="12" :lg="12">
-        <el-card class="glass-card chart-card">
-          <template #header>
-            <div class="card-header">
-              <span>学科分布</span>
-              <el-tag size="small" type="info">实时</el-tag>
-            </div>
+        <GlassCard title="学科分布">
+          <template #header-right>
+            <el-tag size="small" type="info">实时</el-tag>
           </template>
           <div ref="subjectChartRef" class="chart-container"></div>
-        </el-card>
+        </GlassCard>
       </el-col>
       <el-col :xs="24" :sm="24" :md="12" :lg="12">
-        <el-card class="glass-card chart-card">
-          <template #header>
-            <div class="card-header">
-              <span>成绩趋势</span>
-              <el-tag size="small" type="info">近7日</el-tag>
-            </div>
+        <GlassCard title="成绩趋势">
+          <template #header-right>
+            <el-tag size="small" type="info">近7日</el-tag>
           </template>
           <div ref="scoreChartRef" class="chart-container"></div>
-        </el-card>
+        </GlassCard>
       </el-col>
     </el-row>
 
@@ -62,12 +50,7 @@
     <el-row :gutter="20" class="bottom-row">
       <!-- 快捷操作 -->
       <el-col :xs="24" :sm="24" :md="8" :lg="8">
-        <el-card class="glass-card">
-          <template #header>
-            <div class="card-header">
-              <span>快捷操作</span>
-            </div>
-          </template>
+        <GlassCard title="快捷操作">
           <div class="quick-actions">
             <div class="action-item" v-for="action in quickActions" :key="action.label"
                  @click="$router.push(action.path)">
@@ -75,17 +58,15 @@
               <span>{{ action.label }}</span>
             </div>
           </div>
-        </el-card>
+        </GlassCard>
       </el-col>
 
       <!-- 最近试卷 -->
       <el-col :xs="24" :sm="24" :md="16" :lg="16">
-        <el-card class="glass-card">
+        <GlassCard>
           <template #header>
-            <div class="card-header">
-              <span>最近试卷</span>
-              <el-button text size="small" @click="$router.push('/exam-paper')">查看全部</el-button>
-            </div>
+            <span>最近试卷</span>
+            <el-button text size="small" @click="$router.push('/exam-paper')">查看全部</el-button>
           </template>
           <el-table :data="recentExams" style="width: 100%" v-loading="tableLoading" empty-text="暂无试卷数据">
             <el-table-column prop="title" label="试卷名称" min-width="150" />
@@ -112,7 +93,7 @@
               </template>
             </el-table-column>
           </el-table>
-        </el-card>
+        </GlassCard>
       </el-col>
     </el-row>
   </div>
@@ -123,6 +104,8 @@ import { ref, onMounted, onUnmounted, nextTick } from 'vue'
 import * as echarts from 'echarts'
 import { getPaperList } from '@/api/exam'
 import { getBankList } from '@/api/question'
+import GlassCard from '@/components/common/GlassCard.vue'
+import StatCard from '@/components/common/StatCard.vue'
 
 // 加载状态
 const loading = ref(true)
@@ -282,7 +265,7 @@ onUnmounted(() => {
 .dashboard {
   padding: 20px;
   min-height: 100vh;
-  background: linear-gradient(135deg, #1E40AF 0%, #3B82F6 50%, #60A5FA 100%);
+  background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary) 50%, var(--color-primary-light) 100%);
   background-attachment: fixed;
 }
 
@@ -296,6 +279,7 @@ onUnmounted(() => {
   font-weight: 700;
   margin: 0 0 8px 0;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-family: var(--font-heading);
 }
 
 .dashboard-subtitle {
@@ -305,87 +289,17 @@ onUnmounted(() => {
 }
 
 .loading-container {
-  padding: 40px;
+  padding: var(--space-8);
   background: rgba(255, 255, 255, 0.9);
-  border-radius: 12px;
+  border-radius: var(--radius-lg);
 }
 
 .stat-row {
-  margin-bottom: 20px;
-}
-
-.stat-card {
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 12px;
-  padding: 20px;
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
-}
-
-.stat-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 24px rgba(30, 64, 175, 0.15);
-}
-
-.stat-icon-wrapper {
-  width: 56px;
-  height: 56px;
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  flex-shrink: 0;
-}
-
-.stat-info {
-  flex: 1;
-  min-width: 0;
-}
-
-.stat-value {
-  font-size: 28px;
-  font-weight: 700;
-  color: #1E3A8A;
-  line-height: 1.2;
-}
-
-.stat-label {
-  font-size: 13px;
-  color: #64748B;
-  margin-top: 4px;
-}
-
-.stat-trend {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  margin-top: 8px;
-  font-size: 12px;
-}
-
-.trend-up {
-  color: #67C23A;
-  font-weight: 600;
-}
-
-.trend-down {
-  color: #F56C6C;
-  font-weight: 600;
+  margin-bottom: var(--space-5);
 }
 
 .chart-row {
-  margin-bottom: 20px;
-}
-
-.chart-card {
-  margin-bottom: 0;
+  margin-bottom: var(--space-5);
 }
 
 .chart-container {
@@ -393,31 +307,25 @@ onUnmounted(() => {
   width: 100%;
 }
 
-.card-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
 .bottom-row {
-  margin-bottom: 20px;
+  margin-bottom: var(--space-5);
 }
 
 .quick-actions {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
+  gap: var(--space-3);
 }
 
 .action-item {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
-  padding: 16px 8px;
-  border-radius: 8px;
+  gap: var(--space-2);
+  padding: var(--space-4) var(--space-2);
+  border-radius: var(--radius-md);
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all var(--duration-normal) var(--ease-in-out);
   background: rgba(30, 64, 175, 0.04);
 }
 
@@ -427,51 +335,19 @@ onUnmounted(() => {
 }
 
 .action-item span {
-  font-size: 12px;
-  color: #475569;
-  font-weight: 500;
-}
-
-.glass-card {
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
-}
-
-.glass-card :deep(.el-card__header) {
-  background: rgba(30, 64, 175, 0.04);
-  border-bottom: 1px solid rgba(30, 64, 175, 0.1);
-  padding: 12px 20px;
-  font-weight: 600;
-  color: #1E3A8A;
-}
-
-.glass-card :deep(.el-card__body) {
-  padding: 20px;
+  font-size: var(--text-xs);
+  color: var(--color-text-secondary);
+  font-weight: var(--font-medium);
 }
 
 /* 响应式 */
 @media (max-width: 768px) {
   .dashboard {
-    padding: 12px;
+    padding: var(--space-3);
   }
 
   .dashboard-title {
-    font-size: 22px;
-  }
-
-  .stat-card {
-    padding: 16px;
-  }
-
-  .stat-value {
-    font-size: 22px;
-  }
-
-  .stat-icon-wrapper {
-    width: 44px;
-    height: 44px;
+    font-size: var(--text-2xl);
   }
 
   .quick-actions {
@@ -486,11 +362,11 @@ onUnmounted(() => {
 @media (max-width: 375px) {
   .quick-actions {
     grid-template-columns: repeat(2, 1fr);
-    gap: 8px;
+    gap: var(--space-2);
   }
 
   .action-item {
-    padding: 12px 4px;
+    padding: var(--space-3) var(--space-1);
   }
 }
 </style>
