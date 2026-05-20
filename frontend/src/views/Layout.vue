@@ -472,13 +472,13 @@ const logout = () => {
 }
 
 /* 折叠状态调整 */
-:deep(.el-menu--collapse) {
+.sidebar-menu.el-menu--collapse {
   width: 64px !important;
 }
 
 /* 菜单项基础样式 - 折叠状态 */
-:deep(.el-menu--collapse) .el-menu-item,
-:deep(.el-menu--collapse) .el-sub-menu__title {
+.sidebar-menu.el-menu--collapse .el-menu-item,
+.sidebar-menu.el-menu--collapse .el-sub-menu__title {
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
@@ -488,13 +488,14 @@ const logout = () => {
   width: 48px !important;
   min-width: 48px !important;
   box-sizing: border-box !important;
-  text-align: center !important;
 }
 
-/* 图标容器样式 - 确保居中且消除偏移 */
-:deep(.el-menu--collapse) .el-menu-item .el-icon,
-:deep(.el-menu--collapse) .el-sub-menu__title .el-icon {
+/* 图标容器样式 - 最彻底重置确保居中 */
+.sidebar-menu.el-menu--collapse .el-menu-item .el-icon,
+.sidebar-menu.el-menu--collapse .el-sub-menu__title .el-icon {
   margin: 0 !important;
+  margin-right: 0 !important;
+  margin-left: 0 !important;
   padding: 0 !important;
   display: flex !important;
   align-items: center !important;
@@ -504,8 +505,8 @@ const logout = () => {
 }
 
 /* SVG 图标样式 */
-:deep(.el-menu--collapse) .el-menu-item .el-icon svg,
-:deep(.el-menu--collapse) .el-sub-menu__title .el-icon svg {
+.sidebar-menu.el-menu--collapse .el-menu-item .el-icon svg,
+.sidebar-menu.el-menu--collapse .el-sub-menu__title .el-icon svg {
   width: 20px !important;
   height: 20px !important;
   margin: 0 !important;
