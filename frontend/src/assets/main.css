@@ -19,6 +19,21 @@ html, body, #app {
   border-right: none !important;
 }
 
+/* 强制修复菜单折叠状态图标居中 */
+.el-menu--collapse .el-menu-item,
+.el-menu--collapse .el-sub-menu__title {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  text-align: center !important;
+}
+
+.el-menu--collapse .el-menu-item .el-icon,
+.el-menu--collapse .el-sub-menu__title .el-icon {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  margin: 0 auto !important;
+}
+
 .el-table .el-table__header-wrapper .el-table__header th {
   background-color: var(--color-bg-hover) !important;
   font-family: var(--font-heading);
