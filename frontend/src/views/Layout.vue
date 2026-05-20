@@ -222,14 +222,30 @@ const currentRouteTitle = computed(() => {
 
 const toggleSidebar = () => {
   appStore.toggleSidebar()
-  // 强制设置 CSS 变量确保折叠状态生效
+  // 用内联样式强制居中图标
   setTimeout(() => {
-    const menuEl = document.querySelector('.sidebar-menu')
-    if (menuEl) {
-      menuEl.style.setProperty('--el-menu-base-level-padding', '0px')
-      menuEl.style.setProperty('--el-menu-level-padding', '0px')
-    }
-  }, 50)
+    const isCollapsed = appStore.sidebarCollapsed
+    const menuItems = document.querySelectorAll('.sidebar-menu .el-menu-item, .sidebar-menu .el-sub-menu__title')
+    menuItems.forEach((el) => {
+      if (isCollapsed) {
+        (el as HTMLElement).style.setProperty('display', 'flex')
+        ;(el as HTMLElement).style.setProperty('align-items', 'center')
+        ;(el as HTMLElement).style.setProperty('justify-content', 'center')
+        ;(el as HTMLElement).style.setProperty('padding', '0')
+        ;(el as HTMLElement).style.setProperty('padding-left', '0')
+        ;(el as HTMLElement).style.setProperty('padding-right', '0')
+      }
+    })
+    const icons = document.querySelectorAll('.sidebar-menu .el-menu-item .el-icon, .sidebar-menu .el-sub-menu__title .el-icon')
+    icons.forEach((el) => {
+      if (isCollapsed) {
+        ;(el as HTMLElement).style.setProperty('margin', '0')
+        ;(el as HTMLElement).style.setProperty('margin-left', '0')
+        ;(el as HTMLElement).style.setProperty('margin-right', '0')
+        ;(el as HTMLElement).style.setProperty('padding', '0')
+      }
+    })
+  }, 100)
 }
 
 const handleThemeChange = (theme: 'light' | 'dark' | 'auto') => {
@@ -479,75 +495,15 @@ const logout = () => {
   opacity: 0;
 }
 
-/* 折叠状态调整 */
-:deep(.el-menu--collapse) {
-  width: 64px !important;
-  --el-menu-base-level-padding: 0px !important;
-  --el-menu-level-padding: 0px !important;
-}
-
-/* 菜单项基础样式 - 折叠状态 */
-:deep(.el-menu--collapse) .el-menu-item,
-:deep(.el-menu--collapse) .el-sub-menu__title {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  padding: 0 !important;
-  margin: 4px 8px !important;
-  height: 44px !important;
-  width: 48px !important;
-  min-width: 48px !important;
-  box-sizing: border-box !important;
-}
-
-/* 图标容器样式 - 强制居中 */
-:deep(.el-menu--collapse) .el-menu-item > .el-icon,
-:deep(.el-menu--collapse) .el-sub-menu__title > .el-icon {
-  margin: 0 !important;
-  padding: 0 !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  width: 20px !important;
-  height: 20px !important;
-}
-
-/* 强制重置 el-menu-item 的所有可能影响图标位置的样式 */
-:deep(.el-menu--collapse) .el-menu-item {
-  padding-left: 0 !important;
-  padding-right: 0 !important;
-  text-align: center !important;
-}
-
-:deep(.el-menu--collapse) .el-menu-item .el-icon {
-  margin-left: 0 !important;
-  margin-right: 0 !important;
-}
-
-/* SVG 图标样式 */
-:deep(.el-menu--collapse) .el-menu-item > .el-icon svg,
-:deep(.el-menu--collapse) .el-sub-menu__title > .el-icon svg {
-  width: 20px !important;
-  height: 20px !important;
-  margin: 0 !important;
-  padding: 0 !important;
-}
-
 /* 隐藏折叠状态下的文字和箭头 */
 :deep(.el-menu--collapse) .el-sub-menu__title > span:not(.el-icon),
 :deep(.el-menu--collapse) .el-menu-item > span:not(.el-icon) {
   display: none !important;
 }
 
-/* 隐藏折叠状态下的箭头 - 多种方式确保隐藏 */
-:deep(.el-menu--collapse) .el-sub-menu__icon-arrow,
-:deep(.el-menu--collapse) .el-sub-menu__title .el-sub-menu__icon-arrow,
-.el-sub-menu.is-opened .el-sub-menu__icon-arrow {
+/* 隐藏折叠状态下的箭头 */
+:deep(.el-menu--collapse) .el-sub-menu__icon-arrow {
   display: none !important;
-  width: 0 !important;
-  height: 0 !important;
-  overflow: hidden !important;
-  visibility: hidden !important;
 }
 
 /* 折叠状态下隐藏子菜单 */
