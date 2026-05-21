@@ -55,8 +55,8 @@
           <el-input v-model="classForm.name" placeholder="请输入班级名称" />
         </el-form-item>
         <el-form-item label="年级" prop="gradeId">
-          <el-select v-model="classForm.gradeId" placeholder="选择年级">
-            <el-option v-for="grade in gradeList" :key="grade.id" :label="grade.name" :value="grade.id" />
+          <el-select v-model="classForm.gradeId" placeholder="选择年级" filterable clearable style="width: 300px">
+            <el-option v-for="grade of gradeList" :key="grade.id" :label="grade.name" :value="grade.id" />
           </el-select>
         </el-form-item>
       </el-form>
@@ -135,7 +135,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, onMounted } from 'vue'
+import { ref, reactive, onMounted, nextTick } from 'vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import type { FormInstance, FormRules } from 'element-plus'
 import { Plus, UserFilled, Edit, Delete } from '@element-plus/icons-vue'
@@ -155,7 +155,7 @@ const formRef = ref<FormInstance>()
 const classForm = reactive({
   id: 0,
   name: '',
-  gradeId: 0
+  gradeId: undefined as number | undefined
 })
 
 // 学生列表相关
@@ -222,18 +222,23 @@ const loadClasses = async () => {
   }
 }
 
-const showCreateDialog = () => {
+const showCreateDialog = async () => {
   isEdit.value = false
   dialogTitle.value = '添加班级'
-  Object.assign(classForm, { id: 0, name: '', gradeId: gradeList.value[0]?.id || 0 })
   dialogVisible.value = true
+  // 等待 DOM 更新（生成 el-option）
+  await nextTick()
+  const defaultGradeId = gradeList.value.length > 0 ? Number(gradeList.value[0].id) : undefined
+  Object.assign(classForm, { id: 0, name: '', gradeId: defaultGradeId })
 }
 
-const showEditDialog = (clazz: any) => {
+const showEditDialog = async (clazz: any) => {
   isEdit.value = true
   dialogTitle.value = '编辑班级'
-  Object.assign(classForm, { id: clazz.id, name: clazz.name, gradeId: clazz.gradeId })
   dialogVisible.value = true
+  // 等待 DOM 更新（生成 el-option）
+  await nextTick()
+  Object.assign(classForm, { id: clazz.id, name: clazz.name, gradeId: Number(clazz.gradeId) })
 }
 
 const submitForm = async () => {

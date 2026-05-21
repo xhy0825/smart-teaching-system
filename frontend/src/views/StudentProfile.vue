@@ -11,13 +11,13 @@
       <el-card class="select-card" shadow="hover">
         <el-form :inline="true">
           <el-form-item label="选择班级">
-            <el-select v-model="selectedClassId" placeholder="请选择班级" @change="loadStudents" clearable>
-              <el-option v-for="cls in classList" :key="cls.id" :label="cls.name" :value="cls.id" />
+            <el-select v-model="selectedClassId" placeholder="请选择班级" @change="loadStudents" clearable filterable style="width: 300px">
+              <el-option v-for="cls of classList" :key="cls.id" :label="cls.name" :value="cls.id" />
             </el-select>
           </el-form-item>
           <el-form-item label="选择学生">
-            <el-select v-model="selectedStudentId" placeholder="请选择学生" @change="loadProfile" clearable>
-              <el-option v-for="stu in studentList" :key="stu.id" :label="stu.name" :value="stu.id" />
+            <el-select v-model="selectedStudentId" placeholder="请选择学生" @change="loadProfile" clearable filterable style="width: 300px">
+              <el-option v-for="stu of studentList" :key="stu.id" :label="stu.name" :value="stu.id" />
             </el-select>
           </el-form-item>
         </el-form>
@@ -182,17 +182,19 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted, watch } from 'vue'
-import { useRouter } from 'vue-router'
+import { ref, computed, onMounted, watch, nextTick } from 'vue'
+import { useRouter, useRoute } from 'vue-router'
 import { ElMessage } from 'element-plus'
 import { User, UserFilled, DataAnalysis, Warning, Collection, TrendCharts, PieChart } from '@element-plus/icons-vue'
 import request from '@/utils/request'
+import { getClasList } from '@/api/user'
 
 const router = useRouter()
+const route = useRoute()
 const loading = ref(false)
 const profile = ref<any>(null)
-const selectedClassId = ref<number | null>(null)
-const selectedStudentId = ref<number | null>(null)
+const selectedClassId = ref<number>()
+const selectedStudentId = ref<number>()
 const classList = ref<any[]>([])
 const studentList = ref<any[]>([])
 
@@ -215,8 +217,16 @@ const goBack = () => {
 
 const loadClassList = async () => {
   try {
-    const res: any = await request.get('/class/list')
+    const res: any = await getClasList()
     classList.value = res.data || []
+    // 等待 DOM 更新（生成 el-option）
+    await nextTick()
+    // 默认选中第一个班级
+    if (classList.value.length > 0 && !selectedClassId.value) {
+      selectedClassId.value = Number(classList.value[0].id)
+      await nextTick()
+      await loadStudents()
+    }
   } catch (error) {
     console.error(error)
   }
@@ -230,6 +240,20 @@ const loadStudents = async () => {
   try {
     const res: any = await request.get(`/student/class/${selectedClassId.value}`)
     studentList.value = res.data || []
+    // 等待 DOM 更新（生成 el-option）
+    await nextTick()
+    // 默认选中第一个学生
+    if (studentList.value.length > 0) {
+      // 检查是否有 URL 参数指定的学生
+      const urlStudentId = route.query.studentId ? Number(route.query.studentId) : null
+      if (urlStudentId && studentList.value.some((s: any) => Number(s.id) === urlStudentId)) {
+        selectedStudentId.value = urlStudentId
+      } else if (!selectedStudentId.value) {
+        selectedStudentId.value = Number(studentList.value[0].id)
+      }
+      await nextTick()
+      loadProfile()
+    }
   } catch (error) {
     console.error(error)
     studentList.value = []

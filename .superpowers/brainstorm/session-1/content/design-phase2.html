@@ -1,0 +1,90 @@
+<h2>设计方案 - 阶段 2：添加单元测试</h2>
+<p class="subtitle">保障修复质量，防止回归</p>
+
+<div class="section">
+  <h3>2.1 测试策略</h3>
+  <div class="mockup">
+    <div class="mockup-header">测试目标</div>
+    <div class="mockup-body">
+      <ul style="text-align: left;">
+        <li>验证知识点掌握率计算正确性</li>
+        <li>验证错题类型分布统计准确性</li>
+        <li>验证班级知识点掌握率计算</li>
+        <li>模拟各种边界情况（无数据、部分数据、完整数据）</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>2.2 测试用例示例</h3>
+  <div class="split">
+    <div class="mockup">
+      <div class="mockup-header">StudentProfileServiceTest.java</div>
+      <div class="mockup-body">
+        <pre style="text-align: left; background: #f5f5f5; padding: 10px; border-radius: 4px;"><code>@Test
+void testGetKnowledgePointStats_NoWrongQuestions() {
+    // 学生没有错题
+    when(wrongQuestionMapper.selectList(any()))
+        .thenReturn(Collections.emptyList());
+
+    List&lt;KnowledgePointStats&gt; stats =
+        studentProfileService.getKnowledgePointStats(studentId);
+
+    assertTrue(stats.isEmpty());
+}
+
+@Test
+void testGetKnowledgePointStats_WithWrongQuestions() {
+    // 模拟错题数据
+    // 验证掌握率计算正确
+    // 验证知识点聚合正确
+}</code></pre>
+      </div>
+    </div>
+    <div class="mockup">
+      <div class="mockup-header">ClassProfileServiceTest.java</div>
+      <div class="mockup-body">
+        <pre style="text-align: left; background: #f5f5f5; padding: 10px; border-radius: 4px;"><code>@Test
+void testBuildKnowledgeMastery() {
+    // 模拟班级学生
+    // 模拟错题记录
+    // 验证班级掌握率计算正确
+    // 验证薄弱人数统计正确
+}
+
+@Test
+void testBuildWrongTypePie() {
+    // 验证错题类型饼图数据
+    // 确保不是模拟数据
+}</code></pre>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>2.3 测试环境配置</h3>
+  <div class="cards">
+    <div class="card">
+      <div class="card-body">
+        <h3>使用 H2 内存数据库</h3>
+        <p>测试中已配置，无需修改</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <h3>Mockito 模拟依赖</h3>
+        <p>模拟 Mapper 和外部服务</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <h3>断言使用 JUnit 5</h3>
+        <p>清晰的错误信息</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<p style="margin-top: 20px;">阶段 2 设计看起来对吗？确认后我继续展示阶段 3-4。</p>

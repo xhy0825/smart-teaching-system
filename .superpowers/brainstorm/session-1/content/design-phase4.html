@@ -1,0 +1,109 @@
+<h2>设计方案 - 阶段 4：前端适配和验证</h2>
+<p class="subtitle">确保前端正确展示修复后的数据</p>
+
+<div class="section">
+  <h3>4.1 前端改动点</h3>
+  <div class="mockup">
+    <div class="mockup-header">需要检查的前端文件</div>
+    <div class="mockup-body">
+      <ul style="text-align: left;">
+        <li><strong>StudentProfile.vue</strong>
+          <ul>
+            <li>检查知识点掌握雷达图是否正常显示</li>
+            <li>检查错题类型饼图数据格式是否匹配</li>
+            <li>验证成绩趋势折线图数据</li>
+          </ul>
+        </li>
+        <li><strong>ClassProfile.vue</strong>
+          <ul>
+            <li>检查班级知识点掌握雷达图</li>
+            <li>检查成绩分布箱线图</li>
+            <li>验证知识点掌握表格数据</li>
+          </ul>
+        </li>
+        <li><strong>api/student.ts</strong>
+          <ul>
+            <li>确认 API 返回类型定义正确</li>
+            <li>检查是否有遗漏的字段</li>
+          </ul>
+        </li>
+        <li><strong>api/class-profile.ts</strong>
+          <ul>
+            <li>确认 API 返回类型定义正确</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>4.2 数据格式验证</h3>
+  <div class="split">
+    <div class="mockup">
+      <div class="mockup-header">知识点雷达图数据格式</div>
+      <div class="mockup-body">
+        <pre style="text-align: left; background: #f5f5f5; padding: 10px; border-radius: 4px;"><code>{
+  "points": ["代数", "几何", "概率"],
+  "scores": [85.5, 92.0, 78.5]
+}
+// scores 应该是正确率，范围 0-100</code></pre>
+      </div>
+    </div>
+    <div class="mockup">
+      <div class="mockup-header">错题类型饼图数据格式</div>
+      <div class="mockup-body">
+        <pre style="text-align: left; background: #f5f5f5; padding: 10px; border-radius: 4px;"><code>{
+  "types": ["选择题", "填空题", "判断题"],
+  "counts": [10, 5, 3]
+}
+// counts 应该是真实统计值</code></pre>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>4.3 测试验证步骤</h3>
+  <div class="mockup">
+    <div class="mockup-header">手动测试清单</div>
+    <div class="mockup-body">
+      <ol style="text-align: left;">
+        <li>启动后端（MySQL + Redis）</li>
+        <li>启动前端（npm run dev）</li>
+        <li>登录系统，进入"学生画像"</li>
+        <li>选择一个学生，检查：
+          <ul>
+            <li>知识点掌握雷达图是否有数据</li>
+            <li>错题类型饼图是否显示真实数据（非50%/33%）</li>
+            <li>成绩趋势折线图是否正确</li>
+          </ul>
+        </li>
+        <li>进入"班级画像"，选择一个班级，检查：
+          <ul>
+            <li>基础统计（平均分、最高分等）是否正确</li>
+            <li>知识点掌握表格数据是否合理</li>
+            <li>雷达图和箱线图是否正常</li>
+          </ul>
+        </li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>4.4 可能的前端适配</h3>
+  <div class="pros-cons">
+    <div class="pros">
+      <h4>如果后端修复后数据格式变化</h4>
+      <ul>
+        <li>更新 TypeScript 接口定义</li>
+        <li>调整 ECharts 配置（如果数据结构变化）</li>
+        <li>添加加载状态和错误处理</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<p style="margin-top: 20px;">阶段 4 设计完成。所有设计阶段都已呈现。</p>
+<p>接下来我会编写完整的设计文档并提交到 docs/superpowers/specs/。</p>

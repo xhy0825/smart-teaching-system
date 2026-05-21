@@ -1,0 +1,104 @@
+<h2>设计方案 - 阶段 1：修复 Service 层计算逻辑</h2>
+<p class="subtitle">直接修复法，快速解决数据准确性问题</p>
+
+<div class="section">
+  <h3>1.1 修复 StudentProfileService.getKnowledgePointStats()</h3>
+  <div class="mockup">
+    <div class="mockup-header">问题：知识点掌握率计算错误</div>
+    <div class="mockup-body">
+      <p><strong>当前错误逻辑：</strong></p>
+      <pre style="text-align: left; background: #fef0f0; padding: 10px; border-radius: 4px;"><code>int wrongCount = 1; // 写死！
+int correctCount = Math.max(0, total - wrongCount);</code></pre>
+      <p style="margin-top: 10px;"><strong>修复后逻辑：</strong></p>
+      <pre style="text-align: left; background: #f0f9eb; padding: 10px; border-radius: 4px;"><code>// 查询该学生在每个知识点上的正确/错误数
+// 需要从 answer_sheet + exam_question 关联查询
+// 或者：用错题数 / 总答题数 计算正确率
+
+// 正确做法：
+// 1. 查询学生所有答题记录（已批改）
+// 2. 按知识点聚合：总题数、错题数
+// 3. 计算掌握率 = (总题数 - 错题数) / 总题数 * 100</code></pre>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>1.2 修复 StudentProfileService.buildWrongTypePie()</h3>
+  <div class="mockup">
+    <div class="mockup-header">问题：错题类型分布是模拟数据</div>
+    <div class="mockup-body">
+      <p><strong>当前错误逻辑：</strong></p>
+      <pre style="text-align: left; background: #fef0f0; padding: 10px; border-radius: 4px;"><code>choiceType.setCount(wrongQuestions.size() / 2); // 写死50%
+choiceType.setPercentage(BigDecimal.valueOf(50));</code></pre>
+      <p style="margin-top: 10px;"><strong>修复后逻辑：</strong></p>
+      <pre style="text-align: left; background: #f0f9eb; padding: 10px; border-radius: 4px;"><code>// 按题型聚合统计
+Map&lt;String, Integer&gt; typeCountMap = new HashMap<>();
+for (StudentWrongQuestion wq : wrongQuestions) {
+    Question question = questionService.getById(wq.getQuestionId());
+    if (question != null) {
+        typeCountMap.merge(question.getQuestionType(), 1, Integer::sum);
+    }
+}
+// 计算百分比
+int totalWrong = wrongQuestions.size();
+for (Map.Entry&lt;String, Integer&gt; entry : typeCountMap.entrySet()) {
+    // 真实的 count 和 percentage
+}</code></pre>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>1.3 修复 ClassProfileService.buildKnowledgeMastery()</h3>
+  <div class="mockup">
+    <div class="mockup-header">问题：班级知识点掌握率计算不准确</div>
+    <div class="mockup-body">
+      <p><strong>当前错误逻辑：</strong></p>
+      <pre style="text-align: left; background: #fef0f0; padding: 10px; border-radius: 4px;"><code>double masteryRate = 1.0 - (entry.getValue().getWrongCount() / (double) students.size());</code></pre>
+      <p style="margin-top: 10px;"><strong>修复后逻辑：</strong></p>
+      <pre style="text-align: left; background: #f0f9eb; padding: 10px; border-radius: 4px;"><code>// 应该计算：班级在该知识点上的平均正确率
+// 1. 统计每个学生在每个知识点上的答题情况
+// 2. 计算班级平均掌握率 = 总正确数 / 总答题数 * 100
+
+// 注意：当前代码只统计了"有多少学生错了这个知识点"
+// 应该改为：统计"该知识点班级平均正确率"</code></pre>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>1.4 修复 ClassProfileService.buildKnowledgeRadar()</h3>
+  <div class="mockup">
+    <div class="mockup-header">问题：雷达图数据使用错误的掌握率</div>
+    <div class="mockup-body">
+      <p>依赖于 1.3 的修复，使用正确的班级知识点掌握率数据。</p>
+      <p>无需额外修改，只要 1.3 修复后，雷达图数据自然正确。</p>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>阶段 1 总结</h3>
+  <div class="cards">
+    <div class="card">
+      <div class="card-body">
+        <h3>改动范围</h3>
+        <p>StudentProfileService.java<br>ClassProfileService.java</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <h3>改动量</h3>
+        <p>约 100 行代码修改</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <h3>风险</h3>
+        <p>低 - 只修改计算逻辑</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<p style="margin-top: 20px;">这部分设计看起来对吗？确认后我继续展示阶段 2-4 的设计。</p>

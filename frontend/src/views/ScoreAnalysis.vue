@@ -7,13 +7,13 @@
 
       <el-form :inline="true" class="search-form">
         <el-form-item label="试卷">
-          <el-select v-model="selectedPaper" placeholder="选择试卷">
-            <el-option v-for="paper in paperList" :key="paper.id" :label="paper.title" :value="paper.id" />
+          <el-select v-model="selectedPaper" placeholder="选择试卷" filterable clearable style="width: 300px">
+            <el-option v-for="paper of paperList" :key="paper.id" :label="paper.title" :value="paper.id" />
           </el-select>
         </el-form-item>
         <el-form-item label="班级">
-          <el-select v-model="selectedClass" placeholder="选择班级">
-            <el-option label="默认班级" :value="1" />
+          <el-select v-model="selectedClass" placeholder="选择班级" filterable clearable style="width: 300px">
+            <el-option v-for="cls of classList" :key="cls.id" :label="cls.name" :value="cls.id" />
           </el-select>
         </el-form-item>
         <el-form-item>
@@ -71,19 +71,42 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, nextTick } from 'vue'
 import { ElMessage } from 'element-plus'
 import { getPaperList } from '@/api/exam'
 import { getScoreAnalysis, analyzeClassScores } from '@/api/grading'
+import { getClasList } from '@/api/user'
 
-const paperList = ref([])
-const selectedPaper = ref(null)
-const selectedClass = ref(1)
+const paperList = ref<any[]>([])
+const classList = ref<any[]>([])
+const selectedPaper = ref<number>()
+const selectedClass = ref<number>()
 const analysis = ref(null)
 
 const loadPapers = async () => {
   const res: any = await getPaperList()
   paperList.value = res.data
+  // 等待 DOM 更新（生成 el-option）
+  await nextTick()
+  // 默认选中第一个试卷
+  if (paperList.value.length > 0) {
+    selectedPaper.value = Number(paperList.value[0].id)
+  }
+}
+
+const loadClasses = async () => {
+  try {
+    const res: any = await getClasList()
+    classList.value = res.data || []
+    // 等待 DOM 更新（生成 el-option）
+    await nextTick()
+    // 默认选中第一个班级
+    if (classList.value.length > 0) {
+      selectedClass.value = Number(classList.value[0].id)
+    }
+  } catch (error) {
+    console.error('加载班级失败', error)
+  }
 }
 
 const loadAnalysis = async () => {
@@ -107,6 +130,7 @@ const analyze = async () => {
 
 onMounted(() => {
   loadPapers()
+  loadClasses()
 })
 </script>
 

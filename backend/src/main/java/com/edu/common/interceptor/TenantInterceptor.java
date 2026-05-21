@@ -47,7 +47,8 @@ public class TenantInterceptor implements InnerInterceptor {
             "answer",             // linked via answer_sheet
             "student_wrong_question", // linked via student
             "user_role",          // linked via user
-            "role_permission"     // linked via role
+            "role_permission",     // linked via role
+            "score_analysis"       // no tenant_id column
     );
 
     private final Set<String> exemptTables;

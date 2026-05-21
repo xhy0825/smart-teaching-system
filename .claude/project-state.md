@@ -11,33 +11,31 @@ completed_tasks:
     key_decisions: ["Data-Dense Dashboard风格", "蓝色系#1E40AF", "ECharts图表"]
     files_count: 3
     completed_at: "2026-05-20"
-global_architecture: []  # ≤5条
-
-# 当前任务（重置时归档后清空）
-current_phase: P5  # P0-P5
-task_description: "修复菜单导航栏收起显示异常"  # ≤30字
-started_at: "2026-05-20"
-last_updated: "2026-05-20"
-prd_file: ".claude/prd.md"  # PRD 路径，如 ".claude/prd.md"
-architecture_decisions: []  # ≤5条
-modified_files:
-  - "frontend/src/views/Layout.vue"
-todo_items: []
-review_retry_count: 0
-
-# 项目级（跨任务持久化）
-project_roadmap: ""  # ≤50字
-completed_tasks:
-  - task: "优化首页Dashboard现代数据大屏风格"
-    prd_summary: "R1:大屏风格 R2:统计卡片 R3:ECharts R4:快捷操作 R5:列表增强 R6:响应式 R7:加载状态"
-    key_decisions: ["Data-Dense Dashboard风格", "蓝色系#1E40AF", "ECharts图表"]
-    files_count: 3
-    completed_at: "2026-05-20"
   - task: "UI整体框架及风格优化"
     prd_summary: "R1:布局框架 R2:设计系统 R3:Glassmorphism R4:深色模式 R5:通用组件 R6:页面优化 R7:响应式 R8:字体系统"
     key_decisions: ["Glassmorphism风格", "SaaS-Blue配色", "Inter+Poppins字体", "深度定制Element Plus"]
     files_count: 18
     completed_at: "2026-05-20"
+  - task: "修复菜单导航栏收起显示异常"
+    prd_summary: "R1:图标居中 R2:文字隐藏 R3:箭头隐藏 R4:动画流畅"
+    key_decisions: ["Element Plus折叠API", "CSS深度选择器"]
+    files_count: 1
+    completed_at: "2026-05-20"
+global_architecture: []  # ≤5条
+
+# 当前任务（重置时归档后清空）
+current_phase: P2  # P0-P5
+task_description: "修复菜单收起图标对齐"  # ≤30字
+started_at: ""
+last_updated: "2026-05-21"
+prd_file: ""  # PRD 路径，如 ".claude/prd.md"
+architecture_decisions: []  # ≤5条
+modified_files:
+  - "frontend/src/views/Layout.vue"
+  - "frontend/src/views/Dashboard.vue"
+todo_items: []
+review_retry_count: 0
+
 phase_history:
   - "P1→P2: 2026-05-20 PRD确认"
   - "P2→P3: 2026-05-20 编码完成"

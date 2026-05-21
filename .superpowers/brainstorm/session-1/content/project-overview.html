@@ -1,0 +1,115 @@
+<h2>edu 项目概览</h2>
+<p class="subtitle">基于 Spring Boot + Vue 3 的智能教育平台</p>
+
+<div class="section">
+  <h3>项目规模</h3>
+  <div class="cards">
+    <div class="card">
+      <div class="card-body">
+        <h3>132 个 Java 文件</h3>
+        <p>后端包含完整的分层架构</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <h3>30+ Vue 组件</h3>
+        <p>前端涵盖完整教学流程</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <h3>15+ 数据库表</h3>
+        <p>支持多租户和完整业务</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>技术架构</h3>
+  <div class="mockup">
+    <div class="mockup-header">系统架构图</div>
+    <div class="mockup-body">
+      <div style="display: flex; flex-direction: column; gap: 10px;">
+        <div style="display: flex; justify-content: center;">
+          <div class="mock-nav" style="width: 80%;">前端层: Vue 3 + Vite + Element Plus + ECharts</div>
+        </div>
+        <div style="text-align: center; color: #409eff;">↑ Axios HTTP ↓</div>
+        <div style="display: flex; justify-content: center;">
+          <div class="mock-nav" style="width: 80%;">后端层: Spring Boot 3.2 + MyBatis-Plus + JWT</div>
+        </div>
+        <div style="text-align: center; color: #409eff;">↑ JDBC ↓</div>
+        <div style="display: flex; justify-content: center;">
+          <div class="mock-nav" style="width: 80%;">数据层: MySQL 8 + Redis (可选)</div>
+        </div>
+        <div style="text-align: center; color: #409eff;">← →</div>
+        <div style="display: flex; justify-content: center;">
+          <div class="mock-nav" style="width: 80%;">外部服务: Claude API (AI 批改/出题/PPT)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>核心功能模块</h3>
+  <div class="split">
+    <div class="mockup">
+      <div class="mockup-header">后端模块 (Java)</div>
+      <div class="mockup-body">
+        <ul style="text-align: left;">
+          <li><strong>common</strong> - JWT、安全、拦截器、全局异常</li>
+          <li><strong>tenant</strong> - 多租户管理</li>
+          <li><strong>user</strong> - 用户、角色、学生管理</li>
+          <li><strong>exam</strong> - 题库、题目、试卷模板</li>
+          <li><strong>grading</strong> - 答题卡、批改、成绩分析</li>
+          <li><strong>ai</strong> - AI 服务（Claude API）</li>
+        </ul>
+      </div>
+    </div>
+    <div class="mockup">
+      <div class="mockup-header">前端视图 (Vue)</div>
+      <div class="mockup-body">
+        <ul style="text-align: left;">
+          <li><strong>Dashboard</strong> - 首页统计</li>
+          <li><strong>QuestionBank/Question</strong> - 题库管理</li>
+          <li><strong>ExamTemplate/Paper</strong> - 试卷管理</li>
+          <li><strong>ExamGenerate</strong> - AI 出卷</li>
+          <li><strong>Grading</strong> - 在线批改</li>
+          <li><strong>ScoreAnalysis</strong> - 成绩分析</li>
+          <li><strong>Student/Class Profile</strong> - 画像分析</li>
+          <li><strong>PptMaker</strong> - AI 生成 PPT</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>数据流示意（学生画像功能）</h3>
+  <div class="mockup">
+    <div class="mockup-body">
+      <div style="display: flex; align-items: center; gap: 15px; flex-wrap: wrap; justify-content: center;">
+        <div style="text-align: center;">
+          <div style="border: 2px solid #409eff; padding: 10px; border-radius: 8px;">StudentProfile.vue</div>
+          <div style="font-size: 12px; color: #909399;">选择学生 → 发起请求</div>
+        </div>
+        <div style="font-size: 24px; color: #409eff;">→</div>
+        <div style="text-align: center;">
+          <div style="border: 2px solid #67c23a; padding: 10px; border-radius: 8px;">StudentProfileController</div>
+          <div style="font-size: 12px; color: #909399;">/api/student-profile/{id}</div>
+        </div>
+        <div style="font-size: 24px; color: #409eff;">→</div>
+        <div style="text-align: center;">
+          <div style="border: 2px solid #e6a23c; padding: 10px; border-radius: 8px;">StudentProfileService</div>
+          <div style="font-size: 12px; color: #909399;">聚合多个数据源</div>
+        </div>
+        <div style="font-size: 24px; color: #409eff;">→</div>
+        <div style="text-align: center;">
+          <div style="border: 2px solid #f56c6c; padding: 10px; border-radius: 8px;">数据库 + ECharts</div>
+          <div style="font-size: 12px; color: #909399;">答题卡、错题、题目表</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

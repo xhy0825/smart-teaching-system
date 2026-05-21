@@ -7,8 +7,8 @@
 
       <el-form :inline="true" class="search-form">
         <el-form-item label="试卷">
-          <el-select v-model="selectedPaper" placeholder="选择试卷" @change="loadAnswerSheets">
-            <el-option v-for="paper in paperList" :key="paper.id" :label="paper.title" :value="paper.id" />
+          <el-select v-model="selectedPaper" placeholder="选择试卷" @change="loadAnswerSheets" clearable style="width: 300px">
+            <el-option v-for="paper of paperList" :key="paper.id" :label="paper.title" :value="paper.id" />
           </el-select>
         </el-form-item>
       </el-form>
@@ -56,17 +56,17 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, nextTick } from 'vue'
 import { ElMessage } from 'element-plus'
 import { getPaperList } from '@/api/exam'
 import { getAnswerSheetList, getAnswerList, gradeAnswerSheet } from '@/api/grading'
 
 const loading = ref(false)
 const showAnswers = ref(false)
-const paperList = ref([])
+const paperList = ref<any[]>([])
 const answerSheets = ref([])
 const answers = ref([])
-const selectedPaper = ref(null)
+const selectedPaper = ref<number>()
 
 const statusMap = {
   0: '未提交',
@@ -85,6 +85,12 @@ const statusType = {
 const loadPapers = async () => {
   const res: any = await getPaperList()
   paperList.value = res.data
+  // 等待 DOM 更新（生成 el-option）
+  await nextTick()
+  // 默认选中第一个试卷
+  if (paperList.value.length > 0) {
+    selectedPaper.value = Number(paperList.value[0].id)
+  }
 }
 
 const loadAnswerSheets = async () => {

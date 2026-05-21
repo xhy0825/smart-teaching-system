@@ -1,0 +1,100 @@
+<h2>发现的数据准确性问题</h2>
+<p class="subtitle">学生画像和班级画像模块中的数据计算错误</p>
+
+<div class="section">
+  <h3>问题 1：知识点掌握率计算错误</h3>
+  <div class="pros-cons">
+    <div class="cons">
+      <h4>StudentProfileService.java:130-146</h4>
+      <ul>
+        <li>错误：假设每个知识点只错 1 题 (correctCount = total - 1)</li>
+        <li>实际：应该根据错题记录计算正确率</li>
+        <li>影响：学生画像中的知识点掌握雷达图数据不准</li>
+      </ul>
+    </div>
+  </div>
+  <div class="mockup" style="margin-top: 10px;">
+    <div class="mockup-header">当前错误代码</div>
+    <div class="mockup-body">
+      <pre style="text-align: left; background: #f5f5f5; padding: 10px; border-radius: 4px;"><code>// 假设错误数为1，正确数 = total - 1（简化逻辑）
+int wrongCount = 1;  // ← 这里写死了！
+int correctCount = Math.max(0, total - wrongCount);</code></pre>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>问题 2：错题类型分布是模拟数据</h3>
+  <div class="pros-cons">
+    <div class="cons">
+      <h4>StudentProfileService.java:195-210</h4>
+      <ul>
+        <li>错误：直接写死选择题占50%、填空题占33.33%</li>
+        <li>实际：应该从错题记录中按题型聚合统计</li>
+        <li>影响：错题类型饼图显示虚假数据</li>
+      </ul>
+    </div>
+  </div>
+  <div class="mockup" style="margin-top: 10px;">
+    <div class="mockup-header">当前模拟数据代码</div>
+    <div class="mockup-body">
+      <pre style="text-align: left; background: #f5f5f5; padding: 10px; border-radius: 4px;"><code>// 错题类型分布（模拟）
+choiceType.setCount(wrongQuestions.size() / 2);  // ← 写死50%
+choiceType.setPercentage(BigDecimal.valueOf(50));
+fillType.setCount(wrongQuestions.size() / 3);   // ← 写死33%
+fillType.setPercentage(BigDecimal.valueOf(33.33));</code></pre>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>问题 3：班级知识点掌握率计算不准确</h3>
+  <div class="pros-cons">
+    <div class="cons">
+      <h4>ClassProfileService.java:124-132</h4>
+      <ul>
+        <li>错误：只统计"有多少学生错了这个知识点"，而非"错误率"</li>
+        <li>公式：1.0 - (wrongCount / students.size()) 不反映真实掌握率</li>
+        <li>影响：班级画像中的知识点掌握表格和雷达图不准确</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>问题 4：N+1 查询性能问题</h3>
+  <div class="pros-cons">
+    <div class="cons">
+      <h4>ClassProfileService.java:196-216</h4>
+      <ul>
+        <li>问题：对每个学生循环查询答题卡（buildScoreBoxplot）</li>
+        <li>影响：班级人数多时性能差</li>
+        <li>注意：这是性能问题，但也影响数据准确性（可能查询超时）</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>问题汇总</h3>
+  <div class="cards">
+    <div class="card" data-choice="issue1" onclick="toggleSelect(this)">
+      <div class="card-body">
+        <h3>知识点掌握率</h3>
+        <p>StudentProfile + ClassProfile 都需要修复</p>
+      </div>
+    </div>
+    <div class="card" data-choice="issue2" onclick="toggleSelect(this)">
+      <div class="card-body">
+        <h3>错题类型分布</h3>
+        <p>StudentProfile 中需要真实统计</p>
+      </div>
+    </div>
+    <div class="card" data-choice="issue3" onclick="toggleSelect(this)">
+      <div class="card-body">
+        <h3>N+1 查询</h3>
+        <p>ClassProfileService 性能优化</p>
+      </div>
+    </div>
+  </div>
+</div>

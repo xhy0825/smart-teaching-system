@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<toolchains>
+  <toolchain>
+    <type>jdk</type>
+    <providers>
+      <jdk>
+        <version>17</version>
+        <path>C:\Program Files\Microsoft\jdk-17.0.19.10-hotspot</path>
+      </jdk>
+    </providers>
+  </toolchain>
+</toolchains>

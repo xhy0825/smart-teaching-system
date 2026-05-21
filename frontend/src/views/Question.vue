@@ -12,8 +12,21 @@
       </template>
 
       <el-form :inline="true" class="search-form">
+        <el-form-item label="题库">
+          <el-select
+            v-model="searchForm.bankId"
+            placeholder="选择题库"
+            clearable
+            filterable
+            :loading="bankLoading"
+            @change="onBankChange"
+            style="width: 220px"
+          >
+            <el-option v-for="bank in bankList" :key="bank.id" :label="bank.name" :value="bank.id" />
+          </el-select>
+        </el-form-item>
         <el-form-item label="学科">
-          <el-select v-model="searchForm.subject" placeholder="选择学科">
+          <el-select v-model="searchForm.subject" placeholder="选择学科" clearable style="width: 140px">
             <el-option label="数学" value="MATH" />
             <el-option label="物理" value="PHYSICS" />
             <el-option label="化学" value="CHEMISTRY" />
@@ -21,7 +34,7 @@
           </el-select>
         </el-form-item>
         <el-form-item label="题型">
-          <el-select v-model="searchForm.type" placeholder="选择题型" clearable>
+          <el-select v-model="searchForm.type" placeholder="选择题型" clearable style="width: 140px">
             <el-option label="选择题" value="CHOICE" />
             <el-option label="填空题" value="FILL" />
             <el-option label="判断题" value="JUDGE" />
@@ -29,7 +42,7 @@
           </el-select>
         </el-form-item>
         <el-form-item label="难度">
-          <el-select v-model="searchForm.difficulty" placeholder="选择难度" clearable>
+          <el-select v-model="searchForm.difficulty" placeholder="选择难度" clearable style="width: 140px">
             <el-option label="简单" :value="1" />
             <el-option label="中等" :value="2" />
             <el-option label="困难" :value="3" />
@@ -69,12 +82,12 @@
     <el-dialog v-model="showDialog" :title="editMode ? '编辑题目' : '新增题目'" width="700px">
       <el-form ref="formRef" :model="questionForm" :rules="rules" label-width="80px">
         <el-form-item label="题库" prop="bankId">
-          <el-select v-model="questionForm.bankId">
+          <el-select v-model="questionForm.bankId" style="width: 100%">
             <el-option v-for="bank in bankList" :key="bank.id" :label="bank.name" :value="bank.id" />
           </el-select>
         </el-form-item>
         <el-form-item label="学科" prop="subject">
-          <el-select v-model="questionForm.subject">
+          <el-select v-model="questionForm.subject" style="width: 100%">
             <el-option label="数学" value="MATH" />
             <el-option label="物理" value="PHYSICS" />
             <el-option label="化学" value="CHEMISTRY" />
@@ -82,7 +95,7 @@
           </el-select>
         </el-form-item>
         <el-form-item label="题型" prop="questionType">
-          <el-select v-model="questionForm.questionType">
+          <el-select v-model="questionForm.questionType" style="width: 100%">
             <el-option label="选择题" value="CHOICE" />
             <el-option label="填空题" value="FILL" />
             <el-option label="判断题" value="JUDGE" />
@@ -90,7 +103,7 @@
           </el-select>
         </el-form-item>
         <el-form-item label="难度" prop="difficulty">
-          <el-select v-model="questionForm.difficulty">
+          <el-select v-model="questionForm.difficulty" style="width: 100%">
             <el-option label="简单" :value="1" />
             <el-option label="中等" :value="2" />
             <el-option label="困难" :value="3" />
@@ -126,6 +139,7 @@ import { getBankList, queryQuestions, getQuestionList, createQuestion, updateQue
 
 const route = useRoute()
 const loading = ref(false)
+const bankLoading = ref(false)
 const showDialog = ref(false)
 const editMode = ref(false)
 const questionList = ref([])
@@ -134,6 +148,7 @@ const formRef = ref<FormInstance>()
 const editId = ref(0)
 
 const searchForm = ref({
+  bankId: null as number | null,
   subject: 'MATH',
   type: '',
   difficulty: null as number | null
@@ -179,24 +194,38 @@ const difficultyType = {
 }
 
 const loadBanks = async () => {
-  const res: any = await getBankList()
-  bankList.value = res.data
+  bankLoading.value = true
+  try {
+    const res: any = await getBankList()
+    bankList.value = res.data
+  } finally {
+    bankLoading.value = false
+  }
 }
 
 const loadData = async () => {
   loading.value = true
   try {
-    const res: any = await queryQuestions(
-      searchForm.value.subject,
-      searchForm.value.type,
-      searchForm.value.difficulty
-    )
+    let res: any
+    if (searchForm.value.bankId) {
+      res = await getQuestionList(searchForm.value.bankId)
+    } else {
+      res = await queryQuestions(
+        searchForm.value.subject,
+        searchForm.value.type,
+        searchForm.value.difficulty
+      )
+    }
     questionList.value = res.data
   } catch (error) {
     console.error(error)
   } finally {
     loading.value = false
   }
+}
+
+const onBankChange = () => {
+  loadData()
 }
 
 const editQuestion = (row: any) => {
@@ -237,8 +266,12 @@ const saveQuestion = async () => {
   loadData()
 }
 
-onMounted(() => {
-  loadBanks()
+onMounted(async () => {
+  await loadBanks()
+  const bankId = route.query.bankId
+  if (bankId) {
+    searchForm.value.bankId = Number(bankId)
+  }
   loadData()
 })
 </script>

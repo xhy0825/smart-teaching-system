@@ -13,7 +13,7 @@
 
       <el-form :inline="true" class="search-form">
         <el-form-item label="学科">
-          <el-select v-model="searchSubject" placeholder="选择学科" clearable>
+          <el-select v-model="searchSubject" placeholder="选择学科" clearable @change="loadData" style="width: 140px">
             <el-option label="数学" value="MATH" />
             <el-option label="物理" value="PHYSICS" />
             <el-option label="化学" value="CHEMISTRY" />
@@ -58,7 +58,7 @@
           <el-input v-model="bankForm.name" />
         </el-form-item>
         <el-form-item label="学科" prop="subject">
-          <el-select v-model="bankForm.subject">
+          <el-select v-model="bankForm.subject" style="width: 100%">
             <el-option label="数学" value="MATH" />
             <el-option label="物理" value="PHYSICS" />
             <el-option label="化学" value="CHEMISTRY" />

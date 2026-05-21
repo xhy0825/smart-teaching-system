@@ -30,3 +30,12 @@ Thumbs.pkl
 
 # Claude tasks (optional)
 .claude/tasks/
+
+# Local config
+.claude/settings.local.json
+
+# Other AI tools
+.qoder/
+
+# Maven wrapper
+.mvn/wrapper/maven-wrapper.jar

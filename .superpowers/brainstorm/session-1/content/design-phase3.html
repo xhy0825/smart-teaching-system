@@ -1,0 +1,88 @@
+<h2>设计方案 - 阶段 3：优化查询（重构数据源）</h2>
+<p class="subtitle">解决 N+1 查询问题，提升性能</p>
+
+<div class="section">
+  <h3>3.1 问题分析</h3>
+  <div class="mockup">
+    <div class="mockup-header">当前 N+1 查询问题</div>
+    <div class="mockup-body">
+      <p><strong>问题代码（ClassProfileService.buildScoreBoxplot）：</strong></p>
+      <pre style="text-align: left; background: #fef0f0; padding: 10px; border-radius: 4px;"><code>for (Student student : students) {  // N 个学生
+    LambdaQueryWrapper&lt;AnswerSheet&gt; wrapper = new LambdaQueryWrapper&lt;>();
+    wrapper.eq(AnswerSheet::getStudentId, student.getId())
+            .eq(AnswerSheet::getStatus, 3)
+            .isNotNull(AnswerSheet::getTotalScore);
+    List&lt;AnswerSheet&gt; sheets = answerSheetMapper.selectList(wrapper);  // N 次查询！
+    for (AnswerSheet sheet : sheets) {
+        allScores.add(sheet.getTotalScore());
+    }
+}</code></pre>
+      <p style="margin-top: 10px;"><strong>影响：</strong>假设班级有 50 个学生，每个学生平均 10 张答题卡，就是 50 次数据库查询！</p>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>3.2 优化方案：批量查询 + Map 聚合</h3>
+  <div class="mockup">
+    <div class="mockup-header">优化后代码</div>
+    <div class="mockup-body">
+      <pre style="text-align: left; background: #f0f9eb; padding: 10px; border-radius: 4px;"><code>// 1. 批量查询班级所有学生的答题卡（1 次查询）
+List&lt;Long&gt; studentIds = students.stream()
+        .map(Student::getId)
+        .collect(Collectors.toList());
+
+LambdaQueryWrapper&lt;AnswerSheet&gt; wrapper = new LambdaQueryWrapper&lt;>();
+wrapper.in(AnswerSheet::getStudentId, studentIds)
+        .eq(AnswerSheet::getStatus, 3)
+        .isNotNull(AnswerSheet::getTotalScore);
+List&lt;AnswerSheet&gt; allSheets = answerSheetMapper.selectList(wrapper);
+
+// 2. 按学生 ID 分组（内存聚合）
+Map&lt;Long, List&lt;AnswerSheet&gt;&gt; sheetsByStudent = allSheets.stream()
+        .collect(Collectors.groupingBy(AnswerSheet::getStudentId));
+
+// 3. 构建成绩列表
+List&lt;BigDecimal&gt; allScores = new ArrayList&lt;&gt;();
+for (List&lt;AnswerSheet&gt; sheets : sheetsByStudent.values()) {
+    for (AnswerSheet sheet : sheets) {
+        allScores.add(sheet.getTotalScore());
+    }
+}</code></pre>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>3.3 同样优化其他循环查询</h3>
+  <div class="cards">
+    <div class="card">
+      <div class="card-body">
+        <h3>buildKnowledgeMastery</h3>
+        <p>循环查询每个学生的错题 → 批量查询 + Map 聚合</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <h3>buildKnowledgeRadar</h3>
+        <p>同样的问题 → 复用 buildKnowledgeMastery 的结果</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>3.4 AnswerSheetMapper 新增方法（可选）</h3>
+  <div class="mockup">
+    <div class="mockup-header">如果 Mapper 需要支持批量查询</div>
+    <div class="mockup-body">
+      <pre style="text-align: left; background: #f5f5f5; padding: 10px; border-radius: 4px;"><code>// 在 AnswerSheetMapper.java 中新增
+@Select("SELECT student_id, total_score FROM answer_sheet " +
+       "WHERE student_id IN (#{studentIds}) AND status = 3 " +
+       "AND total_score IS NOT NULL")
+List&lt;AnswerSheet&gt; selectByStudentIds(@Param("studentIds") List&lt;Long&gt; studentIds);</code></pre>
+    </div>
+  </div>
+</div>
+
+<p style="margin-top: 20px;">阶段 3 设计看起来对吗？确认后我展示阶段 4（前端适配和验证）。</p>

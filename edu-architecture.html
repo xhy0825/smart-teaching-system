@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>edu 项目架构图</title>
+  <style>
+    body { margin: 0; padding: 20px; background: #f5f5f5; font-family: "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Microsoft YaHei", "Microsoft JhengHei", "SimHei", sans-serif; }
+    .container { max-width: 1000px; margin: 0 auto; background: #fff; border-radius: 12px; padding: 20px; box-shadow: 0 2px 12px rgba(0,0,0,0.1); }
+    h1 { text-align: center; color: #111827; font-size: 22px; margin-bottom: 16px; }
+    .diagram { width: 100%; height: auto; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>edu 在线教育平台 - 系统架构图</h1>
+    <svg class="diagram" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 700">
+      <style>
+        text { font-family: "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Microsoft YaHei", "Microsoft JhengHei", "SimHei", sans-serif; }
+      </style>
+      <defs>
+        <marker id="arrow-blue" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+          <polygon points="0 0, 10 3.5, 0 7" fill="#2563eb"/>
+        </marker>
+        <marker id="arrow-green" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+          <polygon points="0 0, 10 3.5, 0 7" fill="#16a34a"/>
+        </marker>
+        <marker id="arrow-orange" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+          <polygon points="0 0, 10 3.5, 0 7" fill="#ea580c"/>
+        </marker>
+        <marker id="arrow-gray" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+          <polygon points="0 0, 10 3.5, 0 7" fill="#6b7280"/>
+        </marker>
+        <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+          <feDropShadow dx="0" dy="1" stdDeviation="3" flood-color="#00000020"/>
+        </filter>
+      </defs>
+      <rect width="960" height="700" fill="#ffffff"/>
+      <text x="480" y="32" text-anchor="middle" font-size="18" font-weight="600" fill="#111827">edu 在线教育平台 - 系统架构</text>
+      <!-- Layer 1: Client Layer -->
+      <rect x="40" y="55" width="880" height="100" rx="8" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.5" stroke-dasharray="6,4"/>
+      <text x="52" y="70" fill="#1d4ed8" font-size="10" font-weight="600" letter-spacing="0.06em">客户端层</text>
+      <rect x="80" y="80" width="160" height="60" rx="6" fill="#ffffff" stroke="#d1d5db" stroke-width="1.5" filter="url(#shadow)"/>
+      <rect x="80" y="80" width="160" height="20" rx="6" fill="#1e40af" stroke="none"/>
+      <rect x="80" y="94" width="160" height="6" fill="#1e40af"/>
+      <circle cx="92" cy="90" r="4" fill="#ef4444" opacity="0.8"/>
+      <circle cx="104" cy="90" r="4" fill="#f59e0b" opacity="0.8"/>
+      <circle cx="116" cy="90" r="4" fill="#10b981" opacity="0.8"/>
+      <text x="160" y="118" text-anchor="middle" fill="#111827" font-size="11" font-weight="600">Vue 3 + Vite</text>
+      <text x="160" y="134" text-anchor="middle" fill="#6b7280" font-size="10">Element Plus + Pinia</text>
+      <rect x="280" y="80" width="120" height="60" rx="6" fill="#ffffff" stroke="#d1d5db" stroke-width="1.5" filter="url(#shadow)"/>
+      <text x="340" y="108" text-anchor="middle" fill="#111827" font-size="11" font-weight="600">Axios</text>
+      <text x="340" y="124" text-anchor="middle" fill="#6b7280" font-size="10">HTTP Client</text>
+      <rect x="440" y="80" width="120" height="60" rx="6" fill="#ffffff" stroke="#d1d5db" stroke-width="1.5" filter="url(#shadow)"/>
+      <text x="500" y="108" text-anchor="middle" fill="#111827" font-size="11" font-weight="600">Vue Router 4</text>
+      <text x="500" y="124" text-anchor="middle" fill="#6b7280" font-size="10">前端路由</text>
+      <rect x="600" y="80" width="120" height="60" rx="6" fill="#ffffff" stroke="#d1d5db" stroke-width="1.5" filter="url(#shadow)"/>
+      <text x="660" y="108" text-anchor="middle" fill="#111827" font-size="11" font-weight="600">TypeScript</text>
+      <text x="660" y="124" text-anchor="middle" fill="#6b7280" font-size="10">类型安全</text>
+      <circle cx="800" cy="110" r="14" fill="#fef2f2" stroke="#fca5a5" stroke-width="1.5"/>
+      <path d="M 800,98 Q 800,90 788,98 Q 788,106 800,106 Q 812,106 812,98 Q 812,90 800,98" fill="#fef2f2" stroke="#fca5a5" stroke-width="1.2"/>
+      <circle cx="800" cy="96" r="6" fill="#fca5a5"/>
+      <text x="800" y="140" text-anchor="middle" fill="#6b7280" font-size="11">用户</text>
+      <path d="M 800,126 L 800,140 L 780,140 L 780,110" stroke="#2563eb" stroke-width="1.5" fill="none" marker-end="url(#arrow-blue)"/>
+      <path d="M 240,110 L 274,110" stroke="#2563eb" stroke-width="1.5" fill="none" marker-end="url(#arrow-blue)"/>
+      <rect x="244" y="98" width="36" height="14" fill="#ffffff" opacity="0.95"/>
+      <text x="262" y="108" text-anchor="middle" fill="#6b7280" font-size="10">请求</text>
+      <path d="M 400,110 L 434,110" stroke="#2563eb" stroke-width="1.5" fill="none" marker-end="url(#arrow-blue)"/>
+      <path d="M 560,110 L 594,110" stroke="#2563eb" stroke-width="1.5" fill="none" marker-end="url(#arrow-blue)"/>
+      <!-- Layer 2: Gateway / Security Layer -->
+      <rect x="40" y="175" width="880" height="100" rx="8" fill="#fff7ed" stroke="#fdba74" stroke-width="1.5" stroke-dasharray="6,4"/>
+      <text x="52" y="190" fill="#c2410c" font-size="10" font-weight="600" letter-spacing="0.06em">网关与安全层</text>
+      <rect x="80" y="200" width="160" height="60" rx="8" fill="#ffffff" stroke="#d1d5db" stroke-width="1.5" filter="url(#shadow)"/>
+      <text x="160" y="228" text-anchor="middle" fill="#111827" font-size="11" font-weight="600">Spring Security</text>
+      <text x="160" y="244" text-anchor="middle" fill="#6b7280" font-size="10">安全框架</text>
+      <rect x="280" y="200" width="160" height="60" rx="8" fill="#ffffff" stroke="#d1d5db" stroke-width="1.5" filter="url(#shadow)"/>
+      <text x="360" y="228" text-anchor="middle" fill="#111827" font-size="11" font-weight="600">JWT 过滤器</text>
+      <text x="360" y="244" text-anchor="middle" fill="#6b7280" font-size="10">Token 认证</text>
+      <rect x="480" y="200" width="160" height="60" rx="8" fill="#ffffff" stroke="#d1d5db" stroke-width="1.5" filter="url(#shadow)"/>
+      <text x="560" y="228" text-anchor="middle" fill="#111827" font-size="11" font-weight="600">TenantInterceptor</text>
+      <text x="560" y="244" text-anchor="middle" fill="#6b7280" font-size="10">多租户拦截器</text>
+      <polygon points="760,230 784,215 784,245 760,260 736,245 736,215" fill="#eff6ff" stroke="#60a5fa" stroke-width="1.5" filter="url(#shadow)"/>
+      <text x="760" y="235" text-anchor="middle" fill="#1d4ed8" font-size="10" font-weight="600">API</text>
+      <path d="M 350,140 L 350,175 L 160,175 L 160,200" stroke="#2563eb" stroke-width="1.5" fill="none" marker-end="url(#arrow-blue)"/>
+      <rect x="154" y="168" width="52" height="14" fill="#ffffff" opacity="0.95"/>
+      <text x="180" y="178" text-anchor="middle" fill="#6b7280" font-size="10">HTTP API</text>
+      <path d="M 240,230 L 274,230" stroke="#ea580c" stroke-width="1.5" fill="none" marker-end="url(#arrow-orange)"/>
+      <path d="M 440,230 L 474,230" stroke="#ea580c" stroke-width="1.5" fill="none" marker-end="url(#arrow-orange)"/>
+      <path d="M 640,230 L 730,230" stroke="#ea580c" stroke-width="1.5" fill="none" marker-end="url(#arrow-orange)"/>
+      <!-- Layer 3: Service Layer -->
+      <rect x="40" y="295" width="880" height="210" rx="8" fill="#f0fdf4" stroke="#86efac" stroke-width="1.5" stroke-dasharray="6,4"/>
+      <text x="52" y="310" fill="#15803d" font-size="10" font-weight="600" letter-spacing="0.06em">服务层 - Spring Boot 3.2 + Java 17 + MyBatis-Plus</text>
+      <rect x="80" y="320" width="130" height="60" rx="8" fill="#ffffff" stroke="#d1d5db" stroke-width="1.5" filter="url(#shadow)"/>
+      <text x="145" y="342" text-anchor="middle" fill="#111827" font-size="11" font-weight="600">Common</text>
+      <text x="145" y="358" text-anchor="middle" fill="#6b7280" font-size="9">基础实体/异常处理</text>
+      <text x="145" y="370" text-anchor="middle" fill="#6b7280" font-size="9">安全配置/MP配置</text>
+      <rect x="240" y="320" width="130" height="60" rx="8" fill="#ffffff" stroke="#d1d5db" stroke-width="1.5" filter="url(#shadow)"/>
+      <text x="305" y="342" text-anchor="middle" fill="#111827" font-size="11" font-weight="600">Tenant</text>
+      <text x="305" y="358" text-anchor="middle" fill="#6b7280" font-size="9">多租户/TenantConfig</text>
+      <text x="305" y="370" text-anchor="middle" fill="#6b7280" font-size="9">School</text>
+      <rect x="400" y="320" width="130" height="60" rx="8" fill="#ffffff" stroke="#d1d5db" stroke-width="1.5" filter="url(#shadow)"/>
+      <text x="465" y="342" text-anchor="middle" fill="#111827" font-size="11" font-weight="600">User</text>
+      <text x="465" y="358" text-anchor="middle" fill="#6b7280" font-size="9">认证授权/用户/角色</text>
+      <text x="465" y="370" text-anchor="middle" fill="#6b7280" font-size="9">权限/年级/班级</text>
+      <rect x="560" y="320" width="130" height="60" rx="8" fill="#ffffff" stroke="#d1d5db" stroke-width="1.5" filter="url(#shadow)"/>
+      <text x="625" y="342" text-anchor="middle" fill="#111827" font-size="11" font-weight="600">Exam</text>
+      <text x="625" y="358" text-anchor="middle" fill="#6b7280" font-size="9">题库/题目/试卷</text>
+      <text x="625" y="370" text-anchor="middle" fill="#6b7280" font-size="9">试卷模板</text>
+      <rect x="80" y="400" width="130" height="60" rx="8" fill="#ffffff" stroke="#d1d5db" stroke-width="1.5" filter="url(#shadow)"/>
+      <text x="145" y="422" text-anchor="middle" fill="#111827" font-size="11" font-weight="600">Grading</text>
+      <text x="145" y="438" text-anchor="middle" fill="#6b7280" font-size="9">答题卡/答案/成绩</text>
+      <text x="145" y="450" text-anchor="middle" fill="#6b7280" font-size="9">分析/错题本</text>
+      <rect x="240" y="400" width="130" height="60" rx="10" fill="#faf5ff" stroke="#c4b5fd" stroke-width="2.5" filter="url(#shadow)"/>
+      <rect x="243" y="403" width="124" height="54" rx="8" fill="none" stroke="#a78bfa" stroke-width="0.8" opacity="0.5"/>
+      <text x="305" y="425" text-anchor="middle" fill="#6d28d9" font-size="11" font-weight="600">AI 模块</text>
+      <text x="305" y="441" text-anchor="middle" fill="#7c3aed" font-size="9">Anthropic Claude</text>
+      <text x="305" y="453" text-anchor="middle" fill="#7c3aed" font-size="9">私有部署</text>
+      <rect x="400" y="400" width="130" height="60" rx="8" fill="#ffffff" stroke="#d1d5db" stroke-width="1.5" filter="url(#shadow)"/>
+      <text x="465" y="422" text-anchor="middle" fill="#111827" font-size="11" font-weight="600">Maven 3.9.9</text>
+      <text x="465" y="438" text-anchor="middle" fill="#6b7280" font-size="9">依赖管理</text>
+      <text x="465" y="450" text-anchor="middle" fill="#6b7280" font-size="9">构建工具</text>
+      <rect x="560" y="400" width="130" height="60" rx="8" fill="#ffffff" stroke="#d1d5db" stroke-width="1.5" filter="url(#shadow)"/>
+      <text x="625" y="422" text-anchor="middle" fill="#111827" font-size="11" font-weight="600">MyBatis-Plus</text>
+      <text x="625" y="438" text-anchor="middle" fill="#6b7280" font-size="9">ORM 框架</text>
+      <text x="625" y="450" text-anchor="middle" fill="#6b7280" font-size="9">3.5.5</text>
+      <path d="M 210,350 L 236,350" stroke="#6b7280" stroke-width="1.2" stroke-dasharray="4,2" fill="none" marker-end="url(#arrow-gray)"/>
+      <path d="M 370,350 L 396,350" stroke="#6b7280" stroke-width="1.2" stroke-dasharray="4,2" fill="none" marker-end="url(#arrow-gray)"/>
+      <path d="M 530,350 L 556,350" stroke="#6b7280" stroke-width="1.2" stroke-dasharray="4,2" fill="none" marker-end="url(#arrow-gray)"/>
+      <path d="M 210,430 L 236,430" stroke="#6b7280" stroke-width="1.2" stroke-dasharray="4,2" fill="none" marker-end="url(#arrow-gray)"/>
+      <path d="M 370,430 L 396,430" stroke="#6b7280" stroke-width="1.2" stroke-dasharray="4,2" fill="none" marker-end="url(#arrow-gray)"/>
+      <path d="M 530,430 L 556,430" stroke="#6b7280" stroke-width="1.2" stroke-dasharray="4,2" fill="none" marker-end="url(#arrow-gray)"/>
+      <path d="M 145,380 L 145,396" stroke="#6b7280" stroke-width="1.2" stroke-dasharray="4,2" fill="none"/>
+      <path d="M 305,380 L 305,396" stroke="#6b7280" stroke-width="1.2" stroke-dasharray="4,2" fill="none"/>
+      <path d="M 465,380 L 465,396" stroke="#6b7280" stroke-width="1.2" stroke-dasharray="4,2" fill="none"/>
+      <path d="M 625,380 L 625,396" stroke="#6b7280" stroke-width="1.2" stroke-dasharray="4,2" fill="none"/>
+      <path d="M 760,245 L 760,280 L 145,280 L 145,320" stroke="#2563eb" stroke-width="1.5" fill="none" marker-end="url(#arrow-blue)"/>
+      <!-- Layer 4: Data Layer -->
+      <rect x="40" y="525" width="880" height="100" rx="8" fill="#fefce8" stroke="#fde047" stroke-width="1.5" stroke-dasharray="6,4"/>
+      <text x="52" y="540" fill="#a16207" font-size="10" font-weight="600" letter-spacing="0.06em">数据层</text>
+      <ellipse cx="200" cy="555" rx="40" ry="13" fill="#4479A1" stroke="#1e5f8a" stroke-width="1.5"/>
+      <rect x="160" y="555" width="80" height="50" fill="#4479A1" stroke="none"/>
+      <line x1="160" y1="555" x2="160" y2="605" stroke="#1e5f8a" stroke-width="1.5"/>
+      <line x1="240" y1="555" x2="240" y2="605" stroke="#1e5f8a" stroke-width="1.5"/>
+      <ellipse cx="200" cy="605" rx="40" ry="13" fill="#2c5f80" stroke="#1e5f8a" stroke-width="1.5"/>
+      <text x="200" y="585" text-anchor="middle" fill="white" font-size="11" font-weight="600">MySQL</text>
+      <ellipse cx="360" cy="555" rx="40" ry="13" fill="#4479A1" stroke="#1e5f8a" stroke-width="1.5" opacity="0.6"/>
+      <rect x="320" y="555" width="80" height="50" fill="#4479A1" stroke="none" opacity="0.6"/>
+      <line x1="320" y1="555" x2="320" y2="605" stroke="#1e5f8a" stroke-width="1.5" opacity="0.6"/>
+      <line x1="400" y1="555" x2="400" y2="605" stroke="#1e5f8a" stroke-width="1.5" opacity="0.6"/>
+      <ellipse cx="360" cy="605" rx="40" ry="13" fill="#2c5f80" stroke="#1e5f8a" stroke-width="1.5" opacity="0.6"/>
+      <text x="360" y="585" text-anchor="middle" fill="white" font-size="11" font-weight="600">H2</text>
+      <text x="360" y="599" text-anchor="middle" fill="white" font-size="8" opacity="0.8">测试用</text>
+      <ellipse cx="520" cy="555" rx="40" ry="13" fill="#DC382D" stroke="#a02018" stroke-width="1.5"/>
+      <rect x="480" y="555" width="80" height="50" fill="#DC382D" stroke="none"/>
+      <line x1="480" y1="555" x2="480" y2="605" stroke="#a02018" stroke-width="1.5"/>
+      <line x1="560" y1="555" x2="560" y2="605" stroke="#a02018" stroke-width="1.5"/>
+      <ellipse cx="520" cy="605" rx="40" ry="13" fill="#a02018" stroke="#a02018" stroke-width="1.5"/>
+      <text x="520" y="585" text-anchor="middle" fill="white" font-size="11" font-weight="600">Redis</text>
+      <text x="520" y="599" text-anchor="middle" fill="white" font-size="8" opacity="0.8">可选组件</text>
+      <path d="M 625,460 L 625,480 L 200,480 L 200,555" stroke="#16a34a" stroke-width="1.5" fill="none" marker-end="url(#arrow-green)"/>
+      <rect x="206" y="488" width="52" height="14" fill="#ffffff" opacity="0.95"/>
+      <text x="232" y="498" text-anchor="middle" fill="#6b7280" font-size="10">JDBC</text>
+      <path d="M 625,460 L 625,490 L 360,490 L 360,555" stroke="#16a34a" stroke-width="1.5" fill="none" stroke-dasharray="5,3" marker-end="url(#arrow-green)"/>
+      <rect x="366" y="498" width="52" height="14" fill="#ffffff" opacity="0.95"/>
+      <text x="392" y="508" text-anchor="middle" fill="#6b7280" font-size="10">测试</text>
+      <path d="M 625,460 L 625,500 L 520,500 L 520,555" stroke="#16a34a" stroke-width="1.5" fill="none" stroke-dasharray="5,3" marker-end="url(#arrow-green)"/>
+      <!-- Legend -->
+      <g transform="translate(20, 660)">
+        <line x1="0" y1="8" x2="30" y2="8" stroke="#2563eb" stroke-width="1.5" marker-end="url(#arrow-blue)"/>
+        <text x="36" y="12" fill="#6b7280" font-size="12">主数据流 (HTTP/API)</text>
+        <line x1="160" y1="8" x2="190" y2="8" stroke="#ea580c" stroke-width="1.5" marker-end="url(#arrow-orange)"/>
+        <text x="196" y="12" fill="#6b7280" font-size="12">控制流 (认证/拦截)</text>
+        <line x1="340" y1="8" x2="370" y2="8" stroke="#16a34a" stroke-width="1.5" marker-end="url(#arrow-green)"/>
+        <text x="376" y="12" fill="#6b7280" font-size="12">数据访问 (JDBC)</text>
+        <line x1="500" y1="8" x2="530" y2="8" stroke="#6b7280" stroke-width="1.2" stroke-dasharray="4,2" marker-end="url(#arrow-gray)"/>
+        <text x="536" y="12" fill="#6b7280" font-size="12">模块间依赖</text>
+      </g>
+    </svg>
+  </div>
+</body>
+</html>

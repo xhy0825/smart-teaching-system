@@ -272,13 +272,18 @@ onUnmounted(() => {
 .dashboard-header {
   margin-bottom: 24px;
   color: white;
+  background: rgba(0, 0, 0, 0.25);
+  padding: 20px 24px;
+  border-radius: 16px;
+  backdrop-filter: blur(10px);
 }
 
 .dashboard-title {
   font-size: 28px;
   font-weight: 700;
   margin: 0 0 8px 0;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  color: #FFFFFF;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
   font-family: var(--font-heading);
 }
 

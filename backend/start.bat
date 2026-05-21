@@ -12,4 +12,4 @@ echo Frontend: http://localhost:3000
 echo Login: admin / admin123
 echo.
 
-%JAVA_HOME%\bin\java -Dfile.encoding=UTF-8 -Dconsole.encoding=UTF-8 -cp "target/classes;target/lib/*" com.edu.EduApplication --spring.profiles.active=h2
+%JAVA_HOME%\bin\java -Dfile.encoding=UTF-8 -Dconsole.encoding=UTF-8 -cp "target/classes;target/lib/*" com.edu.EduApplication

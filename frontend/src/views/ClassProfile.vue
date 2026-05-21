@@ -11,8 +11,8 @@
       <el-card class="select-card" shadow="hover">
         <el-form :inline="true">
           <el-form-item label="选择班级">
-            <el-select v-model="selectedClassId" placeholder="请选择班级" @change="loadClassProfile" clearable>
-              <el-option v-for="cls in classList" :key="cls.id" :label="cls.name" :value="cls.id" />
+            <el-select v-model="selectedClassId" placeholder="请选择班级" @change="loadClassProfile" clearable filterable style="width: 300px">
+              <el-option v-for="cls of classList" :key="cls.id" :label="cls.name" :value="cls.id" />
             </el-select>
           </el-form-item>
         </el-form>
@@ -152,6 +152,13 @@ const loadClasList = async () => {
   try {
     const res: any = await getClasList()
     classList.value = res.data || []
+    // 默认选中第一个班级，等待 DOM 更新后设置选中值
+    if (classList.value.length > 0 && !selectedClassId.value) {
+      await nextTick()
+      selectedClassId.value = classList.value[0].id
+      await nextTick()
+      loadClassProfile()
+    }
   } catch (error) {
     console.error(error)
   }
@@ -300,4 +307,17 @@ onMounted(() => {
 .stats-row { margin-bottom: 20px; }
 .chart-card { margin-bottom: 20px; }
 .table-card { margin-bottom: 20px; }
+
+/* 下拉框选中后完整显示内容，不截断 */
+.select-card :deep(.el-select) {
+  width: 260px;
+}
+.select-card :deep(.el-input__wrapper) {
+  width: 260px;
+}
+.select-card :deep(.el-input__inner) {
+  overflow: visible;
+  text-overflow: unset;
+  white-space: nowrap;
+}
 </style>

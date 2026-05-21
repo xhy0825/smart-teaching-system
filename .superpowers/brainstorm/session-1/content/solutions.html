@@ -1,0 +1,128 @@
+<h2>实施方案对比</h2>
+<p class="subtitle">修复数据准确性问题的 3 种方案</p>
+
+<div class="section">
+  <h3>方案 A：直接修复法</h3>
+  <div class="pros-cons">
+    <div class="pros">
+      <h4>优点</h4>
+      <ul>
+        <li>改动最小，只修改计算逻辑</li>
+        <li>快速交付，风险低</li>
+        <li>不需要修改数据库查询</li>
+      </ul>
+    </div>
+    <div class="cons">
+      <h4>缺点</h4>
+      <ul>
+        <li>仍然依赖多次查询，性能无改善</li>
+        <li>N+1 查询问题依然存在</li>
+        <li>缺少测试保障，可能引入新问题</li>
+      </ul>
+    </div>
+  </div>
+  <div class="mockup" style="margin-top: 10px;">
+    <div class="mockup-header">主要改动</div>
+    <div class="mockup-body">
+      <ul style="text-align: left;">
+        <li>修复 StudentProfileService.getKnowledgePointStats() 计算逻辑</li>
+        <li>修复 StudentProfileService.buildWrongTypePie() 真实统计</li>
+        <li>修复 ClassProfileService.buildKnowledgeMastery() 掌握率公式</li>
+        <li>修复 ClassProfileService.buildKnowledgeRadar() 计算</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>方案 B：重构数据源法</h3>
+  <div class="pros-cons">
+    <div class="pros">
+      <h4>优点</h4>
+      <ul>
+        <li>从数据库层面正确聚合，数据最准确</li>
+        <li>可以一次性解决 N+1 查询问题</li>
+        <li>性能最优，减少多次数据库查询</li>
+      </ul>
+    </div>
+    <div class="cons">
+      <h4>缺点</h4>
+      <ul>
+        <li>改动较大，需要修改 Mapper 和 SQL</li>
+        <li>需要编写复杂的聚合查询</li>
+        <li>开发周期较长</li>
+      </ul>
+    </div>
+  </div>
+  <div class="mockup" style="margin-top: 10px;">
+    <div class="mockup-header">主要改动</div>
+    <div class="mockup-body">
+      <ul style="text-align: left;">
+        <li>新增 AnswerSheetMapper 聚合查询方法</li>
+        <li>新增 QuestionMapper 知识点统计方法</li>
+        <li>重写 Service 层，使用聚合查询结果</li>
+        <li>可能需要新增数据库视图或复杂 SQL</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>方案 C：混合方案（推荐）</h3>
+  <div class="pros-cons">
+    <div class="pros">
+      <h4>优点</h4>
+      <ul>
+        <li>分阶段实施，先快速修复后优化</li>
+        <li>平衡风险和效果</li>
+        <li>可以添加单元测试保障质量</li>
+        <li>短期能看到效果，长期性能也改善</li>
+      </ul>
+    </div>
+    <div class="cons">
+      <h4>缺点</h4>
+      <ul>
+        <li>需要分阶段实施，不是一次性完成</li>
+        <li>需要协调前后端改动节奏</li>
+      </ul>
+    </div>
+  </div>
+  <div class="mockup" style="margin-top: 10px;">
+    <div class="mockup-header">实施步骤</div>
+    <div class="mockup-body">
+      <ul style="text-align: left;">
+        <li><strong>阶段 1</strong>：修复 Service 层计算逻辑（直接修复法）</li>
+        <li><strong>阶段 2</strong>：添加单元测试验证数据准确性</li>
+        <li><strong>阶段 3</strong>：优化查询，引入聚合查询（重构数据源法）</li>
+        <li><strong>阶段 4</strong>：前端适配和验证</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>方案选择</h3>
+  <div class="options">
+    <div class="option" data-choice="a" onclick="toggleSelect(this)">
+      <div class="letter">A</div>
+      <div class="content">
+        <h3>直接修复法</h3>
+        <p>快速修复，最小改动</p>
+      </div>
+    </div>
+    <div class="option" data-choice="b" onclick="toggleSelect(this)">
+      <div class="letter">B</div>
+      <div class="content">
+        <h3>重构数据源法</h3>
+        <p>彻底解决，性能最优</p>
+      </div>
+    </div>
+    <div class="option" data-choice="c" onclick="toggleSelect(this)">
+      <div class="letter">C</div>
+      <div class="content">
+        <h3>混合方案（推荐）</h3>
+        <p>分阶段，平衡风险和效果</p>
+      </div>
+    </div>
+  </div>
+</div>
