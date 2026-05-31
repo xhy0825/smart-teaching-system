@@ -574,4 +574,78 @@ const registerRules: FormRules = {
     transform: translateY(0);
   }
 }
+
+/* ===== 移动端适配 ===== */
+@media (max-width: 768px) {
+  .login-page {
+    padding: 16px;
+  }
+
+  .login-content {
+    max-width: 100% !important;
+    padding: 0;
+  }
+
+  .brand-header {
+    margin-bottom: 20px;
+  }
+
+  .brand-title {
+    font-size: 28px !important;
+  }
+
+  .brand-subtitle {
+    font-size: 13px !important;
+  }
+
+  .brand-icon svg {
+    width: 40px;
+    height: 40px;
+  }
+
+  .card-container {
+    max-width: 100% !important;
+  }
+
+  .login-card,
+  .register-card {
+    padding: 20px !important;
+    border-radius: 12px !important;
+  }
+
+  .card-header h2 {
+    font-size: 18px !important;
+  }
+
+  .login-btn {
+    height: 42px !important;
+    font-size: 14px !important;
+  }
+
+  .tab-btn {
+    padding: 8px 16px !important;
+    font-size: 12px !important;
+  }
+
+  .form-footer {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .form-footer .el-checkbox {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-card,
+  .register-card {
+    padding: 16px !important;
+  }
+
+  .brand-title {
+    font-size: 24px !important;
+  }
+}
+
 </style>

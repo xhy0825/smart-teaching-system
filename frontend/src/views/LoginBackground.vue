@@ -49,7 +49,7 @@ function drawParticles(ctx: CanvasRenderingContext2D, width: number, height: num
   ctx.clearRect(0, 0, width, height)
 
   // 绘制连线
-  const maxDist = 150
+  const maxDist = width < 768 ? 80 : 150
   for (let i = 0; i < particles.length; i++) {
     for (let j = i + 1; j < particles.length; j++) {
       const dx = particles[i].x - particles[j].x
@@ -140,7 +140,9 @@ onMounted(() => {
 
   canvas.width = window.innerWidth
   canvas.height = window.innerHeight
-  initParticles(canvas.width, canvas.height, 90)
+  const isMobile = window.innerWidth < 768
+  const particleCount = isMobile ? 30 : 90
+  initParticles(canvas.width, canvas.height, particleCount)
   animate()
 
   window.addEventListener('resize', handleResize)

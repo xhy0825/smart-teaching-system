@@ -1,7 +1,15 @@
 <template>
   <el-container class="layout-container">
+    <!-- 移动端遮罩（点击关闭侧边栏） -->
+    <transition name="fade">
+      <div v-if="mobileMenuOpen" class="mobile-overlay" @click="closeMobileMenu"></div>
+    </transition>
+
     <!-- 侧边栏 -->
-    <el-aside :width="sidebarCollapsed ? '64px' : '240px'" class="sidebar glass-sidebar">
+    <el-aside
+      :class="['sidebar', 'glass-sidebar', { 'mobile-sidebar-open': mobileMenuOpen }]"
+      :width="isMobile ? '240px' : (sidebarCollapsed ? '64px' : '240px')"
+    >
       <!-- Logo区域 -->
       <div class="logo-container">
         <div class="logo-icon">
@@ -10,18 +18,23 @@
           </svg>
         </div>
         <transition name="fade">
-          <span v-if="!sidebarCollapsed" class="logo-text">智教云台</span>
+          <span v-if="!sidebarCollapsed || mobileMenuOpen" class="logo-text">智教云台</span>
         </transition>
+        <!-- 移动端关闭按钮 -->
+        <el-button v-if="mobileMenuOpen" class="mobile-close-btn" text @click="closeMobileMenu">
+          <el-icon :size="20"><X /></el-icon>
+        </el-button>
       </div>
 
       <!-- 导航菜单 -->
       <el-scrollbar class="menu-scrollbar">
         <el-menu
           :default-active="activeMenu"
-          :collapse="sidebarCollapsed"
+          :collapse="isMobile ? false : sidebarCollapsed"
           router
           class="sidebar-menu"
           :collapse-transition="false"
+          @select="onMenuSelect"
         >
           <el-menu-item index="/dashboard" class="menu-item">
             <el-icon :size="20" class="menu-icon"><Home /></el-icon>
@@ -83,8 +96,8 @@
         </el-menu>
       </el-scrollbar>
 
-      <!-- 底部折叠按钮 -->
-      <div class="sidebar-footer">
+      <!-- 底部折叠按钮（桌面端） -->
+      <div class="sidebar-footer hide-on-mobile">
         <div class="collapse-btn" @click="toggleSidebar">
           <el-icon :size="18">
             <ArrowLeft v-if="!sidebarCollapsed" />
@@ -101,10 +114,16 @@
       <!-- 顶部导航 -->
       <el-header class="layout-header glass-header">
         <div class="header-left">
-          <el-breadcrumb separator="/">
+          <!-- 移动端汉堡菜单按钮 -->
+          <el-button class="show-on-mobile mobile-hamburger" text @click="openMobileMenu">
+            <el-icon :size="22"><Menu /></el-icon>
+          </el-button>
+          <el-breadcrumb separator="/" class="hide-on-mobile">
             <el-breadcrumb-item :to="{ path: '/dashboard' }">首页</el-breadcrumb-item>
             <el-breadcrumb-item v-if="currentRouteTitle">{{ currentRouteTitle }}</el-breadcrumb-item>
           </el-breadcrumb>
+          <!-- 移动端显示当前页面标题 -->
+          <span class="show-on-mobile mobile-page-title">{{ currentRouteTitle || '首页概览' }}</span>
         </div>
 
         <div class="header-right">
@@ -124,8 +143,8 @@
             </el-dropdown>
           </el-tooltip>
 
-          <!-- 快捷操作 -->
-          <el-tooltip content="快速生成试卷" placement="bottom">
+          <!-- 快捷操作（桌面端） -->
+          <el-tooltip class="hide-on-mobile" content="快速生成试卷" placement="bottom">
             <el-button type="primary" size="small" circle @click="router.push('/exam-generate')">
               <el-icon><MagicStick /></el-icon>
             </el-button>
@@ -134,10 +153,10 @@
           <!-- 用户信息 -->
           <el-dropdown class="user-dropdown" trigger="click">
             <div class="user-info">
-              <el-avatar :size="36" class="user-avatar">
+              <el-avatar :size="isMobile ? 28 : 36" class="user-avatar">
                 <el-icon><User /></el-icon>
               </el-avatar>
-              <div class="user-detail">
+              <div class="user-detail hide-on-mobile">
                 <span class="user-name">{{ realName || '管理员' }}</span>
                 <span class="user-role">教师</span>
               </div>
@@ -166,17 +185,42 @@
 </template>
 
 <script setup lang="ts">
-import { computed, watch, nextTick } from 'vue'
+import { computed, watch, nextTick, ref, onMounted, onUnmounted } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { useUserStore } from '@/store/user'
 import { useAppStore } from '@/store/app'
 import { User, Setting, SwitchButton, Moon, Sunny, Monitor } from '@element-plus/icons-vue'
-import { Home, BookOpen, FileText, PenTool, Users, BarChart3, Presentation, ArrowLeft, ArrowRight } from 'lucide-vue-next'
+import { Home, BookOpen, FileText, PenTool, Users, BarChart3, Presentation, ArrowLeft, ArrowRight, Menu, X } from 'lucide-vue-next'
 
 const router = useRouter()
 const route = useRoute()
 const userStore = useUserStore()
 const appStore = useAppStore()
+
+// 移动端状态
+const isMobile = ref(window.innerWidth < 768)
+const mobileMenuOpen = ref(false)
+
+const checkMobile = () => {
+  isMobile.value = window.innerWidth < 768
+  if (!isMobile.value) {
+    mobileMenuOpen.value = false
+  }
+}
+
+const openMobileMenu = () => { mobileMenuOpen.value = true }
+const closeMobileMenu = () => { mobileMenuOpen.value = false }
+const onMenuSelect = () => {
+  if (isMobile.value) closeMobileMenu()
+}
+
+onMounted(() => {
+  window.addEventListener('resize', checkMobile)
+})
+
+onUnmounted(() => {
+  window.removeEventListener('resize', checkMobile)
+})
 
 const sidebarCollapsed = computed(() => appStore.sidebarCollapsed)
 const currentTheme = computed(() => appStore.theme)
@@ -556,5 +600,83 @@ const logout = () => {
 
 :deep(.el-menu--collapse) .el-sub-menu.is-active-parent .el-sub-menu__title .el-icon {
   color: #fff !important;
+}
+
+/* ===== 移动端适配 ===== */
+
+/* 移动端遮罩 */
+.mobile-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  backdrop-filter: blur(2px);
+}
+
+@media (max-width: 768px) {
+  /* 侧边栏变为抽屉式 */
+  .sidebar {
+    position: fixed !important;
+    top: 0;
+    left: -280px !important;
+    height: 100vh;
+    z-index: 1000;
+    transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    box-shadow: 4px 0 20px rgba(0, 0, 0, 0.15);
+  }
+
+  .mobile-sidebar-open {
+    left: 0 !important;
+  }
+
+  /* 移动端关闭按钮 */
+  .mobile-close-btn {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgba(255, 255, 255, 0.8) !important;
+  }
+
+  /* 移动端汉堡菜单 */
+  .mobile-hamburger {
+    margin-right: 8px;
+    color: var(--color-text-primary);
+  }
+
+  /* 移动端页面标题 */
+  .mobile-page-title {
+    font-size: var(--text-base);
+    font-weight: var(--font-semibold);
+    color: var(--color-text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* 移动端头部调整 */
+  .glass-header {
+    padding: 0 var(--space-3) !important;
+    height: 48px !important;
+  }
+
+  /* 主内容区间距缩减 */
+  .layout-main {
+    padding: var(--space-3) !important;
+  }
+
+  /* 隐藏侧边栏底部折叠按钮 */
+  .sidebar-footer {
+    display: none;
+  }
+}
+
+@media (min-width: 769px) {
+  .sidebar {
+    position: relative !important;
+  }
 }
 </style>

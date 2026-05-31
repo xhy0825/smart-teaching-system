@@ -80,3 +80,25 @@
   --el-text-color-regular: var(--color-text-secondary);
   --el-border-color: var(--color-border);
 }
+
+/* === 响应式断点 === */
+:root {
+  --bp-sm: 576px;
+  --bp-md: 768px;
+  --bp-lg: 992px;
+  --bp-xl: 1200px;
+  --space-mobile: 12px;
+}
+
+@media (max-width: 768px) {
+  :root {
+    --text-xs: 11px;
+    --text-sm: 12px;
+    --text-base: 13px;
+  }
+  .hide-on-mobile { display: none !important; }
+}
+
+@media (min-width: 769px) {
+  .show-on-mobile { display: none !important; }
+}
