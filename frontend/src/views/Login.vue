@@ -578,24 +578,33 @@ const registerRules: FormRules = {
 /* ===== 移动端适配 ===== */
 @media (max-width: 768px) {
   .login-page {
-    padding: 16px;
+    padding: 12px;
+    align-items: flex-start;
+    justify-content: center;
   }
 
   .login-content {
+    width: 100% !important;
     max-width: 100% !important;
     padding: 0;
+    justify-content: center;
   }
 
   .brand-header {
-    margin-bottom: 20px;
+    margin-bottom: 16px;
   }
 
   .brand-title {
-    font-size: 28px !important;
+    font-size: 26px !important;
   }
 
   .brand-subtitle {
-    font-size: 13px !important;
+    font-size: 12px !important;
+    letter-spacing: 2px !important;
+  }
+
+  .brand-icon {
+    margin-bottom: 10px;
   }
 
   .brand-icon svg {
@@ -604,17 +613,47 @@ const registerRules: FormRules = {
   }
 
   .card-container {
+    width: 100% !important;
     max-width: 100% !important;
+    min-height: auto;
   }
 
-  .login-card,
-  .register-card {
-    padding: 20px !important;
+  .login-card {
+    width: 100% !important;
+    padding: 24px 20px !important;
     border-radius: 12px !important;
+    box-sizing: border-box;
+  }
+
+  .card-header {
+    margin-bottom: 24px;
   }
 
   .card-header h2 {
-    font-size: 18px !important;
+    font-size: 20px !important;
+  }
+
+  .card-desc {
+    font-size: 12px !important;
+  }
+
+  /* 表单间距紧凑 */
+  .login-form :deep(.el-form-item) {
+    margin-bottom: 16px !important;
+  }
+
+  .login-form :deep(.el-input__wrapper) {
+    padding-left: 38px !important;
+    border-radius: 8px !important;
+  }
+
+  .input-icon {
+    left: 10px;
+  }
+
+  .input-icon svg {
+    width: 16px;
+    height: 16px;
   }
 
   .login-btn {
@@ -622,29 +661,50 @@ const registerRules: FormRules = {
     font-size: 14px !important;
   }
 
-  .tab-btn {
-    padding: 8px 16px !important;
-    font-size: 12px !important;
+  .card-footer {
+    margin-top: 16px;
   }
 
-  .form-footer {
-    flex-direction: column;
-    gap: 8px;
-  }
-
-  .form-footer .el-checkbox {
-    justify-content: center;
+  /* 隐藏网格背景节省性能 */
+  .grid-overlay {
+    display: none;
   }
 }
 
 @media (max-width: 480px) {
-  .login-card,
-  .register-card {
-    padding: 16px !important;
+  .login-page {
+    padding: 8px;
+  }
+
+  .login-card {
+    padding: 20px 16px !important;
+    border-radius: 10px !important;
   }
 
   .brand-title {
-    font-size: 24px !important;
+    font-size: 22px !important;
+  }
+
+  .brand-subtitle {
+    font-size: 11px !important;
+    letter-spacing: 1px !important;
+  }
+
+  .card-header h2 {
+    font-size: 18px !important;
+  }
+
+  .login-form :deep(.el-form-item) {
+    margin-bottom: 14px !important;
+  }
+
+  .card-footer {
+    font-size: 12px;
+    margin-top: 14px;
+  }
+
+  .switch-btn {
+    font-size: 12px !important;
   }
 }
 
