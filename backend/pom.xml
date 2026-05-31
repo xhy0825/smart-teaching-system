@@ -143,8 +143,6 @@
                 <version>3.13.0</version>
                 <configuration>
                     <release>17</release>
-                    <fork>true</fork>
-                    <executable>C:\Program Files\Microsoft\jdk-17.0.19.10-hotspot\bin\javac.exe</executable>
                 </configuration>
             </plugin>
             <plugin>
