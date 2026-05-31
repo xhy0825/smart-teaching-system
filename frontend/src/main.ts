@@ -8,6 +8,7 @@ import App from './App.vue'
 import './styles/design-tokens.css'
 import './styles/glassmorphism.css'
 import './styles/utilities.css'
+import './styles/responsive.css'
 import './assets/main.css'
 
 const app = createApp(App)

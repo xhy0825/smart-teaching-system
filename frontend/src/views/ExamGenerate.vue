@@ -194,17 +194,17 @@
       <div class="stats-section" v-if="generatedPaper.questions">
         <h4>难度分布统计</h4>
         <el-row :gutter="20">
-          <el-col :span="8">
+          <el-col :xs="24" :sm="8" :span="8">
             <el-statistic title="简单题目" :value="difficultyStats.easy">
               <template #suffix>题</template>
             </el-statistic>
           </el-col>
-          <el-col :span="8">
+          <el-col :xs="24" :sm="8" :span="8">
             <el-statistic title="中等题目" :value="difficultyStats.medium">
               <template #suffix>题</template>
             </el-statistic>
           </el-col>
-          <el-col :span="8">
+          <el-col :xs="24" :sm="8" :span="8">
             <el-statistic title="困难题目" :value="difficultyStats.hard">
               <template #suffix>题</template>
             </el-statistic>

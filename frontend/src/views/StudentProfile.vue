@@ -26,7 +26,7 @@
       <template v-if="profile">
         <!-- 基本信息卡片 -->
         <el-row :gutter="20">
-          <el-col :span="8">
+          <el-col :xs="24" :sm="8" :span="8">
             <el-card class="info-card" shadow="hover">
               <template #header>
                 <div class="card-header">
@@ -50,7 +50,7 @@
           </el-col>
 
           <!-- 成绩概览 -->
-          <el-col :span="8">
+          <el-col :xs="24" :sm="8" :span="8">
             <el-card class="score-card" shadow="hover">
               <template #header>
                 <div class="card-header">
@@ -83,7 +83,7 @@
           </el-col>
 
           <!-- 错题统计 -->
-          <el-col :span="8">
+          <el-col :xs="24" :sm="8" :span="8">
             <el-card class="wrong-card" shadow="hover">
               <template #header>
                 <div class="card-header">

@@ -24,28 +24,28 @@
 
       <div v-if="analysis" class="analysis-content">
         <el-row :gutter="20">
-          <el-col :span="6">
+          <el-col :xs="12" :sm="6" :span="6">
             <el-statistic title="平均分" :value="analysis.avgScore" />
           </el-col>
-          <el-col :span="6">
+          <el-col :xs="12" :sm="6" :span="6">
             <el-statistic title="最高分" :value="analysis.maxScore" />
           </el-col>
-          <el-col :span="6">
+          <el-col :xs="12" :sm="6" :span="6">
             <el-statistic title="最低分" :value="analysis.minScore" />
           </el-col>
-          <el-col :span="6">
+          <el-col :xs="12" :sm="6" :span="6">
             <el-statistic title="参考人数" :value="analysis.studentCount" />
           </el-col>
         </el-row>
 
         <el-row :gutter="20" style="margin-top: 20px">
-          <el-col :span="6">
+          <el-col :xs="12" :sm="6" :span="6">
             <el-statistic title="及格率" :value="analysis.passRate * 100" suffix="%" />
           </el-col>
-          <el-col :span="6">
+          <el-col :xs="12" :sm="6" :span="6">
             <el-statistic title="优秀率" :value="analysis.excellentRate * 100" suffix="%" />
           </el-col>
-          <el-col :span="6">
+          <el-col :xs="12" :sm="6" :span="6">
             <el-statistic title="已批改" :value="analysis.gradedCount" />
           </el-col>
         </el-row>

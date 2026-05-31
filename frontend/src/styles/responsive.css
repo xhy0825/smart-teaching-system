@@ -1,0 +1,323 @@
+/* ============================================
+   全局移动端响应式适配
+   覆盖 Element Plus 和自定义组件的默认样式
+   ============================================ */
+
+/* --- el-dialog 移动端全宽 --- */
+@media (max-width: 768px) {
+  .el-dialog {
+    width: 92% !important;
+    max-width: 92% !important;
+    margin: 8px auto !important;
+  }
+
+  .el-dialog .el-dialog__body {
+    padding: 16px !important;
+  }
+
+  .el-dialog__header {
+    padding: 16px 16px 0 !important;
+  }
+
+  .el-dialog__footer {
+    padding: 8px 16px 16px !important;
+  }
+}
+
+/* --- el-form inline 移动端堆叠 --- */
+@media (max-width: 768px) {
+  .el-form--inline .el-form-item {
+    display: block;
+    margin-right: 0;
+    width: 100%;
+  }
+
+  .el-form--inline .el-form-item__content {
+    width: 100%;
+  }
+
+  .el-form--inline .el-form-item__content > .el-select,
+  .el-form--inline .el-form-item__content > .el-input,
+  .el-form--inline .el-form-item__content > .el-input-number,
+  .el-form--inline .el-form-item__content > .el-autocomplete {
+    width: 100% !important;
+  }
+
+  .el-form--inline .el-form-item__label {
+    display: block;
+    width: auto !important;
+    padding-bottom: 4px;
+    text-align: left;
+  }
+
+  .el-input-number {
+    width: 100% !important;
+  }
+
+  .el-slider {
+    width: calc(100% - 60px) !important;
+  }
+
+  .el-radio-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+
+  .el-radio {
+    margin-right: 8px;
+  }
+}
+
+/* --- el-table 移动端水平滚动 --- */
+@media (max-width: 768px) {
+  .el-table .el-table__body-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .el-table__body {
+    table-layout: auto !important;
+  }
+
+  .el-table .cell {
+    white-space: nowrap;
+  }
+
+  .el-table .el-button.is-link {
+    padding: 4px 3px;
+    font-size: 12px;
+  }
+}
+
+/* --- card-header 按钮换行 --- */
+@media (max-width: 768px) {
+  .card-header,
+  .el-card__header .card-header {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .card-header > .el-button {
+    font-size: 12px;
+    padding: 6px 10px;
+  }
+
+  .card-header > span {
+    font-size: 15px;
+  }
+}
+
+/* --- 页面容器 padding 适配 --- */
+@media (max-width: 768px) {
+  .class-manage,
+  .class-profile,
+  .student-profile,
+  .grading,
+  .question,
+  .question-bank,
+  .score-analysis,
+  .exam-paper,
+  .exam-template,
+  .ppt-maker,
+  .user-manage,
+  .wrong-questions,
+  .exam-generate {
+    padding: 12px !important;
+  }
+
+  .profile-content,
+  .analysis-content {
+    margin-top: 12px !important;
+  }
+
+  .el-card__body {
+    padding: 12px !important;
+  }
+
+  .el-card__header {
+    padding: 10px 12px !important;
+  }
+
+  .search-form {
+    margin-bottom: 12px !important;
+  }
+
+  .select-card,
+  .chart-card,
+  .table-card,
+  .stats-row,
+  .el-card {
+    margin-bottom: 12px !important;
+  }
+}
+
+/* --- el-page-header 移动端适配 --- */
+@media (max-width: 768px) {
+  .el-page-header {
+    padding: 8px 0 !important;
+  }
+
+  .el-page-header__title {
+    font-size: 14px !important;
+  }
+
+  .el-page-header__content {
+    font-size: 16px !important;
+  }
+}
+
+/* --- el-tabs 移动端适配 --- */
+@media (max-width: 768px) {
+  .el-tabs__header {
+    margin: 0 0 12px !important;
+  }
+
+  .el-tabs__item {
+    padding: 0 10px !important;
+    font-size: 13px !important;
+  }
+
+  .el-tabs__nav-wrap::after {
+    height: 1px !important;
+  }
+}
+
+/* --- el-descriptions 移动端适配 --- */
+@media (max-width: 768px) {
+  .el-descriptions__table .el-descriptions__cell {
+    padding: 6px 8px !important;
+  }
+
+  .el-descriptions__title {
+    font-size: 14px !important;
+  }
+}
+
+/* --- el-progress 移动端适配 --- */
+@media (max-width: 768px) {
+  .el-progress {
+    width: 100% !important;
+  }
+}
+
+/* --- el-carousel 移动端适配 --- */
+@media (max-width: 768px) {
+  .el-carousel__container {
+    height: 300px !important;
+  }
+}
+
+/* --- 对话框内 el-form 适配 --- */
+@media (max-width: 768px) {
+  .el-dialog .el-form-item {
+    display: block;
+    margin-bottom: 14px;
+  }
+
+  .el-dialog .el-form-item__label {
+    width: auto !important;
+    padding-bottom: 4px;
+    text-align: left;
+    display: block;
+  }
+
+  .el-dialog .el-form-item__content {
+    margin-left: 0 !important;
+    width: 100%;
+  }
+}
+
+/* --- 难度配置滑块 --- */
+@media (max-width: 768px) {
+  .difficulty-item {
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+
+  .difficulty-item .el-slider {
+    width: 100% !important;
+  }
+
+  .structure-summary {
+    flex-direction: column;
+    gap: 4px !important;
+  }
+
+  .section-item {
+    flex-wrap: wrap;
+    gap: 6px !important;
+  }
+}
+
+/* --- 统计卡片网格适配 --- */
+@media (max-width: 768px) {
+  .score-stats {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 8px !important;
+    padding: 8px !important;
+  }
+
+  .stat-value {
+    font-size: 22px !important;
+  }
+}
+
+/* --- 图表容器适配 --- */
+@media (max-width: 768px) {
+  div[style*="height: 300px"] {
+    height: 220px !important;
+  }
+}
+
+/* --- el-select 宽100% --- */
+@media (max-width: 768px) {
+  .el-select,
+  .el-select--large,
+  .el-select--default {
+    width: 100% !important;
+  }
+
+  .el-select-dropdown {
+    max-width: 90vw !important;
+  }
+}
+
+/* --- el-checkbox-group 换行 --- */
+@media (max-width: 768px) {
+  .el-checkbox-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+}
+
+/* --- el-switch 适配 --- */
+@media (max-width: 768px) {
+  .el-switch {
+    height: 24px !important;
+  }
+}
+
+/* --- el-empty 适配 --- */
+@media (max-width: 768px) {
+  .el-empty__description p {
+    font-size: 13px !important;
+  }
+}
+
+/* --- el-statistic 四列变两列 --- */
+@media (max-width: 768px) {
+  .el-statistic {
+    text-align: center;
+  }
+
+  .el-statistic .el-statistic__head {
+    font-size: 12px !important;
+    margin-bottom: 4px;
+  }
+
+  .el-statistic .el-statistic__number {
+    font-size: 20px !important;
+  }
+}

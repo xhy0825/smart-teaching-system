@@ -21,28 +21,28 @@
       <template v-if="stats">
         <!-- 基础统计卡片 -->
         <el-row :gutter="20" class="stats-row">
-          <el-col :span="6">
+          <el-col :xs="12" :sm="6" :span="6">
             <el-statistic title="平均分" :value="stats.baseStats.avgScore" />
           </el-col>
-          <el-col :span="6">
+          <el-col :xs="12" :sm="6" :span="6">
             <el-statistic title="最高分" :value="stats.baseStats.maxScore" />
           </el-col>
-          <el-col :span="6">
+          <el-col :xs="12" :sm="6" :span="6">
             <el-statistic title="最低分" :value="stats.baseStats.minScore" />
           </el-col>
-          <el-col :span="6">
+          <el-col :xs="12" :sm="6" :span="6">
             <el-statistic title="参考人数" :value="stats.baseStats.studentCount" />
           </el-col>
         </el-row>
 
         <el-row :gutter="20" class="stats-row">
-          <el-col :span="6">
+          <el-col :xs="12" :sm="6" :span="6">
             <el-statistic title="及格率" :value="stats.baseStats.passRate * 100" suffix="%" />
           </el-col>
-          <el-col :span="6">
+          <el-col :xs="12" :sm="6" :span="6">
             <el-statistic title="优秀率" :value="stats.baseStats.excellentRate * 100" suffix="%" />
           </el-col>
-          <el-col :span="6">
+          <el-col :xs="12" :sm="6" :span="6">
             <el-statistic title="已批改" :value="stats.baseStats.gradedCount" />
           </el-col>
         </el-row>
@@ -302,6 +302,15 @@ onMounted(() => {
 
 <style scoped>
 .class-profile { padding: 20px; }
+@media (max-width: 768px) {
+  .class-profile { padding: 12px !important; }
+  .stats-row { margin-bottom: 12px; }
+  .chart-card, .table-card { margin-bottom: 12px; }
+  .select-card { margin-bottom: 12px; }
+  .profile-content { margin-top: 12px; }
+  .select-card :deep(.el-form--inline) .el-form-item { display: block; width: 100%; }
+  .select-card :deep(.el-select), .select-card :deep(.el-input__wrapper) { width: 100% !important; }
+}
 .profile-content { margin-top: 20px; }
 .select-card { margin-bottom: 20px; }
 .stats-row { margin-bottom: 20px; }
