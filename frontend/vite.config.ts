@@ -3,6 +3,7 @@ import vue from '@vitejs/plugin-vue'
 import path from 'path'
 
 export default defineConfig({
+  base: '/teaching/',
   plugins: [vue()],
   resolve: {
     alias: {
