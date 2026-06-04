@@ -4,7 +4,7 @@
 
 ```yaml
 # 项目级（跨任务持久化）
-project_roadmap: "实现极简出卷+拍照批改（MVP+2扩展）"  # ≤50字
+project_roadmap: ""  # ≤50字
 completed_tasks:
   - task: "优化首页Dashboard现代数据大屏风格"
     prd_summary: "R1:大屏风格 R2:统计卡片 R3:ECharts R4:快捷操作 R5:列表增强 R6:响应式 R7:加载状态"
@@ -21,26 +21,21 @@ completed_tasks:
     key_decisions: ["Element Plus折叠API", "CSS深度选择器"]
     files_count: 1
     completed_at: "2026-05-20"
+  - task: "实现极简出卷+拍照批改（MVP+2扩展）"
+    prd_summary: "R1:极简出卷 R2:拍照批改 R3:API提取 R4:Redis管理 R5:成本监控 R6:边界测试"
+    key_decisions: ["ClaudeAPIClient公共方法", "新建VisionAIService", "Redis对话管理", "成本监控", "边界测试完成", "并发测试完成"]
+    files_count: 9
+    completed_at: "2026-06-05"
 global_architecture: ["Spring Boot 3.2 + Vue 3 + Element Plus + Claude API", "ClaudeAPIClient公共方法", "VisionAIService拍照批改", "Redis对话管理", "成本监控"]  # ≤5条
 
 # 当前任务（重置时归档后清空）
-current_phase: P4  # P0-P5
-task_description: "验证极简出卷+拍照批改实现（P3测试阶段）"  # ≤30字
-started_at: "2026-06-05"
+current_phase: P0  # P0-P5
+task_description: ""  # ≤30字
+started_at: ""
 last_updated: "2026-06-05"
-prd_file: ".claude/prd.md"  # PRD 路径
-architecture_decisions: ["提取ClaudeAPIClient公共方法", "新建VisionAIService", "Redis对话管理", "成本监控", "边界测试完成", "并发测试完成"]  # ≤5条
-modified_files:
-  - "backend/src/main/java/com/edu/ai/client/ClaudeAPIClient.java"
-  - "backend/src/main/java/com/edu/ai/provider/CloudAIProvider.java"
-  - "backend/src/main/java/com/edu/ai/service/VisionAIService.java"
-  - "backend/src/main/java/com/edu/common/config/RedisConfig.java"
-  - "backend/src/main/java/com/edu/ai/service/ConversationService.java"
-  - "backend/src/main/java/com/edu/ai/service/CostMonitoringService.java"
-  - "backend/src/main/java/com/edu/ai/dto/GradingRequest.java"
-  - "backend/src/main/java/com/edu/ai/dto/GradingResponse.java"
-  - "backend/src/test/java/com/edu/ai/client/ClaudeAPIClientTest.java"
-  - "backend/src/test/java/com/edu/ai/service/ConversationServiceTest.java"
+prd_file: ""  # PRD 路径
+architecture_decisions: []  # ≤5条
+modified_files: []
 todo_items: []
 review_retry_count: 0
 
@@ -55,8 +50,7 @@ phase_history:
   - "P3→P4: 2026-06-05 测试验证通过"
   - "P4→P5: 2026-06-05 审查通过（需修复阻断问题）"
   - "P5→P0: 2026-06-05 交付完成"
-  - "P4: 2026-06-05 审查完成，发现前端缺失R1/R2页面，需修复"
-key_context: "P4审查完成：后端R3/R4完整，R1/R2/R5/R6部分，前端缺失极简出卷+拍照批改页面"  # ≤50字
+key_context: ""  # ≤50字
 ```
 
 **更新时机**：新任务→归档+重置 | PRD确认→写 prd.md | 阶段推进→更新 phase | 文件修改→记路径 | 架构→记决策 | 压缩前→更新全部**
