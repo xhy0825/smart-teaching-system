@@ -3,6 +3,7 @@ package com.edu.ai.provider;
 import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.JSONArray;
 import com.alibaba.fastjson2.JSONObject;
+import com.edu.ai.client.ClaudeAPIClient;
 import com.edu.ai.dto.GradingRequest;
 import com.edu.ai.dto.GradingResponse;
 import com.edu.ai.dto.QuestionGenerateRequest;
@@ -11,15 +12,15 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.stereotype.Component;
-import org.springframework.web.client.RestTemplate;
 
+import jakarta.annotation.PostConstruct;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicLong;
 
 /**
  * 云端AI提供商实现（Claude/GPT）
+ * 已重构：使用 ClaudeAPIClient 统一处理 API 调用
  */
 @Slf4j
 @Component
@@ -40,9 +41,12 @@ public class CloudAIProvider implements AIProvider {
     @Value("${ai.cloud.max-tokens:2000}")
     private Integer maxTokens;
 
-    private final RestTemplate restTemplate = new RestTemplate();
-    private final AtomicLong callCount = new AtomicLong(0);
-    private final AtomicLong tokenCount = new AtomicLong(0);
+    private ClaudeAPIClient claudeAPIClient;
+
+    @PostConstruct
+    public void init() {
+        this.claudeAPIClient = new ClaudeAPIClient(apiKey, apiUrl, model, maxTokens);
+    }
 
     @Override
     public String getName() {
@@ -54,14 +58,14 @@ public class CloudAIProvider implements AIProvider {
         QuestionGenerateResponse response = new QuestionGenerateResponse();
         response.setSuccess(false);
 
-        if (!isAvailable()) {
+        if (!claudeAPIClient.isAvailable()) {
             response.setErrorMessage("AI服务未配置或不可用");
             return response;
         }
 
         try {
             String prompt = buildGeneratePrompt(request);
-            String result = callCloudAI(prompt);
+            String result = claudeAPIClient.call(prompt);
 
             // 解析结果
             List<QuestionGenerateResponse.GeneratedQuestion> questions = parseGeneratedQuestions(result);
@@ -82,14 +86,14 @@ public class CloudAIProvider implements AIProvider {
         GradingResponse response = new GradingResponse();
         response.setSuccess(false);
 
-        if (!isAvailable()) {
+        if (!claudeAPIClient.isAvailable()) {
             response.setErrorMessage("AI服务未配置或不可用");
             return response;
         }
 
         try {
             String prompt = buildGradingPrompt(request);
-            String result = callCloudAI(prompt);
+            String result = claudeAPIClient.call(prompt);
 
             // 解析结果
             parseGradingResult(result, response);
@@ -106,62 +110,17 @@ public class CloudAIProvider implements AIProvider {
 
     @Override
     public boolean isAvailable() {
-        return apiKey != null && !apiKey.isEmpty();
+        return claudeAPIClient.isAvailable();
     }
 
     @Override
     public long getCallCount() {
-        return callCount.get();
+        return claudeAPIClient.getCallCount();
     }
 
     @Override
     public long getTokenCount() {
-        return tokenCount.get();
-    }
-
-    private String callCloudAI(String prompt) {
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-        headers.set("x-api-key", apiKey);
-        headers.set("anthropic-version", "2023-06-01");
-
-        JSONObject body = new JSONObject();
-        body.put("model", model);
-        body.put("max_tokens", maxTokens);
-
-        JSONArray messages = new JSONArray();
-        JSONObject message = new JSONObject();
-        message.put("role", "user");
-        message.put("content", prompt);
-        messages.add(message);
-        body.put("messages", messages);
-
-        HttpEntity<String> entity = new HttpEntity<>(body.toJSONString(), headers);
-
-        callCount.incrementAndGet();
-
-        ResponseEntity<String> responseEntity = restTemplate.exchange(
-                apiUrl, HttpMethod.POST, entity, String.class);
-
-        String responseBody = responseEntity.getBody();
-        JSONObject responseJson = JSON.parseObject(responseBody);
-
-        // 提取内容和Token统计
-        JSONArray content = responseJson.getJSONArray("content");
-        if (content != null && !content.isEmpty()) {
-            JSONObject firstContent = content.getJSONObject(0);
-            String text = firstContent.getString("text");
-
-            // Token统计
-            JSONObject usage = responseJson.getJSONObject("usage");
-            if (usage != null) {
-                tokenCount.addAndGet(usage.getIntValue("total_tokens"));
-            }
-
-            return text;
-        }
-
-        throw new RuntimeException("AI响应解析失败");
+        return claudeAPIClient.getTokenCount();
     }
 
     private String buildGeneratePrompt(QuestionGenerateRequest request) {

@@ -39,4 +39,14 @@ public class GradingResponse {
      * Token消耗
      */
     private Integer tokensUsed;
+
+    /**
+     * 识别准确率（拍照批改）
+     */
+    private Double accuracy;
+
+    /**
+     * 是否需要人工复核
+     */
+    private boolean needReview;
 }

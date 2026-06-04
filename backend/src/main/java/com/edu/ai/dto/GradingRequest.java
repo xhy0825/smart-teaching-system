@@ -37,4 +37,9 @@ public class GradingRequest {
      * 是否需要详细分析
      */
     private boolean needAnalysis;
+
+    /**
+     * 图片路径（拍照批改）
+     */
+    private String imagePath;
 }
