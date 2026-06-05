@@ -22,6 +22,10 @@ public class CostMonitoringService {
     private final AIProvider provider;
     private final RedisTemplate<String, String> redisTemplate;
 
+    // 内存成本统计（H2 环境无 Redis 时的备份）
+    private final AtomicLong dailyCostBackup = new AtomicLong(0);
+    private final AtomicLong monthlyCostBackup = new AtomicLong(0);
+
     // Claude API 价格（每百万 tokens）
     private static final double INPUT_PRICE_PER_MILLION = 3.0;
     private static final double OUTPUT_PRICE_PER_MILLION = 15.0;
