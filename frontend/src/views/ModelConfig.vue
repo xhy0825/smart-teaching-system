@@ -177,7 +177,7 @@ import {
   updateModelConfig,
   deleteModelConfig,
   setDefaultConfig,
-  testConnection
+  testConnection as testConnectionApi
 } from '@/api/ai'
 
 const selectedProvider = ref('DEEPSEEK')
@@ -260,7 +260,7 @@ const testConnection = async () => {
 
   testing.value = true
   try {
-    const res = await testConnection(configForm)
+    const res = await testConnectionApi(configForm)
     if (res.data.success) {
       ElMessage.success('连接成功！' + (res.data.response ? res.data.response.substring(0, 50) : ''))
     } else {
