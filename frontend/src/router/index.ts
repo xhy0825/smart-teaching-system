@@ -97,6 +97,19 @@ const routes: RouteRecordRaw[] = [
         name: 'ClassManage',
         component: () => import('@/views/ClassManage.vue'),
         meta: { title: '班级管理' }
+      },
+      // 新增路由：AI 助教 + 大模型配置
+      {
+        path: 'tutor',
+        name: 'Tutor',
+        component: () => import('@/views/Tutor.vue'),
+        meta: { title: 'AI助教' }
+      },
+      {
+        path: 'model-config',
+        name: 'ModelConfig',
+        component: () => import('@/views/ModelConfig.vue'),
+        meta: { title: '大模型配置' }
       }
     ]
   }
