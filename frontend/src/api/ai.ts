@@ -1,4 +1,4 @@
-import axios from 'axios'
+import request from '@/utils/request'
 import type { AxiosResponse } from 'axios'
 
 // AI 模型配置相关 API
@@ -7,7 +7,7 @@ import type { AxiosResponse } from 'axios'
  * 获取供应商预设
  */
 export const getProviderPresets = (): Promise<AxiosResponse<any>> => {
-  return axios.get('/api/ai/configs/presets')
+  return request.get('/api/ai/configs/presets')
 }
 
 /**
@@ -15,7 +15,7 @@ export const getProviderPresets = (): Promise<AxiosResponse<any>> => {
  * @param tenantId 租户ID，默认0
  */
 export const listModelConfigs = (tenantId: number = 0): Promise<AxiosResponse<any>> => {
-  return axios.get('/api/ai/configs', { params: { tenantId } })
+  return request.get('/api/ai/configs', { params: { tenantId } })
 }
 
 /**
@@ -23,7 +23,7 @@ export const listModelConfigs = (tenantId: number = 0): Promise<AxiosResponse<an
  * @param data 配置数据
  */
 export const saveModelConfig = (data: any): Promise<AxiosResponse<any>> => {
-  return axios.post('/api/ai/configs', data)
+  return request.post('/api/ai/configs', data)
 }
 
 /**
@@ -32,7 +32,7 @@ export const saveModelConfig = (data: any): Promise<AxiosResponse<any>> => {
  * @param data 配置数据
  */
 export const updateModelConfig = (id: number, data: any): Promise<AxiosResponse<any>> => {
-  return axios.put(`/api/ai/configs/${id}`, data)
+  return request.put(`/api/ai/configs/${id}`, data)
 }
 
 /**
@@ -41,7 +41,7 @@ export const updateModelConfig = (id: number, data: any): Promise<AxiosResponse<
  * @param tenantId 租户ID
  */
 export const deleteModelConfig = (id: number, tenantId: number = 0): Promise<AxiosResponse<any>> => {
-  return axios.delete(`/api/ai/configs/${id}`, { params: { tenantId } })
+  return request.delete(`/api/ai/configs/${id}`, { params: { tenantId } })
 }
 
 /**
@@ -50,7 +50,7 @@ export const deleteModelConfig = (id: number, tenantId: number = 0): Promise<Axi
  * @param tenantId 租户ID
  */
 export const setDefaultConfig = (id: number, tenantId: number = 0): Promise<AxiosResponse<any>> => {
-  return axios.post(`/api/ai/configs/${id}/set-default`, null, { params: { tenantId } })
+  return request.post(`/api/ai/configs/${id}/set-default`, null, { params: { tenantId } })
 }
 
 /**
@@ -58,5 +58,5 @@ export const setDefaultConfig = (id: number, tenantId: number = 0): Promise<Axio
  * @param data 配置数据（不保存，直接测试）
  */
 export const testConnection = (data: any): Promise<AxiosResponse<any>> => {
-  return axios.post('/api/ai/configs/test', data)
+  return request.post('/api/ai/configs/test', data)
 }

@@ -56,7 +56,6 @@
 import { ref } from 'vue'
 import { ElMessage } from 'element-plus'
 import { Camera, MagicStick } from '@element-plus/icons-vue'
-import axios from 'axios'
 
 const imageUrl = ref('')
 const loading = ref(false)

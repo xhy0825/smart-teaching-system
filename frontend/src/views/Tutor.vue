@@ -196,7 +196,7 @@
 import { ref, reactive, onMounted, onUnmounted, computed, nextTick } from 'vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { Plus, Position, Menu, ChatDotRound, ChatRound, Delete, DArrowLeft, DArrowRight } from '@element-plus/icons-vue'
-import axios from 'axios'
+import request from '@/utils/request'
 
 const inputMessage = ref('')
 const loading = ref(false)
@@ -222,7 +222,7 @@ const chatContainer = ref(null)
 // 加载可用模型（从后端配置）
 const loadAvailableModels = async () => {
   try {
-    const res = await axios.get('/api/ai/configs')
+    const res = await request.get('/api/ai/configs')
     if (res.data.success) {
       const configs = res.data.data || []
       // 收集所有可用模型
@@ -386,7 +386,7 @@ const sendMessage = async () => {
 
   try {
     // 调用后端 AI 助教接口
-    const res = await axios.post('/api/ai-tutor/chat', {
+    const res = await request.post('/api/ai-tutor/chat', {
       conversationId: currentConversationId.value,
       message: userMessage,
       model: selectedModel.value || undefined

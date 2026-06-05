@@ -12,22 +12,22 @@
       <div class="provider-section">
         <h3>选择供应商</h3>
         <el-radio-group v-model="selectedProvider" @change="onProviderChange">
-          <el-radio-button label="CLAUDE">
+          <el-radio-button value="CLAUDE">
             <div class="provider-option">
               <span class="provider-name">Claude (Anthropic)</span>
             </div>
           </el-radio-button>
-          <el-radio-button label="DEEPSEEK">
+          <el-radio-button value="DEEPSEEK">
             <div class="provider-option">
               <span class="provider-name">DeepSeek</span>
             </div>
           </el-radio-button>
-          <el-radio-button label="OPENAI">
+          <el-radio-button value="OPENAI">
             <div class="provider-option">
               <span class="provider-name">OpenAI</span>
             </div>
           </el-radio-button>
-          <el-radio-button label="QWEN">
+          <el-radio-button value="QWEN">
             <div class="provider-option">
               <span class="provider-name">通义千问 (Qwen)</span>
             </div>
@@ -169,7 +169,6 @@
 import { ref, reactive, onMounted, computed } from 'vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { Connection, Check, RefreshRight } from '@element-plus/icons-vue'
-import axios from 'axios'
 import {
   getProviderPresets,
   listModelConfigs,

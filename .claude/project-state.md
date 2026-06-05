@@ -58,6 +58,8 @@ modified_files:
   - "backend/src/main/java/com/edu/ai/controller/TutorController.java"
   - "frontend/src/api/ai.ts"
   - "frontend/src/views/ModelConfig.vue"
+  - "frontend/src/views/Tutor.vue"
+  - "frontend/src/views/PhotoGrading.vue"
 todo_items: []
 review_retry_count: 0
 
