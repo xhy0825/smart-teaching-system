@@ -1,56 +1,81 @@
 package com.edu.ai.provider;
 
-import com.alibaba.fastjson2.JSON;
-import com.alibaba.fastjson2.JSONArray;
-import com.alibaba.fastjson2.JSONObject;
-import com.edu.ai.client.ClaudeAPIClient;
+import com.edu.ai.client.AIClient;
+import com.edu.ai.client.AIClientFactory;
 import com.edu.ai.dto.GradingRequest;
 import com.edu.ai.dto.GradingResponse;
 import com.edu.ai.dto.QuestionGenerateRequest;
 import com.edu.ai.dto.QuestionGenerateResponse;
+import com.edu.ai.entity.AIModelConfig;
+import com.edu.ai.service.AIModelConfigService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import jakarta.annotation.PostConstruct;
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 云端AI提供商实现（Claude/GPT）
- * 已重构：使用 ClaudeAPIClient 统一处理 API 调用
+ * 云端AI提供商实现
+ * 已重构：使用 AIClient 接口，支持多供应商（Claude、DeepSeek、OpenAI等）
  */
 @Slf4j
 @Component
 public class CloudAIProvider implements AIProvider {
 
-    @Value("${ai.cloud.provider:Claude}")
-    private String provider;
+    private final AIModelConfigService modelConfigService;
+    private final AIClientFactory clientFactory;
 
-    @Value("${ai.cloud.api-url:https://api.anthropic.com/v1/messages}")
-    private String apiUrl;
+    // 当前使用的配置和客户端（可根据需要动态切换）
+    private AIModelConfig currentConfig;
+    private AIClient currentClient;
 
-    @Value("${ai.cloud.api-key:}")
-    private String apiKey;
-
-    @Value("${ai.cloud.model:claude-sonnet-4-6}")
-    private String model;
-
-    @Value("${ai.cloud.max-tokens:2000}")
-    private Integer maxTokens;
-
-    private ClaudeAPIClient claudeAPIClient;
+    @Autowired
+    public CloudAIProvider(AIModelConfigService modelConfigService, AIClientFactory clientFactory) {
+        this.modelConfigService = modelConfigService;
+        this.clientFactory = clientFactory;
+    }
 
     @PostConstruct
     public void init() {
-        this.claudeAPIClient = new ClaudeAPIClient(apiKey, apiUrl, model, maxTokens);
+        // 加载默认配置
+        loadDefaultConfig();
+    }
+
+    private void loadDefaultConfig() {
+        try {
+            // 尝试从数据库加载默认配置
+            currentConfig = modelConfigService.getDefaultConfig(0L);
+
+            if (currentConfig != null) {
+                currentClient = clientFactory.createClient(currentConfig);
+                log.info("已加载云端AI配置: provider={}, model={}",
+                        currentConfig.getProvider(), currentConfig.getModel());
+            } else {
+                log.warn("未找到云端AI配置，请在模型配置页面添加配置");
+            }
+        } catch (Exception e) {
+            log.error("加载云端AI配置失败: {}", e.getMessage());
+        }
+    }
+
+    /**
+     * 设置当前使用的配置
+     */
+    public void setConfig(AIModelConfig config) {
+        this.currentConfig = config;
+        this.currentClient = clientFactory.createClient(config);
+        log.info("切换云端AI配置: provider={}, model={}",
+                config.getProvider(), config.getModel());
     }
 
     @Override
     public String getName() {
-        return "Cloud-" + provider;
+        if (currentConfig != null) {
+            return "Cloud-" + currentConfig.getProviderName();
+        }
+        return "Cloud-Unknown";
     }
 
     @Override
@@ -58,20 +83,22 @@ public class CloudAIProvider implements AIProvider {
         QuestionGenerateResponse response = new QuestionGenerateResponse();
         response.setSuccess(false);
 
-        if (!claudeAPIClient.isAvailable()) {
+        AIClient client = getClient();
+        if (client == null) {
             response.setErrorMessage("AI服务未配置或不可用");
             return response;
         }
 
         try {
             String prompt = buildGeneratePrompt(request);
-            String result = claudeAPIClient.call(prompt);
+            String result = client.chat(prompt);
 
             // 解析结果
             List<QuestionGenerateResponse.GeneratedQuestion> questions = parseGeneratedQuestions(result);
             response.setQuestions(questions);
             response.setSuccess(true);
-            log.info("云端AI生成题目成功: count={}", questions.size());
+            log.info("云端AI生成题目成功: count={}, provider={}",
+                    questions.size(), getName());
 
         } catch (Exception e) {
             log.error("云端AI生成题目失败: {}", e.getMessage());
@@ -86,19 +113,21 @@ public class CloudAIProvider implements AIProvider {
         GradingResponse response = new GradingResponse();
         response.setSuccess(false);
 
-        if (!claudeAPIClient.isAvailable()) {
+        AIClient client = getClient();
+        if (client == null) {
             response.setErrorMessage("AI服务未配置或不可用");
             return response;
         }
 
         try {
             String prompt = buildGradingPrompt(request);
-            String result = claudeAPIClient.call(prompt);
+            String result = client.chat(prompt);
 
             // 解析结果
             parseGradingResult(result, response);
             response.setSuccess(true);
-            log.info("云端AI批改成功: score={}", response.getScore());
+            log.info("云端AI批改成功: score={}, provider={}",
+                    response.getScore(), getName());
 
         } catch (Exception e) {
             log.error("云端AI批改失败: {}", e.getMessage());
@@ -110,17 +139,36 @@ public class CloudAIProvider implements AIProvider {
 
     @Override
     public boolean isAvailable() {
-        return claudeAPIClient.isAvailable();
+        AIClient client = getClient();
+        return client != null && client.isAvailable();
     }
 
     @Override
     public long getCallCount() {
-        return claudeAPIClient.getCallCount();
+        AIClient client = getClient();
+        return client != null ? client.getCallCount() : 0;
     }
 
     @Override
     public long getTokenCount() {
-        return claudeAPIClient.getTokenCount();
+        AIClient client = getClient();
+        return client != null ? client.getTokenCount() : 0;
+    }
+
+    @Override
+    public String chat(String prompt) {
+        AIClient client = getClient();
+        if (client == null) {
+            throw new RuntimeException("AI服务未配置或不可用");
+        }
+        return client.chat(prompt);
+    }
+
+    private AIClient getClient() {
+        if (currentClient == null) {
+            loadDefaultConfig();
+        }
+        return currentClient;
     }
 
     private String buildGeneratePrompt(QuestionGenerateRequest request) {
@@ -162,9 +210,9 @@ public class CloudAIProvider implements AIProvider {
         List<QuestionGenerateResponse.GeneratedQuestion> questions = new ArrayList<>();
 
         try {
-            JSONArray jsonArray = JSON.parseArray(result);
+            com.alibaba.fastjson2.JSONArray jsonArray = com.alibaba.fastjson2.JSON.parseArray(result);
             for (int i = 0; i < jsonArray.size(); i++) {
-                JSONObject obj = jsonArray.getJSONObject(i);
+                com.alibaba.fastjson2.JSONObject obj = jsonArray.getJSONObject(i);
                 QuestionGenerateResponse.GeneratedQuestion q = new QuestionGenerateResponse.GeneratedQuestion();
                 q.setContent(obj.getString("content"));
                 q.setQuestionType(obj.getString("questionType"));
@@ -184,13 +232,13 @@ public class CloudAIProvider implements AIProvider {
 
     private void parseGradingResult(String result, GradingResponse response) {
         try {
-            JSONObject obj = JSON.parseObject(result);
+            com.alibaba.fastjson2.JSONObject obj = com.alibaba.fastjson2.JSON.parseObject(result);
             response.setScore(obj.getBigDecimal("score"));
             response.setIsCorrect(obj.getInteger("isCorrect"));
             response.setAnalysis(obj.getString("analysis"));
         } catch (Exception e) {
             log.warn("解析AI批改结果失败: {}", e.getMessage());
-            response.setScore(BigDecimal.ZERO);
+            response.setScore(java.math.BigDecimal.ZERO);
             response.setIsCorrect(0);
         }
     }

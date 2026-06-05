@@ -4,41 +4,71 @@
       <template #header>
         <div class="card-header">
           <span>大模型配置</span>
-          <el-tag type="info">Claude API</el-tag>
+          <el-tag type="info">{{ currentProviderName }}</el-tag>
         </div>
       </template>
 
-      <!-- API Key 配置 -->
-      <el-form label-width="120px">
-        <el-form-item label="API Key">
+      <!-- 供应商选择 -->
+      <div class="provider-section">
+        <h3>选择供应商</h3>
+        <el-radio-group v-model="selectedProvider" @change="onProviderChange">
+          <el-radio-button label="CLAUDE">
+            <div class="provider-option">
+              <span class="provider-name">Claude (Anthropic)</span>
+            </div>
+          </el-radio-button>
+          <el-radio-button label="DEEPSEEK">
+            <div class="provider-option">
+              <span class="provider-name">DeepSeek</span>
+            </div>
+          </el-radio-button>
+          <el-radio-button label="OPENAI">
+            <div class="provider-option">
+              <span class="provider-name">OpenAI</span>
+            </div>
+          </el-radio-button>
+          <el-radio-button label="QWEN">
+            <div class="provider-option">
+              <span class="provider-name">通义千问 (Qwen)</span>
+            </div>
+          </el-radio-button>
+        </el-radio-group>
+      </div>
+
+      <!-- 配置表单 -->
+      <el-form label-width="120px" :model="configForm" ref="configFormRef">
+        <el-form-item label="API Key" prop="apiKey">
           <el-input
-            v-model="apiKey"
+            v-model="configForm.apiKey"
             type="password"
-            placeholder="请输入 Claude API Key"
+            placeholder="请输入 API Key"
             show-password
             class="config-input"
           />
-          <el-button
-            type="primary"
-            :loading="testing"
-            @click="testConnection"
-          >
-            <el-icon><Connection /></el-icon>
-            测试连接
-          </el-button>
         </el-form-item>
 
-        <el-form-item label="当前模型">
-          <el-select v-model="currentModel" class="model-select">
-            <el-option label="Claude Sonnet 4.6" value="claude-sonnet-4-6" />
-            <el-option label="Claude Haiku 3.5" value="claude-haiku-3.5" />
-            <el-option label="Claude Opus 3" value="claude-opus-3" />
+        <el-form-item label="API URL" prop="apiUrl">
+          <el-input
+            v-model="configForm.apiUrl"
+            placeholder="API 地址"
+            class="config-input"
+          />
+        </el-form-item>
+
+        <el-form-item label="模型" prop="model">
+          <el-select v-model="configForm.model" class="model-select">
+            <el-option
+              v-for="m in availableModels"
+              :key="m"
+              :label="m"
+              :value="m"
+            />
           </el-select>
         </el-form-item>
 
         <el-form-item label="每次最大 Token">
           <el-slider
-            v-model="maxTokens"
+            v-model="configForm.maxTokens"
             :min="100"
             :max="4000"
             :step="100"
@@ -46,16 +76,69 @@
           />
         </el-form-item>
 
-        <el-form-item label="每日成本限额">
-          <el-input-number
-            v-model="dailyLimit"
-            :min="10"
-            :max="500"
-            :step="10"
+        <el-form-item label="Temperature" v-if="selectedProvider !== 'CLAUDE'">
+          <el-slider
+            v-model="configForm.temperature"
+            :min="0"
+            :max="1"
+            :step="0.1"
+            show-input
           />
-          <span class="unit">美元/天</span>
+        </el-form-item>
+
+        <el-form-item label="设为默认">
+          <el-switch v-model="configForm.isDefault" />
+        </el-form-item>
+
+        <el-form-item>
+          <el-button type="primary" :loading="testing" @click="testConnection">
+            <el-icon><Connection /></el-icon>
+            测试连接
+          </el-button>
+          <el-button type="success" :loading="saving" @click="saveConfig">
+            <el-icon><Check /></el-icon>
+            保存配置
+          </el-button>
+          <el-button @click="resetForm">
+            <el-icon><RefreshRight /></el-icon>
+            重置
+          </el-button>
         </el-form-item>
       </el-form>
+
+      <!-- 配置列表 -->
+      <el-divider>已保存的配置</el-divider>
+
+      <el-table :data="configList" style="width: 100%">
+        <el-table-column prop="providerName" label="供应商" />
+        <el-table-column prop="model" label="模型" />
+        <el-table-column label="状态">
+          <template #default="{ row }">
+            <el-tag :type="row.isEnabled ? 'success' : 'danger'">
+              {{ row.isEnabled ? '启用' : '禁用' }}
+            </el-tag>
+            <el-tag v-if="row.isDefault" type="warning" style="margin-left: 8px;">
+              默认
+            </el-tag>
+          </template>
+        </el-table-column>
+        <el-table-column label="操作" width="250">
+          <template #default="{ row }">
+            <el-button size="small" @click="editConfig(row)">编辑</el-button>
+            <el-button
+              size="small"
+              type="warning"
+              @click="setDefault(row)"
+              :disabled="row.isDefault"
+            >
+              设默认
+            </el-button>
+            <el-button size="small" type="danger" @click="deleteConfig(row)">
+              删除
+            </el-button>
+          </template>
+        </el-table-column>
+      </el-table>
 
       <!-- 使用统计 -->
       <el-divider>使用统计</el-divider>
@@ -66,46 +149,56 @@
           <div class="stat-label">调用次数</div>
         </div>
         <div class="stat-card">
-          <div class="stat-value">{{ stats.tokenCount | formatNumber }}</div>
+          <div class="stat-value">{{ stats.tokenCount }}</div>
           <div class="stat-label">Token 消耗</div>
         </div>
         <div class="stat-card">
-          <div class="stat-value">${{ stats.dailyCost | currency }}</div>
+          <div class="stat-value">${{ stats.dailyCost }}</div>
           <div class="stat-label">今日成本</div>
         </div>
         <div class="stat-card">
-          <div class="stat-value">{{ stats.monthlyCost | currency }}</div>
+          <div class="stat-value">${{ stats.monthlyCost }}</div>
           <div class="stat-label">本月成本</div>
         </div>
-      </div>
-
-      <!-- 操作按钮 -->
-      <div class="actions">
-        <el-button type="primary" @click="saveConfig" :loading="saving">
-          <el-icon><Check /></el-icon>
-          保存配置
-        </el-button>
-        <el-button @click="resetConfig">
-          <el-icon><RefreshRight /></el-icon>
-          重置
-        </el-button>
       </div>
     </el-card>
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import { ElMessage } from 'element-plus'
+import { ref, reactive, onMounted, computed } from 'vue'
+import { ElMessage, ElMessageBox } from 'element-plus'
 import { Connection, Check, RefreshRight } from '@element-plus/icons-vue'
 import axios from 'axios'
+import {
+  getProviderPresets,
+  listModelConfigs,
+  saveModelConfig,
+  updateModelConfig,
+  deleteModelConfig,
+  setDefaultConfig,
+  testConnection
+} from '@/api/ai'
 
-const apiKey = ref('')
-const currentModel = ref('claude-sonnet-4-6')
-const maxTokens = ref(2000)
-const dailyLimit = ref(50)
+const selectedProvider = ref('DEEPSEEK')
+const availableModels = ref([])
+const configList = ref([])
 const testing = ref(false)
 const saving = ref(false)
+const editingId = ref(null)
+
+const configForm = reactive({
+  provider: 'DEEPSEEK',
+  providerName: 'DeepSeek',
+  apiUrl: 'https://api.deepseek.com/v1',
+  apiKey: '',
+  model: 'deepseek-chat',
+  maxTokens: 2000,
+  temperature: 0.7,
+  isDefault: false,
+  isEnabled: true,
+  tenantId: 0
+})
 
 const stats = ref({
   callCount: 0,
@@ -114,23 +207,68 @@ const stats = ref({
   monthlyCost: 0.0
 })
 
+// 当前供应商名称
+const currentProviderName = computed(() => {
+  const names = {
+    'CLAUDE': 'Claude (Anthropic)',
+    'DEEPSEEK': 'DeepSeek',
+    'OPENAI': 'OpenAI',
+    'QWEN': '通义千问 (Qwen)'
+  }
+  return names[selectedProvider.value] || '自定义'
+})
+
+// 供应商预设数据
+const providerPresets = {
+  CLAUDE: {
+    apiUrl: 'https://api.anthropic.com/v1/messages',
+    models: ['claude-sonnet-4-6', 'claude-haiku-3.5', 'claude-opus-3']
+  },
+  DEEPSEEK: {
+    apiUrl: 'https://api.deepseek.com/v1',
+    models: ['deepseek-chat', 'deepseek-reasoner']
+  },
+  OPENAI: {
+    apiUrl: 'https://api.openai.com/v1',
+    models: ['gpt-4o', 'gpt-4o-mini', 'gpt-4-turbo']
+  },
+  QWEN: {
+    apiUrl: 'https://dashscope.aliyuncs.com/compatible-mode/v1',
+    models: ['qwen-turbo', 'qwen-plus', 'qwen-max']
+  }
+}
+
+// 供应商切换
+const onProviderChange = (provider) => {
+  configForm.provider = provider
+  configForm.providerName = currentProviderName.value
+
+  const preset = providerPresets[provider]
+  if (preset) {
+    configForm.apiUrl = preset.apiUrl
+    availableModels.value = preset.models
+    configForm.model = preset.models[0]
+  }
+}
+
 // 测试连接
 const testConnection = async () => {
-  if (!apiKey.value) {
+  if (!configForm.apiKey) {
     ElMessage.warning('请先输入 API Key')
     return
   }
 
   testing.value = true
   try {
-    // TODO: 调用后端测试接口
-    // const res = await axios.post('/api/ai/test-connection', { apiKey: apiKey.value })
-    setTimeout(() => {
-      ElMessage.success('连接成功！模型可用。')
-      testing.value = false
-    }, 1500)
+    const res = await testConnection(configForm)
+    if (res.data.success) {
+      ElMessage.success('连接成功！' + (res.data.response ? res.data.response.substring(0, 50) : ''))
+    } else {
+      ElMessage.error('连接失败：' + res.data.message)
+    }
   } catch (error) {
     ElMessage.error('连接失败：' + error.message)
+  } finally {
     testing.value = false
   }
 }
@@ -139,46 +277,114 @@ const testConnection = async () => {
 const saveConfig = async () => {
   saving.value = true
   try {
-    // TODO: 调用后端保存接口
-    // await axios.post('/api/ai/save-config', {
-    //   apiKey: apiKey.value,
-    //   model: currentModel.value,
-    //   maxTokens: maxTokens.value,
-    //   dailyLimit: dailyLimit.value
-    // })
-    setTimeout(() => {
+    let res
+    if (editingId.value) {
+      res = await updateModelConfig(editingId.value, configForm)
+    } else {
+      res = await saveModelConfig(configForm)
+    }
+
+    if (res.data.success) {
       ElMessage.success('配置保存成功！')
-      saving.value = false
-    }, 1000)
+      resetForm()
+      loadConfigs()
+    } else {
+      ElMessage.error('保存失败：' + res.data.message)
+    }
   } catch (error) {
     ElMessage.error('保存失败：' + error.message)
+  } finally {
     saving.value = false
   }
 }
 
-// 重置配置
-const resetConfig = () => {
-  apiKey.value = ''
-  currentModel.value = 'claude-sonnet-4-6'
-  maxTokens.value = 2000
-  dailyLimit.value = 50
-  ElMessage.info('已重置为默认配置')
+// 编辑配置
+const editConfig = (row) => {
+  editingId.value = row.id
+  Object.assign(configForm, {
+    provider: row.provider,
+    providerName: row.providerName,
+    apiUrl: row.apiUrl,
+    apiKey: '',  // 不回显 API Key
+    model: row.model,
+    maxTokens: row.maxTokens || 2000,
+    temperature: row.temperature || 0.7,
+    isDefault: row.isDefault === 1,
+    isEnabled: row.isEnabled === 1,
+    tenantId: row.tenantId
+  })
+  selectedProvider.value = row.provider
+  onProviderChange(row.provider)
 }
 
-// 格式化数字
-const formatNumber = (val) => {
-  return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+// 删除配置
+const deleteConfig = async (row) => {
+  try {
+    await ElMessageBox.confirm('确定要删除该配置吗？', '提示', {
+      type: 'warning'
+    })
+    const res = await deleteModelConfig(row.id)
+    if (res.data.success) {
+      ElMessage.success('删除成功！')
+      loadConfigs()
+    }
+  } catch (e) {
+    // 用户取消
+  }
 }
 
-// 格式化货币
-const currency = (val) => {
-  return '$' + val.toFixed(2)
+// 设为默认
+const setDefault = async (row) => {
+  try {
+    const res = await setDefaultConfig(row.id)
+    if (res.data.success) {
+      ElMessage.success('已设为默认配置！')
+      loadConfigs()
+    }
+  } catch (error) {
+    ElMessage.error('设置失败：' + error.message)
+  }
 }
+
+// 重置表单
+const resetForm = () => {
+  editingId.value = null
+  Object.assign(configForm, {
+    provider: selectedProvider.value,
+    providerName: currentProviderName.value,
+    apiUrl: providerPresets[selectedProvider.value]?.apiUrl || '',
+    apiKey: '',
+    model: '',
+    maxTokens: 2000,
+    temperature: 0.7,
+    isDefault: false,
+    isEnabled: true,
+    tenantId: 0
+  })
+  onProviderChange(selectedProvider.value)
+}
+
+// 加载配置列表
+const loadConfigs = async () => {
+  try {
+    const res = await listModelConfigs()
+    if (res.data.success) {
+      configList.value = res.data.data
+    }
+  } catch (error) {
+    console.error('加载配置失败：', error)
+  }
+}
+
+onMounted(() => {
+  loadConfigs()
+  onProviderChange(selectedProvider.value)
+})
 </script>
 
 <style scoped>
 .model-config {
-    max-width: 800px;
+    max-width: 1000px;
     margin: 40px auto;
     padding: 20px;
 }
@@ -196,17 +402,32 @@ const currency = (val) => {
     gap: 12px;
 }
 
+.provider-section {
+    margin-bottom: 24px;
+}
+
+.provider-section h3 {
+    margin-bottom: 12px;
+    color: var(--el-text-color-primary);
+}
+
+.provider-option {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.provider-name {
+    font-size: 14px;
+}
+
 .config-input {
     width: 400px;
 }
 
 .model-select {
     width: 300px;
-}
-
-.unit {
-    margin-left: 8px;
-    color: var(--el-text-color-secondary);
 }
 
 .stats-grid {
@@ -233,14 +454,5 @@ const currency = (val) => {
     font-size: 12px;
     color: var(--el-text-color-secondary);
     margin-top: 4px;
-}
-
-.actions {
-    display: flex;
-    justify-content: flex-end;
-    gap: 12px;
-    margin-top: 20px;
-    padding-top: 20px;
-    border-top: 1px solid var(--el-border-color);
 }
 </style>

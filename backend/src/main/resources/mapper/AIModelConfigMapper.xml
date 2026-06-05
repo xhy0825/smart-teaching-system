@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.edu.ai.mapper.AIModelConfigMapper">
+
+    <!-- 根据租户ID查询配置列表 -->
+    <select id="selectByTenantId" resultType="com.edu.ai.entity.AIModelConfig">
+        SELECT * FROM ai_model_config
+        WHERE tenant_id = #{tenantId} AND deleted = 0
+        ORDER BY is_default DESC, id DESC
+    </select>
+
+    <!-- 获取租户的默认配置 -->
+    <select id="selectDefaultByTenantId" resultType="com.edu.ai.entity.AIModelConfig">
+        SELECT * FROM ai_model_config
+        WHERE tenant_id = #{tenantId} AND is_default = 1 AND deleted = 0
+        LIMIT 1
+    </select>
+
+    <!-- 清除租户的默认配置标记 -->
+    <update id="clearDefaultFlag">
+        UPDATE ai_model_config
+        SET is_default = 0
+        WHERE tenant_id = #{tenantId} AND deleted = 0
+    </update>
+
+    <!-- 设置默认配置 -->
+    <update id="setDefault">
+        UPDATE ai_model_config
+        SET is_default = 1
+        WHERE id = #{id} AND deleted = 0
+    </update>
+
+</mapper>

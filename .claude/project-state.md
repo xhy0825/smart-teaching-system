@@ -34,17 +34,30 @@ completed_tasks:
 global_architecture: ["Spring Boot 3.2 + Vue 3 + Element Plus + Claude API", "ClaudeAPIClient公共方法", "VisionAIService拍照批改", "Redis对话管理", "成本监控", "智能助手（新增）", "大模型配置页面（新增）"]  # ≤5条#
 
 # 当前任务（重置时归档后清空）
-current_phase: P5  # P0-P5
-task_description: "部署交付智能助手+大模型配置"  # ≤30字
+current_phase: P3  # P0-P5
+task_description: "测试验证多供应商大模型配置"  # ≤30字
 started_at: "2026-06-05"
 last_updated: "2026-06-05"
 prd_file: ""  # PRD 路径
-architecture_decisions: ["TutorController AI助教API", "Tutor.vue对话页面", "ModelConfig.vue配置页面", "前端路由已添加"]  # ≤5条#
+architecture_decisions: ["AIClient接口统一调用", "OpenAICompatibleClient支持DeepSeek", "数据库驱动配置", "AIClientFactory动态创建"]  # ≤5条#
 modified_files:
+  - "backend/src/main/resources/db/migration/add_ai_model_config.sql"
+  - "backend/src/main/java/com/edu/ai/entity/AIModelConfig.java"
+  - "backend/src/main/java/com/edu/ai/mapper/AIModelConfigMapper.java"
+  - "backend/src/main/resources/mapper/AIModelConfigMapper.xml"
+  - "backend/src/main/java/com/edu/ai/service/AIModelConfigService.java"
+  - "backend/src/main/java/com/edu/ai/controller/AIModelConfigController.java"
+  - "backend/src/main/java/com/edu/ai/client/AIClient.java"
+  - "backend/src/main/java/com/edu/ai/client/ClaudeClient.java"
+  - "backend/src/main/java/com/edu/ai/client/OpenAICompatibleClient.java"
+  - "backend/src/main/java/com/edu/ai/client/AIClientFactory.java"
+  - "backend/src/main/java/com/edu/ai/provider/CloudAIProvider.java"
+  - "backend/src/main/java/com/edu/ai/provider/AIProviderFactory.java"
+  - "backend/src/main/java/com/edu/ai/provider/PrivateAIProvider.java"
+  - "backend/src/main/java/com/edu/ai/provider/AIProvider.java"
   - "backend/src/main/java/com/edu/ai/controller/TutorController.java"
-  - "frontend/src/views/Tutor.vue"
+  - "frontend/src/api/ai.ts"
   - "frontend/src/views/ModelConfig.vue"
-  - "frontend/src/router/index.ts"
 todo_items: []
 review_retry_count: 0
 
@@ -64,7 +77,10 @@ phase_history:
   - "P2→P3: 2026-06-05 编码完成，测试通过"
   - "P3→P4: 2026-06-05 测试验证通过，进入P4审查"
   - "P4→P5: 2026-06-05 审查完成，进入部署交付"
-key_context: "P5交付：TutorController（AI助教API）+ Tutor.vue（对话页面）+ ModelConfig.vue（配置页面）+ 路由已添加"  # ≤50字
+  - "P5→P0: 2026-06-05 交付完成，新任务开始"
+  - "P0→P2: 2026-06-05 多供应商大模型配置（Claude+DeepSeek+OpenAI兼容）"
+  - "P2→P3: 2026-06-05 编码完成，开始测试验证"
+key_context: "P2编码：AIClient接口+ClaudeClient+OpenAICompatibleClient+数据库配置+AIModelConfigController"  # ≤50字
 ```
 
 **更新时机**：新任务→归档+重置 | PRD确认→写 prd.md | 阶段推进→更新 phase | 文件修改→记路径 | 架构→记决策 | 压缩前→更新全部**

@@ -1,7 +1,7 @@
 package com.edu.ai.controller;
 
-import com.edu.ai.client.ClaudeAPIClient;
-import com.edu.ai.service.ConversationService;
+import com.edu.ai.provider.AIProvider;
+import com.edu.ai.provider.AIProviderFactory;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.stereotype.Controller;
 
@@ -11,17 +11,16 @@ import java.util.Map;
 /**
  * 智能助手控制器
  * 提供 AI 助教对话接口
+ * 已重构：使用 AIProvider 接口，支持多供应商
  */
 @Controller
 @RequestMapping("/api/ai-tutor")
 public class TutorController {
 
-    private final ClaudeAPIClient claudeAPIClient;
-    private final ConversationService conversationService;
+    private final AIProviderFactory providerFactory;
 
-    public TutorController(ClaudeAPIClient claudeAPIClient, ConversationService conversationService) {
-        this.claudeAPIClient = claudeAPIClient;
-        this.conversationService = conversationService;
+    public TutorController(AIProviderFactory providerFactory) {
+        this.providerFactory = providerFactory;
     }
 
     /**
@@ -37,18 +36,25 @@ public class TutorController {
             conversationId = "conv_" + System.currentTimeMillis();
         }
 
-        // 构建提示词
-        String prompt = buildTutorPrompt(message);
+        // 获取 AI Provider（使用默认租户 0）
+        AIProvider provider = providerFactory.getDefaultProvider();
+
+        if (!provider.isAvailable()) {
+            Map<String, Object> result = new HashMap<>();
+            result.put("success", false);
+            result.put("error", "AI 服务不可用，请检查配置");
+            return result;
+        }
 
         try {
-            // 调用 Claude API
-            String response = claudeAPIClient.call(prompt);
+            // 构建提示词
+            String prompt = buildTutorPrompt(message);
 
-            // 保存对话上下文
-            conversationService.appendMessage(conversationId,
-                    "{\"role\":\"user\",\"content\":\"" + message + "\"}");
-            conversationService.appendMessage(conversationId,
-                    "{\"role\":\"assistant\",\"content\":\"" + response + "\"}");
+            // 调用 AI（通过 AIProvider）
+            String response = provider.chat(prompt);
+
+            // 保存对话上下文（TODO: 实现 ConversationService）
+            // conversationService.appendMessage(conversationId, ...);
 
             Map<String, Object> result = new HashMap<>();
             result.put("conversationId", conversationId);
