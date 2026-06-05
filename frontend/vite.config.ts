@@ -9,6 +9,9 @@ export default defineConfig({
       '@': path.resolve(__dirname, 'src')
     }
   },
+  define: {
+    __BUILD_VERSION__: JSON.stringify('e53b2a8-' + Date.now())
+  },
   server: {
     port: 3000,
     strictPort: true,

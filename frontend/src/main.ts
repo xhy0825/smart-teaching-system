@@ -22,4 +22,7 @@ app.use(createPinia())
 app.use(router)
 app.use(ElementPlus)
 
+// 输出构建版本信息（用于缓存刷新）
+console.log('[Build]', __BUILD_VERSION__)
+
 app.mount('#app')
