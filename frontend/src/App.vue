@@ -1,13 +1,10 @@
 <template>
-  <el-config-provider :locale="zhCn">
-    <div class="app-container">
-      <router-view />
-    </div>
-  </el-config-provider>
+  <div class="app-root">
+    <router-view />
+  </div>
 </template>
 
 <script setup lang="ts">
-import zhCn from 'element-plus/dist/locale/zh-cn.mjs'
 import { useAppStore } from '@/store/app'
 
 const appStore = useAppStore()
@@ -20,7 +17,7 @@ appStore.applyTheme()
   width: 100%;
   height: 100%;
 }
-.app-container {
+.app-root {
   width: 100%;
   height: 100%;
 }
