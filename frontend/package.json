@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "build:deploy": "vite build && node -e \"const fs=require('fs'),p=require('path');const ts=Date.now();let h=fs.readFileSync(p.resolve('dist/index.html'),'utf-8');h=h.replace(/(src=\\\")([^\\\"]+\\.js)(\\\")/g,(m,a,b,c)=>a+b+'?v='+ts+c);h=h.replace(/(href=\\\")([^\\\"]+\\.css)(\\\")/g,(m,a,b,c)=>a+b+'?v='+ts+c);fs.writeFileSync(p.resolve('dist/index.html'),h);console.log('[cache-bust] v='+ts);\"",
     "preview": "vite preview"
   },
   "dependencies": {
