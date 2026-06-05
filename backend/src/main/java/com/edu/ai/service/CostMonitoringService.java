@@ -3,6 +3,7 @@ package com.edu.ai.service;
 import com.edu.ai.provider.AIProvider;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
@@ -35,7 +36,7 @@ public class CostMonitoringService {
     private static final DateTimeFormatter MONTH_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM");
 
     public CostMonitoringService(AIProvider provider,
-                                 RedisTemplate<String, String> redisTemplate) {
+                                 @Autowired(required = false) RedisTemplate<String, String> redisTemplate) {
         this.provider = provider;
         this.redisTemplate = redisTemplate;
     }

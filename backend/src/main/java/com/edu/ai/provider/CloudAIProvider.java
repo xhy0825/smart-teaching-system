@@ -10,6 +10,7 @@ import com.edu.ai.entity.AIModelConfig;
 import com.edu.ai.service.AIModelConfigService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
 import jakarta.annotation.PostConstruct;
@@ -22,6 +23,7 @@ import java.util.List;
  */
 @Slf4j
 @Component
+@Primary
 public class CloudAIProvider implements AIProvider {
 
     private final AIModelConfigService modelConfigService;

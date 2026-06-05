@@ -43,7 +43,7 @@
 
       <div class="conversation-list" v-if="!sidebarCollapsed || isMobile">
         <div v-if="conversations.length === 0" class="empty-sidebar">
-          <el-icon :size="24"><ChatDot /></el-icon>
+          <el-icon :size="24"><ChatDotRound /></el-icon>
           <p>还没有对话</p>
           <el-button size="small" type="primary" @click="newConversation">
             新建对话
@@ -195,7 +195,7 @@
 <script setup>
 import { ref, reactive, onMounted, onUnmounted, computed, nextTick } from 'vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
-import { Plus, Position, Menu, ChatDot, ChatRound, Delete, DArrowLeft, DArrowRight } from '@element-plus/icons-vue'
+import { Plus, Position, Menu, ChatDotRound, ChatRound, Delete, DArrowLeft, DArrowRight } from '@element-plus/icons-vue'
 import axios from 'axios'
 
 const inputMessage = ref('')
