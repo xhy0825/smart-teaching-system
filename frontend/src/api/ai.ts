@@ -12,10 +12,10 @@ export const getProviderPresets = (): Promise<AxiosResponse<any>> => {
 
 /**
  * 获取配置列表
- * @param tenantId 租户ID，默认0
+ * 租户ID从JWT token自动获取，无需传参
  */
-export const listModelConfigs = (tenantId: number = 0): Promise<AxiosResponse<any>> => {
-  return request.get('/api/ai/configs', { params: { tenantId } })
+export const listModelConfigs = (): Promise<AxiosResponse<any>> => {
+  return request.get('/api/ai/configs')
 }
 
 /**
@@ -38,19 +38,19 @@ export const updateModelConfig = (id: number, data: any): Promise<AxiosResponse<
 /**
  * 删除配置
  * @param id 配置ID
- * @param tenantId 租户ID
+ * 租户ID从JWT token自动获取，无需传参
  */
-export const deleteModelConfig = (id: number, tenantId: number = 0): Promise<AxiosResponse<any>> => {
-  return request.delete(`/api/ai/configs/${id}`, { params: { tenantId } })
+export const deleteModelConfig = (id: number): Promise<AxiosResponse<any>> => {
+  return request.delete(`/api/ai/configs/${id}`)
 }
 
 /**
  * 设为默认配置
  * @param id 配置ID
- * @param tenantId 租户ID
+ * 租户ID从JWT token自动获取，无需传参
  */
-export const setDefaultConfig = (id: number, tenantId: number = 0): Promise<AxiosResponse<any>> => {
-  return request.post(`/api/ai/configs/${id}/set-default`, null, { params: { tenantId } })
+export const setDefaultConfig = (id: number): Promise<AxiosResponse<any>> => {
+  return request.post(`/api/ai/configs/${id}/set-default`)
 }
 
 /**

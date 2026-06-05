@@ -2,6 +2,7 @@ package com.edu.ai.controller;
 
 import com.edu.ai.entity.AIModelConfig;
 import com.edu.ai.service.AIModelConfigService;
+import com.edu.common.util.TenantContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -35,9 +36,14 @@ public class AIModelConfigController {
 
     /**
      * 列出租户所有配置
+     * 从 JWT token 获取租户ID，无需前端传参
      */
     @GetMapping
-    public Map<String, Object> list(@RequestParam(required = false, defaultValue = "0") Long tenantId) {
+    public Map<String, Object> list() {
+        Long tenantId = TenantContextHolder.getTenantId();
+        if (tenantId == null) {
+            throw new RuntimeException("无法获取租户信息，请重新登录");
+        }
         Map<String, Object> result = new HashMap<>();
         List<AIModelConfig> configs = modelConfigService.listByTenant(tenantId);
 
@@ -97,10 +103,14 @@ public class AIModelConfigController {
 
     /**
      * 删除配置
+     * 从 JWT token 获取租户ID
      */
     @DeleteMapping("/{id}")
-    public Map<String, Object> delete(@PathVariable Long id,
-                                       @RequestParam(required = false, defaultValue = "0") Long tenantId) {
+    public Map<String, Object> delete(@PathVariable Long id) {
+        Long tenantId = TenantContextHolder.getTenantId();
+        if (tenantId == null) {
+            throw new RuntimeException("无法获取租户信息，请重新登录");
+        }
         Map<String, Object> result = new HashMap<>();
         try {
             modelConfigService.deleteConfig(id, tenantId);
@@ -115,10 +125,14 @@ public class AIModelConfigController {
 
     /**
      * 设为默认配置
+     * 从 JWT token 获取租户ID
      */
     @PostMapping("/{id}/set-default")
-    public Map<String, Object> setDefault(@PathVariable Long id,
-                                            @RequestParam(required = false, defaultValue = "0") Long tenantId) {
+    public Map<String, Object> setDefault(@PathVariable Long id) {
+        Long tenantId = TenantContextHolder.getTenantId();
+        if (tenantId == null) {
+            throw new RuntimeException("无法获取租户信息，请重新登录");
+        }
         Map<String, Object> result = new HashMap<>();
         try {
             modelConfigService.setDefault(id, tenantId);

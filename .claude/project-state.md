@@ -60,6 +60,8 @@ modified_files:
   - "frontend/src/views/ModelConfig.vue"
   - "frontend/src/views/Tutor.vue"
   - "frontend/src/views/PhotoGrading.vue"
+  - "backend/src/main/java/com/edu/ai/controller/AIModelConfigController.java"
+  - "frontend/src/api/ai.ts"
 todo_items: []
 review_retry_count: 0
 
