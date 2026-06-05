@@ -85,6 +85,12 @@
             <template #title>PPT制作</template>
           </el-menu-item>
 
+          <!-- AI 助教 -->
+          <el-menu-item index="/tutor" class="menu-item">
+            <el-icon :size="20" class="menu-icon"><Bot /></el-icon>
+            <template #title>AI助教</template>
+          </el-menu-item>
+
           <el-sub-menu index="system" class="sub-menu" :class="{ 'is-active-parent': activeParentMenu === 'system' }">
             <template #title>
               <el-icon :size="20" class="menu-icon"><Setting /></el-icon>
@@ -92,6 +98,7 @@
             </template>
             <el-menu-item index="/user-manage" class="sub-menu-item">用户管理</el-menu-item>
             <el-menu-item index="/class-manage" class="sub-menu-item">班级管理</el-menu-item>
+            <el-menu-item index="/model-config" class="sub-menu-item">大模型配置</el-menu-item>
           </el-sub-menu>
         </el-menu>
       </el-scrollbar>
@@ -190,7 +197,7 @@ import { useRouter, useRoute } from 'vue-router'
 import { useUserStore } from '@/store/user'
 import { useAppStore } from '@/store/app'
 import { User, Setting, SwitchButton, Moon, Sunny, Monitor } from '@element-plus/icons-vue'
-import { Home, BookOpen, FileText, PenTool, Users, BarChart3, Presentation, ArrowLeft, ArrowRight, Menu, X } from 'lucide-vue-next'
+import { Home, BookOpen, FileText, PenTool, Users, BarChart3, Presentation, ArrowLeft, ArrowRight, Menu, X, Bot, Cpu } from 'lucide-vue-next'
 
 const router = useRouter()
 const route = useRoute()
@@ -240,7 +247,8 @@ const activeParentMenu = computed(() => {
     '/score-analysis': 'grading',
     '/wrong-questions': 'grading',
     '/user-manage': 'system',
-    '/class-manage': 'system'
+    '/class-manage': 'system',
+    '/model-config': 'system'
   }
   return menuMap[path] || ''
 })
@@ -258,6 +266,8 @@ const currentRouteTitle = computed(() => {
     '/student-profile': '学生画像',
     '/class-profile': '班级画像',
     '/ppt-maker': 'PPT制作',
+    '/tutor': 'AI助教',
+    '/model-config': '大模型配置',
     '/user-manage': '用户管理',
     '/class-manage': '班级管理'
   }
