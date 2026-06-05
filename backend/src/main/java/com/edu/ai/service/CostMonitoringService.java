@@ -1,9 +1,9 @@
 package com.edu.ai.service;
 
 import com.edu.ai.provider.AIProvider;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +14,7 @@ import java.util.concurrent.atomic.AtomicLong;
 /**
  * API 成本监控服务
  * 跟踪 API 调用成本，支持每日/每月统计
- * 使用内存存储（适用于 H2 无 Redis 环境）
+ * 使用内存存储（适用于 H2 无 Redis 环境），可选 Redis 支持
  */
 @Slf4j
 @Service
@@ -23,7 +23,7 @@ public class CostMonitoringService {
     private final AIProvider provider;
     private final RedisTemplate<String, String> redisTemplate;
 
-    // 内存成本统计（H2 环境无 Redis 时的备份）
+    // 内存成本统计
     private final AtomicLong dailyCostBackup = new AtomicLong(0);
     private final AtomicLong monthlyCostBackup = new AtomicLong(0);
 
@@ -35,7 +35,7 @@ public class CostMonitoringService {
     private static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     private static final DateTimeFormatter MONTH_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM");
 
-    public CostMonitoringService(AIProvider provider,
+    public CostMonitoringService(@Qualifier("cloudAIProvider") AIProvider provider,
                                  @Autowired(required = false) RedisTemplate<String, String> redisTemplate) {
         this.provider = provider;
         this.redisTemplate = redisTemplate;

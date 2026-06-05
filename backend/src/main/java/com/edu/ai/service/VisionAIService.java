@@ -6,6 +6,7 @@ import com.edu.ai.provider.AIProvider;
 import com.edu.ai.dto.GradingRequest;
 import com.edu.ai.dto.GradingResponse;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -24,7 +25,7 @@ public class VisionAIService {
     @Value("${ai.vision.accuracy-threshold:0.85}")
     private double accuracyThreshold;
 
-    public VisionAIService(AIProvider provider) {
+    public VisionAIService(@Qualifier("cloudAIProvider") AIProvider provider) {
         this.provider = provider;
     }
 
