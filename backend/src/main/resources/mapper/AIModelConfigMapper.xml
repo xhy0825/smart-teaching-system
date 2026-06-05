@@ -31,4 +31,11 @@
         WHERE id = #{id} AND deleted = 0
     </update>
 
+    <!-- 根据模型名称查询配置 -->
+    <select id="selectByModel" resultType="com.edu.ai.entity.AIModelConfig">
+        SELECT * FROM ai_model_config
+        WHERE model = #{model} AND tenant_id = #{tenantId} AND deleted = 0
+        LIMIT 1
+    </select>
+
 </mapper>

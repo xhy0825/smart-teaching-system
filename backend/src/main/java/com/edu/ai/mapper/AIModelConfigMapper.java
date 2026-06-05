@@ -29,4 +29,9 @@ public interface AIModelConfigMapper extends BaseMapper<AIModelConfig> {
      * 设置默认配置
      */
     void setDefault(@Param("id") Long id);
+
+    /**
+     * 根据模型名称查询配置
+     */
+    AIModelConfig selectByModel(@Param("model") String model, @Param("tenantId") Long tenantId);
 }

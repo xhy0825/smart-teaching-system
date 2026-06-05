@@ -118,6 +118,13 @@ public class AIModelConfigService {
     }
 
     /**
+     * 根据模型名称查询配置
+     */
+    public AIModelConfig findByModel(String model, Long tenantId) {
+        return modelConfigMapper.selectByModel(model, tenantId);
+    }
+
+    /**
      * 测试连接
      */
     public Map<String, Object> testConnection(AIModelConfig config) {

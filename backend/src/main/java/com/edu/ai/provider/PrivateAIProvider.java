@@ -229,4 +229,10 @@ public class PrivateAIProvider implements AIProvider {
             throw new RuntimeException("对话失败: " + e.getMessage());
         }
     }
+
+    @Override
+    public String chatWithVision(String prompt, String imageBase64) {
+        log.warn("私有AI提供商暂不支持 Vision 功能");
+        throw new UnsupportedOperationException("私有AI提供商不支持 Vision API，请使用云端AI服务（Claude/DeepSeek等）");
+    }
 }

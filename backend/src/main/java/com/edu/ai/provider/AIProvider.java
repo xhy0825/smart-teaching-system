@@ -33,6 +33,14 @@ public interface AIProvider {
     String chat(String prompt);
 
     /**
+     * AI 视觉对话（支持图片）
+     * @param prompt 文本提示词
+     * @param imageBase64 Base64 编码的图片
+     * @return AI 响应
+     */
+    String chatWithVision(String prompt, String imageBase64);
+
+    /**
      * 检查服务状态
      */
     boolean isAvailable();

@@ -1,7 +1,9 @@
 package com.edu.ai.controller;
 
-import com.edu.ai.provider.AIProvider;
+import com.edu.ai.entity.AIModelConfig;
+import com.edu.ai.client.AIClient;
 import com.edu.ai.provider.AIProviderFactory;
+import com.edu.ai.service.AIModelConfigService;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.stereotype.Controller;
 
@@ -18,9 +20,11 @@ import java.util.Map;
 public class TutorController {
 
     private final AIProviderFactory providerFactory;
+    private final AIModelConfigService modelConfigService;
 
-    public TutorController(AIProviderFactory providerFactory) {
+    public TutorController(AIProviderFactory providerFactory, AIModelConfigService modelConfigService) {
         this.providerFactory = providerFactory;
+        this.modelConfigService = modelConfigService;
     }
 
     /**
@@ -31,13 +35,28 @@ public class TutorController {
     public Map<String, Object> chat(@RequestBody Map<String, String> request) {
         String conversationId = request.get("conversationId");
         String message = request.get("message");
+        String selectedModel = request.get("model");
 
         if (conversationId == null || conversationId.isEmpty()) {
             conversationId = "conv_" + System.currentTimeMillis();
         }
 
-        // 获取 AI Provider（使用默认租户 0）
-        AIProvider provider = providerFactory.getDefaultProvider();
+        // 根据选定的模型获取对应的 Provider
+        com.edu.ai.client.AIClient provider = null;
+        if (selectedModel != null && !selectedModel.isEmpty()) {
+            // 查找使用此模型的配置
+            AIModelConfig config = modelConfigService.findByModel(selectedModel, 0L);
+            if (config != null) {
+                provider = providerFactory.createClient(config);
+            }
+        }
+        if (provider == null) {
+            // 降级到默认配置
+            AIModelConfig defaultConfig = modelConfigService.getDefaultConfig(0L);
+            if (defaultConfig != null) {
+                provider = providerFactory.createClient(defaultConfig);
+            }
+        }
 
         if (!provider.isAvailable()) {
             Map<String, Object> result = new HashMap<>();

@@ -2,7 +2,7 @@ package com.edu.ai.service;
 
 import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.JSONObject;
-import com.edu.ai.client.AIClient;
+import com.edu.ai.provider.AIProvider;
 import com.edu.ai.dto.GradingRequest;
 import com.edu.ai.dto.GradingResponse;
 import lombok.extern.slf4j.Slf4j;
@@ -19,13 +19,13 @@ import java.util.Base64;
 @Service
 public class VisionAIService {
 
-    private final AIClient aiClient;
+    private final AIProvider provider;
 
     @Value("${ai.vision.accuracy-threshold:0.85}")
     private double accuracyThreshold;
 
-    public VisionAIService(AIClient aiClient) {
-        this.aiClient = aiClient;
+    public VisionAIService(AIProvider provider) {
+        this.provider = provider;
     }
 
     /**
@@ -48,8 +48,8 @@ public class VisionAIService {
             // 构建 Vision API 提示词
             String prompt = buildVisionGradingPrompt(request);
 
-            // 调用 AI Vision
-            String result = aiClient.chatWithVision(prompt, imageBase64);
+            // 调用 AI Provider（支持 Vision）
+            String result = provider.chatWithVision(prompt, imageBase64);
 
             // 解析结果
             parseVisionGradingResult(result, response);

@@ -1,7 +1,9 @@
 package com.edu.ai.service;
 
-import com.edu.ai.client.AIClient;
+import com.edu.ai.provider.AIProvider;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -17,27 +19,35 @@ import java.util.concurrent.atomic.AtomicLong;
 @Service
 public class CostMonitoringService {
 
-    private final AIClient aiClient;
+    private final AIProvider provider;
+    private final RedisTemplate<String, String> redisTemplate;
 
-    // 内存成本统计
-    private final AtomicLong dailyCostBackup = new AtomicLong(0);
-    private final AtomicLong monthlyCostBackup = new AtomicLong(0);
+    // Claude API 价格（每百万 tokens）
+    private static final double INPUT_PRICE_PER_MILLION = 3.0;
+    private static final double OUTPUT_PRICE_PER_MILLION = 15.0;
 
     // 日期格式化
     private static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     private static final DateTimeFormatter MONTH_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM");
 
-    public CostMonitoringService(AIClient aiClient) {
-        this.aiClient = aiClient;
+    public CostMonitoringService(AIProvider provider,
+                                 RedisTemplate<String, String> redisTemplate) {
+        this.provider = provider;
+        this.redisTemplate = redisTemplate;
     }
 
     /**
      * 计算最近一次 API 调用成本
      */
     public double calculateLastCallCost() {
-        long totalTokens = aiClient.getTokenCount();
-        // 简化估算
-        return (totalTokens / 1_000_000.0) * 3.0;
+        long totalTokens = provider.getTokenCount();
+        // 简化估算：假设输入占 60%，输出占 40%（Claude API 典型比例）
+        long inputTokens = (long) (totalTokens * 0.6);
+        long outputTokens = totalTokens - inputTokens;
+
+        double estimatedCost = (inputTokens / 1_000_000.0) * INPUT_PRICE_PER_MILLION
+                + (outputTokens / 1_000_000.0) * OUTPUT_PRICE_PER_MILLION;
+        return estimatedCost;
     }
 
     /**
@@ -71,7 +81,7 @@ public class CostMonitoringService {
      * 获取调用统计
      */
     public String getCostReport() {
-        long callCount = aiClient.getCallCount();
+        long callCount = provider.getCallCount();
         double dailyCost = getDailyCost();
         double monthlyCost = getMonthlyCost();
         double avgCostPerCall = callCount > 0 ? monthlyCost / callCount : 0;

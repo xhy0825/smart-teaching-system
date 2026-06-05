@@ -138,6 +138,15 @@ public class CloudAIProvider implements AIProvider {
     }
 
     @Override
+    public String chatWithVision(String prompt, String imageBase64) {
+        AIClient client = getClient();
+        if (client == null) {
+            throw new RuntimeException("AI服务未配置或不可用");
+        }
+        return client.chatWithVision(prompt, imageBase64);
+    }
+
+    @Override
     public boolean isAvailable() {
         AIClient client = getClient();
         return client != null && client.isAvailable();
