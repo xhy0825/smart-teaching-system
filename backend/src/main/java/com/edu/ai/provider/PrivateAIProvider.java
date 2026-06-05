@@ -192,4 +192,41 @@ public class PrivateAIProvider implements AIProvider {
     public long getTokenCount() {
         return tokenCount.get();
     }
+
+    @Override
+    public String chat(String prompt) {
+        if (!isAvailable()) {
+            throw new RuntimeException("私有AI服务不可用");
+        }
+
+        try {
+            String url = serviceUrl + "/api/chat";
+
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_JSON);
+
+            JSONObject body = new JSONObject();
+            body.put("prompt", prompt);
+
+            HttpEntity<String> entity = new HttpEntity<>(body.toJSONString(), headers);
+
+            callCount.incrementAndGet();
+
+            ResponseEntity<String> responseEntity = restTemplate.exchange(
+                    url, HttpMethod.POST, entity, String.class);
+
+            String responseBody = responseEntity.getBody();
+            JSONObject responseJson = JSON.parseObject(responseBody);
+
+            if (responseJson.getBooleanValue("success")) {
+                return responseJson.getString("response");
+            } else {
+                throw new RuntimeException(responseJson.getString("error"));
+            }
+
+        } catch (Exception e) {
+            log.error("私有AI对话失败: {}", e.getMessage());
+            throw new RuntimeException("对话失败: " + e.getMessage());
+        }
+    }
 }

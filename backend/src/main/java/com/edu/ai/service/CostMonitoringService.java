@@ -1,6 +1,6 @@
 package com.edu.ai.service;
 
-import com.edu.ai.client.ClaudeAPIClient;
+import com.edu.ai.client.AIClient;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +17,7 @@ import java.util.concurrent.atomic.AtomicLong;
 @Service
 public class CostMonitoringService {
 
-    private final ClaudeAPIClient claudeAPIClient;
+    private final AIClient aiClient;
 
     // 内存成本统计
     private final AtomicLong dailyCostBackup = new AtomicLong(0);
@@ -27,15 +27,15 @@ public class CostMonitoringService {
     private static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     private static final DateTimeFormatter MONTH_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM");
 
-    public CostMonitoringService(ClaudeAPIClient claudeAPIClient) {
-        this.claudeAPIClient = claudeAPIClient;
+    public CostMonitoringService(AIClient aiClient) {
+        this.aiClient = aiClient;
     }
 
     /**
      * 计算最近一次 API 调用成本
      */
     public double calculateLastCallCost() {
-        long totalTokens = claudeAPIClient.getTokenCount();
+        long totalTokens = aiClient.getTokenCount();
         // 简化估算
         return (totalTokens / 1_000_000.0) * 3.0;
     }
@@ -71,7 +71,7 @@ public class CostMonitoringService {
      * 获取调用统计
      */
     public String getCostReport() {
-        long callCount = claudeAPIClient.getCallCount();
+        long callCount = aiClient.getCallCount();
         double dailyCost = getDailyCost();
         double monthlyCost = getMonthlyCost();
         double avgCostPerCall = callCount > 0 ? monthlyCost / callCount : 0;

@@ -26,6 +26,13 @@ public interface AIProvider {
     GradingResponse gradeSubjectiveQuestion(GradingRequest request);
 
     /**
+     * AI 对话（智能助教）
+     * @param prompt 用户输入
+     * @return AI 响应
+     */
+    String chat(String prompt);
+
+    /**
      * 检查服务状态
      */
     boolean isAvailable();

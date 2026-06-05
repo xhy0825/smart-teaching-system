@@ -1,12 +1,10 @@
 package com.edu.ai.service;
 
 import com.alibaba.fastjson2.JSON;
-import com.alibaba.fastjson2.JSONArray;
 import com.alibaba.fastjson2.JSONObject;
-import com.edu.ai.client.ClaudeAPIClient;
+import com.edu.ai.client.AIClient;
 import com.edu.ai.dto.GradingRequest;
 import com.edu.ai.dto.GradingResponse;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -15,19 +13,19 @@ import java.util.Base64;
 
 /**
  * 拍照批改服务（Vision API）
- * 使用 Claude Vision API 识别手写答案并批改
+ * 使用 AI 多模态能力识别手写答案并批改
  */
 @Slf4j
 @Service
 public class VisionAIService {
 
-    private final ClaudeAPIClient claudeAPIClient;
+    private final AIClient aiClient;
 
     @Value("${ai.vision.accuracy-threshold:0.85}")
     private double accuracyThreshold;
 
-    public VisionAIService(ClaudeAPIClient claudeAPIClient) {
-        this.claudeAPIClient = claudeAPIClient;
+    public VisionAIService(AIClient aiClient) {
+        this.aiClient = aiClient;
     }
 
     /**
@@ -50,8 +48,8 @@ public class VisionAIService {
             // 构建 Vision API 提示词
             String prompt = buildVisionGradingPrompt(request);
 
-            // 调用 Claude Vision API
-            String result = claudeAPIClient.callWithVision(prompt, imageBase64);
+            // 调用 AI Vision
+            String result = aiClient.chatWithVision(prompt, imageBase64);
 
             // 解析结果
             parseVisionGradingResult(result, response);
@@ -117,7 +115,7 @@ public class VisionAIService {
     }
 
     /**
-     * 解析 Vision API 返回结果
+     * 解析 AI Vision 返回结果
      */
     private void parseVisionGradingResult(String result, GradingResponse response) {
         try {
