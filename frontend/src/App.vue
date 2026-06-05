@@ -1,6 +1,8 @@
 <template>
   <el-config-provider :locale="zhCn">
-    <router-view />
+    <div class="app-container">
+      <router-view />
+    </div>
   </el-config-provider>
 </template>
 
@@ -15,6 +17,10 @@ appStore.applyTheme()
 
 <style>
 #app {
+  width: 100%;
+  height: 100%;
+}
+.app-container {
   width: 100%;
   height: 100%;
 }
