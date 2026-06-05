@@ -24,9 +24,6 @@ public class ClaudeAPIClient {
     private final AtomicLong tokenCount;
 
     public ClaudeAPIClient(String apiKey, String apiUrl, String model, Integer maxTokens) {
-        if (apiKey == null || apiKey.isEmpty()) {
-            throw new IllegalArgumentException("apiKey cannot be null or empty");
-        }
         this.apiKey = apiKey;
         this.apiUrl = apiUrl;
         this.model = model;
