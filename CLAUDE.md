@@ -31,7 +31,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 | 目录 | 职责 |
 |------|------|
-| `views/` | 页面组件（Login、ClassManage、ClassProfile、Grading、Question、QuestionBank、ScoreAnalysis、StudentProfile） |
+| `views/` | 页面组件 |
 | `api/` | 后端接口调用（axios封装） |
 | `router/` | Vue Router 路由配置 |
 | `store/` | Pinia 状态管理 |
@@ -100,6 +100,28 @@ mysql -u root -p edu_platform < backend/src/main/resources/db/mock-data.sql
 | `JWT_SECRET` | JWT签名密钥 | 内置默认值 |
 | `ANTHROPIC_API_KEY` | Claude API密钥 | 空 |
 
+## 配置说明
+
+### 后端配置
+
+主要配置文件: `backend/src/main/resources/application.yml`
+
+- 数据库配置: 修改 `spring.datasource`
+- JWT配置: 修改 `jwt.secret`
+- AI配置: 修改 `ai.*`
+
+### 前端配置
+
+主要配置文件: `frontend/vite.config.ts`
+
+- 代理设置: `server.proxy`
+- 构建优化: 代码分割、console移除
+
+## 默认账号
+
+- 用户名: `admin`
+- 密码: `admin123`
+
 ## 开发规范
 
 SDLC 五阶段流程（P1需求→P2编码→P3测试→P4审查→P5交付）详见 `.claude/rules/`。
@@ -115,10 +137,3 @@ SDLC 五阶段流程（P1需求→P2编码→P3测试→P4审查→P5交付）�
 | `start-backend.bat` | 启动后端（MySQL版） |
 | `start-backend-h2.bat` | 启动后端（H2内存数据库） |
 | `start-frontend.bat` | 启动前端开发服务器 |
-
-## 最近更新
-
-- **2026-06-06**: 项目清理优化 - 删除无用脚本、清理临时文件、优化构建配置
-- **2026-06-06**: 从 git 跟踪中移除 `.claude/` 配置目录
-- **2026-06-05**: AI模型配置功能完善 + MySQL持久化
-- **2026-05-20**: UI框架 redesign - Glassmorphism风格 + 深色模式

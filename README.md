@@ -74,34 +74,34 @@ npm run dev
 
 前端界面: http://localhost:3000
 
-默认账号: `admin` / `admin123`
+### 5. 默认账号
+
+- 用户名: `admin`
+- 密码: `admin123`
 
 ## 项目结构
 
 ```
-edu/
-├── backend/          # Spring Boot 后端
-│   ├── src/main/java/com/edu/
-│   │   ├── common/    # 公共模块
-│   │   ├── user/     # 用户管理
-│   │   ├── exam/     # 考试管理
-│   │   ├── grading/  # 智能评分
-│   │   ├── tenant/   # 租户管理
-│   │   ├── ai/       # AI服务
-│   │   └── ppt/      # PPT管理
-│   └── pom.xml
-├── frontend/         # Vue 3 前端
-│   ├── src/
-│   │   ├── views/   # 页面组件
-│   │   ├── api/     # 接口调用
-│   │   ├── router/  # 路由配置
-│   │   ├── store/   # 状态管理
-│   │   └── utils/   # 工具函数
-│   └── package.json
-├── start-backend.bat      # 后端启动脚本（MySQL）
-├── start-backend-h2.bat  # 后端启动脚本（H2）
-├── start-frontend.bat     # 前端启动脚本
-└── README.md
+smart-teaching-system/
+├── backend/              # Spring Boot 后端
+│   └── src/main/java/com/edu/
+│       ├── common/       # 公共模块
+│       ├── user/         # 用户管理
+│       ├── exam/         # 考试管理
+│       ├── grading/      # 智能评分
+│       ├── tenant/       # 租户管理
+│       ├── ai/           # AI服务
+│       └── ppt/          # PPT管理
+├── frontend/             # Vue 3 前端
+│   └── src/
+│       ├── views/        # 页面组件
+│       ├── api/          # 接口调用
+│       ├── router/       # 路由配置
+│       ├── store/        # 状态管理
+│       └── utils/        # 工具函数
+├── start-backend.bat          # 后端启动脚本（MySQL）
+├── start-backend-h2.bat      # 后端启动脚本（H2）
+└── start-frontend.bat         # 前端启动脚本
 ```
 
 ## 开发指南
@@ -169,14 +169,6 @@ npm run preview
 
 ### Q: Redis连接失败?
 Redis是可选的，可以暂时注释掉Redis相关配置，或安装Redis服务。
-
-## 贡献指南
-
-1. Fork 本仓库
-2. 创建特性分支 (`git checkout -b feature/AmazingFeature`)
-3. 提交更改 (`git commit -m 'Add some AmazingFeature'`)
-4. 推送到分支 (`git push origin feature/AmazingFeature`)
-5. 开启 Pull Request
 
 ## 许可证
 

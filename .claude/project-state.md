@@ -52,6 +52,8 @@ modified_files:
   - "scripts/start-litellm.sh"
   - "scripts/start-litellm.bat"
   - "backend/src/test/java/com/edu/ai/client/OpenAICompatibleClientTest.java"
+  - "CLAUDE.md"
+  - "README.md"
 todo_items: []
 review_retry_count: 0
 
