@@ -29,14 +29,13 @@ completed_tasks:
 global_architecture: ["Spring Boot 3.2 + Vue 3 + Element Plus + Claude API", "ClaudeAPIClient公共方法", "VisionAIService拍照批改", "Redis对话管理", "成本监控", "智能助手（新增）", "大模型配置页面（新增）"]  # ≤5条#
 
 # 当前任务（重置时归档后清空）
-current_phase: P5  # P0-P5
-task_description: "交付P5：状态重置完成"  # ≤30字
-started_at: "2026-06-06"
+current_phase: P0  # P0-P5
+task_description: ""  # ≤30字
+started_at: ""
 last_updated: "2026-06-06"
 prd_file: ""  # PRD 路径
 architecture_decisions: []  # ≤5条#
-modified_files:
-  - ".claude/project-state.md"
+modified_files: []
 todo_items: []
 review_retry_count: 0
 
