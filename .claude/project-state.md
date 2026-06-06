@@ -30,14 +30,13 @@ global_architecture: ["Spring Boot 3.2 + Vue 3 + Element Plus + Claude API", "Cl
 
 # 当前任务（重置时归档后清空）
 current_phase: P5  # P0-P5
-task_description: "SDLC初始化：修复状态文件"  # ≤30字
+task_description: "交付P5：状态重置完成"  # ≤30字
 started_at: "2026-06-06"
 last_updated: "2026-06-06"
 prd_file: ""  # PRD 路径
 architecture_decisions: []  # ≤5条#
 modified_files:
   - ".claude/project-state.md"
-  - ".claude/archive/tasks-2026.md"
 todo_items: []
 review_retry_count: 0
 
@@ -66,7 +65,9 @@ phase_history:
   - "P3→P4: 2026-06-06 LiteLLM重构暂停，等Python3.14支持"
   - "P4→P5: 2026-06-06 P4审查通过，进入交付"
   - "P5→P0: 2026-06-06 交付完成，系统重置"
-key_context: "P0空闲：LiteLLM重构暂停，等待新任务"  # ≤50字
+  - "P0→P5: 2026-06-06 SDLC初始化修复，commit 5aaa1b1"
+  - "P5→P0: 2026-06-06 交付完成，推送远程仓库"
+key_context: "P0空闲：SDLC已初始化，等待新任务"  # ≤50字
 ```
 
 **更新时机**：新任务→归档+重置 | PRD确认→写 prd.md | 阶段推进→更新 phase | 文件修改→记路径 | 架构→记决策 | 压缩前→更新全部**
