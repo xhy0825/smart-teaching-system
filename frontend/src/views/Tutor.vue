@@ -222,13 +222,12 @@ const chatContainer = ref(null)
 // 加载可用模型（从后端配置）
 const loadAvailableModels = async () => {
   try {
-    const res = await request.get('/api/ai/configs')
-    if (res.data.success) {
-      const configs = res.data.data || []
-      // 收集所有可用模型
-      const models = new Set()
-      configs.forEach(config => {
-        if (config.isEnabled !== 0) {
+    const res = await request.get('/ai/configs')
+    const configs = res.data || []
+    // 收集所有可用模型
+    const models = new Set()
+    configs.forEach(config => {
+        if (config.isEnabled !== false) {
           models.add(config.model)
           if (config.availableModels) {
             try {
@@ -242,7 +241,6 @@ const loadAvailableModels = async () => {
       if (availableModels.value.length > 0 && !selectedModel.value) {
         selectedModel.value = availableModels.value[0]
       }
-    }
   } catch (error) {
     console.error('加载模型失败：', error)
   }
@@ -386,7 +384,7 @@ const sendMessage = async () => {
 
   try {
     // 调用后端 AI 助教接口
-    const res = await request.post('/api/ai-tutor/chat', {
+    const res = await request.post('/ai-tutor/chat', {
       conversationId: currentConversationId.value,
       message: userMessage,
       model: selectedModel.value || undefined

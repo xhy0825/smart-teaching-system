@@ -64,12 +64,12 @@ public class AIModelConfig {
     /**
      * 是否默认（每租户唯一）
      */
-    private Integer isDefault;
+    private Boolean isDefault;
 
     /**
      * 是否启用
      */
-    private Integer isEnabled;
+    private Boolean isEnabled;
 
     /**
      * 创建时间

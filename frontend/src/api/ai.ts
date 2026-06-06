@@ -7,7 +7,7 @@ import type { AxiosResponse } from 'axios'
  * 获取供应商预设
  */
 export const getProviderPresets = (): Promise<AxiosResponse<any>> => {
-  return request.get('/api/ai/configs/presets')
+  return request.get('/ai/configs/presets')
 }
 
 /**
@@ -15,7 +15,7 @@ export const getProviderPresets = (): Promise<AxiosResponse<any>> => {
  * 租户ID从JWT token自动获取，无需传参
  */
 export const listModelConfigs = (): Promise<AxiosResponse<any>> => {
-  return request.get('/api/ai/configs')
+  return request.get('/ai/configs')
 }
 
 /**
@@ -23,7 +23,7 @@ export const listModelConfigs = (): Promise<AxiosResponse<any>> => {
  * @param data 配置数据
  */
 export const saveModelConfig = (data: any): Promise<AxiosResponse<any>> => {
-  return request.post('/api/ai/configs', data)
+  return request.post('/ai/configs', data)
 }
 
 /**
@@ -32,7 +32,7 @@ export const saveModelConfig = (data: any): Promise<AxiosResponse<any>> => {
  * @param data 配置数据
  */
 export const updateModelConfig = (id: number, data: any): Promise<AxiosResponse<any>> => {
-  return request.put(`/api/ai/configs/${id}`, data)
+  return request.put(`/ai/configs/${id}`, data)
 }
 
 /**
@@ -41,7 +41,7 @@ export const updateModelConfig = (id: number, data: any): Promise<AxiosResponse<
  * 租户ID从JWT token自动获取，无需传参
  */
 export const deleteModelConfig = (id: number): Promise<AxiosResponse<any>> => {
-  return request.delete(`/api/ai/configs/${id}`)
+  return request.delete(`/ai/configs/${id}`)
 }
 
 /**
@@ -50,7 +50,7 @@ export const deleteModelConfig = (id: number): Promise<AxiosResponse<any>> => {
  * 租户ID从JWT token自动获取，无需传参
  */
 export const setDefaultConfig = (id: number): Promise<AxiosResponse<any>> => {
-  return request.post(`/api/ai/configs/${id}/set-default`)
+  return request.post(`/ai/configs/${id}/set-default`)
 }
 
 /**
@@ -58,5 +58,5 @@ export const setDefaultConfig = (id: number): Promise<AxiosResponse<any>> => {
  * @param data 配置数据（不保存，直接测试）
  */
 export const testConnection = (data: any): Promise<AxiosResponse<any>> => {
-  return request.post('/api/ai/configs/test', data)
+  return request.post('/ai/configs/test', data)
 }

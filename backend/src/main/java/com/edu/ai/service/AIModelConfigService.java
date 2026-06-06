@@ -50,7 +50,7 @@ public class AIModelConfigService {
         config.setApiKey(encrypt(config.getApiKey()));
 
         // 如果设为默认，先清除其他默认配置
-        if (config.getIsDefault() != null && config.getIsDefault() == 1) {
+        if (Boolean.TRUE.equals(config.getIsDefault())) {
             modelConfigMapper.clearDefaultFlag(config.getTenantId());
         }
 
@@ -81,7 +81,7 @@ public class AIModelConfigService {
         if (config.getIsEnabled() != null) existing.setIsEnabled(config.getIsEnabled());
 
         // 如果设为默认，先清除其他默认配置
-        if (config.getIsDefault() != null && config.getIsDefault() == 1) {
+        if (Boolean.TRUE.equals(config.getIsDefault())) {
             modelConfigMapper.clearDefaultFlag(existing.getTenantId());
         }
 

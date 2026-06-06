@@ -283,12 +283,12 @@ const saveConfig = async () => {
       res = await saveModelConfig(configForm)
     }
 
-    if (res.data.success) {
+    if (res.code === 200) {
       ElMessage.success('配置保存成功！')
       resetForm()
       loadConfigs()
     } else {
-      ElMessage.error('保存失败：' + res.data.message)
+      ElMessage.error('保存失败：' + (res.message || '未知错误'))
     }
   } catch (error) {
     ElMessage.error('保存失败：' + error.message)
@@ -308,8 +308,8 @@ const editConfig = (row) => {
     model: row.model,
     maxTokens: row.maxTokens || 2000,
     temperature: row.temperature || 0.7,
-    isDefault: row.isDefault === 1,
-    isEnabled: row.isEnabled === 1,
+    isDefault: row.isDefault === true || row.isDefault === 1,
+    isEnabled: row.isEnabled === true || row.isEnabled === 1,
     tenantId: row.tenantId
   })
   selectedProvider.value = row.provider
@@ -323,7 +323,7 @@ const deleteConfig = async (row) => {
       type: 'warning'
     })
     const res = await deleteModelConfig(row.id)
-    if (res.data.success) {
+    if (res.code === 200) {
       ElMessage.success('删除成功！')
       loadConfigs()
     }
@@ -336,7 +336,7 @@ const deleteConfig = async (row) => {
 const setDefault = async (row) => {
   try {
     const res = await setDefaultConfig(row.id)
-    if (res.data.success) {
+    if (res.code === 200) {
       ElMessage.success('已设为默认配置！')
       loadConfigs()
     }
@@ -367,8 +367,8 @@ const resetForm = () => {
 const loadConfigs = async () => {
   try {
     const res = await listModelConfigs()
-    if (res.data.success) {
-      configList.value = res.data.data
+    if (res.code === 200) {
+      configList.value = res.data || []
     }
   } catch (error) {
     console.error('加载配置失败：', error)
