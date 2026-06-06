@@ -207,6 +207,75 @@ gstack 配置已添加到 `CLAUDE.md`：
 - [技能详细说明](https://github.com/garrytan/gstack/blob/main/docs/skills.md)
 - [安装指南](https://github.com/garrytan/gstack#install--30-seconds)
 
+---
+
+## 工具组合使用指南
+
+本项目集成了 **Claude-SDLC + OpenSpec + Superpowers + Gstack** 四大工具系统，形成完整的 AI 辅助开发流程。
+
+### 架构概览
+
+```mermaid
+graph TB
+    subgraph "SDLC 主线"
+        P1[P1:需求] --> P2[P2:编码]
+        P2 --> P3[P3:测试]
+        P3 --> P4[P4:审查]
+        P4 --> P5[P5:交付]
+    end
+
+    subgraph "能力增强"
+        SP[Superpowers] --> P1
+        SP --> P2
+        SP --> P3
+    end
+
+    subgraph "规范管理"
+        OS[OpenSpec] --> P1
+        OS --> P2
+    end
+
+    subgraph "专业角色"
+        GS[Gstack] --> P2
+        GS --> P3
+        GS --> P4
+        GS --> P5
+    end
+```
+
+### 工具定位
+
+| 工具 | 定位 | 核心功能 |
+|------|------|---------|
+| **Claude-SDLC** | 项目管理主线 | P1-P5 五阶段流程控制 |
+| **OpenSpec** | 规范管理层 | 探索、提案、应用、归档 |
+| **Superpowers** | 能力增强层 | brainstorming、调试、TDD |
+| **Gstack** | 专业角色层 | 23个专业角色技能 |
+
+### 快速参考
+
+| 场景 | 推荐工具组合 |
+|------|---------|
+| 新功能开发 | SDLC P1 → OpenSpec探索 → Superpowers规划 → Gstack实现 |
+| Bug修复 | SDLC P3 → Superpowers调试 → Gstack测试 |
+| 代码审查 | SDLC P4 → Gstack/review + /codex |
+| 部署发布 | SDLC P5 → Gstack/ship + /land-and-deploy |
+
+### 详细文档
+
+完整的使用指南、架构图、场景流程、配置说明请查看：
+
+📖 **[工具组合使用详细指南](docs/tools-integration-guide.md)**
+
+内容包括：
+- 完整的 Mermaid 架构图
+- 4个组合使用场景详解
+- 配置文件关系图
+- 命令速查表和阶段-工具矩阵
+- 最佳实践和故障排查
+
+---
+
 ## 配置说明
 
 ### 后端配置
