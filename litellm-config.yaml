@@ -1,0 +1,74 @@
+# LiteLLM Proxy 配置文件
+# BerriAI 开源，MIT 协议
+# 支持 100+ 大模型，统一 OpenAI 兼容格式
+
+model_list:
+  # Claude 模型（Anthropic）
+  - model_name: claude-sonnet-4-6
+    litellm_params:
+      model: anthropic/claude-sonnet-4-6
+      api_key: os.environ/ANTHROPIC_API_KEY
+
+  - model_name: claude-haiku-3.5
+    litellm_params:
+      model: anthropic/claude-haiku-3.5
+      api_key: os.environ/ANTHROPIC_API_KEY
+
+  # DeepSeek 模型
+  - model_name: deepseek-chat
+    litellm_params:
+      model: deepseek/deepseek-chat
+      api_key: os.environ/DEEPSEEK_API_KEY
+
+  - model_name: deepseek-reasoner
+    litellm_params:
+      model: deepseek/deepseek-reasoner
+      api_key: os.environ/DEEPSEEK_API_KEY
+
+  # OpenAI 模型
+  - model_name: gpt-4o
+    litellm_params:
+      model: openai/gpt-4o
+      api_key: os.environ/OPENAI_API_KEY
+
+  - model_name: gpt-4o-mini
+    litellm_params:
+      model: openai/gpt-4o-mini
+      api_key: os.environ/OPENAI_API_KEY
+
+  # 通义千问模型（阿里云）
+  - model_name: qwen-turbo
+    litellm_params:
+      model: qwen/qwen-turbo
+      api_key: os.environ/QWEN_API_KEY
+
+  - model_name: qwen-plus
+    litellm_params:
+      model: qwen/qwen-plus
+      api_key: os.environ/QWEN_API_KEY
+
+# 通用设置
+general_settings:
+  # LiteLLM Proxy 的 master key（用于管理 API）
+  master_key: sk-litellm-master-key-2026
+
+  # 数据库 URL（可选：持久化配置）
+  # database_url: mysql://root:password@localhost:3306/litellm_db
+
+  # 是否将模型配置存储到数据库
+  store_model_in_db: false
+
+  # 是否启用缓存（减少重复调用）
+  cache: true
+
+  # 缓存持续时间（秒）
+  cache_ttl: 3600
+
+  # 最大并行请求数
+  max_parallel_requests: 100
+
+  # 每分钟最大请求数（限流）
+  rpm: 500
+
+  # 详细日志
+  debug: true

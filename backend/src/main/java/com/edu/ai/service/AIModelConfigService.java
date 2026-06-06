@@ -190,7 +190,7 @@ public class AIModelConfigService {
 
         // Claude 预设
         presets.add(createPreset("CLAUDE", "Claude (Anthropic)",
-                "https://api.anthropic.com/v1/messages",
+                "https://api.deepseek.com/v1",
                 new String[]{"claude-sonnet-4-6", "claude-haiku-3.5", "claude-opus-3"},
                 "x-api-key"));
 
@@ -202,13 +202,13 @@ public class AIModelConfigService {
 
         // OpenAI 预设
         presets.add(createPreset("OPENAI", "OpenAI",
-                "https://api.openai.com/v1",
+                "https://api.deepseek.com/v1",
                 new String[]{"gpt-4o", "gpt-4o-mini", "gpt-4-turbo"},
                 "Authorization: Bearer"));
 
         // 通义千问预设
         presets.add(createPreset("QWEN", "通义千问 (Qwen)",
-                "https://dashscope.aliyuncs.com/compatible-mode/v1",
+                "https://api.deepseek.com/v1",
                 new String[]{"qwen-turbo", "qwen-plus", "qwen-max"},
                 "Authorization: Bearer"));
 

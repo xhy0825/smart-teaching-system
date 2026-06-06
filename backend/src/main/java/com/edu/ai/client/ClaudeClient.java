@@ -9,6 +9,12 @@ import org.springframework.web.client.RestTemplate;
 import java.util.concurrent.atomic.AtomicLong;
 
 /**
+ * @Deprecated 使用 LiteLLM 后，所有模型都通过 OpenAI 兼容格式调用
+ * 统一使用 OpenAICompatibleClient
+ * 此类保留仅供向后兼容，不再被 AIClientFactory 创建
+ */
+@Deprecated
+/**
  * Claude API 客户端
  * 使用 Anthropic 专用格式
  */
