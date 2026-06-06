@@ -1,77 +1,160 @@
-# 教师智能教学系统启动指南
+# 教师智能教学系统
 
-## 环境要求
+基于 Spring Boot + Vue 3 的智能教学管理平台，集成 AI 能力，支持考试管理、智能评分、班级画像、PPT生成等功能。
 
-- **后端**: Java 17+, Maven 3.8+, MySQL 8.x, Redis 7.x (可选)
+## 功能特性
+
+- **用户管理**: 多角色权限控制（管理员、教师、学生）
+- **考试管理**: 题库管理、试卷生成、在线考试
+- **智能评分**: AI辅助批改、成绩分析、错题统计
+- **班级画像**: 学生成绩分析、知识点掌握度雷达图
+- **AI集成**: Claude API 集成、智能出题、拍照批改
+- **PPT生成**: 基于模板的快速PPT生成
+
+## 技术栈
+
+### 后端
+- **框架**: Spring Boot 3.2.0 + Java 17
+- **ORM**: MyBatis-Plus 3.5.5
+- **数据库**: MySQL 8.x + Redis (可选)
+- **安全**: JWT + Spring Security
+- **AI**: Claude API / LiteLLM Proxy
+
+### 前端
+- **框架**: Vue 3 + TypeScript
+- **构建**: Vite 5
+- **UI库**: Element Plus
+- **状态管理**: Pinia
+- **图表**: ECharts 6
+
+## 快速开始
+
+### 环境要求
+
+- **后端**: Java 17+, Maven 3.8+, MySQL 8.x
 - **前端**: Node.js 18+, npm 9+
 
-## 1. 数据库配置
+### 1. 数据库配置
 
-### 创建MySQL数据库
-
-```sql
-CREATE DATABASE edu_platform CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-```
-
-### 执行数据库脚本
+创建数据库并初始化:
 
 ```bash
+mysql -u root -p -e "CREATE DATABASE edu_platform CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
 mysql -u root -p edu_platform < backend/src/main/resources/db/schema.sql
 ```
 
-### 配置数据库连接
+### 2. 配置环境变量
 
-修改 `backend/src/main/resources/application.yml` 或设置环境变量:
+设置数据库连接密码:
 
 ```bash
-# Windows CMD
+# Windows
 set DB_PASSWORD=your_password
-
-# Windows PowerShell
-$env:DB_PASSWORD="your_password"
 
 # Linux/Mac
 export DB_PASSWORD=your_password
 ```
 
-## 2. 启动后端
-
-### 方式一: 使用Maven
+### 3. 启动后端
 
 ```bash
 cd backend
 mvn spring-boot:run
 ```
 
-### 方式二: 打包后运行
+后端API: http://localhost:8080/api
 
-```bash
-cd backend
-mvn clean package -DskipTests
-java -jar target/edu-platform-1.0.0-SNAPSHOT.jar
-```
-
-## 3. 启动前端
-
-### 安装依赖
+### 4. 启动前端
 
 ```bash
 cd frontend
 npm install
-```
-
-### 开发模式启动
-
-```bash
 npm run dev
 ```
 
-访问: http://localhost:3000
+前端界面: http://localhost:3000
 
-## 4. 访问系统
+默认账号: `admin` / `admin123`
 
-- **前端**: http://localhost:3000
-- **后端API**: http://localhost:8080/api
+## 项目结构
+
+```
+edu/
+├── backend/          # Spring Boot 后端
+│   ├── src/main/java/com/edu/
+│   │   ├── common/    # 公共模块
+│   │   ├── user/     # 用户管理
+│   │   ├── exam/     # 考试管理
+│   │   ├── grading/  # 智能评分
+│   │   ├── tenant/   # 租户管理
+│   │   ├── ai/       # AI服务
+│   │   └── ppt/      # PPT管理
+│   └── pom.xml
+├── frontend/         # Vue 3 前端
+│   ├── src/
+│   │   ├── views/   # 页面组件
+│   │   ├── api/     # 接口调用
+│   │   ├── router/  # 路由配置
+│   │   ├── store/   # 状态管理
+│   │   └── utils/   # 工具函数
+│   └── package.json
+├── start-backend.bat      # 后端启动脚本（MySQL）
+├── start-backend-h2.bat  # 后端启动脚本（H2）
+├── start-frontend.bat     # 前端启动脚本
+└── README.md
+```
+
+## 开发指南
+
+### 后端开发
+
+```bash
+cd backend
+
+# 编译
+mvn clean compile -DskipTests
+
+# 运行测试
+mvn test
+
+# 打包
+mvn clean package -DskipTests
+```
+
+### 前端开发
+
+```bash
+cd frontend
+
+# 安装依赖
+npm install
+
+# 开发模式
+npm run dev
+
+# 构建生产版本
+npm run build
+
+# 预览构建结果
+npm run preview
+```
+
+## 配置说明
+
+### 后端配置
+
+主要配置文件: `backend/src/main/resources/application.yml`
+
+- 数据库配置: 修改 `spring.datasource`
+- JWT配置: 修改 `jwt.secret`
+- AI配置: 修改 `ai.*`
+
+### 前端配置
+
+主要配置文件: `frontend/vite.config.ts`
+
+- 代理设置: `server.proxy`
+- 构建优化: 代码分割、console移除
 
 ## 常见问题
 
@@ -86,3 +169,24 @@ npm run dev
 
 ### Q: Redis连接失败?
 Redis是可选的，可以暂时注释掉Redis相关配置，或安装Redis服务。
+
+## 贡献指南
+
+1. Fork 本仓库
+2. 创建特性分支 (`git checkout -b feature/AmazingFeature`)
+3. 提交更改 (`git commit -m 'Add some AmazingFeature'`)
+4. 推送到分支 (`git push origin feature/AmazingFeature`)
+5. 开启 Pull Request
+
+## 许可证
+
+MIT License
+
+## 联系方式
+
+- 项目地址: https://github.com/xhy0825/smart-teaching-system
+- 问题反馈: https://github.com/xhy0825/smart-teaching-system/issues
+
+---
+
+**注意**: 本项目使用 Claude Code 进行开发，遵循 SDLC 五阶段流程（P1需求→P2编码→P3测试→P4审查→P5交付）。
