@@ -54,6 +54,8 @@ modified_files:
   - "backend/src/test/java/com/edu/ai/client/OpenAICompatibleClientTest.java"
   - "CLAUDE.md"
   - "README.md"
+  - "docs/tools-integration-guide.md"
+  - "docs/tools-integration-guide.md"
 todo_items: []
 review_retry_count: 0
 

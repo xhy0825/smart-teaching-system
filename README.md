@@ -209,70 +209,339 @@ gstack 配置已添加到 `CLAUDE.md`：
 
 ---
 
-## 工具组合使用指南
+## 🛠️ 工具组合使用指南
 
 本项目集成了 **Claude-SDLC + OpenSpec + Superpowers + Gstack** 四大工具系统，形成完整的 AI 辅助开发流程。
 
-### 架构概览
+### 📊 系统架构图
 
 ```mermaid
 graph TB
-    subgraph "SDLC 主线"
-        P1[P1:需求] --> P2[P2:编码]
-        P2 --> P3[P3:测试]
-        P3 --> P4[P4:审查]
-        P4 --> P5[P5:交付]
+    %% 定义样式
+    classDef sdlc fill:#e1f5fe,stroke:#01579b,stroke-width:3px
+    classDef superpowers fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef openspec fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef gstack fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef config fill:#fce4ec,stroke:#880e4f,stroke-width:2px
+
+    %% SDLC 主线流程
+    subgraph SDLC["🔄 Claude-SDLC 主线流程"]
+        P0([P0 待机]):::sdlc
+        P1([P1 需求分析]):::sdlc
+        P2([P2 编码实现]):::sdlc
+        P3([P3 测试验证]):::sdlc
+        P4([P4 综合审查]):::sdlc
+        P5([P5 部署交付]):::sdlc
+
+        P0 ==>|/phase next| P1
+        P1 ==>|PRD确认| P2
+        P2 ==>|编码完成| P3
+        P3 ==>|测试通过| P4
+        P4 ==>|审查通过| P5
+        P5 ==>|交付完成| P0
     end
 
-    subgraph "能力增强"
-        SP[Superpowers] --> P1
-        SP --> P2
-        SP --> P3
+    %% Superpowers 能力增强层
+    subgraph SP["⚡ Superpowers 能力增强层"]
+        SP1[brainstorming<br/>创意探索]:::superpowers
+        SP2[systematic-debugging<br/>系统化调试]:::superpowers
+        SP3[test-driven-development<br/>测试驱动]:::superpowers
+        SP4[writing-plan<br/>编写计划]:::superpowers
+        SP5[executing-plan<br/>执行计划]:::superpowers
+        SP6[using-superpowers<br/>技能加载器]:::superpowers
     end
 
-    subgraph "规范管理"
-        OS[OpenSpec] --> P1
-        OS --> P2
+    %% OpenSpec 规范管理层
+    subgraph OS["📋 OpenSpec 规范管理层"]
+        OS1[openspec-explore<br/>探索模式]:::openspec
+        OS2[openspec-propose<br/>变更提案]:::openspec
+        OS3[openspec-apply-change<br/>应用变更]:::openspec
+        OS4[openspec-archive-change<br/>归档变更]:::openspec
     end
 
-    subgraph "专业角色"
-        GS[Gstack] --> P2
-        GS --> P3
-        GS --> P4
-        GS --> P5
+    %% Gstack 专业角色层
+    subgraph GS["🎯 Gstack 专业角色层"]
+        G1[产品规划<br/>office-hours]:::gstack
+        G2[设计<br/>design-*]:::gstack
+        G3[开发<br/>review/ship]:::gstack
+        G4[测试<br/>qa/benchmark]:::gstack
+        G5[浏览器<br/>browse]:::gstack
+        G6[安全/文档<br/>cso/document]:::gstack
     end
+
+    %% 核心配置
+    subgraph CFG["⚙️ 核心配置"]
+        C1[CLAUDE.md<br/>项目配置]:::config
+        C2[project-state.md<br/>状态管理]:::config
+        C3[.claude/rules/<br/>流程规则]:::config
+        C4[.claude/skills/<br/>技能库]:::config
+    end
+
+    %% 连接关系
+    P1 -.->|触发| SP6
+    P1 -.->|使用| OS1
+    P2 -.->|调用| SP4
+    P2 -.->|执行| GS3
+    P3 -.->|调试| SP2
+    P3 -.->|测试| GS4
+    P4 -.->|审查| GS1
+    P4 -.->|审查| GS3
+    P5 -.->|部署| GS3
+    P5 -.->|发布| GS6
+
+    SP1 ==>|输出| OS1
+    OS2 ==>|生成| OS3
+    GS1 ==>|反馈| P1
+    GS2 ==>|设计| P1
+    GS3 ==>|代码| P2
+    GS4 ==>|验证| P3
+
+    C1 -.->|配置| P1
+    C2 -.->|状态| P1
+    C3 -.->|规则| P1
+    C4 -.->|技能| SP1
 ```
 
-### 工具定位
+### 🎯 工具定位与功能
 
-| 工具 | 定位 | 核心功能 |
-|------|------|---------|
-| **Claude-SDLC** | 项目管理主线 | P1-P5 五阶段流程控制 |
-| **OpenSpec** | 规范管理层 | 探索、提案、应用、归档 |
-| **Superpowers** | 能力增强层 | brainstorming、调试、TDD |
-| **Gstack** | 专业角色层 | 23个专业角色技能 |
+#### 1️⃣ Claude-SDLC（主线流程控制器）
 
-### 快速参考
+**定位**: 项目管理主线，控制开发流程
 
-| 场景 | 推荐工具组合 |
-|------|---------|
-| 新功能开发 | SDLC P1 → OpenSpec探索 → Superpowers规划 → Gstack实现 |
-| Bug修复 | SDLC P3 → Superpowers调试 → Gstack测试 |
-| 代码审查 | SDLC P4 → Gstack/review + /codex |
-| 部署发布 | SDLC P5 → Gstack/ship + /land-and-deploy |
+| 阶段 | 名称 | 主要活动 | 自动驱动 |
+|------|------|---------|---------|
+| P0 | 待机 | 等待新任务 | - |
+| P1 | 需求分析+设计 | 需求澄清、技术调研、PRD编写 | ✅ openspec-explore |
+| P2 | 编码实现 | 按PRD编码、遵循架构 | ✅ Superpowers:writing-plan |
+| P3 | 测试验证 | 单元测试、集成测试、UI测试 | ✅ Gstack:/qa |
+| P4 | 综合审查 | 代码审查、测试审查、集成审查 | ✅ Gstack:/review |
+| P5 | 部署交付 | git commit/push、PR、文档 | ✅ Gstack:/ship |
 
-### 详细文档
+**核心文件**:
+- `.claude/project-state.md` - 状态管理（自动更新）
+- `.claude/rules/01-lifecycle-phases.md` - 阶段定义
+- `CLAUDE.md` - 项目配置入口
+
+---
+
+#### 2️⃣ Superpowers（能力增强层）
+
+**定位**: 提供特定能力，增强开发效率
+
+| 技能 | 触发条件 | 功能说明 | 适用阶段 |
+|------|---------|---------|---------|
+| `using-superpowers` | 会话开始 | 加载技能系统，检查适用性 | 所有阶段 |
+| `brainstorming` | 创建新功能前 | 探索用户意图、需求、设计 | P1 |
+| `systematic-debugging` | 遇到bug时 | 5步系统化调试方法 | P3, P4 |
+| `test-driven-development` | 编写测试时 | TDD红-绿-重构流程 | P3 |
+| `writing-plan` | 多步骤任务 | 编写实现计划 | P1→P2 |
+| `executing-plan` | 执行计划时 | 按计划执行并审查检查点 | P2 |
+| `dispatching-parallel-agents` | 并行任务 | 派发并行Agent | P2, P3 |
+
+**使用流程**:
+```
+用户请求 → using-superpowers (检查)
+    ↓
+适用技能? → 调用对应技能
+    ↓
+不适用? → 直接执行
+```
+
+---
+
+#### 3️⃣ OpenSpec（规范管理层）
+
+**定位**: 管理变更提案和规范文档
+
+| 技能 | 功能 | 输入 | 输出 | 使用场景 |
+|------|------|------|------|---------|
+| `openspec-explore` | 探索模式，思考伙伴 | 问题描述 | 探索结果、选项 | 需求分析阶段 |
+| `openspec-propose` | 创建变更提案 | 探索结果 | 提案文档 | PRD编写后 |
+| `openspec-apply-change` | 应用已批准的变更 | 提案文档 | 代码变更 | 编码开始前 |
+| `openspec-archive-change` | 归档已完成的变更 | 完成记录 | 归档文档 | 交付完成后 |
+
+**完整工作流**:
+```
+1. openspec-explore: 探索问题空间
+   ↓
+2. openspec-propose: 创建变更提案
+   ↓
+3. [用户审批]
+   ↓
+4. openspec-apply-change: 应用变更
+   ↓
+5. openspec-archive-change: 归档变更
+```
+
+---
+
+#### 4️⃣ Gstack（专业角色层）
+
+**定位**: 提供23个专业角色技能，覆盖完整开发流程
+
+##### 产品规划类
+| 技能 | 角色 | 功能 | 输出 |
+|------|------|------|------|
+| `/office-hours` | YC Office Hours | 6个强制问题重新定义产品 | PRD文档 |
+| `/plan-ceo-review` | CEO/创始人 | 重新思考问题，找到10星产品 | 战略建议 |
+| `/plan-eng-review` | 工程经理 | 锁定架构、数据流、测试用例 | 架构文档 |
+| `/plan-design-review` | 高级设计师 | UI/UX设计审查，AI Slop检测 | 设计审查报告 |
+
+##### 开发类
+| 技能 | 角色 | 功能 | 适用场景 |
+|------|------|------|---------|
+| `/review` | 主任工程师 | 找出生产环境bug | 代码审查 |
+| `/autoplan` | 审查流水线 | 一键完成审查 | 快速规划 |
+| `/ship` | 发布工程师 | 同步、测试、推送、开PR | 部署前 |
+
+##### 测试类
+| 技能 | 角色 | 功能 | 特点 |
+|------|------|------|------|
+| `/qa` | QA负责人 | 真实浏览器测试，找bug并修复 | 自动修复 |
+| `/benchmark` | 性能工程师 | 基线测试、Core Web Vitals | 性能分析 |
+
+---
+
+### 🎬 组合使用示例
+
+#### 场景1: 开始新功能开发（完整流程）
+
+```bash
+# 步骤1: 检查当前状态
+/status
+# 输出: 当前阶段 P5, 任务: LiteLLM重构暂停
+
+# 步骤2: 推进到P0（如果当前在P5）
+/phase next
+# 输出: ✅ P5 交付完成，自动进入 P0
+
+# 步骤3: 开始新任务，推进到P1
+/phase next
+# 输出: ✅ 推进到 P1: 需求分析+设计
+
+# 步骤4: 使用 Superpowers 探索需求
+# (自动触发 brainstorming 技能)
+"我想添加学生在线答题功能"
+# 输出: 6个强制问题，需求澄清
+
+# 步骤5: 使用 OpenSpec 探索技术可行性
+/openspec-explore
+# 输出: 技术方案对比，集成点分析
+
+# 步骤6: 使用 Gstack 进行产品规划
+/office-hours
+# 输出: PRD文档，功能定义
+
+# 步骤7: PRD确认后，自动推进到P2
+/phase next
+# 输出: ✅ P1 → P2, 进入编码实现
+
+# 步骤8: 使用 Superpowers 编写计划
+# (自动触发 writing-plan 技能)
+# 输出: 实现计划，文件列表
+
+# 步骤9: 使用 Gstack 自动审查计划
+/autoplan
+# 输出: CEO审查 + 设计审查 + 工程审查
+
+# 步骤10: 开始编码
+# (P2自动驱动模式: 编码 → 测试 → 审查 → 交付)
+```
+
+**时间线**:
+```
+P0 (5分钟) → P1 (30分钟) → P2 (2小时) → P3 (30分钟) → P4 (20分钟) → P5 (10分钟)
+       ↑              ↑                ↑                ↑               ↑
+   brainstorming  writing-plan      coding           /qa            /ship
+   openspec       /autoplan                       /review
+   /office-hours
+```
+
+---
+
+#### 场景2: Bug修复（快速响应）
+
+```bash
+# 步骤1: 发现Bug，进入P3
+/phase status
+# 输出: 当前阶段 P2, 需要回退到P3
+
+/phase back
+# 原因: 发现生产环境Bug
+
+# 步骤2: 使用 Superpowers 系统化调试
+# (自动触发 systematic-debugging 技能)
+"学生提交答题后，成绩显示错误"
+# 输出: 5步调试计划
+
+# 步骤3: 使用 Gstack 根因分析
+/investigate
+# 输出: 根因分析报告，数据流向图
+
+# 步骤4: 修复代码
+# (按照 investigate 的建议修复)
+
+# 步骤5: 使用 Gstack 测试验证
+/qa http://localhost:3000
+# 输出: 浏览器测试报告，bug已修复
+
+# 步骤6: 推进到P4审查
+/phase next
+# 输出: ✅ P3 → P4
+
+# 步骤7: 使用 Gstack 代码审查
+/review
+# 输出: 代码审查报告，无阻断问题
+
+# 步骤8: 推进到P5交付
+/phase next
+# 输出: ✅ P4 → P5
+
+# 步骤9: 部署修复
+/ship
+# 输出: PR已创建，代码已推送
+```
+
+---
+
+### 🔍 快速参考
+
+#### 命令速查表
+
+| 命令 | 工具 | 功能 |
+|------|------|------|
+| `/phase` | SDLC | 查看/推进/回退阶段 |
+| `/status` | SDLC | 查看项目状态 |
+| `/checkpoint` | SDLC | 保存进度快照 |
+| `/review` | SDLC/Gstack | 综合审查 |
+| `/office-hours` | Gstack | 产品规划 |
+| `/qa` | Gstack | QA测试 |
+| `/ship` | Gstack | 部署发布 |
+
+#### 阶段-工具矩阵
+
+| 阶段 | 主要工具 | 辅助工具 |
+|------|---------|---------|
+| P1 | OpenSpec, brainstorming | Gstack:/office-hours |
+| P2 | writing-plan | Gstack:/autoplan, /review |
+| P3 | TDD, systematic-debugging | Gstack:/qa, /benchmark |
+| P4 | Gstack:/review, /codex | systematic-debugging |
+| P5 | Gstack:/ship, /land-and-deploy | OpenSpec:archive |
+
+---
+
+### 📚 详细文档
 
 完整的使用指南、架构图、场景流程、配置说明请查看：
 
 📖 **[工具组合使用详细指南](docs/tools-integration-guide.md)**
 
-内容包括：
-- 完整的 Mermaid 架构图
-- 4个组合使用场景详解
-- 配置文件关系图
-- 命令速查表和阶段-工具矩阵
-- 最佳实践和故障排查
+**内容包括**：
+- ✅ 完整的 Mermaid 架构图（多层架构）
+- ✅ 4个组合使用场景详解（带时间线）
+- ✅ 配置文件关系图
+- ✅ 命令速查表和阶段-工具矩阵
+- ✅ 最佳实践和故障排查
 
 ---
 
