@@ -34,4 +34,9 @@ public interface AIModelConfigMapper extends BaseMapper<AIModelConfig> {
      * 根据模型名称查询配置
      */
     AIModelConfig selectByModel(@Param("model") String model, @Param("tenantId") Long tenantId);
+
+    /**
+     * 根据供应商查询配置（用于去重检查）
+     */
+    AIModelConfig selectByProvider(@Param("provider") String provider, @Param("tenantId") Long tenantId);
 }

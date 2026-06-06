@@ -397,6 +397,6 @@ CREATE TABLE IF NOT EXISTS ai_model_config (
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     deleted TINYINT DEFAULT 0,
-    INDEX idx_tenant_default (tenant_id, is_default, deleted),
+    UNIQUE KEY uk_tenant_provider (tenant_id, provider, deleted),
     INDEX idx_tenant (tenant_id, deleted)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='AI模型配置表';

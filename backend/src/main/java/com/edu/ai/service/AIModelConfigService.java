@@ -47,15 +47,38 @@ public class AIModelConfigService {
      */
     public AIModelConfig saveConfig(AIModelConfig config) {
         // 加密 API Key
-        config.setApiKey(encrypt(config.getApiKey()));
+        String encryptedKey = encrypt(config.getApiKey());
+        config.setApiKey(encryptedKey);
 
         // 如果设为默认，先清除其他默认配置
         if (Boolean.TRUE.equals(config.getIsDefault())) {
             modelConfigMapper.clearDefaultFlag(config.getTenantId());
         }
 
+        // 检查是否已存在同供应商配置，避免重复
+        AIModelConfig existing = modelConfigMapper.selectByProvider(config.getProvider(), config.getTenantId());
+        if (existing != null) {
+            // 如果 API Key 为空，保留已有密钥（前端编辑时不回显 API Key）
+            if (!hasValidApiKey(config)) {
+                config.setApiKey(existing.getApiKey());
+            }
+            // 已有配置 → 执行更新（保留已有 id）
+            config.setId(existing.getId());
+            modelConfigMapper.updateById(config);
+            return config;
+        }
+
         modelConfigMapper.insert(config);
         return config;
+    }
+
+    /**
+     * 判断 API Key 是否有效（非空且有实际内容）
+     */
+    private boolean hasValidApiKey(AIModelConfig config) {
+        String key = config.getApiKey();
+        return key != null && !key.isEmpty() && !key.isBlank()
+                && !Base64.getEncoder().encodeToString("".getBytes()).equals(key);
     }
 
     /**
@@ -80,9 +103,13 @@ public class AIModelConfigService {
         if (config.getTemperature() != null) existing.setTemperature(config.getTemperature());
         if (config.getIsEnabled() != null) existing.setIsEnabled(config.getIsEnabled());
 
-        // 如果设为默认，先清除其他默认配置
-        if (Boolean.TRUE.equals(config.getIsDefault())) {
-            modelConfigMapper.clearDefaultFlag(existing.getTenantId());
+        // 更新 isDefault 字段
+        if (config.getIsDefault() != null) {
+            // 如果设为默认，先清除其他默认配置
+            if (Boolean.TRUE.equals(config.getIsDefault())) {
+                modelConfigMapper.clearDefaultFlag(existing.getTenantId());
+            }
+            existing.setIsDefault(config.getIsDefault());
         }
 
         modelConfigMapper.updateById(existing);
@@ -97,8 +124,8 @@ public class AIModelConfigService {
         if (config == null || !config.getTenantId().equals(tenantId)) {
             throw new RuntimeException("配置不存在或无权限");
         }
-        config.setDeleted(1);
-        modelConfigMapper.updateById(config);
+        // 使用 MyBatis-Plus 的 deleteById 触发 @TableLogic 逻辑删除
+        modelConfigMapper.deleteById(id);
     }
 
     /**

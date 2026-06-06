@@ -185,6 +185,7 @@ const configList = ref([])
 const testing = ref(false)
 const saving = ref(false)
 const editingId = ref(null)
+const originalFormValues = ref(null)  // 用于重置回滚
 
 const configForm = reactive({
   provider: 'DEEPSEEK',
@@ -276,11 +277,13 @@ const testConnection = async () => {
 const saveConfig = async () => {
   saving.value = true
   try {
+    // 创建普通对象副本，避免 Vue reactive 代理序列化问题
+    const payload = { ...configForm }
     let res
     if (editingId.value) {
-      res = await updateModelConfig(editingId.value, configForm)
+      res = await updateModelConfig(editingId.value, payload)
     } else {
-      res = await saveModelConfig(configForm)
+      res = await saveModelConfig(payload)
     }
 
     if (res.code === 200) {
@@ -300,35 +303,51 @@ const saveConfig = async () => {
 // 编辑配置
 const editConfig = (row) => {
   editingId.value = row.id
-  Object.assign(configForm, {
-    provider: row.provider,
-    providerName: row.providerName,
-    apiUrl: row.apiUrl,
-    apiKey: '',  // 不回显 API Key
-    model: row.model,
-    maxTokens: row.maxTokens || 2000,
-    temperature: row.temperature || 0.7,
-    isDefault: row.isDefault === true || row.isDefault === 1,
-    isEnabled: row.isEnabled === true || row.isEnabled === 1,
-    tenantId: row.tenantId
-  })
+  // 保存原始值快照，用于重置回滚
+  originalFormValues.value = { ...row }
+
+  // 直接设置供应商（触发 v-model），但不依赖 @change 事件
   selectedProvider.value = row.provider
-  onProviderChange(row.provider)
+
+  // 手动设置预设数据（相当于 onProviderChange 的部分功能）
+  const preset = providerPresets[row.provider]
+  if (preset) {
+    availableModels.value = preset.models
+  } else {
+    availableModels.value = []
+  }
+
+  // 用数据库保存的值填充表单（确保不被任何事件覆盖）
+  configForm.provider = row.provider
+  configForm.providerName = row.providerName || currentProviderName.value
+  configForm.apiUrl = row.apiUrl
+  configForm.apiKey = ''  // 不回显 API Key
+  configForm.model = row.model
+  configForm.maxTokens = row.maxTokens || 2000
+  configForm.temperature = row.temperature || 0.7
+  configForm.isDefault = row.isDefault === true || row.isDefault === 1
+  configForm.isEnabled = row.isEnabled === true || row.isEnabled === 1
+  configForm.tenantId = row.tenantId
 }
 
 // 删除配置
 const deleteConfig = async (row) => {
   try {
-    await ElMessageBox.confirm('确定要删除该配置吗？', '提示', {
-      type: 'warning'
-    })
+    await ElMessageBox.confirm('确定要删除该配置吗？', '提示', { type: 'warning' })
+  } catch {
+    return // 用户取消，不处理
+  }
+
+  try {
     const res = await deleteModelConfig(row.id)
     if (res.code === 200) {
       ElMessage.success('删除成功！')
       loadConfigs()
+    } else {
+      ElMessage.error(res.message || '删除失败')
     }
-  } catch (e) {
-    // 用户取消
+  } catch (error) {
+    ElMessage.error('删除失败：' + (error.message || error))
   }
 }
 
@@ -347,6 +366,27 @@ const setDefault = async (row) => {
 
 // 重置表单
 const resetForm = () => {
+  // 编辑模式下：恢复到编辑前的原始值
+  if (editingId.value && originalFormValues.value) {
+    const orig = originalFormValues.value
+    Object.assign(configForm, {
+      provider: orig.provider,
+      providerName: orig.providerName,
+      apiUrl: orig.apiUrl,
+      apiKey: '',  // 不回显 API Key
+      model: orig.model,
+      maxTokens: orig.maxTokens || 2000,
+      temperature: orig.temperature || 0.7,
+      isDefault: orig.isDefault === true || orig.isDefault === 1,
+      isEnabled: orig.isEnabled === true || orig.isEnabled === 1,
+      tenantId: orig.tenantId
+    })
+    selectedProvider.value = orig.provider
+    onProviderChange(orig.provider)
+    return
+  }
+
+  // 新增模式下：重置为当前供应商默认预设
   editingId.value = null
   Object.assign(configForm, {
     provider: selectedProvider.value,

@@ -38,4 +38,11 @@
         LIMIT 1
     </select>
 
+    <!-- 根据供应商查询配置（用于去重检查） -->
+    <select id="selectByProvider" resultType="com.edu.ai.entity.AIModelConfig">
+        SELECT * FROM ai_model_config
+        WHERE provider = #{provider} AND tenant_id = #{tenantId} AND deleted = 0
+        LIMIT 1
+    </select>
+
 </mapper>
