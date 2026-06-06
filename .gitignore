@@ -38,4 +38,12 @@ Thumbs.pkl
 .qoder/
 
 # Maven wrapper
-.mvn/wrapper/maven-wrapper.jar
+.mvn/wrapper/maven-wrapper.jar.claude/hooks/
+.claude/rules/
+.claude/skills/
+.claude/agents/
+.claude/reviews/
+.claude/reports/
+.claude/prd.md
+.claude/project-state.md
+.qoder/
