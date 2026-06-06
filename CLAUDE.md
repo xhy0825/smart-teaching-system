@@ -137,3 +137,29 @@ SDLC 五阶段流程（P1需求→P2编码→P3测试→P4审查→P5交付）�
 | `start-backend.bat` | 启动后端（MySQL版） |
 | `start-backend-h2.bat` | 启动后端（H2内存数据库） |
 | `start-frontend.bat` | 启动前端开发服务器 |
+
+## gstack
+
+使用 gstack 的 `/browse` 技能进行所有网页浏览。禁止使用 `mcp__claude-in-chrome__*` 工具。
+
+**可用技能：**
+- 产品规划：/office-hours, /plan-ceo-review, /plan-eng-review, /plan-design-review, /plan-devex-review
+- 设计：/design-consultation, /design-shotgun, /design-html, /design-review
+- 开发：/review, /ship, /land-and-deploy, /autoplan, /investigate
+- 测试：/qa, /qa-only, /benchmark, /canary
+- 文档：/document-release, /document-generate
+- 浏览器：/browse, /open-gstack-browser, /setup-browser-cookies
+- 安全：/cso, /careful, /guard
+- 其他：/retro, /learn, /gstack-upgrade, /freeze, /unfreeze
+- 多模型：/codex, /pair-agent
+- 知识库：/setup-gbrain, /sync-gbrain
+
+## Skill routing
+
+当收到以下关键词时，自动使用对应的 gstack 技能：
+- "浏览/打开网页/截图" → /browse
+- "审查代码/review" → /review
+- "测试/QA" → /qa
+- "部署/ship" → /ship
+- "规划新功能" → /office-hours → /autoplan
+- "设计UI/界面" → /design-shotgun → /design-html

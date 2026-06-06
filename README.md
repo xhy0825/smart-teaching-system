@@ -139,6 +139,74 @@ npm run build
 npm run preview
 ```
 
+## gstack 开发工具
+
+本项目集成了 [gstack](https://github.com/garrytan/gstack) - 一个将 Claude Code 转变为虚拟工程团队的技能包，包含 23 个专业角色技能。
+
+### 快速开始
+
+1. **产品规划**: `/office-hours` - 用 6 个强制问题重新定义产品需求
+2. **代码审查**: `/review` - 找出通过 CI 但生产环境会出问题的 bug
+3. **QA 测试**: `/qa` - 真实浏览器测试，找 bug 并修复
+4. **部署发布**: `/ship` - 同步、测试、推送、开 PR
+
+### 技能分类
+
+#### 产品规划
+- `/office-hours` - YC Office Hours 风格的需求深挖
+- `/plan-ceo-review` - CEO/创始人视角的战略挑战
+- `/plan-eng-review` - 工程经理视角的架构锁定
+- `/plan-design-review` - 高级设计师视角的 UI/UX 审查
+- `/plan-devex-review` - DX 负责人视角的开发者体验审查
+
+#### 设计
+- `/design-shotgun` - 生成 4-6 个 AI 模型变体，可视化对比
+- `/design-html` - 将模型转为生产级 HTML（30KB 零依赖）
+- `/design-consultation` - 从零构建完整设计系统
+- `/design-review` - 设计审查 + 自动修复
+
+#### 开发
+- `/review` - 主任工程师视角的代码审查
+- `/investigate` - 系统化根因分析
+- `/autoplan` - 一键完成 CEO→设计→工程审查
+- `/ship` - 发布工程师：同步、测试、推送、开 PR
+- `/land-and-deploy` - 合并 PR、等 CI、部署、验证生产
+
+#### 测试
+- `/qa` - QA 负责人：真实浏览器测试，找 bug 并修复
+- `/qa-only` - QA 报告员：只报告 bug 不修改代码
+- `/canary` - SRE：部署后监控
+- `/benchmark` - 性能工程师：基线测试、Core Web Vitals
+
+#### 浏览器
+- `/browse` - 真实 Chromium 浏览器，~100ms/命令
+- `/open-gstack-browser` - GStack 浏览器，侧边栏、反机器人
+- `/setup-browser-cookies` - 从真实浏览器导入 cookies
+
+### 配置文件
+
+gstack 配置已添加到 `CLAUDE.md`：
+
+```markdown
+## gstack
+使用 gstack 的 `/browse` 技能进行所有网页浏览。
+禁止：mcp__claude-in-chrome__* 工具。
+
+## Skill routing
+- "浏览/打开网页/截图" → /browse
+- "审查代码/review" → /review
+- "测试/QA" → /qa
+- "部署/ship" → /ship
+- "规划新功能" → /office-hours → /autoplan
+- "设计UI/界面" → /design-shotgun → /design-html
+```
+
+### 更多资源
+
+- [gstack GitHub](https://github.com/garrytan/gstack)
+- [技能详细说明](https://github.com/garrytan/gstack/blob/main/docs/skills.md)
+- [安装指南](https://github.com/garrytan/gstack#install--30-seconds)
+
 ## 配置说明
 
 ### 后端配置
