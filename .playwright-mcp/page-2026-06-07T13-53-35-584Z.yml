@@ -1,0 +1,133 @@
+- generic [ref=e2]:
+  - region "Skip to main content":
+    - link "Skip to main content" [ref=e3] [cursor=pointer]:
+      - /url: "#__docusaurus_skipToContent_fallback"
+  - navigation "Main" [ref=e4]:
+    - generic [ref=e5]:
+      - generic [ref=e6]:
+        - link "LangChain4j Logo LangChain4j":
+          - /url: /
+          - img "LangChain4j Logo" [ref=e8] [cursor=pointer]
+          - generic: LangChain4j
+        - link "Introduction" [ref=e9] [cursor=pointer]:
+          - /url: /intro
+        - link "Get Started" [ref=e10] [cursor=pointer]:
+          - /url: /get-started
+        - link "Tutorials" [ref=e11] [cursor=pointer]:
+          - /url: /category/tutorials
+        - link "Integrations" [ref=e12] [cursor=pointer]:
+          - /url: /category/integrations
+        - link "Useful Materials" [ref=e13] [cursor=pointer]:
+          - /url: /useful-materials
+        - link "Examples(opens in new tab)" [ref=e14] [cursor=pointer]:
+          - /url: https://github.com/langchain4j/langchain4j-examples
+          - text: Examples
+          - img "(opens in new tab)" [ref=e15]
+        - link "Docu chatbot(opens in new tab)" [ref=e17] [cursor=pointer]:
+          - /url: https://chat.langchain4j.dev/
+          - text: Docu chatbot
+          - img "(opens in new tab)" [ref=e18]
+        - link "Javadoc(opens in new tab)" [ref=e20] [cursor=pointer]:
+          - /url: https://docs.langchain4j.dev/apidocs/index.html
+          - text: Javadoc
+          - img "(opens in new tab)" [ref=e21]
+      - generic [ref=e23]:
+        - link "GitHub(opens in new tab)" [ref=e24] [cursor=pointer]:
+          - /url: https://github.com/langchain4j/langchain4j
+          - text: GitHub
+          - img "(opens in new tab)" [ref=e25]
+        - link "Twitter(opens in new tab)" [ref=e27] [cursor=pointer]:
+          - /url: https://twitter.com/langchain4j
+          - text: Twitter
+          - img "(opens in new tab)" [ref=e28]
+        - link "Discord(opens in new tab)" [ref=e30] [cursor=pointer]:
+          - /url: https://discord.com/invite/JzTFvyjG6R
+          - text: Discord
+          - img "(opens in new tab)" [ref=e31]
+        - button "Switch between dark and light mode (currently system mode)" [disabled] [ref=e34]:
+          - img [ref=e35]
+        - generic [ref=e38]:
+          - button "expand searchbar"
+          - searchbox "Search" [disabled] [ref=e39]
+  - generic [ref=e40]:
+    - banner [ref=e41]:
+      - generic [ref=e42]:
+        - heading "LangChain4j" [level=1] [ref=e43]
+        - img "LangChain4j Logo" [ref=e44]
+        - paragraph [ref=e45]: Supercharge your Java application with the power of LLMs
+        - link "Introduction" [ref=e47] [cursor=pointer]:
+          - /url: /intro
+    - main [ref=e48]:
+      - generic [ref=e51]:
+        - generic [ref=e54]:
+          - img [ref=e55]
+          - heading "Easy interaction with LLMs and Vector Stores" [level=3] [ref=e293]
+          - paragraph [ref=e294]: All major commercial and open-source LLMs and Vector Stores are easily accessible through a unified API, enabling you to build chatbots, assistants and more.
+        - generic [ref=e297]:
+          - img [ref=e298]
+          - heading "Tailored for Java" [level=3] [ref=e335]
+          - paragraph [ref=e336]: "Smooth integration into your Java applications is made possible thanks to Quarkus, Spring Boot and Helidon integrations. There is two-way integration between LLMs and Java: you can call LLMs from Java and allow LLMs to call your Java code in return."
+        - generic [ref=e339]:
+          - img [ref=e340]
+          - heading "Agents, Tools, RAG" [level=3] [ref=e390]
+          - paragraph [ref=e391]: Our extensive toolbox provides a wide range of tools for common LLM operations, from low-level prompt templating, chat memory management, and output parsing, to high-level patterns like Agents and RAG.
+  - contentinfo [ref=e392]:
+    - generic [ref=e393]:
+      - generic [ref=e394]:
+        - generic [ref=e395]:
+          - generic [ref=e396]: Docs
+          - list [ref=e397]:
+            - listitem [ref=e398]:
+              - link "Introduction" [ref=e399] [cursor=pointer]:
+                - /url: /intro
+            - listitem [ref=e400]:
+              - link "Get Started" [ref=e401] [cursor=pointer]:
+                - /url: /get-started
+            - listitem [ref=e402]:
+              - link "Tutorials" [ref=e403] [cursor=pointer]:
+                - /url: /category/tutorials
+            - listitem [ref=e404]:
+              - link "Integrations" [ref=e405] [cursor=pointer]:
+                - /url: /category/integrations
+            - listitem [ref=e406]:
+              - link "Useful Materials" [ref=e407] [cursor=pointer]:
+                - /url: /useful-materials
+            - listitem [ref=e408]:
+              - link "Examples(opens in new tab)" [ref=e409] [cursor=pointer]:
+                - /url: https://github.com/langchain4j/langchain4j-examples
+                - text: Examples
+                - img "(opens in new tab)" [ref=e410]
+            - listitem [ref=e412]:
+              - link "Documentation chatbot (experimental)(opens in new tab)" [ref=e413] [cursor=pointer]:
+                - /url: https://chat.langchain4j.dev/
+                - text: Documentation chatbot (experimental)
+                - img "(opens in new tab)" [ref=e414]
+            - listitem [ref=e416]:
+              - link "Javadoc(opens in new tab)" [ref=e417] [cursor=pointer]:
+                - /url: https://docs.langchain4j.dev/apidocs/index.html
+                - text: Javadoc
+                - img "(opens in new tab)" [ref=e418]
+        - generic [ref=e420]:
+          - generic [ref=e421]: Community
+          - list [ref=e422]:
+            - listitem [ref=e423]:
+              - link "GitHub(opens in new tab)" [ref=e424] [cursor=pointer]:
+                - /url: https://github.com/langchain4j/langchain4j
+                - text: GitHub
+                - img "(opens in new tab)" [ref=e425]
+            - listitem [ref=e427]:
+              - link "Twitter(opens in new tab)" [ref=e428] [cursor=pointer]:
+                - /url: https://twitter.com/langchain4j
+                - text: Twitter
+                - img "(opens in new tab)" [ref=e429]
+            - listitem [ref=e431]:
+              - link "Discord(opens in new tab)" [ref=e432] [cursor=pointer]:
+                - /url: https://discord.com/invite/JzTFvyjG6R
+                - text: Discord
+                - img "(opens in new tab)" [ref=e433]
+            - listitem [ref=e435]:
+              - link "Stack Overflow(opens in new tab)" [ref=e436] [cursor=pointer]:
+                - /url: https://stackoverflow.com/questions/tagged/langchain4j
+                - text: Stack Overflow
+                - img "(opens in new tab)" [ref=e437]
+      - generic [ref=e440]: LangChain4j Documentation 2026. Built with Docusaurus.

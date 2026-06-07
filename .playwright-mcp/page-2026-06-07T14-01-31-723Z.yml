@@ -1,0 +1,230 @@
+- generic [active] [ref=e1]:
+  - banner:
+    - navigation [ref=e2]:
+      - link "Spring" [ref=e4] [cursor=pointer]:
+        - /url: https://spring.io
+        - img "Spring" [ref=e5]
+      - generic [ref=e7]:
+        - link "Why Spring" [ref=e9] [cursor=pointer]:
+          - /url: "#"
+        - link "Learn" [ref=e11] [cursor=pointer]:
+          - /url: "#"
+        - link "Projects" [ref=e13] [cursor=pointer]:
+          - /url: "#"
+        - link "Resources" [ref=e15] [cursor=pointer]:
+          - /url: "#"
+        - link "Community" [ref=e17] [cursor=pointer]:
+          - /url: "#"
+        - link "Enterprise" [ref=e19] [cursor=pointer]:
+          - /url: "#"
+      - generic [ref=e20] [cursor=pointer]:
+        - checkbox "light" [ref=e21]
+        - img [ref=e23]
+        - generic [ref=e25]: light
+  - generic [ref=e26]:
+    - complementary [ref=e28]:
+      - generic [ref=e29]:
+        - navigation [ref=e31]:
+          - generic [ref=e32]:
+            - generic [ref=e33]: Spring Framework
+            - generic [ref=e34]: 7.0.7
+            - button [ref=e35] [cursor=pointer]:
+              - img [ref=e36]
+            - button "Search CTRL + k" [ref=e42] [cursor=pointer]:
+              - img [ref=e43]
+              - text: Search
+              - generic [ref=e45]: CTRL + k
+          - list [ref=e46]:
+            - listitem [ref=e47]:
+              - list [ref=e48]:
+                - listitem [ref=e49]:
+                  - link "Overview" [ref=e50] [cursor=pointer]:
+                    - /url: overview.html
+                - listitem [ref=e51]:
+                  - button [ref=e52] [cursor=pointer]
+                  - link "Core Technologies" [ref=e53] [cursor=pointer]:
+                    - /url: core.html
+                - listitem [ref=e54]:
+                  - button [ref=e55] [cursor=pointer]
+                  - link "Data Access" [ref=e56] [cursor=pointer]:
+                    - /url: data-access.html
+                - listitem [ref=e57]:
+                  - button [ref=e58] [cursor=pointer]
+                  - link "Web on Servlet Stack" [ref=e59] [cursor=pointer]:
+                    - /url: web.html
+                - listitem [ref=e60]:
+                  - button [ref=e61] [cursor=pointer]
+                  - link "Web on Reactive Stack" [ref=e62] [cursor=pointer]:
+                    - /url: web-reactive.html
+                - listitem [ref=e63]:
+                  - button [ref=e64] [cursor=pointer]
+                  - link "Testing" [ref=e65] [cursor=pointer]:
+                    - /url: testing.html
+                - listitem [ref=e66]:
+                  - button [ref=e67] [cursor=pointer]
+                  - link "Integration" [ref=e68] [cursor=pointer]:
+                    - /url: integration.html
+                - listitem [ref=e69]:
+                  - button [ref=e70] [cursor=pointer]
+                  - link "Language Support" [ref=e71] [cursor=pointer]:
+                    - /url: languages.html
+                - listitem [ref=e72]:
+                  - link "Appendix" [ref=e73] [cursor=pointer]:
+                    - /url: appendix.html
+                - listitem [ref=e74]:
+                  - link "Java API" [ref=e75] [cursor=pointer]:
+                    - /url: https://docs.spring.io/spring-framework/docs/7.0.7/javadoc-api/
+                - listitem [ref=e76]:
+                  - link "Kotlin API" [ref=e77] [cursor=pointer]:
+                    - /url: https://docs.spring.io/spring-framework/docs/7.0.7/kdoc-api/
+                - listitem [ref=e78]:
+                  - link "Wiki" [ref=e79] [cursor=pointer]:
+                    - /url: https://github.com/spring-projects/spring-framework/wiki
+        - button [ref=e81] [cursor=pointer]
+    - main [ref=e84]:
+      - generic [ref=e85]:
+        - complementary [ref=e86]:
+          - generic [ref=e88]:
+            - link "Edit this Page" [ref=e89] [cursor=pointer]:
+              - /url: https://github.com/spring-projects/spring-framework/blob/v7.0.7/framework-docs/modules/ROOT/pages/index.adoc
+              - img [ref=e90]
+              - text: Edit this Page
+            - link "GitHub Project" [ref=e92] [cursor=pointer]:
+              - /url: https://github.com/spring-projects/spring-framework
+              - img [ref=e93]
+              - text: GitHub Project
+            - link "Stack Overflow" [ref=e96] [cursor=pointer]:
+              - /url: https://stackoverflow.com/questions/tagged/spring
+              - img [ref=e97]
+              - text: Stack Overflow
+        - article [ref=e99]:
+          - navigation "breadcrumbs" [ref=e101]:
+            - list [ref=e102]:
+              - listitem "Copy versioned URL" [ref=e103]
+              - listitem [ref=e104]:
+                - link "Spring Framework" [ref=e105] [cursor=pointer]:
+                  - /url: index.html
+                - text: /
+              - listitem [ref=e106]:
+                - link "Spring Framework Documentation" [ref=e107] [cursor=pointer]:
+                  - /url: index.html
+          - heading "Spring Framework Documentation" [level=1] [ref=e108]
+          - table [ref=e110]:
+            - rowgroup [ref=e111]:
+              - row "Overview History, Design Philosophy, Feedback, Getting Started." [ref=e112]:
+                - cell "Overview" [ref=e113]:
+                  - link "Overview" [ref=e114] [cursor=pointer]:
+                    - /url: overview.html
+                - cell "History, Design Philosophy, Feedback, Getting Started." [ref=e115]:
+                  - paragraph [ref=e116]: History, Design Philosophy, Feedback, Getting Started.
+              - row "Core IoC Container, Events, Resources, i18n, Validation, Data Binding, Type Conversion, SpEL, AOP, AOT." [ref=e117]:
+                - cell "Core" [ref=e118]:
+                  - link "Core" [ref=e119] [cursor=pointer]:
+                    - /url: core.html
+                - cell "IoC Container, Events, Resources, i18n, Validation, Data Binding, Type Conversion, SpEL, AOP, AOT." [ref=e120]:
+                  - paragraph [ref=e121]: IoC Container, Events, Resources, i18n, Validation, Data Binding, Type Conversion, SpEL, AOP, AOT.
+              - row "Testing Mock Objects, TestContext Framework, Spring MVC Test, WebTestClient." [ref=e122]:
+                - cell "Testing" [ref=e123]:
+                  - link "Testing" [ref=e124] [cursor=pointer]:
+                    - /url: testing.html
+                - cell "Mock Objects, TestContext Framework, Spring MVC Test, WebTestClient." [ref=e125]:
+                  - paragraph [ref=e126]: Mock Objects, TestContext Framework, Spring MVC Test, WebTestClient.
+              - row "Data Access Transactions, DAO Support, JDBC, R2DBC, O/R Mapping, XML Marshalling." [ref=e127]:
+                - cell "Data Access" [ref=e128]:
+                  - link "Data Access" [ref=e129] [cursor=pointer]:
+                    - /url: data-access.html
+                - cell "Transactions, DAO Support, JDBC, R2DBC, O/R Mapping, XML Marshalling." [ref=e130]:
+                  - paragraph [ref=e131]: Transactions, DAO Support, JDBC, R2DBC, O/R Mapping, XML Marshalling.
+              - row "Web Servlet Spring MVC, WebSocket, SockJS, STOMP Messaging." [ref=e132]:
+                - cell "Web Servlet" [ref=e133]:
+                  - link "Web Servlet" [ref=e134] [cursor=pointer]:
+                    - /url: web.html
+                - cell "Spring MVC, WebSocket, SockJS, STOMP Messaging." [ref=e135]:
+                  - paragraph [ref=e136]: Spring MVC, WebSocket, SockJS, STOMP Messaging.
+              - row "Web Reactive Spring WebFlux, WebClient, WebSocket, RSocket." [ref=e137]:
+                - cell "Web Reactive" [ref=e138]:
+                  - link "Web Reactive" [ref=e139] [cursor=pointer]:
+                    - /url: web-reactive.html
+                - cell "Spring WebFlux, WebClient, WebSocket, RSocket." [ref=e140]:
+                  - paragraph [ref=e141]: Spring WebFlux, WebClient, WebSocket, RSocket.
+              - row "Integration REST Clients, JMS, JCA, JMX, Email, Tasks, Scheduling, Caching, Observability, JVM Checkpoint Restore." [ref=e142]:
+                - cell "Integration" [ref=e143]:
+                  - link "Integration" [ref=e144] [cursor=pointer]:
+                    - /url: integration.html
+                - cell "REST Clients, JMS, JCA, JMX, Email, Tasks, Scheduling, Caching, Observability, JVM Checkpoint Restore." [ref=e145]:
+                  - paragraph [ref=e146]: REST Clients, JMS, JCA, JMX, Email, Tasks, Scheduling, Caching, Observability, JVM Checkpoint Restore.
+              - row "Languages Kotlin, Groovy, Dynamic Languages." [ref=e147]:
+                - cell "Languages" [ref=e148]:
+                  - link "Languages" [ref=e149] [cursor=pointer]:
+                    - /url: languages.html
+                - cell "Kotlin, Groovy, Dynamic Languages." [ref=e150]:
+                  - paragraph [ref=e151]: Kotlin, Groovy, Dynamic Languages.
+              - row "Appendix Spring properties." [ref=e152]:
+                - cell "Appendix" [ref=e153]:
+                  - link "Appendix" [ref=e154] [cursor=pointer]:
+                    - /url: appendix.html
+                - cell "Spring properties." [ref=e155]:
+                  - paragraph [ref=e156]: Spring properties.
+              - row "Wiki What’s New, Upgrade Notes, Supported Versions, additional cross-version information." [ref=e157]:
+                - cell "Wiki" [ref=e158]:
+                  - link "Wiki" [ref=e159] [cursor=pointer]:
+                    - /url: https://github.com/spring-projects/spring-framework/wiki
+                - cell "What’s New, Upgrade Notes, Supported Versions, additional cross-version information." [ref=e160]:
+                  - paragraph [ref=e161]: What’s New, Upgrade Notes, Supported Versions, additional cross-version information.
+          - paragraph [ref=e163]: Rod Johnson, Juergen Hoeller, Keith Donald, Colin Sampaleanu, Rob Harrop, Thomas Risberg, Alef Arendsen, Darren Davison, Dmitriy Kopylenko, Mark Pollack, Thierry Templier, Erwin Vervaet, Portia Tung, Ben Hale, Adrian Colyer, John Lewis, Costin Leau, Mark Fisher, Sam Brannen, Ramnivas Laddad, Arjen Poutsma, Chris Beams, Tareq Abedrabbo, Andy Clement, Dave Syer, Oliver Gierke, Rossen Stoyanchev, Phillip Webb, Rob Winch, Brian Clozel, Stephane Nicoll, Sebastien Deleuze, Jay Bryant, Mark Paluch
+          - paragraph [ref=e165]: Copies of this document may be made for your own use and for distribution to others, provided that you do not charge any fee for such copies and further provided that each copy contains the Copyright Notice, whether distributed in print or electronically.
+          - navigation [ref=e166]:
+            - generic [ref=e167]:
+              - text: Next
+              - link "Overview ›" [ref=e168] [cursor=pointer]:
+                - /url: overview.html
+    - text:   
+  - contentinfo [ref=e169]:
+    - generic [ref=e170]:
+      - img "Spring" [ref=e171]
+      - paragraph [ref=e172]:
+        - text: Copyright © 2005 - 2026 Broadcom. All Rights Reserved. The term "Broadcom" refers to Broadcom Inc. and/or its subsidiaries.
+        - link "Terms of Use" [ref=e173] [cursor=pointer]:
+          - /url: https://www.vmware.com/help/legal.html
+        - text: •
+        - link "Privacy" [ref=e174] [cursor=pointer]:
+          - /url: https://www.vmware.com/help/privacy.html
+        - text: •
+        - link "Trademark Guidelines" [ref=e175] [cursor=pointer]:
+          - /url: https://spring.io/trademarks
+        - generic [ref=e176]:
+          - text: •
+          - link "Thank you" [ref=e177] [cursor=pointer]:
+            - /url: https://spring.io/thank-you
+        - text: •
+        - link "Your California Privacy Rights" [ref=e178] [cursor=pointer]:
+          - /url: https://www.vmware.com/help/privacy/california-privacy-rights.html
+        - text: • Cookies Settings
+      - paragraph [ref=e179]: Apache®, Apache Tomcat®, Apache Kafka®, Apache Cassandra™, and Apache Geode™ are trademarks or registered trademarks of the Apache Software Foundation in the United States and/or other countries. Java™, Java™ SE, Java™ EE, and OpenJDK™ are trademarks of Oracle and/or its affiliates. Kubernetes® is a registered trademark of the Linux Foundation in the United States and other countries. Linux® is the registered trademark of Linus Torvalds in the United States and other countries. Windows® and Microsoft® Azure are registered trademarks of Microsoft Corporation. “AWS” and “Amazon Web Services” are trademarks or registered trademarks of Amazon.com Inc. or its affiliates. All other trademarks and copyrights are property of their respective owners and are only mentioned for informative purposes. Other names may be trademarks of their respective owners.
+    - generic [ref=e180]:
+      - link "Youtube" [ref=e181] [cursor=pointer]:
+        - /url: https://www.youtube.com/user/SpringSourceDev
+        - img [ref=e182]
+      - link "GitHub" [ref=e185] [cursor=pointer]:
+        - /url: https://github.com/spring-projects
+        - img [ref=e186]
+      - link "Twitter" [ref=e189] [cursor=pointer]:
+        - /url: https://twitter.com/springcentral
+        - img [ref=e190]
+  - generic:
+    - dialog "Cookies" [ref=e194]:
+      - generic [ref=e195]:
+        - button "Close" [ref=e197] [cursor=pointer]
+        - generic [ref=e198]:
+          - generic [ref=e200]:
+            - heading "Cookies" [level=2] [ref=e201]
+            - generic [ref=e202]:
+              - text: Broadcom and our partners use technology, including cookies to, among other things, operate the site, analyze site usage, improve your experience and help us advertise. Click “Cookie Settings” to manage your privacy preferences. By using our site, you agree to our use of cookies as described in our
+              - link "More information about your privacy, opens in a new tab" [ref=e203] [cursor=pointer]:
+                - /url: https://www.broadcom.com/company/legal/cookie-policy
+                - text: Cookie Notice.
+          - generic [ref=e205]:
+            - button "Allow All" [ref=e207] [cursor=pointer]
+            - button "Required Only" [ref=e209] [cursor=pointer]
+            - button "Cookies Settings, Opens the preference center dialog" [ref=e211] [cursor=pointer]: Cookies Settings
+    - text: Cookies Settings

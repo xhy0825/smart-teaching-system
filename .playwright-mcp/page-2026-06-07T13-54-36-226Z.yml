@@ -1,0 +1,255 @@
+- generic [ref=e2]:
+  - region "Skip to main content":
+    - link "Skip to main content" [ref=e3] [cursor=pointer]:
+      - /url: "#__docusaurus_skipToContent_fallback"
+  - navigation "Main" [ref=e4]:
+    - generic [ref=e5]:
+      - generic [ref=e6]:
+        - link "LangChain4j Logo LangChain4j":
+          - /url: /
+          - img "LangChain4j Logo" [ref=e8] [cursor=pointer]
+          - generic: LangChain4j
+        - link "Introduction" [ref=e9] [cursor=pointer]:
+          - /url: /intro
+        - link "Get Started" [ref=e10] [cursor=pointer]:
+          - /url: /get-started
+        - link "Tutorials" [ref=e11] [cursor=pointer]:
+          - /url: /category/tutorials
+        - link "Integrations" [ref=e12] [cursor=pointer]:
+          - /url: /category/integrations
+        - link "Useful Materials" [ref=e13] [cursor=pointer]:
+          - /url: /useful-materials
+        - link "Examples(opens in new tab)" [ref=e14] [cursor=pointer]:
+          - /url: https://github.com/langchain4j/langchain4j-examples
+          - text: Examples
+          - img "(opens in new tab)" [ref=e15]
+        - link "Docu chatbot(opens in new tab)" [ref=e17] [cursor=pointer]:
+          - /url: https://chat.langchain4j.dev/
+          - text: Docu chatbot
+          - img "(opens in new tab)" [ref=e18]
+        - link "Javadoc(opens in new tab)" [ref=e20] [cursor=pointer]:
+          - /url: https://docs.langchain4j.dev/apidocs/index.html
+          - text: Javadoc
+          - img "(opens in new tab)" [ref=e21]
+      - generic [ref=e23]:
+        - link "GitHub(opens in new tab)" [ref=e24] [cursor=pointer]:
+          - /url: https://github.com/langchain4j/langchain4j
+          - text: GitHub
+          - img "(opens in new tab)" [ref=e25]
+        - link "Twitter(opens in new tab)" [ref=e27] [cursor=pointer]:
+          - /url: https://twitter.com/langchain4j
+          - text: Twitter
+          - img "(opens in new tab)" [ref=e28]
+        - link "Discord(opens in new tab)" [ref=e30] [cursor=pointer]:
+          - /url: https://discord.com/invite/JzTFvyjG6R
+          - text: Discord
+          - img "(opens in new tab)" [ref=e31]
+        - button "Switch between dark and light mode (currently system mode)" [disabled] [ref=e34]:
+          - img [ref=e35]
+        - generic [ref=e38]:
+          - button "expand searchbar"
+          - searchbox "Search" [disabled] [ref=e39]
+  - generic [ref=e42]:
+    - complementary [ref=e43]:
+      - generic [ref=e45]:
+        - navigation "Docs sidebar" [ref=e46]:
+          - list [ref=e47]:
+            - listitem [ref=e48]:
+              - link "Introduction" [ref=e49] [cursor=pointer]:
+                - /url: /intro
+                - generic "Introduction" [ref=e50]
+            - listitem [ref=e51]:
+              - link "Get Started" [ref=e52] [cursor=pointer]:
+                - /url: /get-started
+                - generic "Get Started" [ref=e53]
+            - listitem [ref=e54]:
+              - generic [ref=e55]:
+                - link "Tutorials" [ref=e56] [cursor=pointer]:
+                  - /url: /category/tutorials
+                  - generic "Tutorials" [ref=e57]
+                - button "Expand sidebar category 'Tutorials'" [ref=e58] [cursor=pointer]
+            - listitem [ref=e59]:
+              - generic [ref=e60]:
+                - link "Integrations" [ref=e61] [cursor=pointer]:
+                  - /url: /category/integrations
+                  - generic "Integrations" [ref=e62]
+                - button "Expand sidebar category 'Integrations'" [ref=e63] [cursor=pointer]
+            - listitem [ref=e64]:
+              - generic [ref=e65]:
+                - link "Useful Materials" [ref=e66] [cursor=pointer]:
+                  - /url: /category/useful-materials
+                  - generic "Useful Materials" [ref=e67]
+                - button "Expand sidebar category 'Useful Materials'" [ref=e68] [cursor=pointer]
+            - listitem [ref=e69]:
+              - link "Latest Release Notes" [ref=e70] [cursor=pointer]:
+                - /url: /latest-release-notes
+                - generic "Latest Release Notes" [ref=e71]
+        - button "Collapse sidebar" [ref=e72] [cursor=pointer]:
+          - img [ref=e73]
+    - main [ref=e77]:
+      - generic [ref=e81]:
+        - article [ref=e82]:
+          - navigation "Breadcrumbs" [ref=e83]:
+            - list [ref=e84]:
+              - listitem [ref=e85]:
+                - link "Home page" [ref=e86] [cursor=pointer]:
+                  - /url: /
+                  - img [ref=e87]
+              - listitem [ref=e89]:
+                - generic [ref=e90]: Get Started
+          - generic [ref=e91]:
+            - heading "Get Started" [level=1] [ref=e93]
+            - generic [ref=e94]:
+              - generic [ref=e95]:
+                - img [ref=e97]
+                - text: note
+              - generic [ref=e99]:
+                - paragraph [ref=e100]:
+                  - text: If you are using Quarkus, see
+                  - link "Quarkus Integration" [ref=e101] [cursor=pointer]:
+                    - /url: /tutorials/quarkus-integration/
+                  - text: .
+                - paragraph [ref=e102]:
+                  - text: If you are using Spring Boot, see
+                  - link "Spring Boot Integration" [ref=e103] [cursor=pointer]:
+                    - /url: /tutorials/spring-boot-integration
+                  - text: .
+                - paragraph [ref=e104]:
+                  - text: If you are using Helidon, see
+                  - link "Helidon Integration" [ref=e105] [cursor=pointer]:
+                    - /url: /tutorials/helidon-integration
+            - paragraph [ref=e106]:
+              - text: LangChain4j offers integrations with many
+              - link "LLM providers" [ref=e107] [cursor=pointer]:
+                - /url: /integrations/language-models/
+              - text: ","
+              - link "embedding/vector stores" [ref=e108] [cursor=pointer]:
+                - /url: /integrations/embedding-stores
+              - text: ", etc. Each integration has its own maven dependency."
+            - paragraph [ref=e109]: The minimum supported JDK version is 17.
+            - paragraph [ref=e110]: "As an example, let's import the OpenAI dependency:"
+            - list [ref=e111]:
+              - listitem [ref=e112]:
+                - text: For Maven in
+                - code [ref=e113]: pom.xml
+                - text: ":"
+            - code [ref=e117]:
+              - generic [ref=e118]: <dependency>
+              - generic [ref=e119]: <groupId>dev.langchain4j</groupId>
+              - generic [ref=e120]: <artifactId>langchain4j-open-ai</artifactId>
+              - generic [ref=e121]: <version>1.16.1</version>
+              - generic [ref=e122]: </dependency>
+            - paragraph [ref=e123]:
+              - text: If you wish to use a high-level
+              - link "AI Services" [ref=e124] [cursor=pointer]:
+                - /url: /tutorials/ai-services
+              - text: "API, you will also need to add the following dependency:"
+            - code [ref=e128]:
+              - generic [ref=e129]: <dependency>
+              - generic [ref=e130]: <groupId>dev.langchain4j</groupId>
+              - generic [ref=e131]: <artifactId>langchain4j</artifactId>
+              - generic [ref=e132]: <version>1.16.1</version>
+              - generic [ref=e133]: </dependency>
+            - list [ref=e134]:
+              - listitem [ref=e135]:
+                - text: For Gradle in
+                - code [ref=e136]: build.gradle
+                - text: ":"
+            - code [ref=e140]:
+              - generic [ref=e141]: implementation 'dev.langchain4j:langchain4j-open-ai:1.16.1'
+              - generic [ref=e142]: implementation 'dev.langchain4j:langchain4j:1.16.1'
+            - group [ref=e143]:
+              - generic "Bill of Materials (BOM)" [ref=e144] [cursor=pointer]
+            - group [ref=e145]:
+              - generic "SNAPSHOT dependencies (newest features)" [ref=e146] [cursor=pointer]
+            - paragraph [ref=e147]: Then, import your OpenAI API key. It's recommended to store your API keys in environment variables to reduce the risk of exposing them publicly.
+            - code [ref=e151]:
+              - generic [ref=e152]: String apiKey = System.getenv("OPENAI_API_KEY");
+            - group [ref=e153]:
+              - generic "What if I don't have an API key?" [ref=e154] [cursor=pointer]
+            - paragraph [ref=e155]:
+              - text: Once you've set up the key, let's create an instance of an
+              - code [ref=e156]: OpenAiChatModel
+              - text: ":"
+            - code [ref=e160]:
+              - generic [ref=e161]: OpenAiChatModel model = OpenAiChatModel.builder()
+              - generic [ref=e162]: .apiKey(apiKey)
+              - generic [ref=e163]: .modelName("gpt-4o-mini")
+              - generic [ref=e164]: .build();
+            - paragraph [ref=e165]: Now, it is time to chat!
+            - code [ref=e169]:
+              - generic [ref=e170]: String answer = model.chat("Say 'Hello World'");
+              - generic [ref=e171]: System.out.println(answer); // Hello World
+          - link "Edit this page" [ref=e175] [cursor=pointer]:
+            - /url: https://github.com/langchain4j/langchain4j/blob/main/docs/docs/get-started.md
+            - img [ref=e176]
+            - text: Edit this page
+        - navigation "Docs pages" [ref=e180]:
+          - link "Previous « Introduction" [ref=e181] [cursor=pointer]:
+            - /url: /intro
+            - generic [ref=e182]: Previous
+            - generic [ref=e183]: « Introduction
+          - link "Next Tutorials »" [ref=e184] [cursor=pointer]:
+            - /url: /category/tutorials
+            - generic [ref=e185]: Next
+            - generic [ref=e186]: Tutorials »
+  - contentinfo [ref=e187]:
+    - generic [ref=e188]:
+      - generic [ref=e189]:
+        - generic [ref=e190]:
+          - generic [ref=e191]: Docs
+          - list [ref=e192]:
+            - listitem [ref=e193]:
+              - link "Introduction" [ref=e194] [cursor=pointer]:
+                - /url: /intro
+            - listitem [ref=e195]:
+              - link "Get Started" [ref=e196] [cursor=pointer]:
+                - /url: /get-started
+            - listitem [ref=e197]:
+              - link "Tutorials" [ref=e198] [cursor=pointer]:
+                - /url: /category/tutorials
+            - listitem [ref=e199]:
+              - link "Integrations" [ref=e200] [cursor=pointer]:
+                - /url: /category/integrations
+            - listitem [ref=e201]:
+              - link "Useful Materials" [ref=e202] [cursor=pointer]:
+                - /url: /useful-materials
+            - listitem [ref=e203]:
+              - link "Examples(opens in new tab)" [ref=e204] [cursor=pointer]:
+                - /url: https://github.com/langchain4j/langchain4j-examples
+                - text: Examples
+                - img "(opens in new tab)" [ref=e205]
+            - listitem [ref=e207]:
+              - link "Documentation chatbot (experimental)(opens in new tab)" [ref=e208] [cursor=pointer]:
+                - /url: https://chat.langchain4j.dev/
+                - text: Documentation chatbot (experimental)
+                - img "(opens in new tab)" [ref=e209]
+            - listitem [ref=e211]:
+              - link "Javadoc(opens in new tab)" [ref=e212] [cursor=pointer]:
+                - /url: https://docs.langchain4j.dev/apidocs/index.html
+                - text: Javadoc
+                - img "(opens in new tab)" [ref=e213]
+        - generic [ref=e215]:
+          - generic [ref=e216]: Community
+          - list [ref=e217]:
+            - listitem [ref=e218]:
+              - link "GitHub(opens in new tab)" [ref=e219] [cursor=pointer]:
+                - /url: https://github.com/langchain4j/langchain4j
+                - text: GitHub
+                - img "(opens in new tab)" [ref=e220]
+            - listitem [ref=e222]:
+              - link "Twitter(opens in new tab)" [ref=e223] [cursor=pointer]:
+                - /url: https://twitter.com/langchain4j
+                - text: Twitter
+                - img "(opens in new tab)" [ref=e224]
+            - listitem [ref=e226]:
+              - link "Discord(opens in new tab)" [ref=e227] [cursor=pointer]:
+                - /url: https://discord.com/invite/JzTFvyjG6R
+                - text: Discord
+                - img "(opens in new tab)" [ref=e228]
+            - listitem [ref=e230]:
+              - link "Stack Overflow(opens in new tab)" [ref=e231] [cursor=pointer]:
+                - /url: https://stackoverflow.com/questions/tagged/langchain4j
+                - text: Stack Overflow
+                - img "(opens in new tab)" [ref=e232]
+      - generic [ref=e235]: LangChain4j Documentation 2026. Built with Docusaurus.

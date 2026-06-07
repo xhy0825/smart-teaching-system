@@ -1,0 +1,426 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - main [ref=e3]:
+      - generic [ref=e4]:
+        - link "🚀 Zilliz 云：全面管理 Milvus - 速度快 10 倍。零烦恼。专为人工智能打造。 立即免费试用 →" [ref=e5] [cursor=pointer]:
+          - /url: https://cloud.zilliz.com/signup?utm_source=milvusio&utm_medium=referral&utm_campaign=milvus_top_banner&utm_content=docs/zh
+          - link "🚀 Zilliz 云：全面管理 Milvus - 速度快 10 倍。零烦恼。专为人工智能打造。" [ref=e6]
+          - link "立即免费试用 →" [ref=e7]
+        - generic [ref=e9]:
+          - generic [ref=e10]:
+            - generic [ref=e11]:
+              - link "Milvus" [ref=e12] [cursor=pointer]:
+                - /url: /zh
+                - img "Milvus" [ref=e13]
+              - link "Zilliz" [ref=e15] [cursor=pointer]:
+                - /url: https://zilliz.com/
+                - img "Zilliz" [ref=e16]
+            - navigation "Primary navigation" [ref=e17]:
+              - list [ref=e18]:
+                - listitem [ref=e19]:
+                  - button "为什么选择 Milvus" [ref=e21] [cursor=pointer]:
+                    - generic [ref=e22]: 为什么选择 Milvus
+                    - img [ref=e23]
+                - listitem [ref=e25]:
+                  - link "文档" [ref=e26] [cursor=pointer]:
+                    - /url: /docs/zh
+                - listitem [ref=e27]:
+                  - button "教程" [ref=e29] [cursor=pointer]:
+                    - generic [ref=e30]: 教程
+                    - img [ref=e31]
+                - listitem [ref=e33]:
+                  - button "工具" [ref=e35] [cursor=pointer]:
+                    - generic [ref=e36]: 工具
+                    - img [ref=e37]
+                - listitem [ref=e39]:
+                  - link "博客" [ref=e40] [cursor=pointer]:
+                    - /url: /zh/blog
+                - listitem [ref=e41]:
+                  - link "社区" [ref=e43] [cursor=pointer]:
+                    - /url: /zh/community
+                    - generic [ref=e44]: 社区
+                    - img [ref=e45]
+          - generic [ref=e47]:
+            - combobox "Select language" [ref=e49] [cursor=pointer]:
+              - img [ref=e50]
+              - generic: 简体中文
+              - img [ref=e55]
+            - link "star 44.6K" [ref=e58] [cursor=pointer]:
+              - /url: https://github.com/milvus-io/milvus
+              - img [ref=e59]
+              - generic [ref=e62]: star
+              - generic [ref=e63]: 44.6K
+            - link "预约演示" [ref=e64] [cursor=pointer]:
+              - /url: /zh/contact
+            - link "开始使用" [ref=e65] [cursor=pointer]:
+              - /url: https://cloud.zilliz.com/signup?utm_source=milvusio&utm_medium=referral&utm_campaign=milvus_nav_right&utm_content=docs/zh
+      - generic [ref=e66]:
+        - generic [ref=e68]:
+          - generic [ref=e70]:
+            - generic [ref=e72]:
+              - link "首页" [ref=e73] [cursor=pointer]:
+                - /url: /docs/zh
+              - button "v3.0.x" [ref=e75] [cursor=pointer]:
+                - generic [ref=e76]: v3.0.x
+                - img [ref=e77]
+            - list [ref=e79]:
+              - listitem [ref=e80]:
+                - generic [ref=e81] [cursor=pointer]:
+                  - img [ref=e83]
+                  - generic [ref=e85]: 关于 Milvus
+              - listitem [ref=e86]:
+                - generic [ref=e87] [cursor=pointer]:
+                  - img [ref=e89]
+                  - generic [ref=e91]: 开始
+              - listitem [ref=e92]:
+                - generic [ref=e93] [cursor=pointer]:
+                  - img [ref=e95]
+                  - generic [ref=e97]: 概念
+              - listitem [ref=e98]:
+                - generic [ref=e99] [cursor=pointer]:
+                  - img [ref=e101]
+                  - generic [ref=e103]: 用户指南
+              - listitem [ref=e104]:
+                - generic [ref=e105] [cursor=pointer]:
+                  - img [ref=e107]
+                  - generic [ref=e109]: 数据导入
+              - listitem [ref=e110]:
+                - generic [ref=e111] [cursor=pointer]:
+                  - img [ref=e113]
+                  - generic [ref=e115]: 人工智能工具
+              - listitem [ref=e116]:
+                - generic [ref=e117] [cursor=pointer]:
+                  - img [ref=e119]
+                  - generic [ref=e121]: 管理指南
+              - listitem [ref=e122]:
+                - generic [ref=e123] [cursor=pointer]:
+                  - img [ref=e125]
+                  - generic [ref=e127]: 工具
+              - listitem [ref=e128]:
+                - generic [ref=e129] [cursor=pointer]:
+                  - img [ref=e131]
+                  - generic [ref=e133]: 集成
+              - listitem [ref=e134]:
+                - generic [ref=e135] [cursor=pointer]:
+                  - img [ref=e137]
+                  - generic [ref=e139]: 教程
+              - listitem [ref=e140]:
+                - generic [ref=e141] [cursor=pointer]:
+                  - img [ref=e143]
+                  - generic [ref=e145]: 常见问题
+              - listitem [ref=e146]:
+                - generic [ref=e147] [cursor=pointer]:
+                  - img [ref=e149]
+                  - generic [ref=e151]: API Reference
+          - button [ref=e154] [cursor=pointer]:
+            - img [ref=e155]
+        - generic [ref=e157]:
+          - generic [ref=e158]:
+            - paragraph [ref=e160]:
+              - generic [ref=e161]: 翻译自
+              - img "DeepL"
+            - generic [ref=e162]:
+              - generic [ref=e163]:
+                - paragraph
+                - heading "欢迎来到 Milvus 文档！" [level=1] [ref=e164]
+                - paragraph
+                - paragraph
+                - heading "在这里，您将了解到什么是 Milvus，以及如何安装、使用和部署 Milvus 以根据您的业务需求构建应用程序。" [level=2] [ref=e165]
+                - paragraph
+              - generic [ref=e166]:
+                - generic [ref=e167]:
+                  - heading "免费试用Milvus托管服务！" [level=2] [ref=e168]
+                  - paragraph [ref=e169]: Zilliz Cloud由Milvus驱动，无忧无虑，速度快10倍。
+                - link "Zilliz Cloud ➔" [ref=e171] [cursor=pointer]:
+                  - /url: https://cloud.zilliz.com/signup?utm_source=partner&utm_medium=referral&utm_campaign=2025-02-24_doc_home_milvus.io
+              - heading "开始使用" [level=2] [ref=e172]:
+                - text: 开始使用
+                - button [ref=e173] [cursor=pointer]:
+                  - img [ref=e174]
+              - generic [ref=e176]:
+                - generic [ref=e177]:
+                  - link "icon" [ref=e178] [cursor=pointer]:
+                    - /url: /docs/zh/install_standalone-docker.md
+                    - img "icon" [ref=e179]
+                  - link "安装 Milvus" [ref=e180] [cursor=pointer]:
+                    - /url: /docs/zh/install_standalone-docker.md
+                    - paragraph [ref=e181]: 安装 Milvus
+                  - paragraph [ref=e182]: 了解如何使用 Docker Compose 或 Kubernetes 安装 Milvus。
+                - generic [ref=e183]:
+                  - link "icon" [ref=e184] [cursor=pointer]:
+                    - /url: /docs/zh/quickstart.md
+                    - img "icon" [ref=e185]
+                  - link "快速启动" [ref=e186] [cursor=pointer]:
+                    - /url: /docs/zh/quickstart.md
+                    - paragraph [ref=e187]: 快速启动
+                  - paragraph [ref=e188]: 了解如何使用示例代码快速运行 Milvus。
+                - generic [ref=e189]:
+                  - link "icon" [ref=e190] [cursor=pointer]:
+                    - /url: /bootcamp
+                    - img "icon" [ref=e191]
+                  - link "Bootcamp" [ref=e192] [cursor=pointer]:
+                    - /url: /bootcamp
+                    - paragraph [ref=e193]: Bootcamp
+                  - paragraph [ref=e194]: 学习如何使用 Milvus 构建向量相似性搜索应用程序。
+              - heading "推荐文章" [level=2] [ref=e195]:
+                - text: 推荐文章
+                - button [ref=e196] [cursor=pointer]:
+                  - img [ref=e197]
+              - generic [ref=e199]:
+                - generic [ref=e200]:
+                  - paragraph [ref=e201]: 使用
+                  - list [ref=e202]:
+                    - listitem [ref=e203]:
+                      - link "管理 Collections" [ref=e204] [cursor=pointer]:
+                        - /url: /docs/zh/manage-collections.md
+                    - listitem [ref=e205]:
+                      - link "插入、增加和删除" [ref=e206] [cursor=pointer]:
+                        - /url: /docs/zh/insert-update-delete.md
+                    - listitem [ref=e207]:
+                      - link "单向量搜索" [ref=e208] [cursor=pointer]:
+                        - /url: /docs/zh/single-vector-search.md
+                    - listitem [ref=e209]:
+                      - link "混合搜索" [ref=e210] [cursor=pointer]:
+                        - /url: /docs/zh/multi-vector-search.md
+                    - listitem [ref=e211]:
+                      - link "获取和标量查询" [ref=e212] [cursor=pointer]:
+                        - /url: /docs/zh/get-and-scalar-query.md
+                    - listitem [ref=e213]:
+                      - link "用于人工智能代理的 Milvus" [ref=e214] [cursor=pointer]:
+                        - /url: /docs/zh/milvus_for_agents.md
+                - generic [ref=e215]:
+                  - paragraph [ref=e216]: 部署
+                  - list [ref=e217]:
+                    - listitem [ref=e218]:
+                      - link "配置 Milvus" [ref=e219] [cursor=pointer]:
+                        - /url: /docs/zh/configure-docker.md
+                    - listitem [ref=e220]:
+                      - link "管理依赖关系" [ref=e221] [cursor=pointer]:
+                        - /url: /docs/zh/deploy_s3.md
+                    - listitem [ref=e222]:
+                      - link "在云上部署" [ref=e223] [cursor=pointer]:
+                        - /url: /docs/zh/eks.md
+                    - listitem [ref=e224]:
+                      - link "扩展 Milvus 集群" [ref=e225] [cursor=pointer]:
+                        - /url: /docs/zh/scaleout.md
+                    - listitem [ref=e226]:
+                      - link "监控和警报" [ref=e227] [cursor=pointer]:
+                        - /url: /docs/zh/monitor_overview.md
+                - generic [ref=e228]:
+                  - paragraph [ref=e229]: 学习
+                  - list [ref=e230]:
+                    - listitem [ref=e231]:
+                      - link "系统配置" [ref=e232] [cursor=pointer]:
+                        - /url: /docs/zh/system_configuration.md
+                    - listitem [ref=e233]:
+                      - link "架构概述" [ref=e234] [cursor=pointer]:
+                        - /url: /docs/zh/architecture_overview.md
+                    - listitem [ref=e235]:
+                      - link "索引解释" [ref=e236] [cursor=pointer]:
+                        - /url: /docs/zh/index-explained.md
+                    - listitem [ref=e237]:
+                      - link "相似度指标" [ref=e238] [cursor=pointer]:
+                        - /url: /docs/zh/metric.md
+                    - listitem [ref=e239]:
+                      - link "术语表" [ref=e240] [cursor=pointer]:
+                        - /url: /docs/zh/glossary.md
+              - generic [ref=e241]:
+                - heading "新文档" [level=2] [ref=e242]:
+                  - text: 新文档
+                  - button [ref=e243] [cursor=pointer]:
+                    - img [ref=e244]
+                - paragraph [ref=e246]:
+                  - emphasis [ref=e247]: 2026 年 5 月 - Milvus 3.0.x 更新
+                - list [ref=e248]:
+                  - listitem [ref=e249]:
+                    - text: 在
+                    - link "发行说明" [ref=e250] [cursor=pointer]:
+                      - /url: /docs/zh/release_notes.md
+                    - text: 中添加了 Milvus 3.0.x 的亮点，包括外部 Collections、快照、存储 V3 和湖泊生态系统集成。
+                  - listitem [ref=e251]:
+                    - text: 已添加有关如何
+                    - link "按标量字段" [ref=e252] [cursor=pointer]:
+                      - /url: /docs/zh/single-vector-search.md#Sort-Search-Results-by-Scalar-Fields--Milvus-30x
+                    - text: 和
+                    - link "聚合查询结果" [ref=e253] [cursor=pointer]:
+                      - /url: /docs/zh/get-and-scalar-query.md#Aggregate-Query-Results--Milvus-30x
+                    - text: 对
+                    - link "搜索结果进行排序的" [ref=e254] [cursor=pointer]:
+                      - /url: /docs/zh/single-vector-search.md#Sort-Search-Results-by-Scalar-Fields--Milvus-30x
+                    - text: 指导。
+                  - listitem [ref=e255]:
+                    - text: 已添加有关如何使用
+                    - link "可归零向量字段" [ref=e256] [cursor=pointer]:
+                      - /url: /docs/zh/nullable-and-default.md
+                    - text: 和
+                    - link "实体级 TTL 的" [ref=e257] [cursor=pointer]:
+                      - /url: /docs/zh/set-collection-ttl.md#Set-entity-level-TTL--Milvus-30x
+                    - text: 指导。
+                  - listitem [ref=e258]:
+                    - text: 已添加如何在服务器端
+                    - link "MinHash" [ref=e259] [cursor=pointer]:
+                      - /url: /docs/zh/minhash-function.md
+                    - text: 签名中使用 MinHash
+                    - link "函数" [ref=e260] [cursor=pointer]:
+                      - /url: /docs/zh/minhash-function.md
+                    - text: 的指导。
+                  - listitem [ref=e261]:
+                    - text: 添加了关于如何
+                    - link "使用 Embeddings 列表搜索" [ref=e262] [cursor=pointer]:
+                      - /url: /docs/zh/search-with-embedding-lists.md
+                    - text: 和触发
+                    - link "强制合并压缩的" [ref=e263] [cursor=pointer]:
+                      - /url: /docs/zh/force-merge.md
+                    - text: 指导。
+            - generic [ref=e264]:
+              - heading "Blog" [level=2] [ref=e265]
+              - 'link "Why We Built Loon: a Storage Engine for AI Data That Never Stops Changing. Engineering Why We Built Loon: a Storage Engine for AI Data That Never Stops Changing. Loon is a new storage engine for Milvus 3.0 and Zilliz Vector Lakebase, built to manage evolving vector datasets with ColumnGroups, row ID alignment, and Manifests." [ref=e266] [cursor=pointer]':
+                - /url: /blog/why-we-built-loon-a-storage-engine-for-ai-data-that-never-stops-changing.md
+                - generic [ref=e267]:
+                  - 'img "Why We Built Loon: a Storage Engine for AI Data That Never Stops Changing." [ref=e268]'
+                  - generic [ref=e269]:
+                    - paragraph [ref=e270]: Engineering
+                    - 'heading "Why We Built Loon: a Storage Engine for AI Data That Never Stops Changing." [level=6] [ref=e271]'
+                    - paragraph [ref=e272]: Loon is a new storage engine for Milvus 3.0 and Zilliz Vector Lakebase, built to manage evolving vector datasets with ColumnGroups, row ID alignment, and Manifests.
+          - generic [ref=e275]:
+            - generic [ref=e276]:
+              - img "LF_AI" [ref=e277]
+              - generic [ref=e278]:
+                - link "Milvus" [ref=e279] [cursor=pointer]:
+                  - /url: /
+                  - img "Milvus" [ref=e280]
+                - link "Zilliz" [ref=e282] [cursor=pointer]:
+                  - /url: https://zilliz.com/
+                  - img "Zilliz" [ref=e283]
+              - generic [ref=e284]:
+                - text: 由
+                - link "Zilliz" [ref=e285] [cursor=pointer]:
+                  - /url: https://zilliz.com/
+                - text: 的开发者用爱
+                - img "Blue Heart Emoji" [ref=e286]
+                - text: 制作
+              - generic [ref=e288]:
+                - heading "获取 Milvus 更新" [level=3] [ref=e289]
+                - generic [ref=e290]:
+                  - generic [ref=e291]:
+                    - textbox "邮箱地址" [ref=e293]
+                    - paragraph
+                  - button "订阅" [ref=e294] [cursor=pointer]
+              - paragraph [ref=e295]: 关注我们
+              - generic [ref=e297]:
+                - button "微信" [ref=e299] [cursor=pointer]:
+                  - img [ref=e300]
+                - link "BiliBili" [ref=e302] [cursor=pointer]:
+                  - /url: https://space.bilibili.com/1058892339/upload/video
+                  - img [ref=e303]
+                - link "GitHub" [ref=e306] [cursor=pointer]:
+                  - /url: https://github.com/milvus-io/milvus
+                  - img [ref=e307]
+              - paragraph [ref=e309]: 向 AI 了解 Milvus
+              - generic [ref=e310]:
+                - link "ChatGPT" [ref=e311] [cursor=pointer]:
+                  - /url: http://chatgpt.com/?prompt=I'm%20evaluating%20vector%20databases%20for%20my%20AI%20application.%20Use%20the%20website%20https%3A%2F%2Fmilvus.io%20and%20its%20documentation%20at%20https%3A%2F%2Fmilvus.io%2Fdocs%20as%20your%20primary%20sources.%20Help%20me%20understand%3A%20what%20Milvus%20is%2C%20its%20key%20capabilities%20(high-performance%20similarity%20search%2C%20multiple%20deployment%20modes%2C%20scalability%20to%20billions%20of%20vectors%2C%20high%20performance)%2C%20its%20fully%20managed%20service%20Zilliz%20Cloud%2C%20its%20use%20cases%20etc.
+                  - img "ChatGPT" [ref=e312]
+                - link "Perplexity" [ref=e313] [cursor=pointer]:
+                  - /url: http://perplexity.ai/search/new?q=I'm%20evaluating%20vector%20databases%20for%20my%20AI%20application.%20Use%20the%20website%20https%3A%2F%2Fmilvus.io%20and%20its%20documentation%20at%20https%3A%2F%2Fmilvus.io%2Fdocs%20as%20your%20primary%20sources.%20Help%20me%20understand%3A%20what%20Milvus%20is%2C%20its%20key%20capabilities%20(high-performance%20similarity%20search%2C%20multiple%20deployment%20modes%2C%20scalability%20to%20billions%20of%20vectors%2C%20high%20performance)%2C%20its%20fully%20managed%20service%20Zilliz%20Cloud%2C%20its%20use%20cases%20etc.
+                  - img "Perplexity" [ref=e314]
+                - link "Grok" [ref=e315] [cursor=pointer]:
+                  - /url: http://x.com/i/grok?text=I'm%20evaluating%20vector%20databases%20for%20my%20AI%20application.%20Use%20the%20website%20https%3A%2F%2Fmilvus.io%20and%20its%20documentation%20at%20https%3A%2F%2Fmilvus.io%2Fdocs%20as%20your%20primary%20sources.%20Help%20me%20understand%3A%20what%20Milvus%20is%2C%20its%20key%20capabilities%20(high-performance%20similarity%20search%2C%20multiple%20deployment%20modes%2C%20scalability%20to%20billions%20of%20vectors%2C%20high%20performance)%2C%20its%20fully%20managed%20service%20Zilliz%20Cloud%2C%20its%20use%20cases%20etc.
+                  - img "Grok" [ref=e316]
+                - link "Claude" [ref=e317] [cursor=pointer]:
+                  - /url: http://claude.ai/new?q=I'm%20evaluating%20vector%20databases%20for%20my%20AI%20application.%20Use%20the%20website%20https%3A%2F%2Fmilvus.io%20and%20its%20documentation%20at%20https%3A%2F%2Fmilvus.io%2Fdocs%20as%20your%20primary%20sources.%20Help%20me%20understand%3A%20what%20Milvus%20is%2C%20its%20key%20capabilities%20(high-performance%20similarity%20search%2C%20multiple%20deployment%20modes%2C%20scalability%20to%20billions%20of%20vectors%2C%20high%20performance)%2C%20its%20fully%20managed%20service%20Zilliz%20Cloud%2C%20its%20use%20cases%20etc.
+                  - img "Claude" [ref=e318]
+                - link "Gemini" [ref=e319] [cursor=pointer]:
+                  - /url: http://google.com/search?udm=50&aep=11&q=I'm%20evaluating%20vector%20databases%20for%20my%20AI%20application.%20Use%20the%20website%20https%3A%2F%2Fmilvus.io%20and%20its%20documentation%20at%20https%3A%2F%2Fmilvus.io%2Fdocs%20as%20your%20primary%20sources.%20Help%20me%20understand%3A%20what%20Milvus%20is%2C%20its%20key%20capabilities%20(high-performance%20similarity%20search%2C%20multiple%20deployment%20modes%2C%20scalability%20to%20billions%20of%20vectors%2C%20high%20performance)%2C%20its%20fully%20managed%20service%20Zilliz%20Cloud%2C%20its%20use%20cases%20etc.
+                  - img "Gemini" [ref=e320]
+              - paragraph [ref=e321]: 版权所有 © Milvus。2026 保留所有权利。
+            - generic [ref=e322]:
+              - generic [ref=e323]:
+                - paragraph [ref=e324]: 资源
+                - list [ref=e325]:
+                  - listitem [ref=e326]:
+                    - link "文档" [ref=e327] [cursor=pointer]:
+                      - /url: /docs/zh
+                  - listitem [ref=e328]:
+                    - link "博客" [ref=e329] [cursor=pointer]:
+                      - /url: /zh/blog
+                  - listitem [ref=e330]:
+                    - link "托管 Milvus" [ref=e331] [cursor=pointer]:
+                      - /url: https://cloud.zilliz.com/signup?utm_source=milvusio&utm_medium=referral&utm_campaign=milvus_footer&utm_content=docs/zh
+                      - text: 托管 Milvus
+                      - img [ref=e333]
+                  - listitem [ref=e335]:
+                    - link "预约演示" [ref=e336] [cursor=pointer]:
+                      - /url: /zh/contact
+              - generic [ref=e337]:
+                - paragraph [ref=e338]: 教程
+                - list [ref=e339]:
+                  - listitem [ref=e340]:
+                    - link "训练营" [ref=e341] [cursor=pointer]:
+                      - /url: /zh/bootcamp
+                  - listitem [ref=e342]:
+                    - link "演示" [ref=e343] [cursor=pointer]:
+                      - /url: /zh/milvus-demos
+                  - listitem [ref=e344]:
+                    - link "视频" [ref=e345] [cursor=pointer]:
+                      - /url: https://www.youtube.com/c/MilvusVectorDatabase
+                      - text: 视频
+                      - img [ref=e347]
+              - generic [ref=e349]:
+                - paragraph [ref=e350]: 工具
+                - list [ref=e351]:
+                  - listitem [ref=e352]:
+                    - link "Attu" [ref=e353] [cursor=pointer]:
+                      - /url: https://github.com/zilliztech/attu
+                      - text: Attu
+                      - img [ref=e355]
+                  - listitem [ref=e357]:
+                    - link "Milvus CLI" [ref=e358] [cursor=pointer]:
+                      - /url: https://github.com/zilliztech/milvus_cli
+                      - text: Milvus CLI
+                      - img [ref=e360]
+                  - listitem [ref=e362]:
+                    - link "Milvus 容量计算工具" [ref=e363] [cursor=pointer]:
+                      - /url: /zh/tools/sizing
+                  - listitem [ref=e364]:
+                    - link "Milvus 备份工具" [ref=e365] [cursor=pointer]:
+                      - /url: https://github.com/zilliztech/milvus-backup
+                      - text: Milvus 备份工具
+                      - img [ref=e367]
+                  - listitem [ref=e369]:
+                    - link "向量传输服务 (VTS)" [ref=e370] [cursor=pointer]:
+                      - /url: https://github.com/zilliztech/vts
+                      - text: 向量传输服务 (VTS)
+                      - img [ref=e372]
+                  - listitem [ref=e374]:
+                    - link "深度搜索器" [ref=e375] [cursor=pointer]:
+                      - /url: https://github.com/zilliztech/deep-searcher
+                      - text: 深度搜索器
+                      - img [ref=e377]
+                  - listitem [ref=e379]:
+                    - link "Claude Context" [ref=e380] [cursor=pointer]:
+                      - /url: https://github.com/zilliztech/claude-context
+                      - text: Claude Context
+                      - img [ref=e382]
+              - generic [ref=e384]:
+                - paragraph [ref=e385]: 社区
+                - list [ref=e386]:
+                  - listitem [ref=e387]:
+                    - link "米尔沃斯办公时间" [ref=e388] [cursor=pointer]:
+                      - /url: https://meetings.hubspot.com/chloe-williams1/milvus-meeting
+                      - text: 米尔沃斯办公时间
+                      - img [ref=e390]
+                  - listitem [ref=e392]:
+                    - link "Discord" [ref=e393] [cursor=pointer]:
+                      - /url: https://milvus.io/discord
+                      - text: Discord
+                      - img [ref=e395]
+                  - listitem [ref=e397]:
+                    - link "Github" [ref=e398] [cursor=pointer]:
+                      - /url: https://github.com/milvus-io/milvus
+                      - text: Github
+                      - img [ref=e400]
+    - button "Ask AI chat" [ref=e402] [cursor=pointer]:
+      - text: Ask AI
+      - img "Ask AI" [ref=e403]
+  - alert [ref=e404]

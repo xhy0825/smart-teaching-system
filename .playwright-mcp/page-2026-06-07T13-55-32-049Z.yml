@@ -1,0 +1,903 @@
+- generic [ref=e2]:
+  - region "Skip to main content":
+    - link "Skip to main content" [ref=e3] [cursor=pointer]:
+      - /url: "#__docusaurus_skipToContent_fallback"
+  - navigation "Main" [ref=e4]:
+    - generic [ref=e5]:
+      - generic [ref=e6]:
+        - link "LangChain4j Logo LangChain4j":
+          - /url: /
+          - img "LangChain4j Logo" [ref=e8] [cursor=pointer]
+          - generic: LangChain4j
+        - link "Introduction" [ref=e9] [cursor=pointer]:
+          - /url: /intro
+        - link "Get Started" [ref=e10] [cursor=pointer]:
+          - /url: /get-started
+        - link "Tutorials" [ref=e11] [cursor=pointer]:
+          - /url: /category/tutorials
+        - link "Integrations" [ref=e12] [cursor=pointer]:
+          - /url: /category/integrations
+        - link "Useful Materials" [ref=e13] [cursor=pointer]:
+          - /url: /useful-materials
+        - link "Examples(opens in new tab)" [ref=e14] [cursor=pointer]:
+          - /url: https://github.com/langchain4j/langchain4j-examples
+          - text: Examples
+          - img "(opens in new tab)" [ref=e15]
+        - link "Docu chatbot(opens in new tab)" [ref=e17] [cursor=pointer]:
+          - /url: https://chat.langchain4j.dev/
+          - text: Docu chatbot
+          - img "(opens in new tab)" [ref=e18]
+        - link "Javadoc(opens in new tab)" [ref=e20] [cursor=pointer]:
+          - /url: https://docs.langchain4j.dev/apidocs/index.html
+          - text: Javadoc
+          - img "(opens in new tab)" [ref=e21]
+      - generic [ref=e23]:
+        - link "GitHub(opens in new tab)" [ref=e24] [cursor=pointer]:
+          - /url: https://github.com/langchain4j/langchain4j
+          - text: GitHub
+          - img "(opens in new tab)" [ref=e25]
+        - link "Twitter(opens in new tab)" [ref=e27] [cursor=pointer]:
+          - /url: https://twitter.com/langchain4j
+          - text: Twitter
+          - img "(opens in new tab)" [ref=e28]
+        - link "Discord(opens in new tab)" [ref=e30] [cursor=pointer]:
+          - /url: https://discord.com/invite/JzTFvyjG6R
+          - text: Discord
+          - img "(opens in new tab)" [ref=e31]
+        - button "Switch between dark and light mode (currently system mode)" [disabled] [ref=e34]:
+          - img [ref=e35]
+        - generic [ref=e38]:
+          - button "expand searchbar"
+          - searchbox "Search" [disabled] [ref=e39]
+  - generic [ref=e42]:
+    - complementary [ref=e43]:
+      - generic [ref=e45]:
+        - navigation "Docs sidebar" [ref=e46]:
+          - list [ref=e47]:
+            - listitem [ref=e48]:
+              - link "Introduction" [ref=e49] [cursor=pointer]:
+                - /url: /intro
+                - generic "Introduction" [ref=e50]
+            - listitem [ref=e51]:
+              - link "Get Started" [ref=e52] [cursor=pointer]:
+                - /url: /get-started
+                - generic "Get Started" [ref=e53]
+            - listitem [ref=e54]:
+              - generic [ref=e55]:
+                - link "Tutorials" [ref=e56] [cursor=pointer]:
+                  - /url: /category/tutorials
+                  - generic "Tutorials" [ref=e57]
+                - button "Collapse sidebar category 'Tutorials'" [expanded] [ref=e58] [cursor=pointer]
+              - list [ref=e59]:
+                - listitem [ref=e60]:
+                  - link "Chat and Language Models" [ref=e61] [cursor=pointer]:
+                    - /url: /tutorials/chat-and-language-models
+                    - generic "Chat and Language Models" [ref=e62]
+                - listitem [ref=e63]:
+                  - link "Chat Memory" [ref=e64] [cursor=pointer]:
+                    - /url: /tutorials/chat-memory
+                    - generic "Chat Memory" [ref=e65]
+                - listitem [ref=e66]:
+                  - link "Model Parameters" [ref=e67] [cursor=pointer]:
+                    - /url: /tutorials/model-parameters
+                    - generic "Model Parameters" [ref=e68]
+                - listitem [ref=e69]:
+                  - link "Response Streaming" [ref=e70] [cursor=pointer]:
+                    - /url: /tutorials/response-streaming
+                    - generic "Response Streaming" [ref=e71]
+                - listitem [ref=e72]:
+                  - link "AI Services" [ref=e73] [cursor=pointer]:
+                    - /url: /tutorials/ai-services
+                    - generic "AI Services" [ref=e74]
+                - listitem [ref=e75]:
+                  - link "Agents and Agentic AI" [ref=e76] [cursor=pointer]:
+                    - /url: /tutorials/agents
+                    - generic "Agents and Agentic AI" [ref=e77]
+                - listitem [ref=e78]:
+                  - link "Tools (Function Calling)" [ref=e79] [cursor=pointer]:
+                    - /url: /tutorials/tools
+                    - generic "Tools (Function Calling)" [ref=e80]
+                - listitem [ref=e81]:
+                  - link "RAG (Retrieval-Augmented Generation)" [ref=e82] [cursor=pointer]:
+                    - /url: /tutorials/rag
+                    - generic "RAG (Retrieval-Augmented Generation)" [ref=e83]
+                - listitem [ref=e84]:
+                  - link "Structured Outputs" [ref=e85] [cursor=pointer]:
+                    - /url: /tutorials/structured-outputs
+                    - generic "Structured Outputs" [ref=e86]
+                - listitem [ref=e87]:
+                  - link "Guardrails" [ref=e88] [cursor=pointer]:
+                    - /url: /tutorials/guardrails
+                    - generic "Guardrails" [ref=e89]
+                - listitem [ref=e90]:
+                  - link "Classification" [ref=e91] [cursor=pointer]:
+                    - /url: /tutorials/classification
+                    - generic "Classification" [ref=e92]
+                - listitem [ref=e93]:
+                  - link "Embedding (Vector) Stores" [ref=e94] [cursor=pointer]:
+                    - /url: /tutorials/embedding-stores
+                    - generic "Embedding (Vector) Stores" [ref=e95]
+                - listitem [ref=e96]:
+                  - link "Building a Java MCP stdio server" [ref=e97] [cursor=pointer]:
+                    - /url: /tutorials/mcp-stdio-server
+                    - generic "Building a Java MCP stdio server" [ref=e98]
+                - listitem [ref=e99]:
+                  - link "Image Models" [ref=e100] [cursor=pointer]:
+                    - /url: /tutorials/image-models
+                    - generic "Image Models" [ref=e101]
+                - listitem [ref=e102]:
+                  - link "Micronaut Integration" [ref=e103] [cursor=pointer]:
+                    - /url: /tutorials/micronaut-integration
+                    - generic "Micronaut Integration" [ref=e104]
+                - listitem [ref=e105]:
+                  - link "Quarkus Integration" [ref=e106] [cursor=pointer]:
+                    - /url: /tutorials/quarkus-integration
+                    - generic "Quarkus Integration" [ref=e107]
+                - listitem [ref=e108]:
+                  - link "Spring Boot Integration" [ref=e109] [cursor=pointer]:
+                    - /url: /tutorials/spring-boot-integration
+                    - generic "Spring Boot Integration" [ref=e110]
+                - listitem [ref=e111]:
+                  - link "Helidon Integration" [ref=e112] [cursor=pointer]:
+                    - /url: /tutorials/helidon-integration
+                    - generic "Helidon Integration" [ref=e113]
+                - listitem [ref=e114]:
+                  - link "Kotlin Support" [ref=e115] [cursor=pointer]:
+                    - /url: /tutorials/kotlin
+                    - generic "Kotlin Support" [ref=e116]
+                - listitem [ref=e117]:
+                  - link "Logging" [ref=e118] [cursor=pointer]:
+                    - /url: /tutorials/logging
+                    - generic "Logging" [ref=e119]
+                - listitem [ref=e120]:
+                  - link "JSON Codec" [ref=e121] [cursor=pointer]:
+                    - /url: /tutorials/json
+                    - generic "JSON Codec" [ref=e122]
+                - listitem [ref=e123]:
+                  - link "Observability" [ref=e124] [cursor=pointer]:
+                    - /url: /tutorials/observability
+                    - generic "Observability" [ref=e125]
+                - listitem [ref=e126]:
+                  - link "Skills" [ref=e127] [cursor=pointer]:
+                    - /url: /tutorials/skills
+                    - generic "Skills" [ref=e128]
+                - listitem [ref=e129]:
+                  - link "Customizable HTTP Client" [ref=e130] [cursor=pointer]:
+                    - /url: /tutorials/customizable-http-client
+                    - generic "Customizable HTTP Client" [ref=e131]
+                - listitem [ref=e132]:
+                  - link "Testing and Evaluation" [ref=e133] [cursor=pointer]:
+                    - /url: /tutorials/testing-and-evaluation
+                    - generic "Testing and Evaluation" [ref=e134]
+                - listitem [ref=e135]:
+                  - link "Payara Micro Integration" [ref=e136] [cursor=pointer]:
+                    - /url: /tutorials/payara-micro-integration
+                    - generic "Payara Micro Integration" [ref=e137]
+                - listitem [ref=e138]:
+                  - link "Model Context Protocol (MCP)" [ref=e139] [cursor=pointer]:
+                    - /url: /tutorials/mcp
+                    - generic "Model Context Protocol (MCP)" [ref=e140]
+            - listitem [ref=e141]:
+              - generic [ref=e142]:
+                - link "Integrations" [ref=e143] [cursor=pointer]:
+                  - /url: /category/integrations
+                  - generic "Integrations" [ref=e144]
+                - button "Expand sidebar category 'Integrations'" [ref=e145] [cursor=pointer]
+            - listitem [ref=e146]:
+              - generic [ref=e147]:
+                - link "Useful Materials" [ref=e148] [cursor=pointer]:
+                  - /url: /category/useful-materials
+                  - generic "Useful Materials" [ref=e149]
+                - button "Expand sidebar category 'Useful Materials'" [ref=e150] [cursor=pointer]
+            - listitem [ref=e151]:
+              - link "Latest Release Notes" [ref=e152] [cursor=pointer]:
+                - /url: /latest-release-notes
+                - generic "Latest Release Notes" [ref=e153]
+        - button "Collapse sidebar" [ref=e154] [cursor=pointer]:
+          - img [ref=e155]
+    - main [ref=e159]:
+      - generic [ref=e161]:
+        - generic [ref=e163]:
+          - article [ref=e164]:
+            - navigation "Breadcrumbs" [ref=e165]:
+              - list [ref=e166]:
+                - listitem [ref=e167]:
+                  - link "Home page" [ref=e168] [cursor=pointer]:
+                    - /url: /
+                    - img [ref=e169]
+                - listitem [ref=e171]:
+                  - link "Tutorials" [ref=e172] [cursor=pointer]:
+                    - /url: /category/tutorials
+                - listitem [ref=e173]:
+                  - generic [ref=e174]: Spring Boot Integration
+            - generic [ref=e175]:
+              - heading "Spring Boot Integration" [level=1] [ref=e177]
+              - paragraph [ref=e178]:
+                - text: LangChain4j provides
+                - link "Spring Boot starters" [ref=e179] [cursor=pointer]:
+                  - /url: https://github.com/langchain4j/langchain4j-spring
+                - text: "for:"
+              - list [ref=e180]:
+                - listitem [ref=e181]: popular integrations
+                - listitem [ref=e182]:
+                  - text: declarative
+                  - link "AI Services" [ref=e183] [cursor=pointer]:
+                    - /url: /tutorials/ai-services
+              - heading "Spring Boot StartersDirect link to Spring Boot Starters" [level=2] [ref=e184]:
+                - text: Spring Boot Starters
+                - link "Direct link to Spring Boot Starters" [ref=e185] [cursor=pointer]:
+                  - /url: "#spring-boot-starters"
+                  - text: "#"
+              - paragraph [ref=e186]:
+                - text: Spring Boot starters help with creating and configuring
+                - link "language models" [ref=e187] [cursor=pointer]:
+                  - /url: /category/language-models
+                - text: ","
+                - link "embedding models" [ref=e188] [cursor=pointer]:
+                  - /url: /category/embedding-models
+                - text: ","
+                - link "embedding stores" [ref=e189] [cursor=pointer]:
+                  - /url: /category/embedding-stores
+                - text: ", and other core LangChain4j components through properties."
+              - paragraph [ref=e190]:
+                - text: To use one of the
+                - link "Spring Boot starters" [ref=e191] [cursor=pointer]:
+                  - /url: https://github.com/langchain4j/langchain4j-spring
+                - text: ", import the corresponding dependency."
+              - paragraph [ref=e192]: "The naming convention for the Spring Boot starter dependency is:"
+              - list [ref=e193]:
+                - listitem [ref=e194]:
+                  - code [ref=e195]: "langchain4j-{integration-name}-spring-boot-starter"
+                  - text: for
+                  - strong [ref=e196]: Spring Boot 3
+                - listitem [ref=e197]:
+                  - code [ref=e198]: "langchain4j-{integration-name}-spring-boot4-starter"
+                  - text: for
+                  - strong [ref=e199]: Spring Boot 4
+              - paragraph [ref=e200]:
+                - text: For example, for OpenAI (
+                - code [ref=e201]: langchain4j-open-ai
+                - text: "):"
+              - paragraph [ref=e202]:
+                - strong [ref=e203]: "Spring Boot 3:"
+              - code [ref=e207]:
+                - generic [ref=e208]: <dependency>
+                - generic [ref=e209]: <groupId>dev.langchain4j</groupId>
+                - generic [ref=e210]: <artifactId>langchain4j-open-ai-spring-boot-starter</artifactId>
+                - generic [ref=e211]: <version>1.16.1-beta26</version>
+                - generic [ref=e212]: </dependency>
+              - paragraph [ref=e213]:
+                - strong [ref=e214]: "Spring Boot 4:"
+              - code [ref=e218]:
+                - generic [ref=e219]: <dependency>
+                - generic [ref=e220]: <groupId>dev.langchain4j</groupId>
+                - generic [ref=e221]: <artifactId>langchain4j-open-ai-spring-boot4-starter</artifactId>
+                - generic [ref=e222]: <version>1.16.1-beta26</version>
+                - generic [ref=e223]: </dependency>
+              - paragraph [ref=e224]:
+                - text: Then, you can configure model parameters in the
+                - code [ref=e225]: application.properties
+                - text: "file as follows:"
+              - code [ref=e229]:
+                - generic [ref=e230]: "langchain4j.open-ai.chat-model.api-key=${OPENAI_API_KEY}"
+                - generic [ref=e231]: langchain4j.open-ai.chat-model.model-name=gpt-4o
+                - generic [ref=e232]: langchain4j.open-ai.chat-model.log-requests=true
+                - generic [ref=e233]: langchain4j.open-ai.chat-model.log-responses=true
+                - generic [ref=e234]: ...
+              - paragraph [ref=e235]:
+                - text: In this case, an instance of
+                - code [ref=e236]: OpenAiChatModel
+                - text: (an implementation of a
+                - code [ref=e237]: ChatModel
+                - text: ") will be automatically created, and you can autowire it where needed:"
+              - code [ref=e241]:
+                - generic [ref=e242]: "@RestController"
+                - generic [ref=e243]: "public class ChatController {"
+                - generic [ref=e245]: ChatModel chatModel;
+                - generic [ref=e247]: "public ChatController(ChatModel chatModel) {"
+                - generic [ref=e248]: this.chatModel = chatModel;
+                - generic [ref=e249]: "}"
+                - generic [ref=e251]: "@GetMapping(\"/chat\")"
+                - generic [ref=e252]: "public String model(@RequestParam(value = \"message\", defaultValue = \"Hello\") String message) {"
+                - generic [ref=e253]: return chatModel.chat(message);
+                - generic [ref=e254]: "}"
+                - generic [ref=e255]: "}"
+              - paragraph [ref=e256]:
+                - text: If you need an instance of a
+                - code [ref=e257]: StreamingChatModel
+                - text: ", use the"
+                - code [ref=e258]: streaming-chat-model
+                - text: instead of the
+                - code [ref=e259]: chat-model
+                - text: "properties:"
+              - code [ref=e263]:
+                - generic [ref=e264]: "langchain4j.open-ai.streaming-chat-model.api-key=${OPENAI_API_KEY}"
+                - generic [ref=e265]: ...
+              - heading "Spring Boot starter for declarative AI ServicesDirect link to Spring Boot starter for declarative AI Services" [level=2] [ref=e266]:
+                - text: Spring Boot starter for declarative AI Services
+                - link "Direct link to Spring Boot starter for declarative AI Services" [ref=e267] [cursor=pointer]:
+                  - /url: "#spring-boot-starter-for-declarative-ai-services"
+                  - text: "#"
+              - paragraph [ref=e268]:
+                - text: LangChain4j provides a Spring Boot starter for auto-configuring
+                - link "AI Services" [ref=e269] [cursor=pointer]:
+                  - /url: /tutorials/ai-services
+                - text: ","
+                - link "RAG" [ref=e270] [cursor=pointer]:
+                  - /url: /tutorials/rag
+                - text: ","
+                - link "Tools" [ref=e271] [cursor=pointer]:
+                  - /url: /tutorials/tools
+                - text: etc.
+              - paragraph [ref=e272]:
+                - text: Assuming you have already imported one of the integrations starters (see above), import
+                - code [ref=e273]: langchain4j-spring-boot-starter
+                - text: (Spring Boot 3) or
+                - code [ref=e274]: langchain4j-spring-boot4-starter
+                - text: "(Spring Boot 4):"
+              - paragraph [ref=e275]:
+                - strong [ref=e276]: "Spring Boot 3:"
+              - code [ref=e280]:
+                - generic [ref=e281]: <dependency>
+                - generic [ref=e282]: <groupId>dev.langchain4j</groupId>
+                - generic [ref=e283]: <artifactId>langchain4j-spring-boot-starter</artifactId>
+                - generic [ref=e284]: <version>1.16.1-beta26</version>
+                - generic [ref=e285]: </dependency>
+              - paragraph [ref=e286]:
+                - strong [ref=e287]: "Spring Boot 4:"
+              - code [ref=e291]:
+                - generic [ref=e292]: <dependency>
+                - generic [ref=e293]: <groupId>dev.langchain4j</groupId>
+                - generic [ref=e294]: <artifactId>langchain4j-spring-boot4-starter</artifactId>
+                - generic [ref=e295]: <version>1.16.1-beta26</version>
+                - generic [ref=e296]: </dependency>
+              - paragraph [ref=e297]:
+                - text: You can now define AI Service interface and annotate it with
+                - code [ref=e298]: "@AiService"
+                - text: ":"
+              - code [ref=e302]:
+                - generic [ref=e303]: "@AiService"
+                - generic [ref=e304]: "interface Assistant {"
+                - generic [ref=e306]: "@SystemMessage(\"You are a polite assistant\")"
+                - generic [ref=e307]: String chat(String userMessage);
+                - generic [ref=e308]: "}"
+              - paragraph [ref=e309]:
+                - text: Think of it as a standard Spring Boot
+                - code [ref=e310]: "@Service"
+                - text: ", but with AI capabilities."
+              - paragraph [ref=e311]:
+                - text: When the application starts, LangChain4j starter will scan the classpath and find all interfaces annotated with
+                - code [ref=e312]: "@AiService"
+                - text: ". For each AI Service found, it will create an implementation of this interface using all LangChain4j components available in the application context and will register it as a bean, so you can auto-wire it where needed:"
+              - code [ref=e316]:
+                - generic [ref=e317]: "@RestController"
+                - generic [ref=e318]: "class AssistantController {"
+                - generic [ref=e320]: "@Autowired"
+                - generic [ref=e321]: Assistant assistant;
+                - generic [ref=e323]: "@GetMapping(\"/chat\")"
+                - generic [ref=e324]: "public String chat(String message) {"
+                - generic [ref=e325]: return assistant.chat(message);
+                - generic [ref=e326]: "}"
+                - generic [ref=e327]: "}"
+              - heading "Automatic Component WiringDirect link to Automatic Component Wiring" [level=3] [ref=e328]:
+                - text: Automatic Component Wiring
+                - link "Direct link to Automatic Component Wiring" [ref=e329] [cursor=pointer]:
+                  - /url: "#automatic-component-wiring"
+                  - text: "#"
+              - paragraph [ref=e330]: "The following components will be automatically wired into the AI Service if available in the application context:"
+              - list [ref=e331]:
+                - listitem [ref=e332]:
+                  - code [ref=e333]: ChatModel
+                - listitem [ref=e334]:
+                  - code [ref=e335]: StreamingChatModel
+                - listitem [ref=e336]:
+                  - code [ref=e337]: ChatMemory
+                - listitem [ref=e338]:
+                  - code [ref=e339]: ChatMemoryProvider
+                - listitem [ref=e340]:
+                  - code [ref=e341]: ContentRetriever
+                - listitem [ref=e342]:
+                  - code [ref=e343]: RetrievalAugmentor
+                - listitem [ref=e344]:
+                  - code [ref=e345]: ToolProvider
+                - listitem [ref=e346]:
+                  - text: All methods of any
+                  - code [ref=e347]: "@Component"
+                  - text: or
+                  - code [ref=e348]: "@Service"
+                  - text: class that are annotated with
+                  - code [ref=e349]: "@Tool"
+                  - text: "An example:"
+              - code [ref=e353]:
+                - generic [ref=e354]: "@Component"
+                - generic [ref=e355]: "public class BookingTools {"
+                - generic [ref=e357]: private final BookingService bookingService;
+                - generic [ref=e359]: "public BookingTools(BookingService bookingService) {"
+                - generic [ref=e360]: this.bookingService = bookingService;
+                - generic [ref=e361]: "}"
+                - generic [ref=e363]: "@Tool"
+                - generic [ref=e364]: "public Booking getBookingDetails(String bookingNumber, String customerName, String customerSurname) {"
+                - generic [ref=e365]: return bookingService.getBookingDetails(bookingNumber, customerName, customerSurname);
+                - generic [ref=e366]: "}"
+                - generic [ref=e368]: "@Tool"
+                - generic [ref=e369]: "public void cancelBooking(String bookingNumber, String customerName, String customerSurname) {"
+                - generic [ref=e370]: bookingService.cancelBooking(bookingNumber, customerName, customerSurname);
+                - generic [ref=e371]: "}"
+                - generic [ref=e372]: "}"
+              - generic [ref=e373]:
+                - generic [ref=e374]:
+                  - img [ref=e376]
+                  - text: note
+                - paragraph [ref=e379]: If multiple components of the same type are present in the application context, the application will fail to start. In this case, use the explicit wiring mode (explained below).
+              - heading "Explicit Component WiringDirect link to Explicit Component Wiring" [level=3] [ref=e380]:
+                - text: Explicit Component Wiring
+                - link "Direct link to Explicit Component Wiring" [ref=e381] [cursor=pointer]:
+                  - /url: "#explicit-component-wiring"
+                  - text: "#"
+              - paragraph [ref=e382]:
+                - text: If you have multiple AI Services and want to wire different LangChain4j components into each of them, you can specify which components to use with explicit wiring mode (
+                - code [ref=e383]: "@AiService(wiringMode = EXPLICIT)"
+                - text: ).
+              - paragraph [ref=e384]:
+                - text: Let's say we have two
+                - code [ref=e385]: ChatModel
+                - text: "s configured:"
+              - code [ref=e389]:
+                - generic [ref=e390]: "# OpenAI"
+                - generic [ref=e391]: "langchain4j.open-ai.chat-model.api-key=${OPENAI_API_KEY}"
+                - generic [ref=e392]: langchain4j.open-ai.chat-model.model-name=gpt-4o-mini
+                - generic [ref=e394]: "# Ollama"
+                - generic [ref=e395]: langchain4j.ollama.chat-model.base-url=http://localhost:11434
+                - generic [ref=e396]: langchain4j.ollama.chat-model.model-name=llama3.1
+              - code [ref=e400]:
+                - generic [ref=e401]: "@AiService(wiringMode = EXPLICIT, chatModel = \"openAiChatModel\")"
+                - generic [ref=e402]: "interface OpenAiAssistant {"
+                - generic [ref=e404]: "@SystemMessage(\"You are a polite assistant\")"
+                - generic [ref=e405]: String chat(String userMessage);
+                - generic [ref=e406]: "}"
+                - generic [ref=e408]: "@AiService(wiringMode = EXPLICIT, chatModel = \"ollamaChatModel\")"
+                - generic [ref=e409]: "interface OllamaAssistant {"
+                - generic [ref=e411]: "@SystemMessage(\"You are a polite assistant\")"
+                - generic [ref=e412]: String chat(String userMessage);
+                - generic [ref=e413]: "}"
+              - generic [ref=e414]:
+                - generic [ref=e415]:
+                  - img [ref=e417]
+                  - text: note
+                - paragraph [ref=e420]:
+                  - text: In this case, you must explicitly specify
+                  - strong [ref=e421]: all
+                  - text: components.
+              - paragraph [ref=e422]:
+                - text: More details can be found
+                - link "here" [ref=e423] [cursor=pointer]:
+                  - /url: https://github.com/langchain4j/langchain4j-spring/blob/main/langchain4j-spring-boot-starter/src/main/java/dev/langchain4j/service/spring/AiService.java
+                - text: (same API for the Spring Boot 4 variant).
+              - heading "Listening for AI Service Registration EventsDirect link to Listening for AI Service Registration Events" [level=3] [ref=e424]:
+                - text: Listening for AI Service Registration Events
+                - link "Direct link to Listening for AI Service Registration Events" [ref=e425] [cursor=pointer]:
+                  - /url: "#listening-for-ai-service-registration-events"
+                  - text: "#"
+              - paragraph [ref=e426]:
+                - text: After you have completed the development of the AI Service in a declarative manner, you can listen for the
+                - code [ref=e427]: AiServiceRegisteredEvent
+                - text: by implementing the
+                - code [ref=e428]: ApplicationListener<AiServiceRegisteredEvent>
+                - text: "interface. This event is triggered when AI Service is registered in the Spring context, allowing you to obtain information about all registered AI services and their tools at runtime. Here is an example:"
+              - code [ref=e432]:
+                - generic [ref=e433]: "@Component"
+                - generic [ref=e434]: "class AiServiceRegisteredEventListener implements ApplicationListener<AiServiceRegisteredEvent> {"
+                - generic [ref=e437]: "@Override"
+                - generic [ref=e438]: "public void onApplicationEvent(AiServiceRegisteredEvent event) {"
+                - generic [ref=e439]: Class<?> aiServiceClass = event.aiServiceClass();
+                - generic [ref=e440]: List<ToolSpecification> toolSpecifications = event.toolSpecifications();
+                - generic [ref=e441]: "for (int i = 0; i < toolSpecifications.size(); i++) {"
+                - generic [ref=e442]: "System.out.printf(\"[%s]: [Tool-%s]: %s%n\", aiServiceClass.getSimpleName(), i + 1, toolSpecifications.get(i));"
+                - generic [ref=e443]: "}"
+                - generic [ref=e444]: "}"
+                - generic [ref=e445]: "}"
+              - heading "FluxDirect link to Flux" [level=2] [ref=e446]:
+                - text: Flux
+                - link "Direct link to Flux" [ref=e447] [cursor=pointer]:
+                  - /url: "#flux"
+                  - text: "#"
+              - paragraph [ref=e448]:
+                - text: When streaming, you can use
+                - code [ref=e449]: Flux<String>
+                - text: "as a return type of AI Service:"
+              - code [ref=e453]:
+                - generic [ref=e454]: "@AiService"
+                - generic [ref=e455]: "interface Assistant {"
+                - generic [ref=e457]: "@SystemMessage(\"You are a polite assistant\")"
+                - generic [ref=e458]: Flux<String> chat(String userMessage);
+                - generic [ref=e459]: "}"
+              - paragraph [ref=e460]:
+                - text: For this, please import
+                - code [ref=e461]: langchain4j-reactor
+                - text: module. See more details
+                - link "here" [ref=e462] [cursor=pointer]:
+                  - /url: /tutorials/ai-services#flux
+                - text: .
+              - heading "ObservabilityDirect link to Observability" [level=2] [ref=e463]:
+                - text: Observability
+                - link "Direct link to Observability" [ref=e464] [cursor=pointer]:
+                  - /url: "#observability"
+                  - text: "#"
+              - paragraph [ref=e465]:
+                - text: To enable observability for a
+                - code [ref=e466]: ChatModel
+                - text: or
+                - code [ref=e467]: StreamingChatModel
+                - text: bean, you need to declare one or more
+                - code [ref=e468]: ChatModelListener
+                - text: "beans:"
+              - code [ref=e472]:
+                - generic [ref=e473]: "@Configuration"
+                - generic [ref=e474]: "class MyConfiguration {"
+                - generic [ref=e476]: "@Bean"
+                - generic [ref=e477]: "ChatModelListener chatModelListener() {"
+                - generic [ref=e478]: "return new ChatModelListener() {"
+                - generic [ref=e480]: private static final Logger log = LoggerFactory.getLogger(ChatModelListener.class);
+                - generic [ref=e482]: "@Override"
+                - generic [ref=e483]: "public void onRequest(ChatModelRequestContext requestContext) {"
+                - generic [ref=e484]: "log.info(\"onRequest(): {}\", requestContext.chatRequest());"
+                - generic [ref=e485]: "}"
+                - generic [ref=e487]: "@Override"
+                - generic [ref=e488]: "public void onResponse(ChatModelResponseContext responseContext) {"
+                - generic [ref=e489]: "log.info(\"onResponse(): {}\", responseContext.chatResponse());"
+                - generic [ref=e490]: "}"
+                - generic [ref=e492]: "@Override"
+                - generic [ref=e493]: "public void onError(ChatModelErrorContext errorContext) {"
+                - generic [ref=e494]: "log.info(\"onError(): {}\", errorContext.error().getMessage());"
+                - generic [ref=e495]: "}"
+                - generic [ref=e496]: "};"
+                - generic [ref=e497]: "}"
+                - generic [ref=e498]: "}"
+              - paragraph [ref=e499]:
+                - text: Every
+                - code [ref=e500]: ChatModelListener
+                - text: bean in the application context will be automatically injected into all
+                - code [ref=e501]: ChatModel
+                - text: and
+                - code [ref=e502]: StreamingChatModel
+                - text: beans created by one of our Spring Boot starters.
+              - heading "Micrometer MetricsDirect link to Micrometer Metrics" [level=3] [ref=e503]:
+                - text: Micrometer Metrics
+                - link "Direct link to Micrometer Metrics" [ref=e504] [cursor=pointer]:
+                  - /url: "#micrometer-metrics"
+                  - text: "#"
+              - paragraph [ref=e505]:
+                - text: Add the
+                - code [ref=e506]: langchain4j-micrometer-metrics
+                - text: "dependency to your project:"
+              - paragraph [ref=e507]: "For Maven:"
+              - code [ref=e511]:
+                - generic [ref=e512]: <dependency>
+                - generic [ref=e513]: <groupId>dev.langchain4j</groupId>
+                - generic [ref=e514]: <artifactId>langchain4j-micrometer-metrics</artifactId>
+                - generic [ref=e515]: <version>1.16.1-beta26</version>
+                - generic [ref=e516]: </dependency>
+              - paragraph [ref=e517]: "For Gradle:"
+              - code [ref=e521]:
+                - generic [ref=e522]: implementation 'dev.langchain4j:langchain4j-micrometer-metrics:1.16.1-beta26'
+              - heading "Micrometer (Actuator) ConfigurationDirect link to Micrometer (Actuator) Configuration" [level=4] [ref=e523]:
+                - text: Micrometer (Actuator) Configuration
+                - link "Direct link to Micrometer (Actuator) Configuration" [ref=e524] [cursor=pointer]:
+                  - /url: "#micrometer-actuator-configuration"
+                  - text: "#"
+              - paragraph [ref=e525]:
+                - text: You should also have the necessary Actuator dependency in your project. For example, if you are using Spring Boot, you can add the following dependencies to your
+                - code [ref=e526]: pom.xml
+                - text: ":"
+              - paragraph [ref=e527]: "For Maven:"
+              - code [ref=e531]:
+                - generic [ref=e532]: <dependency>
+                - generic [ref=e533]: <groupId>org.springframework.boot</groupId>
+                - generic [ref=e534]: <artifactId>spring-boot-starter-actuator</artifactId>
+                - generic [ref=e535]: </dependency>
+              - paragraph [ref=e536]: "For Gradle:"
+              - code [ref=e540]:
+                - generic [ref=e541]: implementation 'org.springframework.boot:spring-boot-starter-actuator'
+              - paragraph [ref=e542]:
+                - text: Enable the
+                - code [ref=e543]: /metrics
+                - text: Actuator endpoint in your properties.
+              - paragraph [ref=e544]: "application.properties:"
+              - code [ref=e548]:
+                - generic [ref=e549]: management.endpoints.web.exposure.include=metrics
+              - paragraph [ref=e550]: "application.yaml:"
+              - code [ref=e554]:
+                - generic [ref=e555]: "management:"
+                - generic [ref=e556]: "endpoints:"
+                - generic [ref=e557]: "web:"
+                - generic [ref=e558]: "exposure:"
+                - generic [ref=e559]: "include: metrics"
+              - heading "Configure MicrometerMetricsChatModelListener beanDirect link to configure-micrometermetricschatmodellistener-bean" [level=4] [ref=e560]:
+                - text: Configure
+                - code [ref=e561]: MicrometerMetricsChatModelListener
+                - text: bean
+                - link "Direct link to configure-micrometermetricschatmodellistener-bean" [ref=e562] [cursor=pointer]:
+                  - /url: "#configure-micrometermetricschatmodellistener-bean"
+                  - text: "#"
+              - paragraph [ref=e563]:
+                - text: In a Spring Boot application, you can define the listener as a bean and inject the
+                - code [ref=e564]: MeterRegistry
+                - text: ":"
+              - code [ref=e568]:
+                - generic [ref=e569]: import dev.langchain4j.micrometer.metrics.listeners.MicrometerMetricsChatModelListener;
+                - generic [ref=e570]: import io.micrometer.core.instrument.MeterRegistry;
+                - generic [ref=e571]: import org.springframework.context.annotation.Bean;
+                - generic [ref=e572]: import org.springframework.context.annotation.Configuration;
+                - generic [ref=e574]: "@Configuration"
+                - generic [ref=e575]: "public class MetricsConfig {"
+                - generic [ref=e577]: "@Bean"
+                - generic [ref=e578]: "public MicrometerMetricsChatModelListener listener(MeterRegistry meterRegistry) {"
+                - generic [ref=e579]: return new MicrometerMetricsChatModelListener(meterRegistry);
+                - generic [ref=e580]: "}"
+                - generic [ref=e581]: "}"
+              - heading "View the MetricsDirect link to View the Metrics" [level=4] [ref=e582]:
+                - text: View the Metrics
+                - link "Direct link to View the Metrics" [ref=e583] [cursor=pointer]:
+                  - /url: "#view-the-metrics"
+                  - text: "#"
+              - paragraph [ref=e584]:
+                - text: You can view the metrics by visiting the
+                - code [ref=e585]: /actuator/metrics
+                - text: endpoint of your application.
+              - paragraph [ref=e586]:
+                - text: For example, if you are running your application on
+                - code [ref=e587]: localhost:8080
+                - text: ", you can visit"
+                - link "http://localhost:8080/actuator/metrics" [ref=e588] [cursor=pointer]:
+                  - /url: http://localhost:8080/actuator/metrics
+                - text: to view the metrics.
+              - heading "Token Usage MetricDirect link to Token Usage Metric" [level=5] [ref=e589]:
+                - text: Token Usage Metric
+                - link "Direct link to Token Usage Metric" [ref=e590] [cursor=pointer]:
+                  - /url: "#token-usage-metric"
+                  - text: "#"
+              - paragraph [ref=e591]: "View the token usage metric at:"
+              - code [ref=e595]:
+                - generic [ref=e596]: http://localhost:8080/actuator/metrics/gen_ai.client.token.usage
+              - heading "Filtering by Token TypeDirect link to Filtering by Token Type" [level=5] [ref=e597]:
+                - text: Filtering by Token Type
+                - link "Direct link to Filtering by Token Type" [ref=e598] [cursor=pointer]:
+                  - /url: "#filtering-by-token-type"
+                  - text: "#"
+              - paragraph [ref=e599]:
+                - text: The
+                - code [ref=e600]: gen_ai.token.type
+                - text: "tag indicates whether the tokens were used for input or output:"
+              - table [ref=e601]:
+                - rowgroup [ref=e602]:
+                  - row "Token Type Endpoint" [ref=e603]:
+                    - columnheader "Token Type" [ref=e604]
+                    - columnheader "Endpoint" [ref=e605]
+                - rowgroup [ref=e606]:
+                  - row "Input tokens /actuator/metrics/gen_ai.client.token.usage?tag=gen_ai.token.type:input" [ref=e607]:
+                    - cell "Input tokens" [ref=e608]
+                    - cell "/actuator/metrics/gen_ai.client.token.usage?tag=gen_ai.token.type:input" [ref=e609]:
+                      - code [ref=e610]: /actuator/metrics/gen_ai.client.token.usage?tag=gen_ai.token.type:input
+                  - row "Output tokens /actuator/metrics/gen_ai.client.token.usage?tag=gen_ai.token.type:output" [ref=e611]:
+                    - cell "Output tokens" [ref=e612]
+                    - cell "/actuator/metrics/gen_ai.client.token.usage?tag=gen_ai.token.type:output" [ref=e613]:
+                      - code [ref=e614]: /actuator/metrics/gen_ai.client.token.usage?tag=gen_ai.token.type:output
+              - blockquote [ref=e615]:
+                - paragraph [ref=e616]:
+                  - strong [ref=e617]: Note
+                  - text: ": The"
+                  - code [ref=e618]: gen_ai.client.token.usage
+                  - text: metric is a histogram (DistributionSummary). The endpoint without any tags shows aggregated statistics (count, total, max) across all token types, models, and providers.
+              - heading "Micrometer Observation APIDirect link to Micrometer Observation API" [level=3] [ref=e619]:
+                - text: Micrometer Observation API
+                - link "Direct link to Micrometer Observation API" [ref=e620] [cursor=pointer]:
+                  - /url: "#micrometer-observation-api"
+                  - text: "#"
+              - paragraph [ref=e621]:
+                - text: This implements the
+                - code [ref=e622]: ChatModelListener
+                - text: using the
+                - link "Micrometer Observation API" [ref=e623] [cursor=pointer]:
+                  - /url: https://docs.micrometer.io/micrometer/reference/observation.html
+                - text: "allowing transparent generation of Metrics and Traces by adding the following dependency:"
+              - paragraph [ref=e624]: "For Maven:"
+              - code [ref=e628]:
+                - generic [ref=e629]: <dependency>
+                - generic [ref=e630]: <groupId>dev.langchain4j</groupId>
+                - generic [ref=e631]: <artifactId>langchain4j-observation</artifactId>
+                - generic [ref=e632]: </dependency>
+              - paragraph [ref=e633]: "For Gradle:"
+              - code [ref=e637]:
+                - generic [ref=e638]: implementation 'dev.langchain4j:langchain4j-observation'
+              - paragraph [ref=e639]: You need to instantiate the Observation listener as follows...
+              - heading "Configure the ObservationChatModelListener beanDirect link to Configure the ObservationChatModelListener bean" [level=4] [ref=e640]:
+                - text: Configure the ObservationChatModelListener bean
+                - link "Direct link to Configure the ObservationChatModelListener bean" [ref=e641] [cursor=pointer]:
+                  - /url: "#configure-the-observationchatmodellistener-bean"
+                  - text: "#"
+              - code [ref=e645]:
+                - generic [ref=e646]: "@Configuration"
+                - generic [ref=e647]: "public class ObservationConfig {"
+                - generic [ref=e649]: "@Bean"
+                - generic [ref=e650]: "public ObservationChatModelListener listener(ObservationRegistry observationRegistry, MeterRegistry meterRegistry) {"
+                - generic [ref=e651]: return new ObservationChatModelListener(observationRegistry, meterRegistry);
+                - generic [ref=e652]: "}"
+                - generic [ref=e653]: "}"
+              - paragraph [ref=e654]:
+                - text: This dependency requires the configuration of the
+                - link "SpringBoot Actuator" [ref=e655] [cursor=pointer]:
+                  - /url: /tutorials/spring-boot-integration#micrometer-actuator-configuration
+                - text: ", as described above."
+              - paragraph [ref=e656]:
+                - text: "For additional observability requirements on a SpringBoot application please follow:"
+                - link "Building Your First Observed Application" [ref=e657] [cursor=pointer]:
+                  - /url: https://spring.io/blog/2022/10/12/observability-with-spring-boot-3#building-your-first-observed-application
+              - paragraph [ref=e658]:
+                - text: For more details about the
+                - code [ref=e659]: langchain4j-observation
+                - text: library, please check the
+                - link "Observability documentation" [ref=e660] [cursor=pointer]:
+                  - /url: /tutorials/observability#micrometer-observation-api
+                - text: .
+              - heading "TestingDirect link to Testing" [level=2] [ref=e661]:
+                - text: Testing
+                - link "Direct link to Testing" [ref=e662] [cursor=pointer]:
+                  - /url: "#testing"
+                  - text: "#"
+              - list [ref=e663]:
+                - listitem [ref=e664]:
+                  - link "An example of integration testing for a Customer Support Agent" [ref=e665] [cursor=pointer]:
+                    - /url: https://github.com/langchain4j/langchain4j-examples/blob/main/customer-support-agent-example/src/test/java/dev/langchain4j/example/CustomerSupportAgentIT.java
+              - heading "Supported versionsDirect link to Supported versions" [level=2] [ref=e666]:
+                - text: Supported versions
+                - link "Direct link to Supported versions" [ref=e667] [cursor=pointer]:
+                  - /url: "#supported-versions"
+                  - text: "#"
+              - paragraph [ref=e668]: "LangChain4j Spring Boot integration requires Java 17 and supports both:"
+              - list [ref=e669]:
+                - listitem [ref=e670]:
+                  - strong [ref=e671]: Spring Boot 3
+                  - text: (3.5+) — use starters with the
+                  - code [ref=e672]: "-spring-boot-starter"
+                  - text: suffix, in line with the
+                  - link "Spring Boot OSS support policy" [ref=e673] [cursor=pointer]:
+                    - /url: https://spring.io/projects/spring-boot#support
+                - listitem [ref=e674]:
+                  - strong [ref=e675]: Spring Boot 4
+                  - text: (4.0+) — use starters with the
+                  - code [ref=e676]: "-spring-boot4-starter"
+                  - text: suffix
+              - paragraph [ref=e677]: Both families are released together and share the same version number. Choose the set of starters that matches the Spring Boot version in your project.
+              - heading "ExamplesDirect link to Examples" [level=2] [ref=e678]:
+                - text: Examples
+                - link "Direct link to Examples" [ref=e679] [cursor=pointer]:
+                  - /url: "#examples"
+                  - text: "#"
+              - list [ref=e680]:
+                - listitem [ref=e681]:
+                  - link "Low-level Spring Boot example" [ref=e682] [cursor=pointer]:
+                    - /url: https://github.com/langchain4j/langchain4j-examples/blob/main/spring-boot-example/src/main/java/dev/langchain4j/example/lowlevel/ChatModelController.java
+                  - text: using
+                  - link "ChatModel API" [ref=e683] [cursor=pointer]:
+                    - /url: /tutorials/chat-and-language-models
+                - listitem [ref=e684]:
+                  - link "High-level Spring Boot example" [ref=e685] [cursor=pointer]:
+                    - /url: https://github.com/langchain4j/langchain4j-examples/blob/main/spring-boot-example/src/main/java/dev/langchain4j/example/aiservice/AssistantController.java
+                  - text: using
+                  - link "AI Services" [ref=e686] [cursor=pointer]:
+                    - /url: /tutorials/ai-services
+                - listitem [ref=e687]:
+                  - link "Example of customer support agent using Spring Boot" [ref=e688] [cursor=pointer]:
+                    - /url: https://github.com/langchain4j/langchain4j-examples/blob/main/customer-support-agent-example/src/main/java/dev/langchain4j/example/CustomerSupportAgentApplication.java
+            - link "Edit this page" [ref=e692] [cursor=pointer]:
+              - /url: https://github.com/langchain4j/langchain4j/blob/main/docs/docs/tutorials/spring-boot-integration.md
+              - img [ref=e693]
+              - text: Edit this page
+          - navigation "Docs pages" [ref=e697]:
+            - link "Previous « Quarkus Integration" [ref=e698] [cursor=pointer]:
+              - /url: /tutorials/quarkus-integration
+              - generic [ref=e699]: Previous
+              - generic [ref=e700]: « Quarkus Integration
+            - link "Next Helidon Integration »" [ref=e701] [cursor=pointer]:
+              - /url: /tutorials/helidon-integration
+              - generic [ref=e702]: Next
+              - generic [ref=e703]: Helidon Integration »
+        - list [ref=e706]:
+          - listitem [ref=e707]:
+            - link "Spring Boot Starters" [ref=e708] [cursor=pointer]:
+              - /url: "#spring-boot-starters"
+          - listitem [ref=e709]:
+            - link "Spring Boot starter for declarative AI Services" [ref=e710] [cursor=pointer]:
+              - /url: "#spring-boot-starter-for-declarative-ai-services"
+            - list [ref=e711]:
+              - listitem [ref=e712]:
+                - link "Automatic Component Wiring" [ref=e713] [cursor=pointer]:
+                  - /url: "#automatic-component-wiring"
+              - listitem [ref=e714]:
+                - link "Explicit Component Wiring" [ref=e715] [cursor=pointer]:
+                  - /url: "#explicit-component-wiring"
+              - listitem [ref=e716]:
+                - link "Listening for AI Service Registration Events" [ref=e717] [cursor=pointer]:
+                  - /url: "#listening-for-ai-service-registration-events"
+          - listitem [ref=e718]:
+            - link "Flux" [ref=e719] [cursor=pointer]:
+              - /url: "#flux"
+          - listitem [ref=e720]:
+            - link "Observability" [ref=e721] [cursor=pointer]:
+              - /url: "#observability"
+            - list [ref=e722]:
+              - listitem [ref=e723]:
+                - link "Micrometer Metrics" [ref=e724] [cursor=pointer]:
+                  - /url: "#micrometer-metrics"
+              - listitem [ref=e725]:
+                - link "Micrometer Observation API" [ref=e726] [cursor=pointer]:
+                  - /url: "#micrometer-observation-api"
+          - listitem [ref=e727]:
+            - link "Testing" [ref=e728] [cursor=pointer]:
+              - /url: "#testing"
+          - listitem [ref=e729]:
+            - link "Supported versions" [ref=e730] [cursor=pointer]:
+              - /url: "#supported-versions"
+          - listitem [ref=e731]:
+            - link "Examples" [ref=e732] [cursor=pointer]:
+              - /url: "#examples"
+  - contentinfo [ref=e733]:
+    - generic [ref=e734]:
+      - generic [ref=e735]:
+        - generic [ref=e736]:
+          - generic [ref=e737]: Docs
+          - list [ref=e738]:
+            - listitem [ref=e739]:
+              - link "Introduction" [ref=e740] [cursor=pointer]:
+                - /url: /intro
+            - listitem [ref=e741]:
+              - link "Get Started" [ref=e742] [cursor=pointer]:
+                - /url: /get-started
+            - listitem [ref=e743]:
+              - link "Tutorials" [ref=e744] [cursor=pointer]:
+                - /url: /category/tutorials
+            - listitem [ref=e745]:
+              - link "Integrations" [ref=e746] [cursor=pointer]:
+                - /url: /category/integrations
+            - listitem [ref=e747]:
+              - link "Useful Materials" [ref=e748] [cursor=pointer]:
+                - /url: /useful-materials
+            - listitem [ref=e749]:
+              - link "Examples(opens in new tab)" [ref=e750] [cursor=pointer]:
+                - /url: https://github.com/langchain4j/langchain4j-examples
+                - text: Examples
+                - img "(opens in new tab)" [ref=e751]
+            - listitem [ref=e753]:
+              - link "Documentation chatbot (experimental)(opens in new tab)" [ref=e754] [cursor=pointer]:
+                - /url: https://chat.langchain4j.dev/
+                - text: Documentation chatbot (experimental)
+                - img "(opens in new tab)" [ref=e755]
+            - listitem [ref=e757]:
+              - link "Javadoc(opens in new tab)" [ref=e758] [cursor=pointer]:
+                - /url: https://docs.langchain4j.dev/apidocs/index.html
+                - text: Javadoc
+                - img "(opens in new tab)" [ref=e759]
+        - generic [ref=e761]:
+          - generic [ref=e762]: Community
+          - list [ref=e763]:
+            - listitem [ref=e764]:
+              - link "GitHub(opens in new tab)" [ref=e765] [cursor=pointer]:
+                - /url: https://github.com/langchain4j/langchain4j
+                - text: GitHub
+                - img "(opens in new tab)" [ref=e766]
+            - listitem [ref=e768]:
+              - link "Twitter(opens in new tab)" [ref=e769] [cursor=pointer]:
+                - /url: https://twitter.com/langchain4j
+                - text: Twitter
+                - img "(opens in new tab)" [ref=e770]
+            - listitem [ref=e772]:
+              - link "Discord(opens in new tab)" [ref=e773] [cursor=pointer]:
+                - /url: https://discord.com/invite/JzTFvyjG6R
+                - text: Discord
+                - img "(opens in new tab)" [ref=e774]
+            - listitem [ref=e776]:
+              - link "Stack Overflow(opens in new tab)" [ref=e777] [cursor=pointer]:
+                - /url: https://stackoverflow.com/questions/tagged/langchain4j
+                - text: Stack Overflow
+                - img "(opens in new tab)" [ref=e778]
+      - generic [ref=e781]: LangChain4j Documentation 2026. Built with Docusaurus.

@@ -1,0 +1,378 @@
+- generic [active] [ref=e1]:
+  - blockquote [ref=e2]:
+    - heading [level=2] [ref=e3]: Documentation Index
+    - paragraph [ref=e4]:
+      - text: "Fetch the complete documentation index at:"
+      - link [ref=e5] [cursor=pointer]:
+        - /url: /llms.txt
+        - text: /llms.txt
+    - paragraph [ref=e6]: Use this file to discover all available pages before exploring further.
+  - generic [ref=e7]:
+    - link "Skip to main content" [ref=e8] [cursor=pointer]:
+      - /url: "#content-area"
+    - generic [ref=e9]:
+      - generic [ref=e10]:
+        - banner [ref=e11]:
+          - generic [ref=e14]:
+            - generic [ref=e17]:
+              - link "Chroma Docs home page light logo" [ref=e19] [cursor=pointer]:
+                - /url: /
+                - generic [ref=e20]: Chroma Docs home page
+                - img "light logo" [ref=e21]
+              - generic [ref=e22]:
+                - button "Open search" [ref=e23] [cursor=pointer]:
+                  - generic [ref=e24]:
+                    - img [ref=e25]
+                    - generic [ref=e28]: Search...
+                  - generic [ref=e29]: ⌘K
+                - button "Toggle assistant panel" [ref=e30] [cursor=pointer]:
+                  - img [ref=e31]
+                  - generic [ref=e34]: Ask Assistant
+              - generic [ref=e35]:
+                - navigation "Main" [ref=e37]:
+                  - list [ref=e38]:
+                    - listitem [ref=e39]:
+                      - link "27k" [ref=e40] [cursor=pointer]:
+                        - /url: https://github.com/chroma-core/chroma
+                        - img [ref=e41]
+                        - text: 27k
+                    - listitem [ref=e42]:
+                      - link "11k" [ref=e43] [cursor=pointer]:
+                        - /url: https://discord.gg/dSHcBEMSk7
+                        - img [ref=e44]
+                        - text: 11k
+                    - listitem [ref=e45]:
+                      - link "29k" [ref=e46] [cursor=pointer]:
+                        - /url: https://x.com/trychroma
+                        - img [ref=e47]
+                        - text: 29k
+                    - listitem [ref=e48]:
+                      - link "Dashboard" [ref=e49] [cursor=pointer]:
+                        - /url: https://trychroma.com/login
+                        - generic [ref=e51]:
+                          - generic [ref=e52]: Dashboard
+                          - img [ref=e53]
+                - button "Toggle dark mode" [ref=e55] [cursor=pointer]:
+                  - img [ref=e56]
+            - generic [ref=e64]:
+              - link "Docs" [ref=e65] [cursor=pointer]:
+                - /url: /docs/overview/introduction
+                - img [ref=e66]
+                - text: Docs
+              - link "Chroma Cloud" [ref=e68] [cursor=pointer]:
+                - /url: /cloud/getting-started
+                - img [ref=e69]
+                - text: Chroma Cloud
+              - link "Guides" [ref=e71] [cursor=pointer]:
+                - /url: /guides/build/building-with-ai
+                - img [ref=e72]
+                - text: Guides
+              - link "Integrations" [ref=e74] [cursor=pointer]:
+                - /url: /integrations/chroma-integrations
+                - img [ref=e75]
+                - text: Integrations
+              - link "Reference" [ref=e77] [cursor=pointer]:
+                - /url: /reference/overview
+                - img [ref=e78]
+                - text: Reference
+        - generic [ref=e80]:
+          - navigation "Pages" [ref=e81]:
+            - generic [ref=e83]:
+              - generic [ref=e84]:
+                - heading "Overview" [level=3] [ref=e86]
+                - list [ref=e87]:
+                  - listitem [ref=e88]:
+                    - link "Introduction" [ref=e89] [cursor=pointer]:
+                      - /url: /docs/overview/introduction
+                      - generic [ref=e92]: Introduction
+                  - listitem [ref=e93]:
+                    - link "Getting Started" [ref=e94] [cursor=pointer]:
+                      - /url: /docs/overview/getting-started
+                      - generic [ref=e97]: Getting Started
+              - generic [ref=e100]:
+                - heading "Run Chroma" [level=3] [ref=e102]
+                - list [ref=e103]:
+                  - listitem [ref=e104]:
+                    - link "Chroma Clients" [ref=e105] [cursor=pointer]:
+                      - /url: /docs/run-chroma/clients
+                      - generic [ref=e108]: Chroma Clients
+                  - listitem [ref=e109]:
+                    - link "Client-Server Mode" [ref=e110] [cursor=pointer]:
+                      - /url: /docs/run-chroma/client-server
+                      - generic [ref=e113]: Client-Server Mode
+              - generic [ref=e116]:
+                - heading "Collections" [level=3] [ref=e118]
+                - list [ref=e119]:
+                  - listitem [ref=e120]:
+                    - link "Manage Collections" [ref=e121] [cursor=pointer]:
+                      - /url: /docs/collections/manage-collections
+                      - generic [ref=e124]: Manage Collections
+                  - listitem [ref=e125]:
+                    - link "Add Data" [ref=e126] [cursor=pointer]:
+                      - /url: /docs/collections/add-data
+                      - generic [ref=e129]: Add Data
+                  - listitem [ref=e130]:
+                    - link "Update Data" [ref=e131] [cursor=pointer]:
+                      - /url: /docs/collections/update-data
+                      - generic [ref=e134]: Update Data
+                  - listitem [ref=e135]:
+                    - link "Delete Data" [ref=e136] [cursor=pointer]:
+                      - /url: /docs/collections/delete-data
+                      - generic [ref=e139]: Delete Data
+                  - listitem [ref=e140]:
+                    - link "Configure Collections" [ref=e141] [cursor=pointer]:
+                      - /url: /docs/collections/configure
+                      - generic [ref=e144]: Configure Collections
+              - generic [ref=e147]:
+                - heading "Querying Collections" [level=3] [ref=e149]
+                - list [ref=e150]:
+                  - listitem [ref=e151]:
+                    - link "Query and Get" [ref=e152] [cursor=pointer]:
+                      - /url: /docs/querying-collections/query-and-get
+                      - generic [ref=e155]: Query and Get
+                  - listitem [ref=e156]:
+                    - link "Metadata Filtering" [ref=e157] [cursor=pointer]:
+                      - /url: /docs/querying-collections/metadata-filtering
+                      - generic [ref=e160]: Metadata Filtering
+                  - listitem [ref=e161]:
+                    - link "Full Text Search" [ref=e162] [cursor=pointer]:
+                      - /url: /docs/querying-collections/full-text-search
+                      - generic [ref=e165]: Full Text Search
+              - generic [ref=e168]:
+                - heading "Embeddings" [level=3] [ref=e170]
+                - list [ref=e171]:
+                  - listitem [ref=e172]:
+                    - link "Embedding Functions" [ref=e173] [cursor=pointer]:
+                      - /url: /docs/embeddings/embedding-functions
+                      - generic [ref=e176]: Embedding Functions
+                  - listitem [ref=e177]:
+                    - link "Multimodal Embeddings" [ref=e178] [cursor=pointer]:
+                      - /url: /docs/embeddings/multimodal
+                      - generic [ref=e181]: Multimodal Embeddings
+              - generic [ref=e184]:
+                - heading "CLI" [level=3] [ref=e186]
+                - list [ref=e187]:
+                  - listitem [ref=e188]:
+                    - link "Installing the CLI" [ref=e189] [cursor=pointer]:
+                      - /url: /docs/cli/install
+                      - generic [ref=e192]: Installing the CLI
+                  - listitem [ref=e193]:
+                    - link "Run a Chroma Server" [ref=e194] [cursor=pointer]:
+                      - /url: /docs/cli/run
+                      - generic [ref=e197]: Run a Chroma Server
+                  - listitem [ref=e198]:
+                    - button "Data Management" [ref=e199] [cursor=pointer]:
+                      - generic [ref=e201]: Data Management
+                      - img [ref=e203]
+                  - listitem [ref=e205]:
+                    - button "Cloud" [ref=e206] [cursor=pointer]:
+                      - generic [ref=e208]: Cloud
+                      - img [ref=e210]
+                  - listitem [ref=e212]:
+                    - button "Other" [ref=e213] [cursor=pointer]:
+                      - generic [ref=e215]: Other
+                      - img [ref=e217]
+              - generic [ref=e221]:
+                - heading "Other" [level=3] [ref=e223]
+                - list [ref=e224]:
+                  - listitem [ref=e225]:
+                    - link "Open Source" [ref=e226] [cursor=pointer]:
+                      - /url: /docs/overview/oss
+                      - generic [ref=e229]: Open Source
+                  - listitem [ref=e230]:
+                    - link "Migration" [ref=e231] [cursor=pointer]:
+                      - /url: /docs/overview/migration
+                      - generic [ref=e234]: Migration
+                  - listitem [ref=e235]:
+                    - link "Troubleshooting" [ref=e236] [cursor=pointer]:
+                      - /url: /docs/overview/troubleshooting
+                      - generic [ref=e239]: Troubleshooting
+          - generic [ref=e240]:
+            - main [ref=e241]:
+              - generic [ref=e242]:
+                - generic [ref=e243]:
+                  - generic [ref=e244]:
+                    - generic [ref=e245]: Overview
+                    - generic [ref=e246]:
+                      - heading "Introduction" [level=1] [ref=e247]
+                      - generic [ref=e248]:
+                        - button "Copy page" [ref=e249] [cursor=pointer]:
+                          - generic [ref=e250]:
+                            - img [ref=e251]
+                            - generic [ref=e254]: Copy page
+                        - button "More actions" [ref=e255] [cursor=pointer]:
+                          - img [ref=e256]
+                  - paragraph [ref=e259]: Chroma is the open-source data infrastructure for AI. It comes with everything you need to get started built-in.
+                - generic [ref=e260]:
+                  - generic [ref=e261]: "Chroma gives you everything you need for retrieval: store embeddings with metadata, search with dense and sparse vectors, filter by metadata, and retrieve across text, images, and more."
+                  - heading "Navigate to header What Chroma Offers" [level=2] [ref=e262]:
+                    - link "Navigate to header" [ref=e263] [cursor=pointer]:
+                      - /url: "#what-chroma-offers"
+                      - img [ref=e265]
+                    - generic [ref=e267] [cursor=pointer]: What Chroma Offers
+                  - generic [ref=e268]:
+                    - link "Document Storage Store documents and metadata." [ref=e269] [cursor=pointer]:
+                      - generic [ref=e270]:
+                        - img [ref=e272]
+                        - generic [ref=e273]:
+                          - heading "Document Storage" [level=2] [ref=e274]
+                          - generic [ref=e276]: Store documents and metadata.
+                    - link "Embeddings Use any embedding model. OpenAI, Cohere, Hugging Face, sentence-transformers, and more." [ref=e277] [cursor=pointer]:
+                      - generic [ref=e278]:
+                        - img [ref=e280]
+                        - generic [ref=e281]:
+                          - heading "Embeddings" [level=2] [ref=e282]
+                          - generic [ref=e284]: Use any embedding model. OpenAI, Cohere, Hugging Face, sentence-transformers, and more.
+                    - link "Vector Search Dense, sparse, and hybrid search. Query by similarity and combine multiple search strategies." [ref=e285] [cursor=pointer]:
+                      - generic [ref=e286]:
+                        - img [ref=e288]
+                        - generic [ref=e289]:
+                          - heading "Vector Search" [level=2] [ref=e290]
+                          - generic [ref=e292]: Dense, sparse, and hybrid search. Query by similarity and combine multiple search strategies.
+                    - link "Full-Text & Regex Search Keyword and regex search over your data without embeddings." [ref=e293] [cursor=pointer]:
+                      - generic [ref=e294]:
+                        - img [ref=e296]
+                        - generic [ref=e297]:
+                          - heading "Full-Text & Regex Search" [level=2] [ref=e298]
+                          - generic [ref=e300]: Keyword and regex search over your data without embeddings.
+                    - link "Metadata Filtering Filter results at query time by metadata conditions." [ref=e301] [cursor=pointer]:
+                      - generic [ref=e302]:
+                        - img [ref=e304]
+                        - generic [ref=e305]:
+                          - heading "Metadata Filtering" [level=2] [ref=e306]
+                          - generic [ref=e308]: Filter results at query time by metadata conditions.
+                    - link "Multi-Modal Retrieval Index and search images, audio, and other modalities alongside text." [ref=e309] [cursor=pointer]:
+                      - generic [ref=e310]:
+                        - img [ref=e312]
+                        - generic [ref=e313]:
+                          - heading "Multi-Modal Retrieval" [level=2] [ref=e314]
+                          - generic [ref=e316]: Index and search images, audio, and other modalities alongside text.
+                  - heading "Navigate to header Quickstart" [level=2] [ref=e317]:
+                    - link "Navigate to header" [ref=e318] [cursor=pointer]:
+                      - /url: "#quickstart"
+                      - img [ref=e320]
+                    - generic [ref=e322] [cursor=pointer]: Quickstart
+                  - generic [ref=e323]:
+                    - link "Getting Started with the Chroma SDK Create a self-hosted or cloud database and add data to it using the Chroma SDK." [ref=e324] [cursor=pointer]:
+                      - generic [ref=e325]:
+                        - img [ref=e327]
+                        - generic [ref=e328]:
+                          - heading "Getting Started with the Chroma SDK" [level=2] [ref=e329]
+                          - generic [ref=e331]: Create a self-hosted or cloud database and add data to it using the Chroma SDK.
+                    - link "Create a Chroma Cloud Database Create a scalable, zero-ops Chroma Cloud database to store your AI data." [ref=e332] [cursor=pointer]:
+                      - generic [ref=e333]:
+                        - img [ref=e335]
+                        - generic [ref=e336]:
+                          - heading "Create a Chroma Cloud Database" [level=2] [ref=e337]
+                          - generic [ref=e339]: Create a scalable, zero-ops Chroma Cloud database to store your AI data.
+                  - heading "Navigate to header Example Projects" [level=2] [ref=e340]:
+                    - link "Navigate to header" [ref=e341] [cursor=pointer]:
+                      - /url: "#example-projects"
+                      - img [ref=e343]
+                    - generic [ref=e345] [cursor=pointer]: Example Projects
+                  - generic [ref=e346]:
+                    - link "Agentic Search Build agents that iteratively search and refine results for complex queries." [ref=e347] [cursor=pointer]:
+                      - generic [ref=e348]:
+                        - img [ref=e350]
+                        - generic [ref=e351]:
+                          - heading "Agentic Search" [level=2] [ref=e352]
+                          - generic [ref=e354]: Build agents that iteratively search and refine results for complex queries.
+                    - link "Code Search Index codebases to power coding agents using AST-aware chunking." [ref=e355] [cursor=pointer]:
+                      - generic [ref=e356]:
+                        - img [ref=e358]
+                        - generic [ref=e359]:
+                          - heading "Code Search" [level=2] [ref=e360]
+                          - generic [ref=e362]: Index codebases to power coding agents using AST-aware chunking.
+                  - heading "Navigate to header Open Source" [level=2] [ref=e363]:
+                    - link "Navigate to header" [ref=e364] [cursor=pointer]:
+                      - /url: "#open-source"
+                      - img [ref=e366]
+                    - generic [ref=e368] [cursor=pointer]: Open Source
+                  - generic [ref=e369]:
+                    - text: Chroma is licensed under
+                    - link "Apache 2.0" [ref=e370] [cursor=pointer]:
+                      - /url: https://github.com/chroma-core/chroma/blob/main/LICENSE
+                    - text: . Run it locally, self-host, or use
+                    - link "Chroma Cloud" [ref=e371] [cursor=pointer]:
+                      - /url: https://trychroma.com
+                    - text: for a managed, serverless experience.
+                - generic [ref=e373]:
+                  - paragraph [ref=e374]: Was this page helpful?
+                  - generic [ref=e375]:
+                    - generic [ref=e376]:
+                      - button "Yes" [ref=e377] [cursor=pointer]:
+                        - img [ref=e378]
+                        - generic [ref=e380]: "Yes"
+                      - button "No" [ref=e381] [cursor=pointer]:
+                        - img [ref=e382]
+                        - generic [ref=e384]: "No"
+                    - link "Suggest edits" [ref=e386] [cursor=pointer]:
+                      - /url: https://github.com/chroma-core/chroma/edit/main/docs/mintlify/docs/overview/introduction.mdx
+                      - img [ref=e387]
+                      - generic [ref=e389]: Suggest edits
+                - link "Getting Started Next" [ref=e392] [cursor=pointer]:
+                  - /url: /docs/overview/getting-started
+                  - generic [ref=e393]:
+                    - generic [ref=e394]: Getting Started
+                    - generic [ref=e395]:
+                      - img [ref=e396]
+                      - generic [ref=e398]: Next
+                - generic [ref=e400]:
+                  - textbox "Ask a question..." [ref=e401]
+                  - generic: ⌘I
+                  - button "Send message" [disabled] [ref=e402]:
+                    - img [ref=e403]
+            - contentinfo [ref=e405]:
+              - generic [ref=e407]:
+                - link "Chroma Docs home page light logo" [ref=e409] [cursor=pointer]:
+                  - /url: /
+                  - generic [ref=e410]: Chroma Docs home page
+                  - img "light logo" [ref=e411]
+                - generic [ref=e414]:
+                  - link "Enterprise" [ref=e415] [cursor=pointer]:
+                    - /url: https://trychroma.com/enterprise
+                  - link "Pricing" [ref=e416] [cursor=pointer]:
+                    - /url: https://trychroma.com/pricing
+                  - link "Changelog" [ref=e417] [cursor=pointer]:
+                    - /url: https://trychroma.com/changelog
+                - generic [ref=e418]:
+                  - link "github" [ref=e419] [cursor=pointer]:
+                    - /url: https://github.com/chroma-core/chroma
+                    - generic [ref=e420]: github
+                    - img [ref=e421]
+                  - link "x" [ref=e422] [cursor=pointer]:
+                    - /url: https://x.com/trychroma
+                    - generic [ref=e423]: x
+                    - img [ref=e424]
+                  - link "discord" [ref=e425] [cursor=pointer]:
+                    - /url: https://discord.gg/MMeYNTmh3x
+                    - generic [ref=e426]: discord
+                    - img [ref=e427]
+                  - link "youtube" [ref=e428] [cursor=pointer]:
+                    - /url: https://youtube.com/@trychroma
+                    - generic [ref=e429]: youtube
+                    - img [ref=e430]
+      - generic:
+        - generic [ref=e432]:
+          - generic [ref=e433]:
+            - img [ref=e434]
+            - generic [ref=e437]: Assistant
+          - generic [ref=e438]:
+            - button [ref=e439] [cursor=pointer]:
+              - img [ref=e440]
+            - button [ref=e445] [cursor=pointer]:
+              - img [ref=e446]
+        - generic [ref=e450]: Responses are generated using AI and may contain mistakes.
+        - generic [ref=e451]:
+          - generic [ref=e452]:
+            - textbox [ref=e453]:
+              - /placeholder: Ask a question...
+            - generic [ref=e454]:
+              - button [ref=e455] [cursor=pointer]:
+                - img [ref=e456]
+              - button [disabled] [ref=e458]:
+                - img [ref=e459]
+          - link [ref=e461] [cursor=pointer]:
+            - /url: mailto:support@trychroma.com
+            - img [ref=e463]
+            - paragraph [ref=e464]: Contact support

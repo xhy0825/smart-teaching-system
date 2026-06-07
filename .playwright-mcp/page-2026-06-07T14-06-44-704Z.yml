@@ -1,0 +1,638 @@
+- generic [active] [ref=e1]:
+  - iframe
+  - generic [ref=e2]:
+    - generic [ref=e3]: "LLM/AI Agent Notice: For the most important and up-to-date Weaviate information, see https://weaviate.io/llms.txt"
+    - region "Skip to main content":
+      - link "Skip to main content" [ref=e4] [cursor=pointer]:
+        - /url: "#__docusaurus_skipToContent_fallback"
+    - banner [ref=e5]:
+      - link "Introducing Engram — managed memory for AI agents, built on Weaviate" [ref=e7] [cursor=pointer]:
+        - /url: /engram/
+      - button "Close" [ref=e8] [cursor=pointer]:
+        - img [ref=e9]
+    - navigation "Main" [ref=e13]:
+      - generic [ref=e14]:
+        - generic [ref=e15]:
+          - link [ref=e16] [cursor=pointer]:
+            - /url: https://weaviate.io
+          - link [ref=e18] [cursor=pointer]:
+            - /url: /engram/api/rest
+        - generic [ref=e19]:
+          - link "GitHub" [ref=e20] [cursor=pointer]:
+            - /url: https://github.com/weaviate/weaviate
+            - img "GitHub" [ref=e21]
+          - link "Academy" [ref=e23] [cursor=pointer]:
+            - /url: https://academy.weaviate.io
+          - link "Weaviate Cloud" [ref=e24] [cursor=pointer]:
+            - /url: /go/console?utm_content=navbar
+          - button " Ask AI or Search ⌘K" [ref=e27] [cursor=pointer]:
+            - generic [ref=e28]:
+              - generic [ref=e29]: 
+              - generic [ref=e30]: Ask AI or Search
+            - generic [ref=e32]: ⌘K
+          - button "Switch between dark and light mode (currently system mode)" [disabled] [ref=e34]:
+            - img [ref=e35]
+    - navigation [ref=e38]:
+      - link "Get started" [ref=e39] [cursor=pointer]:
+        - /url: /weaviate
+      - link "How-to manuals & Guides" [ref=e40] [cursor=pointer]:
+        - /url: /weaviate/guides
+      - link "Model integrations" [ref=e41] [cursor=pointer]:
+        - /url: /weaviate/model-providers
+      - link "Reference & APIs" [ref=e42] [cursor=pointer]:
+        - /url: /weaviate/config-refs
+      - link "Concepts" [ref=e43] [cursor=pointer]:
+        - /url: /weaviate/concepts
+      - link "Releases & Other" [ref=e44] [cursor=pointer]:
+        - /url: /weaviate/release-notes
+    - generic [ref=e47]:
+      - complementary [ref=e48]:
+        - generic [ref=e50]:
+          - navigation "Docs sidebar" [ref=e51]:
+            - list [ref=e52]:
+              - listitem [ref=e53]:
+                - link "Introduction" [ref=e54] [cursor=pointer]:
+                  - /url: /weaviate
+                  - generic "Introduction" [ref=e55]
+              - listitem [ref=e56]:
+                - generic [ref=e57]:
+                  - link "Quickstart" [ref=e58] [cursor=pointer]:
+                    - /url: /weaviate/quickstart
+                    - generic "Quickstart" [ref=e59]
+                  - button "Collapse sidebar category 'Quickstart'" [expanded] [ref=e60] [cursor=pointer]
+                - list [ref=e61]:
+                  - listitem [ref=e62]:
+                    - link "Local Quickstart (self-hosted)" [ref=e63] [cursor=pointer]:
+                      - /url: /weaviate/quickstart/local
+                      - generic "Local Quickstart (self-hosted)" [ref=e64]
+              - listitem [ref=e65]:
+                - link "Installation (opens in new tab)" [ref=e66] [cursor=pointer]:
+                  - /url: https://docs.weaviate.io/deploy
+                  - generic "Installation" [ref=e67]
+                  - img "(opens in new tab)" [ref=e68]
+              - listitem [ref=e70]:
+                - generic [ref=e71]:
+                  - link "Connect to Weaviate" [ref=e72] [cursor=pointer]:
+                    - /url: /weaviate/connections
+                    - generic "Connect to Weaviate" [ref=e73]
+                  - button "Expand sidebar category 'Connect to Weaviate'" [ref=e74] [cursor=pointer]
+              - listitem [ref=e75]:
+                - generic [ref=e76]:
+                  - link "Starter guides" [ref=e77] [cursor=pointer]:
+                    - /url: /weaviate/starter-guides
+                    - generic "Starter guides" [ref=e78]
+                  - button "Expand sidebar category 'Starter guides'" [ref=e79] [cursor=pointer]
+              - listitem [ref=e80]:
+                - link "Best practices" [ref=e81] [cursor=pointer]:
+                  - /url: /weaviate/best-practices
+                  - generic "Best practices" [ref=e82]
+              - listitem [ref=e83]:
+                - generic [ref=e84]:
+                  - link "AI-assisted (vibe) coding" [ref=e85] [cursor=pointer]:
+                    - /url: /weaviate/best-practices/code-generation
+                    - generic "AI-assisted (vibe) coding" [ref=e86]
+                  - button "Expand sidebar category 'AI-assisted (vibe) coding'" [ref=e87] [cursor=pointer]
+              - listitem [ref=e88]:
+                - separator [ref=e89]
+              - listitem [ref=e90]:
+                - link "Integration ecosystem (opens in new tab)" [ref=e91] [cursor=pointer]:
+                  - /url: https://weaviate.io/product/integrations
+                  - generic "Integration ecosystem" [ref=e92]
+                  - img "(opens in new tab)" [ref=e93]
+              - generic [ref=e95]:
+                - listitem [ref=e96]:
+                  - link "Concepts & architecture (opens in new tab)" [ref=e97] [cursor=pointer]:
+                    - /url: https://academy.weaviate.io/courses/wa050-py
+                    - generic "Concepts & architecture" [ref=e98]
+                    - img "(opens in new tab)" [ref=e99]
+                - generic:
+                  - generic "Weaviate Academy"
+          - button "Collapse sidebar" [ref=e101] [cursor=pointer]:
+            - img [ref=e102]
+      - main [ref=e106]:
+        - generic [ref=e108]:
+          - article [ref=e111]:
+            - generic [ref=e112]:
+              - navigation "Breadcrumbs" [ref=e114]:
+                - list [ref=e115]:
+                  - listitem [ref=e116]:
+                    - generic [ref=e117]: Quickstart
+              - generic [ref=e120]:
+                - button "Copy page as markdown" [ref=e121] [cursor=pointer]:
+                  - img [ref=e122]
+                  - generic [ref=e125]: Copy page
+                - button "More page actions" [ref=e127] [cursor=pointer]:
+                  - img [ref=e128]
+            - generic [ref=e130]:
+              - 'heading "Quickstart: With Cloud resources" [level=1] [ref=e132]'
+              - paragraph [ref=e133]: "Weaviate is an open-source vector database built to power AI applications. This quickstart guide will show you how to:"
+              - list [ref=e134]:
+                - listitem [ref=e135]:
+                  - strong [ref=e136]: Set up a collection
+                  - text: "- Create a collection and import data into it."
+                - listitem [ref=e137]:
+                  - strong [ref=e138]: Search
+                  - text: "- Perform a similarity (vector) search on your data."
+                - listitem [ref=e139]:
+                  - strong [ref=e140]: RAG
+                  - text: "- Perform Retrieval Augmented Generation (RAG) with a generative model."
+                - listitem [ref=e141]:
+                  - strong [ref=e142]: Query Agent
+                  - text: "- Get answers from you data by using a natural language prompt/question."
+                  - generic [ref=e144]: Cloud only
+              - paragraph [ref=e145]:
+                - text: If you encounter any issues along the way or have additional questions, use the
+                - button "Ask AI" [ref=e146] [cursor=pointer]
+                - text: feature.
+              - generic [ref=e148]:
+                - img [ref=e151]
+                - generic [ref=e154]:
+                  - generic [ref=e156]:
+                    - generic [ref=e157]: Get started faster with AI
+                    - paragraph [ref=e158]: Build a working movie search app with natural language queries, vector search, and RAG in 5 steps.
+                  - generic [ref=e159]:
+                    - button "Show prompt details" [ref=e160] [cursor=pointer]:
+                      - text: Show prompt details
+                      - img [ref=e161]
+                    - generic [ref=e164]:
+                      - button "Select programming language" [ref=e166] [cursor=pointer]:
+                        - generic [ref=e167]: Python
+                        - img [ref=e168]
+                      - generic [ref=e170]:
+                        - button "Copy prompt" [ref=e171] [cursor=pointer]:
+                          - img [ref=e172]
+                          - generic [ref=e175]: Copy prompt
+                        - button "More page actions" [ref=e177] [cursor=pointer]:
+                          - img [ref=e178]
+              - heading "PrerequisitesDirect link to Prerequisites" [level=2] [ref=e180]:
+                - text: Prerequisites
+                - link "Direct link to Prerequisites" [ref=e181] [cursor=pointer]:
+                  - /url: "#prerequisites"
+                  - text: "#"
+              - paragraph [ref=e182]:
+                - text: A
+                - strong [ref=e183]:
+                  - link "Weaviate Cloud" [ref=e184] [cursor=pointer]:
+                    - /url: https://console.weaviate.cloud/
+                - text: Sandbox instance - you will need an admin
+                - strong [ref=e185]: API key
+                - text: and a
+                - strong [ref=e186]: REST endpoint URL
+                - text: to connect to your instance. See the instructions below for more info. If you don't want to use Weaviate Cloud, check out the
+                - link "Local Quickstart" [ref=e187] [cursor=pointer]:
+                  - /url: /weaviate/quickstart/local
+                - text: with Docker.
+              - group [ref=e188]:
+                - generic "How to set up a Weaviate Cloud Sandbox instance" [ref=e189] [cursor=pointer]
+              - group [ref=e190]:
+                - generic "How to retrieve Weaviate Cloud credentials (WEAVIATE_API_KEY and WEAVIATE_URL)" [ref=e191] [cursor=pointer]:
+                  - text: How to retrieve Weaviate Cloud credentials (
+                  - code [ref=e192]: WEAVIATE_API_KEY
+                  - text: and
+                  - code [ref=e193]: WEAVIATE_URL
+                  - text: )
+              - separator [ref=e194]
+              - heading "Install a client libraryDirect link to Install a client library" [level=2] [ref=e195]:
+                - text: Install a client library
+                - link "Direct link to Install a client library" [ref=e196] [cursor=pointer]:
+                  - /url: "#install-a-client-library"
+                  - text: "#"
+              - paragraph [ref=e197]:
+                - text: Follow the instructions below to install one of the official client libraries, available in
+                - link "Python" [ref=e198] [cursor=pointer]:
+                  - /url: /weaviate/client-libraries/python
+                - text: ","
+                - link "JavaScript/TypeScript" [ref=e199] [cursor=pointer]:
+                  - /url: /weaviate/client-libraries/typescript
+                - text: ","
+                - link "Go" [ref=e200] [cursor=pointer]:
+                  - /url: /weaviate/client-libraries/go
+                - text: ", and"
+                - link "Java" [ref=e201] [cursor=pointer]:
+                  - /url: /weaviate/client-libraries/java
+                - text: .
+              - generic [ref=e202]:
+                - generic [ref=e203]:
+                  - generic [ref=e205]:
+                    - combobox [ref=e206] [cursor=pointer]:
+                      - option "Python" [selected]
+                      - option "JavaScript/TypeScript"
+                      - option "Go"
+                      - option "Java"
+                      - option "C#"
+                    - img
+                  - generic [ref=e207]:
+                    - link "py docs API docs" [ref=e208] [cursor=pointer]:
+                      - /url: https://weaviate-python-client.readthedocs.io/en/stable
+                      - img "py docs" [ref=e209]
+                      - generic [ref=e210]: API docs
+                    - generic [ref=e212]:
+                      - text: More info
+                      - img [ref=e214]
+                - tabpanel [ref=e218]:
+                  - code [ref=e222]:
+                    - generic [ref=e223]: pip install -U "weaviate-client[agents]"
+              - separator [ref=e224]
+              - 'heading "Step 1: Create a collection & import dataDirect link to Step 1: Create a collection & import data" [level=2] [ref=e225]':
+                - text: "Step 1: Create a collection & import data"
+                - 'link "Direct link to Step 1: Create a collection & import data" [ref=e226] [cursor=pointer]':
+                  - /url: "#create-a-collection"
+                  - text: "#"
+              - paragraph [ref=e227]: "There are two paths you can choose from when importing data:"
+              - generic [ref=e228]:
+                - link " Vectorize objects during import (recommended) Import objects and vectorize them with the Weaviate Embeddings service." [ref=e229] [cursor=pointer]:
+                  - /url: /weaviate/quickstart?import=vectorization#create-a-collection
+                  - generic [ref=e230]:
+                    - generic [ref=e231]: 
+                    - generic [ref=e232]:
+                      - text: Vectorize objects during import
+                      - text: (recommended)
+                  - paragraph [ref=e233]: Import objects and vectorize them with the Weaviate Embeddings service.
+                - link " Import vectors Import pre-computed vector embeddings along with your data." [ref=e234] [cursor=pointer]:
+                  - /url: /weaviate/quickstart?import=custom-embeddings#create-a-collection
+                  - generic [ref=e235]:
+                    - generic [ref=e236]: 
+                    - generic [ref=e237]: Import vectors
+                  - paragraph [ref=e238]: Import pre-computed vector embeddings along with your data.
+              - generic [ref=e239]:
+                - tablist
+                - tabpanel [ref=e241]:
+                  - paragraph [ref=e242]:
+                    - text: The following example creates a collection called
+                    - code [ref=e243]: Movie
+                    - text: . The data will be vectorized with the
+                    - generic [ref=e245]: Weaviate Embeddings
+                    - text: model provider. You are also free to use any other available
+                    - link "embedding model provider" [ref=e246] [cursor=pointer]:
+                      - /url: /weaviate/model-providers
+                    - text: .
+                  - generic [ref=e247]:
+                    - generic [ref=e248]:
+                      - generic [ref=e250]:
+                        - combobox [ref=e251] [cursor=pointer]:
+                          - option "Python" [selected]
+                          - option "JavaScript/TypeScript"
+                          - option "Go"
+                          - option "Java"
+                          - option "C#"
+                        - img
+                      - generic [ref=e252]:
+                        - link "py docs API docs" [ref=e253] [cursor=pointer]:
+                          - /url: https://weaviate-python-client.readthedocs.io/en/stable
+                          - img "py docs" [ref=e254]
+                          - generic [ref=e255]: API docs
+                        - generic [ref=e257]:
+                          - text: More info
+                          - img [ref=e259]
+                    - tabpanel [ref=e263]:
+                      - code [ref=e268]:
+                        - generic [ref=e269]: import weaviate
+                        - generic [ref=e270]: from weaviate.classes.config import Configure
+                        - generic [ref=e271]: import os
+                        - generic [ref=e272]: "# Best practice: store your credentials in environment variables"
+                        - generic [ref=e273]: weaviate_url = os.environ["WEAVIATE_URL"]
+                        - generic [ref=e274]: weaviate_api_key = os.environ["WEAVIATE_API_KEY"]
+                        - generic [ref=e275]: "# Step 1.1: Connect to your Weaviate Cloud instance"
+                        - generic [ref=e276]: with weaviate.connect_to_weaviate_cloud(
+                        - generic [ref=e277]: cluster_url=weaviate_url,
+                        - generic [ref=e278]: auth_credentials=weaviate_api_key,
+                        - generic [ref=e279]: ") as client:"
+                        - generic [ref=e280]: "# Step 1.2: Create a collection"
+                        - generic [ref=e281]: movies = client.collections.create(
+                        - generic [ref=e282]: name="Movie",
+                        - generic [ref=e283]: "vector_config=Configure.Vectors.text2vec_weaviate(), # Configure the Weaviate Embeddings vectorizer"
+                        - generic [ref=e284]: )
+                        - generic [ref=e285]: "# Step 1.3: Import three objects"
+                        - generic [ref=e286]: data_objects = [
+                        - generic [ref=e287]: "{\"title\": \"The Matrix\", \"description\": \"A computer hacker learns about the true nature of reality and his role in the war against its controllers.\", \"genre\": \"Science Fiction\"},"
+                        - generic [ref=e288]: "{\"title\": \"Spirited Away\", \"description\": \"A young girl becomes trapped in a mysterious world of spirits and must find a way to save her parents and return home.\", \"genre\": \"Animation\"},"
+                        - generic [ref=e289]: "{\"title\": \"The Lord of the Rings: The Fellowship of the Ring\", \"description\": \"A meek Hobbit and his companions set out on a perilous journey to destroy a powerful ring and save Middle-earth.\", \"genre\": \"Fantasy\"},"
+                        - generic [ref=e290]: "]"
+                        - generic [ref=e291]: movies = client.collections.use("Movie")
+                        - generic [ref=e292]: "with movies.batch.fixed_size(batch_size=200) as batch:"
+                        - generic [ref=e293]: "for obj in data_objects:"
+                        - generic [ref=e294]: batch.add_object(properties=obj)
+                        - generic [ref=e295]: "print(f\"Imported & vectorized {len(movies)} objects into the Movie collection\")"
+              - 'heading "Step 2: Semantic (vector) searchDirect link to Step 2: Semantic (vector) search" [level=2] [ref=e296]':
+                - text: "Step 2: Semantic (vector) search"
+                - 'link "Direct link to Step 2: Semantic (vector) search" [ref=e297] [cursor=pointer]':
+                  - /url: "#semantic-search"
+                  - text: "#"
+              - generic [ref=e298]:
+                - tablist
+                - tabpanel [ref=e300]:
+                  - paragraph [ref=e301]:
+                    - text: Semantic search finds results based on meaning. This is called
+                    - code [ref=e302]: nearText
+                    - text: in Weaviate. The following example searches for 2 objects (
+                    - emphasis [ref=e303]: limit
+                    - text: ) whose meaning is most similar to that of
+                    - code [ref=e304]: sci-fi
+                    - text: .
+                  - generic [ref=e305]:
+                    - generic [ref=e306]:
+                      - generic [ref=e308]:
+                        - combobox [ref=e309] [cursor=pointer]:
+                          - option "Python" [selected]
+                          - option "JavaScript/TypeScript"
+                          - option "Go"
+                          - option "Java"
+                          - option "C#"
+                        - img
+                      - generic [ref=e310]:
+                        - link "py docs API docs" [ref=e311] [cursor=pointer]:
+                          - /url: https://weaviate-python-client.readthedocs.io/en/stable
+                          - img "py docs" [ref=e312]
+                          - generic [ref=e313]: API docs
+                        - generic [ref=e315]:
+                          - text: More info
+                          - img [ref=e317]
+                    - tabpanel [ref=e321]:
+                      - code [ref=e326]:
+                        - generic [ref=e327]: import weaviate
+                        - generic [ref=e328]: import os, json
+                        - generic [ref=e329]: "# Best practice: store your credentials in environment variables"
+                        - generic [ref=e330]: weaviate_url = os.environ["WEAVIATE_URL"]
+                        - generic [ref=e331]: weaviate_api_key = os.environ["WEAVIATE_API_KEY"]
+                        - generic [ref=e332]: "# Step 2.1: Connect to your Weaviate Cloud instance"
+                        - generic [ref=e333]: with weaviate.connect_to_weaviate_cloud(
+                        - generic [ref=e334]: cluster_url=weaviate_url,
+                        - generic [ref=e335]: auth_credentials=weaviate_api_key,
+                        - generic [ref=e336]: ") as client:"
+                        - generic [ref=e337]: "# Step 2.2: Use this collection"
+                        - generic [ref=e338]: movies = client.collections.use("Movie")
+                        - generic [ref=e339]: "# Step 2.3: Perform a semantic search with NearText"
+                        - generic [ref=e340]: response = movies.query.near_text(
+                        - generic [ref=e341]: query="sci-fi",
+                        - generic [ref=e342]: limit=2
+                        - generic [ref=e343]: )
+                        - generic [ref=e344]: "for obj in response.objects:"
+                        - generic [ref=e345]: "print(json.dumps(obj.properties, indent=2)) # Inspect the results"
+              - group [ref=e346]:
+                - generic "Example response" [ref=e347] [cursor=pointer]
+              - 'heading "Step 3: Retrieval augmented generation (RAG)Direct link to Step 3: Retrieval augmented generation (RAG)" [level=2] [ref=e348]':
+                - text: "Step 3: Retrieval augmented generation (RAG)"
+                - 'link "Direct link to Step 3: Retrieval augmented generation (RAG)" [ref=e349] [cursor=pointer]':
+                  - /url: "#step-3-retrieval-augmented-generation-rag"
+                  - text: "#"
+              - generic [ref=e350]:
+                - generic [ref=e351]:
+                  - img [ref=e353]
+                  - text: "Requirement: Claude API key"
+                - paragraph [ref=e356]:
+                  - text: For Retrieval Augmented Generation (RAG) in this step, you will need a
+                  - link "Claude API key" [ref=e357] [cursor=pointer]:
+                    - /url: https://console.anthropic.com/settings/keys
+                  - text: . You can also use another generative
+                  - link "model provider" [ref=e358] [cursor=pointer]:
+                    - /url: /weaviate/model-providers
+                  - text: instead.
+              - generic [ref=e359]:
+                - tablist
+                - tabpanel [ref=e361]:
+                  - paragraph [ref=e362]:
+                    - text: Retrieval augmented generation (RAG), also called generative search, works by prompting a large language model (LLM) with a combination of a
+                    - emphasis [ref=e363]: user query
+                    - text: and
+                    - emphasis [ref=e364]: data retrieved from a database
+                    - text: .
+                  - paragraph [ref=e365]:
+                    - text: The following example combines the semantic search for the query
+                    - code [ref=e366]: sci-fi
+                    - text: with a prompt to generate a tweet using the Anthropic generative model (
+                    - link "generative-anthropic" [ref=e367] [cursor=pointer]:
+                      - /url: /weaviate/model-providers/anthropic/generative
+                      - code [ref=e368]: generative-anthropic
+                    - text: ).
+                  - generic [ref=e369]:
+                    - generic [ref=e370]:
+                      - generic [ref=e372]:
+                        - combobox [ref=e373] [cursor=pointer]:
+                          - option "Python" [selected]
+                          - option "JavaScript/TypeScript"
+                          - option "Go"
+                          - option "Java"
+                          - option "C#"
+                        - img
+                      - generic [ref=e374]:
+                        - link "py docs API docs" [ref=e375] [cursor=pointer]:
+                          - /url: https://weaviate-python-client.readthedocs.io/en/stable
+                          - img "py docs" [ref=e376]
+                          - generic [ref=e377]: API docs
+                        - generic [ref=e379]:
+                          - text: More info
+                          - img [ref=e381]
+                    - tabpanel [ref=e385]:
+                      - code [ref=e390]:
+                        - generic [ref=e391]: import os
+                        - generic [ref=e392]: import weaviate
+                        - generic [ref=e393]: from weaviate.classes.generate import GenerativeConfig
+                        - generic [ref=e394]: "# Best practice: store your credentials in environment variables"
+                        - generic [ref=e395]: weaviate_url = os.environ["WEAVIATE_URL"]
+                        - generic [ref=e396]: weaviate_api_key = os.environ["WEAVIATE_API_KEY"]
+                        - generic [ref=e397]: anthropic_api_key = os.environ["ANTHROPIC_API_KEY"]
+                        - generic [ref=e398]: "# Step 2.1: Connect to your Weaviate Cloud instance"
+                        - generic [ref=e399]: with weaviate.connect_to_weaviate_cloud(
+                        - generic [ref=e400]: cluster_url=weaviate_url,
+                        - generic [ref=e401]: auth_credentials=weaviate_api_key,
+                        - generic [ref=e402]: "headers={\"X-Anthropic-Api-Key\": anthropic_api_key},"
+                        - generic [ref=e403]: ") as client:"
+                        - generic [ref=e404]: "# Step 2.2: Use this collection"
+                        - generic [ref=e405]: movies = client.collections.use("Movie")
+                        - generic [ref=e406]: "# Step 2.3: Perform RAG with on NearText results"
+                        - generic [ref=e407]: response = movies.generate.near_text(
+                        - generic [ref=e408]: query="sci-fi",
+                        - generic [ref=e409]: limit=1,
+                        - generic [ref=e410]: grouped_task="Write a tweet with emojis about this movie.",
+                        - generic [ref=e411]: generative_provider=GenerativeConfig.anthropic(
+                        - generic [ref=e412]: model="claude-haiku-4-5"
+                        - generic [ref=e413]: "), # Configure the Anthropic generative integration for RAG"
+                        - generic [ref=e414]: )
+                        - generic [ref=e415]: "print(response.generative.text) # Inspect the results"
+              - group [ref=e416]:
+                - generic "Example response" [ref=e417] [cursor=pointer]
+              - 'heading "Step 4: Query AgentDirect link to Step 4: Query Agent" [level=2] [ref=e418]':
+                - text: "Step 4: Query Agent"
+                - 'link "Direct link to Step 4: Query Agent" [ref=e419] [cursor=pointer]':
+                  - /url: "#step-4-query-agent"
+                  - text: "#"
+              - generic [ref=e421]: Weaviate Cloud only
+              - paragraph [ref=e422]:
+                - text: The
+                - link "Weaviate Query Agent" [ref=e423] [cursor=pointer]:
+                  - /url: /query-agent
+                - text: is a pre-built agentic service designed to answer natural language queries based on the data stored in Weaviate Cloud. The user simply provides a prompt/question in natural language, and the Query Agent takes care of all intervening steps to provide an answer.
+              - generic [ref=e424]:
+                - generic [ref=e425]:
+                  - generic [ref=e427]:
+                    - combobox [ref=e428] [cursor=pointer]:
+                      - option "Python" [selected]
+                      - option "JavaScript/TypeScript"
+                    - img
+                  - generic [ref=e429]:
+                    - link "py docs API docs" [ref=e430] [cursor=pointer]:
+                      - /url: https://weaviate-python-client.readthedocs.io/en/stable
+                      - img "py docs" [ref=e431]
+                      - generic [ref=e432]: API docs
+                    - generic [ref=e434]:
+                      - text: More info
+                      - img [ref=e436]
+                - tabpanel [ref=e440]:
+                  - code [ref=e445]:
+                    - generic [ref=e446]: import os
+                    - generic [ref=e447]: import weaviate
+                    - generic [ref=e448]: from weaviate.agents.query import QueryAgent
+                    - generic [ref=e449]: "# Best practice: store your credentials in environment variables"
+                    - generic [ref=e450]: weaviate_url = os.environ["WEAVIATE_URL"]
+                    - generic [ref=e451]: weaviate_api_key = os.environ["WEAVIATE_API_KEY"]
+                    - generic [ref=e452]: "# Step 2.1: Connect to your Weaviate Cloud instance"
+                    - generic [ref=e453]: with weaviate.connect_to_weaviate_cloud(
+                    - generic [ref=e454]: cluster_url=weaviate_url,
+                    - generic [ref=e455]: auth_credentials=weaviate_api_key,
+                    - generic [ref=e456]: ") as client:"
+                    - generic [ref=e457]: "# Step 2.2: Instantiate a new agent object"
+                    - generic [ref=e458]: qa = QueryAgent(client=client, collections=["Movie"])
+                    - generic [ref=e460]: "# Step 2.3: Perform a query using Search Mode"
+                    - generic [ref=e461]: response = qa.search("Find a cool sci-fi movie.", limit=1)
+                    - generic [ref=e462]: "# Print the response"
+                    - generic [ref=e463]: "for obj in response.search_results.objects:"
+                    - generic [ref=e464]: "print(f\"Movie: {obj.properties['title']} - {obj.properties['description']}\")"
+              - paragraph [ref=e465]: "Here is the printed response:"
+              - code [ref=e469]:
+                - generic [ref=e470]: "Movie: The Matrix - A computer hacker learns about the true nature of reality and his role in the war against its controllers."
+              - heading "Next stepsDirect link to Next steps" [level=2] [ref=e471]:
+                - text: Next steps
+                - link "Direct link to Next steps" [ref=e472] [cursor=pointer]:
+                  - /url: "#next-steps"
+                  - text: "#"
+              - paragraph [ref=e473]: We recommend you check out the following resources to continue learning about Weaviate.
+              - generic [ref=e474]:
+                - link " Quick tour of Weaviate Continue with the Quick tour tutorial – an end-to-end guide that covers important topics like configuring collections, searches, etc." [ref=e475] [cursor=pointer]:
+                  - /url: /weaviate/tutorials/quick-tour-of-weaviate
+                  - generic [ref=e476]:
+                    - generic [ref=e477]: 
+                    - generic [ref=e478]: Quick tour of Weaviate
+                  - paragraph [ref=e479]: Continue with the Quick tour tutorial – an end-to-end guide that covers important topics like configuring collections, searches, etc.
+                - link " Weaviate Academy Check out Weaviate Academy – a learning platform centered around AI-native development." [ref=e480] [cursor=pointer]:
+                  - /url: https://academy.weaviate.io/
+                  - generic [ref=e481]:
+                    - generic [ref=e482]: 
+                    - generic [ref=e483]: Weaviate Academy
+                  - paragraph [ref=e484]: Check out Weaviate Academy – a learning platform centered around AI-native development.
+                - link " How-to manuals Quick examples of how to configure, manage and query Weaviate using client libraries." [ref=e485] [cursor=pointer]:
+                  - /url: /weaviate/guides
+                  - generic [ref=e486]:
+                    - generic [ref=e487]: 
+                    - generic [ref=e488]: How-to manuals
+                  - paragraph [ref=e489]: Quick examples of how to configure, manage and query Weaviate using client libraries.
+                - link " Starter guides Guides and tips for new users learning how to use Weaviate." [ref=e490] [cursor=pointer]:
+                  - /url: /weaviate/starter-guides
+                  - generic [ref=e491]:
+                    - generic [ref=e492]: 
+                    - generic [ref=e493]: Starter guides
+                  - paragraph [ref=e494]: Guides and tips for new users learning how to use Weaviate.
+              - heading "Questions and feedbackDirect link to Questions and feedback" [level=2] [ref=e495]:
+                - text: Questions and feedback
+                - link "Direct link to Questions and feedback" [ref=e496] [cursor=pointer]:
+                  - /url: "#questions-and-feedback"
+                  - text: "#"
+              - paragraph [ref=e497]:
+                - text: If you have any questions or feedback, let us know in the
+                - link "user forum" [ref=e498] [cursor=pointer]:
+                  - /url: https://forum.weaviate.io/
+                - text: .
+              - generic [ref=e499]:
+                - link " Technical questions If you have questions feel free to post on our Community forum." [ref=e500] [cursor=pointer]:
+                  - /url: https://forum.weaviate.io/new-topic?title=%5BQuestion%5D%20YOUR%20TOPIC&body=Details%20here&category=support&tags=technical
+                  - generic [ref=e501]:
+                    - generic [ref=e502]: 
+                    - generic [ref=e503]: Technical questions
+                  - paragraph [ref=e504]: If you have questions feel free to post on our Community forum.
+                - link " Documentation feedback Leave feedback by opening a GitHub issue." [ref=e505] [cursor=pointer]:
+                  - /url: https://github.com/weaviate/docs/issues
+                  - generic [ref=e506]:
+                    - generic [ref=e507]: 
+                    - generic [ref=e508]: Documentation feedback
+                  - paragraph [ref=e509]: Leave feedback by opening a GitHub issue.
+            - generic [ref=e510]:
+              - link "Edit this page" [ref=e513] [cursor=pointer]:
+                - /url: https://github.com/weaviate/docs/tree/main/docs/weaviate/quickstart/index.md
+                - img [ref=e514]
+                - text: Edit this page
+              - generic [ref=e520]:
+                - generic [ref=e522]:
+                  - link "GitHub" [ref=e523] [cursor=pointer]:
+                    - /url: https://github.com/weaviate/weaviate
+                    - generic [ref=e524]: 
+                  - link "X" [ref=e525] [cursor=pointer]:
+                    - /url: https://x.com/weaviate_io
+                    - generic [ref=e526]: 
+                  - link "Instagram" [ref=e527] [cursor=pointer]:
+                    - /url: https://instagram.com/weaviate.io
+                    - generic [ref=e528]: 
+                  - link "YouTube" [ref=e529] [cursor=pointer]:
+                    - /url: https://youtube.com/@Weaviate
+                    - generic [ref=e530]: 
+                  - link "LinkedIn" [ref=e531] [cursor=pointer]:
+                    - /url: https://www.linkedin.com/company/weaviate-io
+                    - generic [ref=e532]: 
+                - generic [ref=e533]:
+                  - generic [ref=e534]:
+                    - heading "Documentation" [level=5] [ref=e535]
+                    - list [ref=e536]:
+                      - listitem [ref=e537]:
+                        - link "Weaviate Database" [ref=e538] [cursor=pointer]:
+                          - /url: /weaviate
+                      - listitem [ref=e539]:
+                        - link "Deployment documentation" [ref=e540] [cursor=pointer]:
+                          - /url: /deploy
+                      - listitem [ref=e541]:
+                        - link "Weaviate Cloud" [ref=e542] [cursor=pointer]:
+                          - /url: /cloud
+                      - listitem [ref=e543]:
+                        - link "Query Agent" [ref=e544] [cursor=pointer]:
+                          - /url: /query-agent
+                      - listitem [ref=e545]:
+                        - link "Engram" [ref=e546] [cursor=pointer]:
+                          - /url: /engram
+                  - generic [ref=e547]:
+                    - heading "Support" [level=5] [ref=e548]
+                    - list [ref=e549]:
+                      - listitem [ref=e550]:
+                        - link "Forum" [ref=e551] [cursor=pointer]:
+                          - /url: https://forum.weaviate.io/c/support/
+          - generic [ref=e553]:
+            - list [ref=e555]:
+              - listitem [ref=e556]:
+                - link "Prerequisites" [ref=e557] [cursor=pointer]:
+                  - /url: "#prerequisites"
+              - listitem [ref=e558]:
+                - link "Install a client library" [ref=e559] [cursor=pointer]:
+                  - /url: "#install-a-client-library"
+              - listitem [ref=e560]:
+                - 'link "Step 1: Create a collection & import data" [ref=e561] [cursor=pointer]':
+                  - /url: "#create-a-collection"
+              - listitem [ref=e562]:
+                - 'link "Step 2: Semantic (vector) search" [ref=e563] [cursor=pointer]':
+                  - /url: "#semantic-search"
+              - listitem [ref=e564]:
+                - 'link "Step 3: Retrieval augmented generation (RAG)" [ref=e565] [cursor=pointer]':
+                  - /url: "#step-3-retrieval-augmented-generation-rag"
+              - listitem [ref=e566]:
+                - 'link "Step 4: Query Agent" [ref=e567] [cursor=pointer]':
+                  - /url: "#step-4-query-agent"
+              - listitem [ref=e568]:
+                - link "Next steps" [ref=e569] [cursor=pointer]:
+                  - /url: "#next-steps"
+              - listitem [ref=e570]:
+                - link "Questions and feedback" [ref=e571] [cursor=pointer]:
+                  - /url: "#questions-and-feedback"
+            - generic [ref=e572]:
+              - paragraph [ref=e573]: Was this page helpful?
+              - generic [ref=e574]:
+                - button "Vote up" [ref=e575] [cursor=pointer]:
+                  - img [ref=e576]
+                  - text: "Yes"
+                - button "Vote down" [ref=e578] [cursor=pointer]:
+                  - img [ref=e579]
+                  - text: "No"
